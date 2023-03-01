@@ -20,6 +20,13 @@ class Home extends CI_Controller {
 		$this->load->view('Home/Home',$data);
 	}
 
+	public function add_property(){
+
+		
+
+		$this->load->view('Home/add_property');
+	}
+
 	public function flats($house_name){
 
 		$house_name = base64_decode($house_name);

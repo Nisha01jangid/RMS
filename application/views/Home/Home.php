@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.84.0">
-    <title>Sidebars · Bootstrap v5.0</title>
+    <title>Rent Management System</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
 
@@ -85,7 +85,7 @@
             <div class="card">
                 <div class="card-body">
                     <div><b>Welcome back !</b> &emsp;
-                    <span><a class="btn btn-primary btn-block btn-sm col-sm-2 float-right" href="#">
+                    <span><a class="btn btn-primary btn-block btn-sm col-sm-2 float-right" href="<?php echo base_url('Home/add_property'); ?>">
                     <i class="fa fa-plus"></i> New Property
                   </a></span>
                     </div>

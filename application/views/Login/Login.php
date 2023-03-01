@@ -72,7 +72,7 @@ div#login-right::before {
   		<div id="login-left" class="bg-dark">
   		</div>
 
-  		<div id="login-right" class="bg-light">
+  		<div id="login-right" class="bg-light" style="background-color:red;">
   			<div class="w-100">
 			<h1 class="text-center"><b>Login</b></h1>
 			<br>
