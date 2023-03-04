@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 04, 2023 at 05:38 AM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- Generation Time: Mar 04, 2023 at 10:11 AM
+-- Server version: 10.4.17-MariaDB
+-- PHP Version: 8.0.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -50,7 +50,7 @@ INSERT INTO `categories` (`id`, `name`) VALUES
 
 CREATE TABLE `extra_charges` (
   `sno` int(50) NOT NULL,
-  `house_no` varchar(100) NOT NULL,
+  `house_no` int(100) NOT NULL,
   `month` varchar(10) NOT NULL,
   `water_bill` double DEFAULT NULL,
   `electricity_charges` double DEFAULT NULL,
@@ -62,17 +62,17 @@ CREATE TABLE `extra_charges` (
 --
 
 INSERT INTO `extra_charges` (`sno`, `house_no`, `month`, `water_bill`, `electricity_charges`, `time_stamp`) VALUES
-(1, 'P1', '2023-01', 1500, 15000, '2023-02-26 19:23:19'),
-(2, 'P2', '2023-01', 2000, 10000, '2023-02-26 18:03:24'),
-(3, 'P1', '2022-12', 1000, 15000, '2023-02-26 18:04:37'),
-(4, 'P2', '2022-12', 2000, 10000, '2023-02-26 18:03:24'),
-(5, 'P1', '2022-11', 1000, 15000, '2023-02-26 18:04:37'),
-(6, 'P2', '2022-11', 2000, 10000, '2023-02-26 18:03:24'),
-(7, 'P1', '2022-10', 1000, 15000, '2023-02-26 18:04:37'),
-(8, 'P2', '2022-10', 2000, 10000, '2023-02-26 18:03:24'),
-(9, 'P2', '2022-09', 2000, 10000, '2023-02-26 18:03:24'),
-(10, 'P1', '2022-09', 1520.59, NULL, '2023-02-26 19:03:18'),
-(14, 'P1', '2022-08', 3000, NULL, '2023-02-26 19:23:01');
+(1, 1, '2023-01', 1500, 15000, '2023-03-04 08:44:18'),
+(2, 1, '2023-01', 1500, 10000, '2023-03-04 08:44:18'),
+(3, 1, '2022-12', 1000, 15000, '2023-03-04 08:06:23'),
+(4, 1, '2022-12', 2000, 10000, '2023-03-04 08:06:23'),
+(5, 1, '2022-11', 1000, 15000, '2023-03-04 08:06:23'),
+(6, 1, '2022-11', 2000, 10000, '2023-03-04 08:06:23'),
+(7, 1, '2022-10', 1000, 15000, '2023-03-04 08:06:23'),
+(8, 1, '2022-10', 2000, 10000, '2023-03-04 08:06:23'),
+(9, 1, '2022-09', 2000, 10000, '2023-03-04 08:06:23'),
+(10, 1, '2022-09', 1520.59, NULL, '2023-03-04 08:06:23'),
+(14, 1, '2022-08', 3000, NULL, '2023-03-04 08:06:23');
 
 -- --------------------------------------------------------
 
@@ -182,6 +182,7 @@ CREATE TABLE `tenants` (
   `email` varchar(100) NOT NULL,
   `contact` varchar(50) NOT NULL,
   `house_id` int(30) NOT NULL,
+  `flat_no` int(100) NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '1 = active, 0= inactive',
   `date_in` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -190,17 +191,13 @@ CREATE TABLE `tenants` (
 -- Dumping data for table `tenants`
 --
 
-INSERT INTO `tenants` (`id`, `firstname`, `middlename`, `lastname`, `email`, `contact`, `house_id`, `status`, `date_in`) VALUES
-(1, 'Douglas', 'Matoke', 'Mogusu', 'Mogusu@gmail.com', '85421658', 1, 1, '2022-07-01'),
-(2, 'Rachael', 'wainaina', 'wangeci', 'wangeci@gmail.com', '4851256', 2, 1, '2022-08-01'),
-(3, 'zeph', 'masika', 'wanyama', 'wanyama@gmail.com', '8956214', 3, 1, '2022-09-01'),
-(4, 'maureen', 'jerop', 'cherotich', 'cherotich@gmail.com', '8456215', 4, 1, '2022-10-01'),
-(5, 'james', 'kiprotich', 'kemboi', 'james@gmail.com', '8512469', 5, 1, '2022-09-01'),
-(6, 'DANIEL', 'MWAURA', 'KIMANI', 'daniel@gmail.com', '85745264', 6, 1, '2022-07-07'),
-(0, 'Om', 'Aditya', 'Jain', 'omadityajain@gmail.com', '9754854756', 0, 0, '2022-12-01'),
-(0, 'Om', 'Aditya', 'Jain', 'omadityajain@gmail.com', '9754854756', 0, 0, '2022-12-31'),
-(0, 'Om', 'Aditya', 'Jain', 'omadityajain@gmail.com', '9754854756', 0, 1, '2022-12-30'),
-(0, 'Om', 'Aditya', 'Jain', 'omadityajain@gmail.com', '9754854756', 0, 1, '2023-01-26');
+INSERT INTO `tenants` (`id`, `firstname`, `middlename`, `lastname`, `email`, `contact`, `house_id`, `flat_no`, `status`, `date_in`) VALUES
+(1, 'Douglas', 'Matoke', 'Mogusu', 'Mogusu@gmail.com', '85421658', 1, 1, 1, '2022-07-01'),
+(2, 'Rachael', 'wainaina', 'wangeci', 'wangeci@gmail.com', '4851256', 1, 2, 1, '2022-08-01'),
+(3, 'zeph', 'masika', 'wanyama', 'wanyama@gmail.com', '8956214', 1, 3, 1, '2022-09-01'),
+(4, 'maureen', 'jerop', 'cherotich', 'cherotich@gmail.com', '8456215', 2, 1, 1, '2022-10-01'),
+(5, 'james', 'kiprotich', 'kemboi', 'james@gmail.com', '8512469', 2, 2, 1, '2022-09-01'),
+(6, 'DANIEL', 'MWAURA', 'KIMANI', 'daniel@gmail.com', '85745264', 2, 3, 1, '2022-07-07');
 
 -- --------------------------------------------------------
 
@@ -266,6 +263,12 @@ ALTER TABLE `property`
   ADD PRIMARY KEY (`property_id`);
 
 --
+-- Indexes for table `tenants`
+--
+ALTER TABLE `tenants`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -292,6 +295,12 @@ ALTER TABLE `house_address`
 --
 ALTER TABLE `property`
   MODIFY `property_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `tenants`
+--
+ALTER TABLE `tenants`
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `users`
