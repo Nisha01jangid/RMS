@@ -65,12 +65,12 @@
       <li class="nav-item">
         <a href="<?php echo base_url('Home') ?>" class="nav-link text-white" aria-current="page">Home</a>
       </li>
-      <li>
+      <!-- <li>
         <a href="#" class="nav-link text-white">Electricity Bill</a>
       </li>
       <li>
         <a href="<?php echo base_url('Bill/WaterBill') ?>" class="nav-link text-white">Water & Other Bills</a>
-      </li>
+      </li> -->
       <li>
         <a href="#" class="nav-link text-white">Report</a>
       </li>
@@ -83,12 +83,13 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <div>Water Bill</div>
+                <div style="font-style:italic; font-size: 20px; color:red; font-size: 25px;" ><b>Water Bill</b>                    
+                    </div>
                     <hr>
                     <div>
                     <form action="<?php echo base_url("Bill/insertWaterBill"); ?>" method="post">
                     <div class="row">
-                    <table class="table">
+                    <table class="table" style="width:90%" align="center">
                         <thead class="thead-dark">
                             <tr>
                             <th scope="col">Sno</th>
@@ -99,14 +100,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <input type="hidden" name="house_no" value="<?php echo $house_no; ?>">
+                            <input type="hidden" name="property_id" value="<?php echo $property_id; ?>">
                             <input type="hidden" name="month" value="<?php echo $month; ?>">
-                            <?php $i=1;?>
                             <tr>
-                            <th scope="row"><?php echo $i; ?></th>
-                            <td><?php echo $house_no; ?></td>
+                            <th scope="row">1</th>
+                            <td><?php echo $property_name; ?></td>
                             <td><?php echo  date("F", strtotime($month))." ".date("Y", strtotime($month)); ?></td>
-                            <td><input type="text" name="water_bill"></td>
+                            <td><input type="text" name="water_bill" value="<?php echo $water_bill; ?>"></td>
                             <td><input type="submit" value="Submit" class="btn btn-primary"></td>
                             </tr>
                             

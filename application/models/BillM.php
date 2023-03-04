@@ -15,9 +15,9 @@ class BillM extends CI_Model {
 
   }
 
-  function getLastWaterBill(){
+  function getLastWaterBill($year){
 
-    $sql="SELECT * from `extra_charges` order by `month` desc, house_no asc LIMIT 5";    
+    $sql="SELECT *, sum(water_bill) as sum from `extra_charges` where `month` LIKE '$year%' group by `house_no` ";    
     $query = $this->db->query($sql);
     return $query->result_array();
 
@@ -27,6 +27,20 @@ class BillM extends CI_Model {
     $sql="SELECT water_bill from `extra_charges` where `house_no`='$house_no' and `month` = '$month'";    
     $query = $this->db->query($sql);
     return $query->result_array();
+
+  }
+  function getWaterBillOfProperty($house_no,$month){
+
+    $sql="SELECT water_bill from `extra_charges` where `house_no`='$house_no' and `month` = '$month'";    
+    $query = $this->db->query($sql);
+    return $query->result_array();
+
+  }
+  function getPropertyName($property_id){
+
+    $sql="SELECT property_name from `property` where `property_id`='$property_id' and `active` = 1";    
+    $query = $this->db->query($sql);
+    return $query->result_array()[0]['property_name'];
 
   }
 

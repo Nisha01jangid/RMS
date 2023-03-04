@@ -15,54 +15,73 @@ class Bill extends CI_Controller {
 	}
 	public function WaterBill()
 	{
-		$data['houses'] = $this->BillM->getLastWaterBill();
-		$i=0;
-		foreach($data['houses'] as $h){
-			$data['houses'][$i]['month_name'] = date("F", strtotime($h['month']))." ".date("Y", strtotime($h['month']));
-			$i++;
-		}
+		$year = date('Y');
+		$data['houses'] = $this->BillM->getLastWaterBill($year);
 		$this->load->view('Bill/WaterBill', $data);
+	}
+	public function WaterBillOfPoperty($property_id)
+	{
+		$month = date('Y-m');
+		$month_name = date("F", strtotime($month))." ".date("Y", strtotime($month)); 
+		$data['property_name'] = $this->BillM->getPropertyName($property_id);
+		$water_bill = $this->BillM->getWaterBillOfProperty($property_id,$month);
+		if(!empty($water_bill)){
+			$data['water_bill'] = $water_bill[0]['water_bill'];
+		}else{
+			$data['water_bill'] = "";
+		}
+		$data['month_name'] = $month_name;
+		$data['month'] = $month;
+		$data['property_id'] = $property_id;
+
+		$this->load->view('Bill/WaterBillOfProperty',$data);
 	}
 
 	public function getBill()
 	{
 		$month = $_GET['month'];
+		$property_id = $_GET['property_id'];
         $month_name = date("F", strtotime($month))." ".date("Y", strtotime($month)); 
-		$data['houses'] = $this->BillM->getAllHouses();
-		$i=0;
-		foreach($data['houses'] as $h){
-			$water_bill = $this->BillM->getWaterBill($h['house_no'],$month);
-			if(!empty($water_bill)){
-				$data['houses'][$i]['water_bill'] = $water_bill[0]['water_bill'];
-			}else{
-				$data['houses'][$i]['water_bill'] = "";
-			}
-			$data['houses'][$i]['month_name'] = $month_name;
-			$data['houses'][$i]['month'] = $month;
-			$i++;
+		$data['property_name'] = $this->BillM->getPropertyName($property_id);
+		$water_bill = $this->BillM->getWaterBillOfProperty($property_id,$month);
+		if(!empty($water_bill)){
+			$data['water_bill'] = $water_bill[0]['water_bill'];
+		}else{
+			$data['water_bill'] = "";
 		}
+		$data['month_name'] = $month_name;
+		$data['month'] = $month;
+		$data['property_id'] = $property_id;
 
-		$this->load->view('Bill/WaterBill',$data);
+		$this->load->view('Bill/WaterBillOfProperty',$data);
 	}
 
-    public function addWaterBill($house_no,$month){
-		$data['house_no'] = $house_no;
+    public function addWaterBill($property_id,$month){
+
+		$water_bill = $this->BillM->getWaterBillOfProperty($property_id,$month);
+		if(!empty($water_bill)){
+			$data['water_bill'] = $water_bill[0]['water_bill'];
+		}else{
+			$data['water_bill'] = "";
+		}
+		$data['property_id'] = $property_id;
+		$data['property_name'] = $this->BillM->getPropertyName($property_id);
 		$data['month'] = $month;
-		$this->load->view('Bill/addWaterBill',$data);
+		$this->load->view('Bill/AddWaterBillOfProperty',$data);
 	}
 
     public function insertWaterBill(){
-		$house_no = $_POST['house_no'];
+		$property_id = $_POST['property_id'];
 		$month = $_POST['month'];
 		$water_bill = $_POST['water_bill'];
-		$check = $this->BillM->getWaterBill($house_no,$month);
+		$check = $this->BillM->getWaterBill($property_id,$month);
 		if(empty($check)){
-			$this->BillM->insertWaterBill($house_no,$month,$water_bill);
+			$this->BillM->insertWaterBill($property_id,$month,$water_bill);
 		}else{
-			$this->BillM->updateWaterBill($house_no,$month,$water_bill);
+			$this->BillM->updateWaterBill($property_id,$month,$water_bill);
 		}
 		
-		redirect(base_url("Bill/getBill/?month=").$month);
+		redirect(base_url("Bill/getBill?property_id=").$property_id."&month=".$month);
 	}
 
 }

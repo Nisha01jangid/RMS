@@ -33,7 +33,7 @@
     .homediv{
         width:75%;
         height:100%;
-        margin:3%;    
+        margin:1% 3% 0% 3%;    
     }
 
     </style>
@@ -59,12 +59,12 @@
       <li class="nav-item">
         <a href="<?php echo base_url('Home') ?>" class="nav-link text-white" aria-current="page">Home</a>
       </li>
-      <li>
+      <!-- <li>
         <a href="#" class="nav-link text-white">Electricity Bill</a>
       </li>
       <li>
         <a href="<?php echo base_url('Bill/WaterBill') ?>" class="nav-link text-white">Water & Other Bills</a>
-      </li>
+      </li> -->
       <li>
         <a href="#" class="nav-link text-white">Report</a>
       </li>
@@ -80,45 +80,48 @@
 <div class="card">
 <div class="card-body">
 <form>
-<div class="form-group">
+  <div class="row">
+    <div class="form-group col">
     <label for="exampleInputEmail1">Full Name:</label>
     <input type="text" class="form-control" id="exampleInputEmail1" name="name"  placeholder="Enter your name">
      </div>
-     <br>
-     <div class="form-group">
+     <div class="form-group col">
     <label for="exampleInputEmail1">Father's Name:</label>
     <input type="text" class="form-control" id="exampleInputEmail1" name="father_name"  placeholder="Enter your father name">
      </div>
-     <br>
-     <div class="form-group">
+  </div>
+  <br>
+  <div class="row">
+    <div class="form-group col">
     <label for="exampleInputEmail1">Date of Birth:</label>
     <input type="date" class="form-control" id="exampleInputEmail1" name="dob"  placeholder="Enter your date of birth">
+    </div>
+    <div class="form-group col">
+    <label for="exampleInputEmail1">Contact Number:</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" name="mobile"  placeholder="Enter your contact number">
      </div>
+  </div>
      <br>
      <div class="form-group">
     <label for="exampleInputEmail1">Aadhaar Number:</label>
     <input type="text" class="form-control" id="exampleInputEmail1" name="Aadhaar"  placeholder="Enter your aadhaar number">
      </div>
      <br>
-     <div class="form-group">
-    <label for="exampleInputEmail1">Contact Number:</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" name="mobile"  placeholder="Enter your contact number">
-     </div>
+    <div class="form-group">
+    <label for="exampleInputEmail1">Email address:</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" name="email"  placeholder="Enter email address">
+    </div>
      <br>
-     <div class="form-group">
+    <div class="row">
+    <div class="form-group col">
     <label for="exampleInputEmail1">Family Members:</label>
     <input type="number" class="form-control" id="exampleInputEmail1" name="members"  placeholder="Enter members in the family">
      </div>
-     <br>
-  <div class="form-group">
-    <label for="exampleInputEmail1">Email address:</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" name="email"  placeholder="Enter email address">
-</div>
-<br>
-  <div class="form-group">
+    <div class="form-group col">
     <label for="exampleInputPassword1">Joining Date</label>
     <input type="date" class="form-control" id="exampleInputPassword1" name="joining_date" placeholder="Enter joining date">
-  </div>
+    </div>
+    </div>
   <br>
   <!-- <div class="form-group form-check">
     <input type="checkbox" class="form-check-input" id="exampleCheck1">
