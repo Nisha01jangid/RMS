@@ -73,36 +73,58 @@
   </div>
 
 <div class="homediv">
-<h2 style="color:red; font-style:italic; font-weight:bold;">Add New Property</h2>
+<h2 style="color:red; font-style:italic; font-weight:bold;"> Tenant Details</h2>
 <div class="containe-fluid">
 <div class="row mt-3 ml-3 mr-3">
 <div class="col-lg-12">
 <div class="card">
 <div class="card-body">
-  
-<form action="<?php echo base_url("Home/insert_new_property");?>" method="post">
+<form>
 <div class="form-group">
-  
-    <label for="exampleInputEmail1">Property Name:</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" name="property_name"  placeholder="Enter your property name" required>
+    <label for="exampleInputEmail1">Full Name:</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" name="name"  placeholder="Enter your name">
      </div>
      <br>
      <div class="form-group">
-    <label for="exampleInputEmail1">Property's Address:</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" name="property_address"  placeholder="Enter your property address" required>
+    <label for="exampleInputEmail1">Father's Name:</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" name="father_name"  placeholder="Enter your father name">
      </div>
      <br>
      <div class="form-group">
-    <label for="exampleInputEmail1">Number of flats:</label>
-    <input type="number" class="form-control" id="exampleInputEmail1" name="flats"  placeholder="Enter your date of birth" required>
+    <label for="exampleInputEmail1">Date of Birth:</label>
+    <input type="date" class="form-control" id="exampleInputEmail1" name="dob"  placeholder="Enter your date of birth">
      </div>
      <br>
-     
+     <div class="form-group">
+    <label for="exampleInputEmail1">Aadhaar Number:</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" name="Aadhaar"  placeholder="Enter your aadhaar number">
+     </div>
+     <br>
+     <div class="form-group">
+    <label for="exampleInputEmail1">Contact Number:</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" name="mobile"  placeholder="Enter your contact number">
+     </div>
+     <br>
+     <div class="form-group">
+    <label for="exampleInputEmail1">Family Members:</label>
+    <input type="number" class="form-control" id="exampleInputEmail1" name="members"  placeholder="Enter members in the family">
+     </div>
+     <br>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address:</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" name="email"  placeholder="Enter email address">
+</div>
+<br>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Joining Date</label>
+    <input type="date" class="form-control" id="exampleInputPassword1" name="joining_date" placeholder="Enter joining date">
+  </div>
+  <br>
   <!-- <div class="form-group form-check">
     <input type="checkbox" class="form-check-input" id="exampleCheck1">
     <label class="form-check-label" for="exampleCheck1">Check me out</label>
   </div> -->
-  <button type="submit" class="btn btn-primary" value="Submit">Submit</button>
+  <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 </div></div></div></div></div></div>
 </main>
