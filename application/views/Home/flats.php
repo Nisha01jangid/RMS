@@ -79,14 +79,6 @@
     <hr>
   </div>
   <div class="homediv">
-    
-  <?php
-    if($msg = $this->session->flashdata('property_inserted')) {?>
-    <div class="alert alert-success" style="font-style: italic; text-align:center;">
-    <strong><?php echo $msg; ?></strong>
-    </div>
-    <br>
-  <?php } ?>
 
   <div class="containe-fluid">
 	<div class="row mt-3 ml-3 mr-3">
@@ -110,7 +102,7 @@
                                 <div class="card-footer">
                                     <div class="row">
                                         <div class="col-lg-12">
-                                            <a href="<?php echo base_url('Home/tenant_details/').$i; ?>" class="text-primary float-right" style="text-decoration : none; font-weight:bold;">View <span class="fa fa-angle-right"></span></a>
+                                            <a href="<?php echo base_url('Home/tenant_details/').$i.'/'.$flats[0]['property_id']; ?>" class="text-primary float-right" style="text-decoration : none; font-weight:bold;">View <span class="fa fa-angle-right"></span></a>
                                         </div>
                                     </div>
                                 </div>
