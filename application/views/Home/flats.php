@@ -81,7 +81,7 @@
   <div class="homediv">
     
   <?php
-    if($msg = $this->session->flashdata('property_inserted')) {?>
+    if($msg = $this->session->flashdata('property_inserted')){ ?>
     <div class="alert alert-success" style="font-style: italic; text-align:center;">
     <strong><?php echo $msg; ?></strong>
     </div>
@@ -97,14 +97,14 @@
                     </div>
                     <hr>
                     <div class="row">
-                        <?php for($i =1; $i<=$flats[0]['flats']; $i++){?>
+                        <?php for($i =1; $i<=$flats[0]['flats']; $i++){ ?>
 
                           <div class="col-md-3 mb-3">
                             <div class="card border-warning">
                                 <div class="card-body bg-warning">
                                     <div class="card-body text-white">
                                         <span class="float-right summary_icon"> <i class="fa fa-home" style="color:black;"></i></span>
-                                        <h4 style="color:black;"><b><i><?php echo "Flat Number: ".$i; ?></i></b></h4>
+                                        <h4 style="color:black;"><b><i><?php echo "Flat No : ".$i; ?></i></b></h4>
                                     </div>
                                 </div>
                                 <div class="card-footer">
