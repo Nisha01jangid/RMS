@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.84.0">
-    <title>Rent Management System</title>
+    <title>Sidebars · Bootstrap v5.0</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
 
@@ -40,7 +40,6 @@
         height:100%;
         margin:3%;    
     }
-
     </style>
 
     
@@ -79,55 +78,55 @@
     <hr>
   </div>
   <div class="homediv">
-    
-  <?php
-    if($msg = $this->session->flashdata('property_inserted')) {?>
-    <div class="alert alert-success" style="font-style: italic; text-align:center;">
-    <strong><?php echo $msg; ?></strong>
-    </div>
-    <br>
-  <?php } ?>
-
-  <?php
-    if($msg = $this->session->flashdata('tenant_inserted')) {?>
-    <div class="alert alert-success" style="font-style: italic; text-align:center;">
-    <strong><?php echo $msg; ?></strong>
-    </div>
-    <br>
-  <?php } ?>
-
   <div class="containe-fluid">
 	<div class="row mt-3 ml-3 mr-3">
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <div style="font-style:italic; font-size: 20px;"><b>Welcome back !</b> &emsp;
-                    <span><a class="btn btn-primary btn-block btn-sm col-sm-2 float-right" href="<?php echo base_url('Home/add_property'); ?>">
-                    <i class="fa fa-plus"></i> New Property
-                  </a></span>
+                    <div style="font-style:italic; font-size: 20px; color:red; font-size: 25px;" ><b>Water Bill</b>                    
                     </div>
                     <hr>
+                    <div style="display:flex; justify-content:center;">
+                    <form action="<?php echo base_url("Bill/getBill"); ?>" method="get">
+                    <input type="hidden" name="property_id" value="<?php echo $property_id; ?>">
+                    <input
+                        id="month"
+                        type="month"
+                        name="month"
+                        min="2000-01"
+                        max="<?php echo date("Y-m"); ?>"
+                        value="<?php echo $month; ?>"
+                        style="height:100%;margin-right:10px;"
+                        required
+                        />
+                    <input type="submit" value="Submit" class="btn btn-primary">
+                    </form>
+                    </div>
                     <div class="row">
-                        <?php foreach($property as $p){ ?>
-                          <div class="col-md-4 mb-3">
-                            <div class="card border-warning">
-                                <div class="card-body bg-warning">
-                                    <div class="card-body text-white">
-                                        <span class="float-right summary_icon"> <i class="fa fa-home" style="color:black;"></i></span>
-                                        <h4 style="color:black;"><b><?php echo $p['property_name']." { ".$p['flats']." Flats }"; ?></b></h4>
-                                        <p style="color:black;"><b><?php echo $p['property_address']; ?></b></p>
-                                    </div>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <a href="<?php echo base_url('Home/flats/').$p['property_id'];?>" class="text-primary float-right" style="text-decoration : none; font-weight:bold;">View List &nbsp; <span class="fa fa-angle-right"></span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <?php } ?>
+                    <table class="table" style="width:90%" align="center">
+                        <thead class="thead-dark">
+                            <tr>
+                            <th scope="col">Sno</th>
+                            <th scope="col">Property</th>
+                            <th scope="col">Month</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <th scope="row">1</th>
+                            <td><?php echo $property_name; ?></td>
+                            <td><?php echo $month_name; ?></td>
+                            <td><?php echo $water_bill; ?></td>
+                            <td><?php if(!empty($water_bill)){?>
+                              <a href="<?php echo base_url("Bill/addWaterBill/").$property_id."/".$month; ?>" class="btn btn-warning">Edit Amount</a>
+                            <?php }else{?>
+                              <a href="<?php echo base_url("Bill/addWaterBill/").$property_id."/".$month; ?>" class="btn btn-primary">Add Amount</a>
+                            <?php } ?></td>
+                            </tr>   
+                        </tbody>
+                        </table>
                     </div>
 
                     
@@ -138,7 +137,13 @@
 </div>
   </div>
 </main>
-
+<script>
+    $("#datepicker").datepicker( {
+    format: "mm-yyyy",
+    startView: "months", 
+    minViewMode: "months"
+});
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 

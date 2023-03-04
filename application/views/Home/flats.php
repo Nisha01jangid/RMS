@@ -66,12 +66,12 @@
       <li class="nav-item">
         <a href="<?php echo base_url('Home') ?>" class="nav-link text-white" aria-current="page">Home</a>
       </li>
-      <li>
+      <!-- <li>
         <a href="#" class="nav-link text-white">Electricity Bill</a>
       </li>
       <li>
         <a href="<?php echo base_url('Bill/WaterBill') ?>" class="nav-link text-white">Water & Other Bills</a>
-      </li>
+      </li> -->
       <li>
         <a href="#" class="nav-link text-white">Report</a>
       </li>
@@ -85,18 +85,19 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <div style="font-style:italic; font-size: 20px; color:red; font-size: 25px;"><b><i><?php echo $flats[0]['property_address'];?></i></b> 
+                    <div style="font-style:italic; font-size: 20px; color:red; font-size: 25px;"><b><i><?php echo $flats[0]['property_address'];?></i></b> &emsp;
+                    <a href="#" class="btn btn-primary"><b>Electricity Bill</b></a>&emsp;<a href="<?php echo base_url('Bill/WaterBillOfPoperty/').$property_id; ?>" class="btn btn-primary"><b>Water Bill</b></a>
                     </div>
                     <hr>
-                    <div class="row">
-                        <?php for($i =1; $i<=$flats[0]['flats']; $i++){?>
+                    <div class="row" style="height:65vh; overflow-x: hidden; overflow-y: auto;">
+                        <?php for($i =1; $i<=$flats[0]['flats']; $i++){ ?>
 
                           <div class="col-md-3 mb-3">
                             <div class="card border-warning">
                                 <div class="card-body bg-warning">
                                     <div class="card-body text-white">
                                         <span class="float-right summary_icon"> <i class="fa fa-home" style="color:black;"></i></span>
-                                        <h4 style="color:black;"><b><i><?php echo "Flat Number: ".$i; ?></i></b></h4>
+                                        <h4 style="color:black;"><b><i><?php echo "Flat No : ".$i; ?></i></b></h4>
                                     </div>
                                 </div>
                                 <div class="card-footer">

@@ -39,6 +39,7 @@ class Home extends CI_Controller {
 
 		$property_id = $property_id;
 		$data['flats'] = $this->HomeM->get_flats($property_id);
+		$data['property_id'] = $property_id;
 		// echo "<pre>";
 		// print_r($data['flats']);
 		// die();

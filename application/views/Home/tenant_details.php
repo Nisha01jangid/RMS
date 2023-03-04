@@ -33,7 +33,7 @@
     .homediv{
         width:75%;
         height:100%;
-        margin:3%;    
+        margin:1% 3% 0% 3%;    
     }
 
     </style>
@@ -59,12 +59,12 @@
       <li class="nav-item">
         <a href="<?php echo base_url('Home') ?>" class="nav-link text-white" aria-current="page">Home</a>
       </li>
-      <li>
+      <!-- <li>
         <a href="#" class="nav-link text-white">Electricity Bill</a>
       </li>
       <li>
         <a href="<?php echo base_url('Bill/WaterBill') ?>" class="nav-link text-white">Water & Other Bills</a>
-      </li>
+      </li> -->
       <li>
         <a href="#" class="nav-link text-white">Report</a>
       </li>
@@ -101,6 +101,7 @@
     <input type="text" class="form-control" id="exampleInputEmail1" name="mobile"  placeholder="Enter your contact number">
      </div>
   </div>
+
      <br>
 
   <div class="row">
@@ -126,6 +127,7 @@
     <input type="number" class="form-control" id="exampleInputEmail1" name="members"  placeholder="Enter members in the family">
      </div>
     <div class="form-group col">
+
     <label for="exampleInputPassword1">Rent of Flat:</label>
     <input type="number" class="form-control" id="exampleInputPassword1" name="rent" placeholder="Enter rent of flat" required>
     </div>
