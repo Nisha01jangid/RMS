@@ -23,12 +23,12 @@ class HomeM extends CI_Model {
 
   }
 
-  function get_flats($house_no){
+  function get_flats($property_id){
 
-    $query = "SELECT * from houses where house_no = '$house_no'";
+    $query = "SELECT flats, property_address from property where property_id = '$property_id'";
 
     $result = $this->db->query($query);
-    return $result->return_array();
+    return $result->result_array();
   }
 
   public function insert_new_property($property_name, $property_address, $flats){

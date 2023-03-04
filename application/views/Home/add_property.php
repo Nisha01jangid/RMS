@@ -94,7 +94,7 @@
      <br>
      <div class="form-group">
     <label for="exampleInputEmail1">Number of flats:</label>
-    <input type="number" class="form-control" id="exampleInputEmail1" name="flats"  placeholder="Enter your date of birth" required>
+    <input type="number" class="form-control" id="exampleInputEmail1" name="flats"  placeholder="Enter your flat numbers" required>
      </div>
      <br>
      

@@ -6,9 +6,11 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.84.0">
-    <title>Sidebars · Bootstrap v5.0</title>
+    <title>Rent Management System</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
+
+    
 
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -50,40 +52,72 @@
 
 <main>
 
-  
+  <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;height:100vh;">
+    <div class="dropdown">
+      <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false" style="margin: 0% 5%;">
+        <strong><?php echo $_SESSION['user']; ?></strong>
+      </a>
+      <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+        <li><a class="dropdown-item" href="#">Sign out</a></li>
+      </ul>
+    </div>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li class="nav-item">
+        <a href="<?php echo base_url('Home') ?>" class="nav-link text-white" aria-current="page">Home</a>
+      </li>
+      <li>
+        <a href="#" class="nav-link text-white">Electricity Bill</a>
+      </li>
+      <li>
+        <a href="<?php echo base_url('Bill/WaterBill') ?>" class="nav-link text-white">Water & Other Bills</a>
+      </li>
+      <li>
+        <a href="#" class="nav-link text-white">Report</a>
+      </li>
+    </ul>
+    <hr>
+  </div>
   <div class="homediv">
+    
+  <?php
+    if($msg = $this->session->flashdata('property_inserted')) {?>
+    <div class="alert alert-success" style="font-style: italic; text-align:center;">
+    <strong><?php echo $msg; ?></strong>
+    </div>
+    <br>
+  <?php } ?>
+
   <div class="containe-fluid">
 	<div class="row mt-3 ml-3 mr-3">
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <div>Welcome back !
-                    <span><a class="btn btn-primary btn-block btn-sm col-sm-2 float-right" href="#">
-                    <i class="fa fa-plus"></i> New Entry
-                  </a></span>
+                    <div style="font-style:italic; font-size: 20px; color:red; font-size: 25px;"><b><i><?php echo $flats[0]['property_address'];?></i></b> 
                     </div>
                     <hr>
                     <div class="row">
-                        <?php foreach($flats as $f){ ?>
-                          <div class="col-md-4 mb-3">
+                        <?php for($i =1; $i<=$flats[0]['flats']; $i++){?>
+
+                          <div class="col-md-3 mb-3">
                             <div class="card border-warning">
                                 <div class="card-body bg-warning">
                                     <div class="card-body text-white">
-                                        <span class="float-right summary_icon"> <i class="fa fa-home "></i></span>
-                                        <h4><b><?php echo $f['flat_no']; ?></b></h4>
-                                        <p><b><?php echo $f['price']; ?></b></p>
+                                        <span class="float-right summary_icon"> <i class="fa fa-home" style="color:black;"></i></span>
+                                        <h4 style="color:black;"><b><i><?php echo "Flat Number: ".$i; ?></i></b></h4>
                                     </div>
                                 </div>
                                 <div class="card-footer">
                                     <div class="row">
                                         <div class="col-lg-12">
-                                            <a href="<?php echo base_url('Home/flats') ?>" class="text-primary float-right" style="text-decoration : none;">View List &nbsp; <span class="fa fa-angle-right"></span></a>
+                                            <a href="<?php echo base_url('Home/tenant_details/').$i; ?>" class="text-primary float-right" style="text-decoration : none; font-weight:bold;">View <span class="fa fa-angle-right"></span></a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <?php } ?>
+
+                       <?php } ?>
                     </div>
 
                     

@@ -12,10 +12,6 @@ class Home extends CI_Controller {
 	public function index()
 	{
 		$data['property'] = $this->HomeM->getAllHouses();
-		
-		// echo "<pre>";
-		// print_r($data['property']);
-		// die();
 		$this->load->view('Home/Home',$data);
 	}
 
@@ -42,12 +38,16 @@ class Home extends CI_Controller {
 	public function flats($property_id){
 
 		$property_id = $property_id;
-
-		$data['flats'] = $this->HomeM->get_flats($house_name);
-		echo "<pre>";
-		print_r($data['flats']);
-		die();
+		$data['flats'] = $this->HomeM->get_flats($property_id);
+		// echo "<pre>";
+		// print_r($data['flats']);
+		// die();
 		$this->load->view('Home/flats', $data);
+	}
+
+	public function tenant_details($flat_number){
+
+		$this->load->view('Home/tenant_details');
 	}
 
 

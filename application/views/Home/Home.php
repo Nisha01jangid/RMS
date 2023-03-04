@@ -105,9 +105,9 @@
                             <div class="card border-warning">
                                 <div class="card-body bg-warning">
                                     <div class="card-body text-white">
-                                        <span class="float-right summary_icon"> <i class="fa fa-home "></i></span>
-                                        <h4><b><?php echo $p['property_name']." { ".$p['flats']." Flats }"; ?></b></h4>
-                                        <p><b><?php echo $p['property_address']; ?></b></p>
+                                        <span class="float-right summary_icon"> <i class="fa fa-home" style="color:black;"></i></span>
+                                        <h4 style="color:black;"><b><?php echo $p['property_name']." { ".$p['flats']." Flats }"; ?></b></h4>
+                                        <p style="color:black;"><b><?php echo $p['property_address']; ?></b></p>
                                     </div>
                                 </div>
                                 <div class="card-footer">
