@@ -102,24 +102,25 @@
                     <input type="submit" value="Submit" class="btn btn-primary">
                     </form>
                     </div>
+                    <br>
                     <div class="row">
-                    <table class="table" style="width:90%" align="center">
+                    <table class="table table-striped table-hover table-bordered" style="width:90%" align="center">
                         <thead class="thead-dark">
                             <tr>
-                            <th scope="col">Sno</th>
-                            <th scope="col">Property</th>
-                            <th scope="col">Month</th>
-                            <th scope="col">Amount</th>
-                            <th scope="col">Action</th>
+                            <th scope="col" style="text-align:center;">S.No.</th>
+                            <th scope="col" style="text-align:center;">Property</th>
+                            <th scope="col" style="text-align:center;">Month</th>
+                            <th scope="col" style="text-align:center;">Amount</th>
+                            <th scope="col" style="text-align:center;">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                            <th scope="row">1</th>
-                            <td><?php echo $property_name; ?></td>
-                            <td><?php echo $month_name; ?></td>
-                            <td><?php echo $water_bill; ?></td>
-                            <td><?php if(!empty($water_bill)){?>
+                            <th scope="row" style="text-align:center;">1</th>
+                            <td style="text-align:center;"><?php echo $property_name; ?></td>
+                            <td style="text-align:center;"><?php echo $month_name; ?></td>
+                            <td style="text-align:center;"><?php echo $water_bill; ?></td>
+                            <td align="center"><?php if(!empty($water_bill)){?>
                               <a href="<?php echo base_url("Bill/addWaterBill/").$property_id."/".$month; ?>" class="btn btn-warning">Edit Amount</a>
                             <?php }else{?>
                               <a href="<?php echo base_url("Bill/addWaterBill/").$property_id."/".$month; ?>" class="btn btn-primary">Add Amount</a>
