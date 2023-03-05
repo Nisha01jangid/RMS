@@ -18,7 +18,16 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <style>
-	
+	 main{
+		display:flex;
+		width:100%;
+		height:100%;
+	}
+	.homediv{
+	width:75%;
+	height:100%;
+	margin:3%;    
+    }
 	td{
 		vertical-align: middle !important;
 	}
@@ -33,6 +42,37 @@
 		margin-left: 15px;
 		margin-right: 15px;
 	}
+	#overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 2;
+  cursor: pointer;
+}
+#text{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height:70vh;
+  width:40vw;
+  border-radius:10px;
+  /* font-size: 50px; */
+  background-color: white;
+  transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+form{
+	width:80%;
+}
 </style>
 
     <!-- Custom styles for this template -->
@@ -40,8 +80,66 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
+<div id="overlay">
+  <div id="text">
+  <form style="">
+  <div class="form-group" style="font-size:20px;font-weight:bold;">New Invoice</div>
+  <hr>
+    <div class="form-group">
+    <label for="name">Full Name :</label>
+    <select name="tenant" id="name">
+		<?php foreach($tenants as $t){ ?>
+			<option value="<?php echo  ?>"></option>
+		<?php } ?>
+	</select>
+     </div>
+	 <br>
+     <div class="form-group">
+    <label for="invoice">Invoice :</label>
+    <input type="text" class="form-control" id="invoice" name="father_name"  placeholder="Enter invoice number">
+     </div>
+ 	 <br>
+    <div class="form-group">
+    <label for="amount">Amount Paid :</label>
+    <input type="number" class="form-control" id="amount" name="amount"  placeholder="Enter amount">
+    </div>
+  <br>
+  <button type="submit" class="btn btn-primary">Submit</button>&emsp;
+  <button class="btn btn-danger"  onclick="off()">Cancel</button>
+</form>
+  </div>
+</div>
 	<main>
 
+	<div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;height:100vh;">
+    <div class="dropdown">
+      <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false" style="margin: 0% 5%;">
+        <strong><?php echo $_SESSION['user']; ?></strong>
+      </a>
+      <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+        <li><a class="dropdown-item" href="#">Sign out</a></li>
+      </ul>
+    </div>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li class="nav-item">
+        <a href="<?php echo base_url('Home') ?>" class="nav-link text-white" aria-current="page">Home</a>
+      </li>
+      <!-- <li>
+        <a href="#" class="nav-link text-white">Electricity Bill</a>
+      </li>
+      <li>
+        <a href="<?php echo base_url('Bill/WaterBill') ?>" class="nav-link text-white">Water & Other Bills</a>
+      </li> -->
+      <li>
+        <a href="<?php echo base_url('Payments') ?>" class="nav-link text-white">Payments</a>
+      </li>
+      <li>
+        <a href="#" class="nav-link text-white">Report</a>
+      </li>
+    </ul>
+    <hr>
+  </div>
 
 <div class="homediv">
   <div class="containe-fluid">
@@ -50,15 +148,12 @@
             <div class="card">
                 <div class="card-body">
 
-						<b>List of Payments</b><br><br>
+						<b style="font-style:italic; font-size: 20px;">List of Payments</b>&emsp;
 
-						<span class="float:right">
-							<a class="btn btn-primary btn-block btn-sm col-sm-2 float-right" href="<?php echo base_url("Payments/new_entry") ?>">
-							<i class="fa fa-plus"></i> New Entry </a>
-
-							<!-- <a href="<?php echo base_url("Bill/addWaterBill/").$h['house_no']."/".$h['month']; ?>" class="btn btn-warning">Edit Amount</a> -->
-
-
+						<span>
+							<!-- <a class="btn btn-primary btn-block btn-sm col-sm-2 float-right" href="<?php echo base_url("Payments/new_entry") ?>">
+							<i class="fa fa-plus"></i> New Entry </a> -->
+							<button class="btn btn-primary	"  onclick="on()">New Entry</button>
 						</span>
 					</div>
 					<div class="card-body">
@@ -148,6 +243,14 @@
 			}
 		})
 	}
+
+	function on() {
+  document.getElementById("overlay").style.display = "block";
+}
+
+function off() {
+  document.getElementById("overlay").style.display = "none";
+}
 </script>
 </body>
 </html>

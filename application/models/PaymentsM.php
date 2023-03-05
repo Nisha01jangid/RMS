@@ -10,7 +10,15 @@ class PaymentsM extends CI_Model {
 
       function get_payment(){
 
-        $sql = "SELECT p.*,concat(t.lastname,', ',t.firstname,' ',t.middlename) as name FROM payments p inner join tenants t on t.id = p.tenant_id where t.status = 1 order by date(p.date_created) desc "; 
+        $sql = "SELECT p.*,concat(t.lastname,', ',t.firstname,' ',t.middlename) as `name` FROM payments p inner join tenants t on t.id = p.tenant_id where t.status = 1 order by date(p.date_created) desc "; 
+                  
+        $query =$this->db->query($sql);
+        return $query->result_array();
+      }
+
+      function get_tenant_name(){
+
+        $sql = "SELECT DISTINCT concat(t.lastname,', ',t.firstname,' ',t.middlename) as `name` FROM tenants WHERE `status`=1"; 
                   
         $query =$this->db->query($sql);
         return $query->result_array();

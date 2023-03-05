@@ -83,7 +83,7 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <div style="font-style:italic; font-size: 20px; color:red; font-size: 25px;" ><b>Water Bill</b>                    
+                    <div style="font-style:italic; font-size: 20px;" ><b>Water Bill</b>                    
                     </div>
                     <hr>
                     <div style="display:flex; justify-content:center;">

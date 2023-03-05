@@ -12,7 +12,10 @@ class Payments extends CI_Controller{
 	public function index(){
 
 		$data['payment_details'] = $this->PaymentsM->get_payment();
-
+		$data['tenants'] = $this->PaymentsM->get_tenant_name();
+		echo "<pre>";
+		print_r($data['tenants']);
+		die();
 		// $this->load->view('Home/Home');
 		$this->load->view('Payments/paymentview',$data);
 	}

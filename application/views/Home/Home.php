@@ -73,6 +73,9 @@
         <a href="<?php echo base_url('Bill/WaterBill') ?>" class="nav-link text-white">Water & Other Bills</a>
       </li> -->
       <li>
+        <a href="<?php echo base_url('Payments') ?>" class="nav-link text-white">Payments</a>
+      </li>
+      <li>
         <a href="#" class="nav-link text-white">Report</a>
       </li>
     </ul>
