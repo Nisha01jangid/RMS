@@ -57,6 +57,19 @@
   z-index: 2;
   cursor: pointer;
 }
+	#edit_overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 2;
+  cursor: pointer;
+}
 #text{
   position: absolute;
   top: 50%;
@@ -101,14 +114,10 @@ form{
 	</select>
      </div>
 	 <br>
-    <!-- <div class="form-group">
-    <label for="name"><b>Month<span style="color:red;">*</span> : </b></label>&emsp;
-    <input id="month" type="month" name="month" min="2000-01" max="<?php echo date("Y-m"); ?>" value="<?php echo date("Y-m"); ?>" required />
-     </div>
-	 <br> -->
+
      <div class="form-group">
-    <label for="invoice"><b>Invoice :</b></label>
-    <input type="text" class="form-control" id="invoice" name="invoice"  placeholder="Enter invoice number">
+    <label for="invoice"><b>Invoice<span style="color:red;">*</span> :</b></label>
+    <input type="text" class="form-control" id="invoice" name="invoice"  placeholder="Enter invoice number" required>
      </div>
  	 <br>
     <div class="form-group">
@@ -118,6 +127,38 @@ form{
   <br>
   <button type="submit" class="btn btn-primary">Submit</button>&emsp;
   <button class="btn btn-danger"  onclick="off()">Cancel</button>
+</form>
+  </div>
+</div>
+<div id="edit_overlay">
+  <div id="text">
+  <form action="<?php echo base_url('Payments/edit_entry'); ?>" method="POST">
+  <input type="hidden" name="id" id="id" />
+  <div class="form-group" style="font-size:20px;font-weight:bold;">Edit Invoice</div>
+  <hr>
+    <div class="form-group">
+    <label for="name"><b>Full Name<span style="color:red;">*</span> : </b></label>&emsp;
+    <select name="tenant_id" id="name">
+		<option value="" id="selected">Select tenant for payment</option>
+		<?php foreach($tenants as $t){ ?>
+			<option value="<?php echo $t['id']; ?>"><?php echo $t['name']; ?></option>
+		<?php } ?>
+	</select>
+     </div>
+	 <br>
+
+     <div class="form-group">
+    <label for="invoice"><b>Invoice<span style="color:red;">*</span> :</b></label>
+    <input type="text" class="form-control" id="edit_invoice" name="invoice"  placeholder="Enter invoice number" required>
+     </div>
+ 	 <br>
+    <div class="form-group">
+    <label for="amount"><b>Amount Paid<span style="color:red;">*</span> :</b></label>
+    <input type="number" class="form-control" id="edit_amount" name="amount"  placeholder="Enter amount" required>
+    </div>
+  <br>
+  <button type="submit" class="btn btn-primary">Submit</button>&emsp;
+  <button class="btn btn-danger"  onclick="edit_entry_off()">Cancel</button>
 </form>
   </div>
 </div>
@@ -157,8 +198,6 @@ form{
 						<b style="font-style:italic; font-size: 20px;">List of Payments</b>&emsp;
 
 						<span>
-							<!-- <a class="btn btn-primary btn-block btn-sm col-sm-2 float-right" href="<?php echo base_url("Payments/new_entry") ?>">
-							<i class="fa fa-plus"></i> New Entry </a> -->
 							<button class="btn btn-primary"  onclick="on()">New Entry</button>
 						</span>
 					</div>
@@ -194,8 +233,8 @@ form{
 										 <p> <b><?php echo number_format($row['amount'],2) ?></b></p>
 									</td>
 									<td class="text-center">
-										<button class="btn btn-sm btn-outline-primary edit_invoice" type="button" id="<?php echo $row['id'] ?>" >Edit</button>
-										<button class="btn btn-sm btn-outline-danger delete_invoice" type="button" id="<?php echo $row['id'] ?>">Delete</button>
+										<button class="btn btn-sm btn-outline-primary edit_invoice" type="button" id="<?php echo $row['id']."/".$row['tenant_id']."/".$row['name']."/".$row['invoice']."/".$row['amount']."/".$row['date_created']; ?>" onclick="edit_entry(this.id);">Edit</button>
+										<a href="#" class="btn btn-sm btn-outline-danger delete_invoice" type="button" id="<?php echo $row['id']; ?>" onclick="delete_entry(this.id);">Delete</a>
 									</td>
 								</tr>
 								<?php	} ?>
@@ -213,50 +252,43 @@ form{
 </div>
 
 
-	</main>
+</main>
 
-	<script>
-	$(document).ready(function(){
-		$('table').dataTable()
-	})
-	
-	$('#new_invoice').click(function(){
-		uni_modal("New invoice","manage_payment.php","mid-large")
-		
-	})
-	$('.edit_invoice').click(function(){
-		uni_modal("Manage invoice Details","manage_payment.php?id="+$(this).attr('data-id'),"mid-large")
-		
-	})
-	$('.delete_invoice').click(function(){
-		_conf("Are you sure to delete this invoice?","delete_invoice",[$(this).attr('data-id')])
-	})
-	
-	function delete_invoice($id){
-		start_load()
-		$.ajax({
-			url:'ajax.php?action=delete_payment',
-			method:'POST',
-			data:{id:$id},
-			success:function(resp){
-				if(resp==1){
-					alert_toast("Data successfully deleted",'success')
-					setTimeout(function(){
-						location.reload()
-					},1500)
+<script>
 
-				}
-			}
-		})
-	}
-
-	function on() {
+function on() {
   document.getElementById("overlay").style.display = "block";
 }
 
 function off() {
   document.getElementById("overlay").style.display = "none";
 }
+
+function edit_entry(id){
+	var temp = id.split("/");
+	console.log(temp);
+	document.getElementById("id").value = temp[0];
+	document.getElementById("selected").value = temp[1];
+	document.getElementById("selected").innerHTML = temp[2];
+	document.getElementById("edit_invoice").value = temp[3];
+	document.getElementById("edit_amount").value = temp[4];
+	document.getElementById("edit_overlay").style.display = "block";
+}
+
+function edit_entry_off(id){
+	document.getElementById("edit_overlay").style.display = "none";
+}
+
+function delete_entry(id){
+	var check = confirm("Are You Sure !!!");
+  if(check){
+    document.getElementById(id).setAttribute("href","<?php echo base_url('Payments/delete_entry/') ?>"+id);
+  }
+  console.log(check);
+}
+
+
+
 </script>
 </body>
 </html>

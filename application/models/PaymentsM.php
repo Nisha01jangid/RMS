@@ -31,6 +31,20 @@ class PaymentsM extends CI_Model {
         $query = $this->db->query($sql);
         return;
       }
+      function update_payment($id, $tenant_id,$invoice,$amount){
+
+        $sql = "UPDATE `payments` SET tenant_id = $tenant_id and invoice = '$invoice' and amount = $amount WHERE id = $id ";
+
+        $query = $this->db->query($sql);
+        return;
+      }
+      function delete_payment($id){
+
+        $sql = "DELETE FROM `payments` WHERE id = $id ";
+
+        $query = $this->db->query($sql);
+        return;
+      }
 
       function get_tenant_name_dropdown(){
         
