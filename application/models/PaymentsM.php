@@ -18,7 +18,7 @@ class PaymentsM extends CI_Model {
 
       function get_tenant_name(){
 
-        $sql = "SELECT DISTINCT tenant_name as `name`, id FROM tenants WHERE `status`=1"; 
+        $sql = "SELECT DISTINCT tenant_name as `name`, `id` FROM tenants WHERE `status`=1"; 
                   
         $query =$this->db->query($sql);
         return $query->result_array();
@@ -33,14 +33,14 @@ class PaymentsM extends CI_Model {
       }
       function update_payment($id, $tenant_id,$invoice,$amount){
 
-        $sql = "UPDATE `payments` SET tenant_id = $tenant_id and invoice = '$invoice' and amount = $amount WHERE id = $id ";
+        $sql = "UPDATE `payments` SET `tenant_id` = '$tenant_id' and `invoice` = '$invoice' and `amount` = $amount WHERE `sno` = $id ";
 
         $query = $this->db->query($sql);
         return;
       }
       function delete_payment($id){
 
-        $sql = "DELETE FROM `payments` WHERE id = $id ";
+        $sql = "DELETE FROM `payments` WHERE `sno` = $id ";
 
         $query = $this->db->query($sql);
         return;

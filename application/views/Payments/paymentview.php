@@ -133,17 +133,15 @@ form{
 <div id="edit_overlay">
   <div id="text">
   <form action="<?php echo base_url('Payments/edit_entry'); ?>" method="POST">
-  <input type="hidden" name="id" id="id" />
+  <input type="hidden" name="id" id="sno" />
+  <input type="hidden" name="tenant_id" id="tenant_id" />
   <div class="form-group" style="font-size:20px;font-weight:bold;">Edit Invoice</div>
   <hr>
     <div class="form-group">
     <label for="name"><b>Full Name<span style="color:red;">*</span> : </b></label>&emsp;
     <select name="tenant_id" id="name">
-		<option value="" id="selected">Select tenant for payment</option>
-		<?php foreach($tenants as $t){ ?>
-			<option value="<?php echo $t['id']; ?>"><?php echo $t['name']; ?></option>
-		<?php } ?>
-	</select>
+		<option value="" id="selected" selected>Select tenant for payment</option>
+	  </select>
      </div>
 	 <br>
 
@@ -226,8 +224,8 @@ form{
 										 <p> <b><?php echo number_format($row['amount'],2) ?></b></p>
 									</td>
 									<td class="text-center">
-										<button class="btn btn-sm btn-outline-primary edit_invoice" type="button" id="<?php echo $row['id']."/".$row['tenant_id']."/".$row['name']."/".$row['invoice']."/".$row['amount']."/".$row['date_created']; ?>" onclick="edit_entry(this.id);">Edit</button>
-										<a href="#" class="btn btn-sm btn-outline-danger delete_invoice" type="button" id="<?php echo $row['id']; ?>" onclick="delete_entry(this.id);">Delete</a>
+										<button class="btn btn-sm btn-outline-primary edit_invoice" type="button" id="<?php echo $row['sno']."/".$row['tenant_id']."/".$row['name']."/".$row['invoice']."/".$row['amount']."/".$row['date_created']; ?>" onclick="edit_entry(this.id);">Edit</button>
+										<a href="#" class="btn btn-sm btn-outline-danger delete_invoice" type="button" id="<?php echo $row['sno']; ?>" onclick="delete_entry(this.id);">Delete</a>
 									</td>
 								</tr>
 								<?php	} ?>
@@ -260,15 +258,15 @@ function off() {
 function edit_entry(id){
 	var temp = id.split("/");
 	console.log(temp);
-	document.getElementById("id").value = temp[0];
+	document.getElementById("sno").value = temp[0];
 	document.getElementById("selected").value = temp[1];
-	document.getElementById("selected").innerHTML = temp[2];
+	document.getElementById("selected").innerText = temp[2];
 	document.getElementById("edit_invoice").value = temp[3];
 	document.getElementById("edit_amount").value = temp[4];
 	document.getElementById("edit_overlay").style.display = "block";
 }
 
-function edit_entry_off(id){
+function edit_entry_off(){
 	document.getElementById("edit_overlay").style.display = "none";
 }
 

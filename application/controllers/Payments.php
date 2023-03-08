@@ -35,7 +35,9 @@ class Payments extends CI_Controller{
 	}
 
 	public function edit_entry(){
-
+		// echo "<pre>";
+		// print_r($_POST);
+		// die();
 		$id = $_POST['id'];
 		$tenant_id = $_POST['tenant_id'];
 		$invoice = $_POST['invoice'];
