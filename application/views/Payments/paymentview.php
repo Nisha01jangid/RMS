@@ -164,15 +164,8 @@ form{
 </div>
 	<main>
 
-	<div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;height:100vh;">
-    <div class="dropdown">
-      <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false" style="margin: 0% 5%;">
-        <strong><?php echo $_SESSION['user']; ?></strong>
-      </a>
-      <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-        <li><a class="dropdown-item" href="#">Sign out</a></li>
-      </ul>
-    </div>
+	<div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 250px;height:100vh;">
+  <h4><?php echo $_SESSION['user']; ?></h4>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">

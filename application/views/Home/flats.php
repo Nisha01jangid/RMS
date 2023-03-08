@@ -57,15 +57,8 @@
 
 <main>
 
-  <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;height:100vh;">
-    <div class="dropdown">
-      <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false" style="margin: 0% 5%;">
-        <strong><?php echo $_SESSION['user']; ?></strong>
-      </a>
-      <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-        <li><a class="dropdown-item" href="#">Sign out</a></li>
-      </ul>
-    </div>
+  <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 250px;height:100vh;">
+  <h4><?php echo $_SESSION['user']; ?></h4>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
@@ -99,7 +92,7 @@
                           <div class="col-md-3 mb-3">
                             <div class="card border-danger">
                                 <div class="card-body bg-danger" style="padding:1px;">
-                                    <div class="card-body text-white" style="background-color: #FF2400 ;">
+                                    <div class="card-body text-white" style="background-color: red ;">
                                         <span class="float-right summary_icon"> <i class="fa fa-home" style="color:black;"></i></span>
                                         <h4 style="color:black;"><b><i><?php echo "Flat No : ".$i; ?></i></b></h4>
                                         <h6 style="color:black;"><b><i>Occupied </i></b></h6>
@@ -119,7 +112,7 @@
                         <div class="col-md-3 mb-3">
                             <div class="card border-success">
                                 <div class="card-body bg-success" style="padding:1px;">
-                                    <div class="card-body text-white" style="background-color:#7CFC00;">
+                                    <div class="card-body text-white" style="background-color:#32CD32;">
                                         <span class="float-right summary_icon"> <i class="fa fa-home" style="color:black;"></i></span>
                                         <h4 style="color:black;"><b><i><?php echo "Flat No : ".$i; ?></i></b></h4>
                                         <h6 style="color:black;"><b><i>Empty</i></b></h6>
