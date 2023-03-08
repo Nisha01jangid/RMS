@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 04, 2023 at 10:11 AM
+-- Generation Time: Mar 08, 2023 at 01:54 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.2
 
@@ -50,10 +50,10 @@ INSERT INTO `categories` (`id`, `name`) VALUES
 
 CREATE TABLE `extra_charges` (
   `sno` int(50) NOT NULL,
-  `house_no` int(100) NOT NULL,
+  `property_id` int(100) NOT NULL,
   `month` varchar(10) NOT NULL,
   `water_bill` double DEFAULT NULL,
-  `electricity_charges` double DEFAULT NULL,
+  `electricity_bill` double DEFAULT NULL,
   `time_stamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -61,7 +61,7 @@ CREATE TABLE `extra_charges` (
 -- Dumping data for table `extra_charges`
 --
 
-INSERT INTO `extra_charges` (`sno`, `house_no`, `month`, `water_bill`, `electricity_charges`, `time_stamp`) VALUES
+INSERT INTO `extra_charges` (`sno`, `property_id`, `month`, `water_bill`, `electricity_bill`, `time_stamp`) VALUES
 (1, 1, '2023-01', 1500, 15000, '2023-03-04 08:44:18'),
 (2, 1, '2023-01', 1500, 10000, '2023-03-04 08:44:18'),
 (3, 1, '2022-12', 1000, 15000, '2023-03-04 08:06:23'),
@@ -72,7 +72,31 @@ INSERT INTO `extra_charges` (`sno`, `house_no`, `month`, `water_bill`, `electric
 (8, 1, '2022-10', 2000, 10000, '2023-03-04 08:06:23'),
 (9, 1, '2022-09', 2000, 10000, '2023-03-04 08:06:23'),
 (10, 1, '2022-09', 1520.59, NULL, '2023-03-04 08:06:23'),
-(14, 1, '2022-08', 3000, NULL, '2023-03-04 08:06:23');
+(14, 1, '2022-08', 3000, NULL, '2023-03-04 08:06:23'),
+(17, 1, '2023-02', 250, NULL, '2023-03-04 09:17:20');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `flats_electricity_reading`
+--
+
+CREATE TABLE `flats_electricity_reading` (
+  `sno` int(11) NOT NULL,
+  `property_id` int(10) NOT NULL,
+  `flat_no` int(10) NOT NULL,
+  `month` varchar(100) DEFAULT NULL,
+  `reading` double NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `flats_electricity_reading`
+--
+
+INSERT INTO `flats_electricity_reading` (`sno`, `property_id`, `flat_no`, `month`, `reading`, `timestamp`) VALUES
+(1, 1, 1, '2023-03', 150, '2023-03-08 12:51:30'),
+(2, 1, 2, '2023-03', 100, '2023-03-08 12:53:35');
 
 -- --------------------------------------------------------
 
@@ -139,12 +163,18 @@ CREATE TABLE `payments` (
 --
 
 INSERT INTO `payments` (`id`, `tenant_id`, `amount`, `invoice`, `date_created`) VALUES
-(1, 4, 0, '22C10', '2022-10-19 16:50:37'),
 (2, 1, 60000, '22C11', '2022-10-19 16:51:07'),
 (3, 2, 7000, '22C12', '2022-10-19 16:51:34'),
 (4, 3, 9000, '22C14', '2022-10-19 16:52:06'),
 (5, 5, 4000, 'GH45', '2022-10-23 19:43:00'),
-(6, 6, 10500, 'gh345', '2022-12-23 19:56:51');
+(6, 6, 10500, 'gh345', '2022-12-23 19:56:51'),
+(9, 1, 60000, '22C11', '2022-10-19 16:51:07'),
+(10, 2, 7000, '22C12', '2022-10-19 16:51:34'),
+(11, 3, 9000, '22C14', '2022-10-19 16:52:06'),
+(12, 5, 4000, 'GH45', '2022-10-23 19:43:00'),
+(13, 6, 10500, 'gh345', '2022-12-23 19:56:51'),
+(14, 1, 20000, 'cms1', '2023-03-05 10:20:38'),
+(15, 2, 1000, 'cms978', '2023-03-08 12:49:05');
 
 -- --------------------------------------------------------
 
@@ -176,28 +206,31 @@ INSERT INTO `property` (`property_id`, `property_name`, `property_address`, `fla
 
 CREATE TABLE `tenants` (
   `id` int(30) NOT NULL,
-  `firstname` varchar(100) NOT NULL,
-  `middlename` varchar(100) NOT NULL,
-  `lastname` varchar(100) NOT NULL,
+  `tenant_name` varchar(200) NOT NULL,
+  `father_name` varchar(200) NOT NULL,
   `email` varchar(100) NOT NULL,
+  `aadhaar_no` int(20) NOT NULL,
   `contact` varchar(50) NOT NULL,
-  `house_id` int(30) NOT NULL,
+  `members` int(10) NOT NULL,
+  `rent` int(10) NOT NULL,
+  `birth_date` date DEFAULT NULL,
+  `property_id` int(30) NOT NULL,
   `flat_no` int(100) NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '1 = active, 0= inactive',
-  `date_in` date NOT NULL
+  `joining_date` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tenants`
 --
 
-INSERT INTO `tenants` (`id`, `firstname`, `middlename`, `lastname`, `email`, `contact`, `house_id`, `flat_no`, `status`, `date_in`) VALUES
-(1, 'Douglas', 'Matoke', 'Mogusu', 'Mogusu@gmail.com', '85421658', 1, 1, 1, '2022-07-01'),
-(2, 'Rachael', 'wainaina', 'wangeci', 'wangeci@gmail.com', '4851256', 1, 2, 1, '2022-08-01'),
-(3, 'zeph', 'masika', 'wanyama', 'wanyama@gmail.com', '8956214', 1, 3, 1, '2022-09-01'),
-(4, 'maureen', 'jerop', 'cherotich', 'cherotich@gmail.com', '8456215', 2, 1, 1, '2022-10-01'),
-(5, 'james', 'kiprotich', 'kemboi', 'james@gmail.com', '8512469', 2, 2, 1, '2022-09-01'),
-(6, 'DANIEL', 'MWAURA', 'KIMANI', 'daniel@gmail.com', '85745264', 2, 3, 1, '2022-07-07');
+INSERT INTO `tenants` (`id`, `tenant_name`, `father_name`, `email`, `aadhaar_no`, `contact`, `members`, `rent`, `birth_date`, `property_id`, `flat_no`, `status`, `joining_date`) VALUES
+(1, 'Douglas', 'William', 'Mogusu@gmail.com', 12345, '85421658', 3, 10000, '2023-03-08', 1, 1, 1, '2022-07-01'),
+(2, 'Rachael', 'Pata nahi', 'wangeci@gmail.com', 54321, '4851256', 4, 15000, '2023-03-08', 1, 2, 1, '2022-08-01'),
+(3, 'zeph', 'NoBody', 'wanyama@gmail.com', 99999, '8956214', 2, 20000, '2023-03-08', 1, 3, 1, '2022-09-01'),
+(4, 'maureen', 'AnyBody', 'cherotich@gmail.com', 88888, '8456215', 1, 5000, '2023-03-08', 2, 1, 1, '2022-10-01'),
+(5, 'james', 'SomeBody', 'james@gmail.com', 78523, '8512469', 2, 25000, '2023-03-08', 2, 2, 1, '2022-09-01'),
+(6, 'DANIEL', 'RehneDo', 'daniel@gmail.com', 32587, '85745264', 3, 30000, '2023-03-08', 2, 3, 1, '2022-07-07');
 
 -- --------------------------------------------------------
 
@@ -236,6 +269,12 @@ ALTER TABLE `categories`
 -- Indexes for table `extra_charges`
 --
 ALTER TABLE `extra_charges`
+  ADD PRIMARY KEY (`sno`);
+
+--
+-- Indexes for table `flats_electricity_reading`
+--
+ALTER TABLE `flats_electricity_reading`
   ADD PRIMARY KEY (`sno`);
 
 --
@@ -282,13 +321,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `extra_charges`
 --
 ALTER TABLE `extra_charges`
-  MODIFY `sno` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `sno` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT for table `flats_electricity_reading`
+--
+ALTER TABLE `flats_electricity_reading`
+  MODIFY `sno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `house_address`
 --
 ALTER TABLE `house_address`
   MODIFY `sno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `payments`
+--
+ALTER TABLE `payments`
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `property`
@@ -300,7 +351,7 @@ ALTER TABLE `property`
 -- AUTO_INCREMENT for table `tenants`
 --
 ALTER TABLE `tenants`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `users`

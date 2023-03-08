@@ -1,3 +1,8 @@
+<?php
+// echo "<pre>";
+// print_r($tenant_exist);
+// die();
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -52,26 +57,16 @@
 
 <main>
 
-  <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;height:100vh;">
-    <div class="dropdown">
-      <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false" style="margin: 0% 5%;">
-        <strong><?php echo $_SESSION['user']; ?></strong>
-      </a>
-      <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-        <li><a class="dropdown-item" href="#">Sign out</a></li>
-      </ul>
-    </div>
+  <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 250px;height:100vh;">
+  <h4><?php echo $_SESSION['user']; ?></h4>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
         <a href="<?php echo base_url('Home') ?>" class="nav-link text-white" aria-current="page">Home</a>
       </li>
-      <!-- <li>
-        <a href="#" class="nav-link text-white">Electricity Bill</a>
-      </li>
       <li>
-        <a href="<?php echo base_url('Bill/WaterBill') ?>" class="nav-link text-white">Water & Other Bills</a>
-      </li> -->
+        <a href="<?php echo base_url('Payments') ?>" class="nav-link text-white">Payments</a>
+      </li>
       <li>
         <a href="#" class="nav-link text-white">Report</a>
       </li>
@@ -85,32 +80,55 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                  
-                    <div style="font-style:italic; font-size: 20px; color:red; font-size: 25px;"><b><i><?php echo $flats[0]['property_address'];?></i></b> &emsp;
-                    <a href="<?php echo base_url('Bill/ElectricityBillOfProperty/').$property_id; ?>" class="btn btn-primary"><b>Electricity Bill</b></a>&emsp;<a href="<?php echo base_url('Bill/WaterBillOfPoperty/').$property_id; ?>" class="btn btn-primary"><b>Water Bill</b></a>
+                    <div style="font-style:italic; font-size: 20px; color:red; font-size: 25px;"><b><i><?php echo $flat[0]['property_address'];?></i></b> &emsp;
+                    <a href="<?php echo base_url('Bill/ElectricityBillOfProperty/').$property_id; ?>" class="btn btn-primary"><b>Electricity Bill</b></a>&emsp;<a href="<?php echo base_url('Bill/WaterBillOfPoperty/').$property_id; ?>" class="btn btn-primary"><b>Water Bill</b></a>&emsp;<a href="<?php echo base_url('Bill/WasteAndMiscBillOfPoperty/').$property_id; ?>" class="btn btn-primary"><b>Waste And Miscellaneous Bill</b></a>
                     </div>
                     <hr>
                     <div class="row" style="height:65vh; overflow-x: hidden; overflow-y: auto;">
-                        <?php for($i =1; $i<=$flats[0]['flats']; $i++){ ?>
+                        <?php for($i =1; $i<=sizeof($flats); $i++){
+                          if($flats[$i] == 1){
+                        ?>
 
                           <div class="col-md-3 mb-3">
-                            <div class="card border-warning">
-                                <div class="card-body bg-warning">
-                                    <div class="card-body text-white">
+                            <div class="card border-danger">
+                                <div class="card-body bg-danger" style="padding:1px;">
+                                    <div class="card-body text-white" style="background-color: red ;">
                                         <span class="float-right summary_icon"> <i class="fa fa-home" style="color:black;"></i></span>
                                         <h4 style="color:black;"><b><i><?php echo "Flat No : ".$i; ?></i></b></h4>
+                                        <h6 style="color:black;"><b><i>Occupied </i></b></h6>
                                     </div>
                                 </div>
                                 <div class="card-footer">
                                     <div class="row">
                                         <div class="col-lg-12">
-                                            <a href="<?php echo base_url('Home/tenant_details/').$i.'/'.$flats[0]['property_id']; ?>" class="text-primary float-right" style="text-decoration : none; font-weight:bold;">View <span class="fa fa-angle-right"></span></a>
+                                            <a href="<?php echo base_url('Home/tenant_details/').$i.'/'.$flat[0]['property_id']; ?>" class="text-primary float-right" style="text-decoration : none; font-weight:bold;">View <span class="fa fa-angle-right"></span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       <?php } else { ?>
+
+                        <div class="col-md-3 mb-3">
+                            <div class="card border-success">
+                                <div class="card-body bg-success" style="padding:1px;">
+                                    <div class="card-body text-white" style="background-color:#32CD32;">
+                                        <span class="float-right summary_icon"> <i class="fa fa-home" style="color:black;"></i></span>
+                                        <h4 style="color:black;"><b><i><?php echo "Flat No : ".$i; ?></i></b></h4>
+                                        <h6 style="color:black;"><b><i>Empty</i></b></h6>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <a href="<?php echo base_url('Home/tenant_details/').$i.'/'.$flat[0]['property_id']; ?>" class="text-primary float-right" style="text-decoration : none; font-weight:bold;">View <span class="fa fa-angle-right"></span></a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
+                       <?php }?>
                        <?php } ?>
                     </div>
 

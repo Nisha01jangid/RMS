@@ -65,12 +65,9 @@
       <li class="nav-item">
         <a href="<?php echo base_url('Home') ?>" class="nav-link text-white" aria-current="page">Home</a>
       </li>
-      <!-- <li>
-        <a href="#" class="nav-link text-white">Electricity Bill</a>
-      </li>
       <li>
-        <a href="<?php echo base_url('Bill/WaterBill') ?>" class="nav-link text-white">Water & Other Bills</a>
-      </li> -->
+        <a href="<?php echo base_url('Payments') ?>" class="nav-link text-white">Payments</a>
+      </li>
       <li>
         <a href="#" class="nav-link text-white">Report</a>
       </li>
@@ -83,50 +80,49 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <div>Water Bill</div>
+                    <div style="font-style:italic; font-size: 23px; color:red;" ><b>Waste And Miscellaneous Bill</b>                    
+                    </div>
                     <hr>
-                    <div>
-                    <form action="<?php echo base_url("Bill/getBill"); ?>" method="get">
+                    <div style="display:flex; justify-content:center;">
+                    <form action="<?php echo base_url("Bill/getWasteAndMiscBill"); ?>" method="get">
+                    <input type="hidden" name="property_id" value="<?php echo $property_id; ?>">
                     <input
                         id="month"
                         type="month"
                         name="month"
                         min="2000-01"
                         max="<?php echo date("Y-m"); ?>"
+                        value="<?php echo $month; ?>"
+                        style="height:100%;margin-right:10px;"
                         required
                         />
                     <input type="submit" value="Submit" class="btn btn-primary">
                     </form>
                     </div>
+                    <br>
                     <div class="row">
-                    <table class="table">
+                    <table class="table table-striped table-hover table-bordered" style="width:90%" align="center">
                         <thead class="thead-dark">
                             <tr>
-                            <th scope="col">Sno</th>
-                            <th scope="col">Property</th>
-                            <th scope="col">Month</th>
-                            <th scope="col">Amount</th>
-                            <th scope="col">Action</th>
+                            <th scope="col" style="text-align:center;">S.No.</th>
+                            <th scope="col" style="text-align:center;">Property</th>
+                            <th scope="col" style="text-align:center;">Month</th>
+                            <th scope="col" style="text-align:center;">Amount</th>
+                            <th scope="col" style="text-align:center;">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            
-                            <?php $i=1; 
-                            if(isset($houses)){
-                            foreach($houses as $h){ ?>
                             <tr>
-                            <th scope="row"><?php echo $i; ?></th>
-                            <td><?php echo $h['house_no']; ?></td>
-                            <td><?php echo $h['month_name']; ?></td>
-                            <td><?php echo $h['water_bill']; ?></td>
-                            <td><?php if(!empty($h['water_bill'])){?>
-                              <a href="<?php echo base_url("Bill/addWaterBill/").$h['house_no']."/".$h['month']; ?>" class="btn btn-warning">Edit Amount</a>
+                            <th scope="row" style="text-align:center;">1</th>
+                            <td style="text-align:center;"><?php echo $property_name; ?></td>
+                            <td style="text-align:center;"><?php echo $month_name; ?></td>
+                            <td style="text-align:center;"><?php echo $waste_and_misc_bill; ?></td>
+                            <td align="center"><?php if(!empty($waste_and_misc_bill)){?>
+                              <a href="<?php echo base_url("Bill/addWasteAndMiscBill/").$property_id."/".$month; ?>" class="btn btn-warning">Edit Amount</a>
                             <?php }else{?>
-                              <a href="<?php echo base_url("Bill/addWaterBill/").$h['house_no']."/".$h['month']; ?>" class="btn btn-primary">Add Amount</a>
+                              <a href="<?php echo base_url("Bill/addWasteAndMiscBill/").$property_id."/".$month; ?>" class="btn btn-primary">Add Amount</a>
                             <?php } ?></td>
-                            </tr>
-                            <?php $i++; }} ?>
-                            
+                            </tr>   
                         </tbody>
                         </table>
                     </div>

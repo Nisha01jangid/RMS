@@ -63,12 +63,6 @@
       <li class="nav-item">
         <a href="<?php echo base_url('Home') ?>" class="nav-link text-white" aria-current="page">Home</a>
       </li>
-      <!-- <li>
-        <a href="#" class="nav-link text-white">Electricity Bill</a>
-      </li>
-      <li>
-        <a href="<?php echo base_url('Bill/WaterBill') ?>" class="nav-link text-white">Water & Other Bills</a>
-      </li> -->
       <li>
         <a href="<?php echo base_url('Payments') ?>" class="nav-link text-white">Payments</a>
       </li>
@@ -154,6 +148,10 @@
                     </form>
                     </div>
                     <br>
+                <form action="<?php echo base_url("Home/insertFlatElectricityReading"); ?>" method="post">
+                <input type="hidden" name="property_id" value="<?php echo $property_id; ?>">
+                <input type="hidden" name="flat_no" value="<?php echo $flat_no; ?>">
+                <input type="hidden" name="month" value="<?php echo $month; ?>">
                     <div class="row">
                     <table class="table table-striped table-hover table-bordered" style="width:90%" align="center">
                         <thead class="thead-dark">
@@ -170,17 +168,13 @@
                             <th scope="row" style="text-align:center;">1</th>
                             <td style="text-align:center;"><?php echo "Flat No. ".$flat_no; ?></td>
                             <td style="text-align:center;"><?php echo $month_name; ?></td>
-                            <td style="text-align:center;"><?php echo $reading; ?></td>
-                            <td align="center"><?php if(!empty($reading)){?>
-                              <a href="<?php echo base_url("Home/addElectricityReading/").$property_id."/".$flat_no."/".$month; ?>" class="btn btn-warning">Edit Reading</a>
-                            <?php }else{?>
-                              <a href="<?php echo base_url("Home/addElectricityReading/").$property_id."/".$flat_no."/".$month; ?>" class="btn btn-primary">Add Reading</a>
-                            <?php } ?></td>
+                            <td style="text-align:center;"><input type="text" name="reading" value="<?php echo $reading; ?>"></td>
+                            <td style="text-align:center;"><input type="submit" value="Submit" class="btn btn-primary"></td>
                             </tr>   
                         </tbody>
                         </table>
                     </div>
-
+                </form>
                     
                 </div>
 
