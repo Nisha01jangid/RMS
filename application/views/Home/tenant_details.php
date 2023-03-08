@@ -59,12 +59,9 @@
       <li class="nav-item">
         <a href="<?php echo base_url('Home') ?>" class="nav-link text-white" aria-current="page">Home</a>
       </li>
-      <!-- <li>
-        <a href="#" class="nav-link text-white">Electricity Bill</a>
-      </li>
       <li>
-        <a href="<?php echo base_url('Bill/WaterBill') ?>" class="nav-link text-white">Water & Other Bills</a>
-      </li> -->
+        <a href="<?php echo base_url('Payments') ?>" class="nav-link text-white">Payments</a>
+      </li>
       <li>
         <a href="#" class="nav-link text-white">Report</a>
       </li>
@@ -133,7 +130,7 @@
     </div>
     </div>
   <br>
-  <input type="hidden" name="flat_no" value="<?php echo $flat_number; ?>" >
+  <input type="hidden" name="flat_no" value="<?php echo $flat_no; ?>" >
   <input type="hidden" name="property_id" value="<?php echo $property_id; ?>" >
   
   <!-- <div class="form-group form-check">

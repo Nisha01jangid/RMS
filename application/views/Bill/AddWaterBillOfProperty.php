@@ -65,12 +65,9 @@
       <li class="nav-item">
         <a href="<?php echo base_url('Home') ?>" class="nav-link text-white" aria-current="page">Home</a>
       </li>
-      <!-- <li>
-        <a href="#" class="nav-link text-white">Electricity Bill</a>
-      </li>
       <li>
-        <a href="<?php echo base_url('Bill/WaterBill') ?>" class="nav-link text-white">Water & Other Bills</a>
-      </li> -->
+        <a href="<?php echo base_url('Payments') ?>" class="nav-link text-white">Payments</a>
+      </li>
       <li>
         <a href="#" class="nav-link text-white">Report</a>
       </li>
@@ -83,7 +80,7 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                <div style="font-style:italic; font-size: 20px; color:red; font-size: 25px;" ><b>Water Bill</b>                    
+                <div style="font-style:italic; font-size: 20px;" ><b>Water Bill</b>                    
                     </div>
                     <hr>
                     <div>
