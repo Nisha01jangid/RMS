@@ -115,7 +115,7 @@
                             <tr>
                             <th scope="row" style="text-align:center;">1</th>
                             <td style="text-align:center;"><?php echo $property_name; ?></td>
-                            <td style="text-align:center;"><?php echo $month; ?></td>
+                            <td style="text-align:center;"><?php echo  date("F", strtotime($month))." ".date("Y", strtotime($month)); ?></td>
                             <td style="text-align:center;"><?php echo $waste_and_misc_bill; ?></td>
                             <td align="center"><?php if(!empty($waste_and_misc_bill)){?>
                               <a href="<?php echo base_url("Bill/addWasteAndMiscBill/").$property_id."/".$month; ?>" class="btn btn-warning">Edit Amount</a>

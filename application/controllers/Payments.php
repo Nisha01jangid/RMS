@@ -35,15 +35,13 @@ class Payments extends CI_Controller{
 	}
 
 	public function edit_entry(){
-		// echo "<pre>";
-		// print_r($_POST);
-		// die();
+
 		$id = $_POST['id'];
 		$tenant_id = $_POST['tenant_id'];
-		$invoice = $_POST['invoice'];
+		// $invoice = $_POST['invoice'];
 		$amount = $_POST['amount'];
 
-		$this->PaymentsM->update_payment($id,$tenant_id,$invoice,$amount);
+		$this->PaymentsM->update_payment($id,$tenant_id,$amount);
 
 		redirect(base_url('Payments'));
 	}

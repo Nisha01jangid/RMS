@@ -138,16 +138,11 @@ form{
   <div class="form-group" style="font-size:20px;font-weight:bold;">Edit Invoice</div>
   <hr>
     <div class="form-group">
-    <label for="name"><b>Full Name<span style="color:red;">*</span> : </b></label>&emsp;
-    <select name="tenant_id" id="name">
-		<option value="" id="selected" selected>Select tenant for payment</option>
-	  </select>
+    <label for="name" style="font-size:20px;"><b>Full Name<span style="color:red;">*</span> : <span id="selected"></span></b></label>&emsp;
      </div>
-	 <br>
-
+    <br>
      <div class="form-group">
-    <label for="invoice"><b>Invoice<span style="color:red;">*</span> :</b></label>
-    <input type="text" class="form-control" id="edit_invoice" name="invoice"  placeholder="Enter invoice number" required>
+    <label for="invoice" style="font-size:20px;"><b>Invoice<span style="color:red;">*</span> : <span id="edit_invoice"></span></b></label>
      </div>
  	 <br>
     <div class="form-group">
@@ -212,7 +207,7 @@ form{
 										<tr>
 									<td class="text-center"><?php echo $i++ ?></td>
 									<td>
-										<?php echo date('M d, Y',strtotime($row['date_created'])) ?>
+										<?php echo date('d M, Y',strtotime($row['date_created'])) ?>
 									</td>
 									<td class="">
 										 <p> <b><?php echo ucwords($row['name']) ?></b></p>
@@ -259,9 +254,9 @@ function edit_entry(id){
 	var temp = id.split("/");
 	console.log(temp);
 	document.getElementById("sno").value = temp[0];
-	document.getElementById("selected").value = temp[1];
-	document.getElementById("selected").innerText = temp[2];
-	document.getElementById("edit_invoice").value = temp[3];
+	document.getElementById("tenant_id").value = temp[1];
+	document.getElementById("selected").innerHTML = temp[2];
+	document.getElementById("edit_invoice").innerHTML = temp[3];
 	document.getElementById("edit_amount").value = temp[4];
 	document.getElementById("edit_overlay").style.display = "block";
 }

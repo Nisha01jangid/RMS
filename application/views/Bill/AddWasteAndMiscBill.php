@@ -94,8 +94,8 @@
                             <input type="hidden" name="month" value="<?php echo $month; ?>">
                             <tr>
                             <th scope="row" style="text-align:center;">1</th>
-                            <td><?php echo $property_name; ?></td>
-                            <td><?php echo  date("F", strtotime($month))." ".date("Y", strtotime($month)); ?></td>
+                            <td style="text-align:center;"><?php echo $property_name; ?></td>
+                            <td style="text-align:center;"><?php echo  date("F", strtotime($month))." ".date("Y", strtotime($month)); ?></td>
                             <td style="text-align:center;"><input type="text" name="waste_misc_bill" value="<?php echo $waste_and_misc_bill; ?>"></td>
                             <td style="text-align:center;"><input type="submit" value="Submit" class="btn btn-primary"></td>
                             </tr>
