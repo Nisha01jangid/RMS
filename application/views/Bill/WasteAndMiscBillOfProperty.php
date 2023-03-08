@@ -80,11 +80,11 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <div style="font-style:italic; font-size: 23px; color:red;" ><b>Water Bill</b>                    
+                    <div style="font-style:italic; font-size: 23px; color:red;" ><b>Waste And Miscellaneous Bill</b>                    
                     </div>
                     <hr>
                     <div style="display:flex; justify-content:center;">
-                    <form action="<?php echo base_url("Bill/getBill"); ?>" method="get">
+                    <form action="<?php echo base_url("Bill/getWasteAndMiscBill"); ?>" method="get">
                     <input type="hidden" name="property_id" value="<?php echo $property_id; ?>">
                     <input
                         id="month"
@@ -116,11 +116,11 @@
                             <th scope="row" style="text-align:center;">1</th>
                             <td style="text-align:center;"><?php echo $property_name; ?></td>
                             <td style="text-align:center;"><?php echo $month_name; ?></td>
-                            <td style="text-align:center;"><?php echo $water_bill; ?></td>
-                            <td align="center"><?php if(!empty($water_bill)){?>
-                              <a href="<?php echo base_url("Bill/addWaterBill/").$property_id."/".$month; ?>" class="btn btn-warning">Edit Amount</a>
+                            <td style="text-align:center;"><?php echo $waste_and_misc_bill; ?></td>
+                            <td align="center"><?php if(!empty($waste_and_misc_bill)){?>
+                              <a href="<?php echo base_url("Bill/addWasteAndMiscBill/").$property_id."/".$month; ?>" class="btn btn-warning">Edit Amount</a>
                             <?php }else{?>
-                              <a href="<?php echo base_url("Bill/addWaterBill/").$property_id."/".$month; ?>" class="btn btn-primary">Add Amount</a>
+                              <a href="<?php echo base_url("Bill/addWasteAndMiscBill/").$property_id."/".$month; ?>" class="btn btn-primary">Add Amount</a>
                             <?php } ?></td>
                             </tr>   
                         </tbody>
