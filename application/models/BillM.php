@@ -18,12 +18,12 @@ class BillM extends CI_Model {
 
   function getLastElectricityBill($year){
 
-    $sql="SELECT *, sum(electricity_charges) as sum from `extra_charges` where `month` LIKE '$year%' group by `house_no` ";    
+    $sql="SELECT *, sum(electricity_charges) as sum from `extra_charges` where `month` LIKE '$year%' group by `property_id` ";    
     $query = $this->db->query($sql);
     return $query->result_array();
 
   }
-  // function getWaterBill($house_no,$month){
+  // function getWaterBill($property_id,$month){
   // function getWaterBill($property_id,$month){
 
   //   $sql="SELECT water_bill from `extra_charges` where `property_id`='$property_id' and `month` = '$month'";    
@@ -38,14 +38,14 @@ class BillM extends CI_Model {
     return $query->result_array();
 
   }
-  function getElectricityBill($house_no,$month){
+  function getElectricityBill($property_id,$month){
 
-    $sql="SELECT electricity_charges from `extra_charges` where `house_no`='$house_no' and `month` = '$month'";    
+    $sql="SELECT electricity_charges from `extra_charges` where `property_id`='$property_id' and `month` = '$month'";    
     $query = $this->db->query($sql);
     return $query->result_array();
 
   }
-  // function getWaterBillOfProperty($house_no,$month){
+  // function getWaterBillOfProperty($property_id,$month){
 
   function getWasteAndMiscBillOfProperty($property_id,$month){
 
@@ -54,9 +54,9 @@ class BillM extends CI_Model {
     return $query->result_array();
 
   }
-  function getElectricityBillOfProperty($house_no,$month){
+  function getElectricityBillOfProperty($property_id,$month){
 
-    $sql="SELECT electricity_charges from `extra_charges` where `house_no`='$house_no' and `month` = '$month'";    
+    $sql="SELECT electricity_charges from `extra_charges` where `property_id`='$property_id' and `month` = '$month'";    
     $query = $this->db->query($sql);
     return $query->result_array();
 
@@ -85,17 +85,17 @@ class BillM extends CI_Model {
     return 1;
 
   }
-  function insertElectricityBill($house_no,$month,$electricity_charges){
+  function insertElectricityBill($property_id,$month,$electricity_charges){
 
-    $sql="INSERT INTO `extra_charges` (`house_no`,`month`,`electricity_charges`) VALUES ('$house_no','$month','$electricity_charges')";    
+    $sql="INSERT INTO `extra_charges` (`property_id`,`month`,`electricity_charges`) VALUES ('$property_id','$month','$electricity_charges')";    
     $query = $this->db->query($sql);
     return 1;
 
   }
 
-  function updateElectricityBill($house_no,$month,$electricity_charges){
+  function updateElectricityBill($property_id,$month,$electricity_charges){
 
-    $sql="UPDATE `extra_charges` SET `electricity_charges`='$electricity_charges' WHERE `house_no`='$house_no' and `month` = '$month' ";    
+    $sql="UPDATE `extra_charges` SET `electricity_charges`='$electricity_charges' WHERE `property_id`='$property_id' and `month` = '$month' ";    
     $query = $this->db->query($sql);
     return 1;
 
