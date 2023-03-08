@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.84.0">
-    <title>Sidebars · Bootstrap v5.0</title>
+    <title>Water Bill</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
 
@@ -52,14 +52,7 @@
 <main>
 
   <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;height:100vh;">
-    <div class="dropdown">
-      <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false" style="margin: 0% 5%;">
-        <strong><?php echo $_SESSION['user']; ?></strong>
-      </a>
-      <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-        <li><a class="dropdown-item" href="#">Sign out</a></li>
-      </ul>
-    </div>
+  <h4><?php echo $_SESSION['user']; ?></h4>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
@@ -80,26 +73,11 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <div style="font-style:italic; font-size: 23px; color:red;" ><b>Waste And Miscellaneous Bill</b>                    
+                <div style="font-style:italic; font-size: 23px; color:red;" ><b>Waste And Miscellaneous Bill</b>                    
                     </div>
                     <hr>
-                    <div style="display:flex; justify-content:center;">
-                    <form action="<?php echo base_url("Bill/getWasteAndMiscBill"); ?>" method="get">
-                    <input type="hidden" name="property_id" value="<?php echo $property_id; ?>">
-                    <input
-                        id="month"
-                        type="month"
-                        name="month"
-                        min="2000-01"
-                        max="<?php echo date("Y-m"); ?>"
-                        value="<?php echo $month; ?>"
-                        style="height:100%;margin-right:10px;"
-                        required
-                        />
-                    <input type="submit" value="Submit" class="btn btn-primary">
-                    </form>
-                    </div>
-                    <br>
+                    <div>
+                    <form action="<?php echo base_url("Bill/insertWasteAndMiscBill"); ?>" method="post">
                     <div class="row">
                     <table class="table table-striped table-hover table-bordered" style="width:90%" align="center">
                         <thead class="thead-dark">
@@ -112,20 +90,22 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <input type="hidden" name="property_id" value="<?php echo $property_id; ?>">
+                            <input type="hidden" name="month" value="<?php echo $month; ?>">
                             <tr>
                             <th scope="row" style="text-align:center;">1</th>
-                            <td style="text-align:center;"><?php echo $property_name; ?></td>
-                            <td style="text-align:center;"><?php echo $month; ?></td>
-                            <td style="text-align:center;"><?php echo $waste_and_misc_bill; ?></td>
-                            <td align="center"><?php if(!empty($waste_and_misc_bill)){?>
-                              <a href="<?php echo base_url("Bill/addWasteAndMiscBill/").$property_id."/".$month; ?>" class="btn btn-warning">Edit Amount</a>
-                            <?php }else{?>
-                              <a href="<?php echo base_url("Bill/addWasteAndMiscBill/").$property_id."/".$month; ?>" class="btn btn-primary">Add Amount</a>
-                            <?php } ?></td>
-                            </tr>   
+                            <td><?php echo $property_name; ?></td>
+                            <td><?php echo  date("F", strtotime($month))." ".date("Y", strtotime($month)); ?></td>
+                            <td style="text-align:center;"><input type="text" name="waste_misc_bill" value="<?php echo $waste_and_misc_bill; ?>"></td>
+                            <td style="text-align:center;"><input type="submit" value="Submit" class="btn btn-primary"></td>
+                            </tr>
+                            
                         </tbody>
                         </table>
+                    </div>                    
+                    </form>
                     </div>
+                    
 
                     
                 </div>
