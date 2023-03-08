@@ -22,6 +22,14 @@ class BillM extends CI_Model {
     return $query->result_array();
 
   }
+
+  function getLastElectricityBill($year){
+
+    $sql="SELECT *, sum(electricity_charges) as sum from `extra_charges` where `month` LIKE '$year%' group by `house_no` ";    
+    $query = $this->db->query($sql);
+    return $query->result_array();
+
+  }
   function getWaterBill($house_no,$month){
 
     $sql="SELECT water_bill from `extra_charges` where `house_no`='$house_no' and `month` = '$month'";    
@@ -29,9 +37,23 @@ class BillM extends CI_Model {
     return $query->result_array();
 
   }
+  function getElectricityBill($house_no,$month){
+
+    $sql="SELECT electricity_charges from `extra_charges` where `house_no`='$house_no' and `month` = '$month'";    
+    $query = $this->db->query($sql);
+    return $query->result_array();
+
+  }
   function getWaterBillOfProperty($house_no,$month){
 
     $sql="SELECT water_bill from `extra_charges` where `house_no`='$house_no' and `month` = '$month'";    
+    $query = $this->db->query($sql);
+    return $query->result_array();
+
+  }
+  function getElectricityBillOfProperty($house_no,$month){
+
+    $sql="SELECT electricity_charges from `extra_charges` where `house_no`='$house_no' and `month` = '$month'";    
     $query = $this->db->query($sql);
     return $query->result_array();
 
@@ -55,6 +77,21 @@ class BillM extends CI_Model {
   function updateWaterBill($house_no,$month,$water_bill){
 
     $sql="UPDATE `extra_charges` SET `water_bill`='$water_bill' WHERE `house_no`='$house_no' and `month` = '$month' ";    
+    $query = $this->db->query($sql);
+    return 1;
+
+  }
+  function insertElectricityBill($house_no,$month,$electricity_charges){
+
+    $sql="INSERT INTO `extra_charges` (`house_no`,`month`,`electricity_charges`) VALUES ('$house_no','$month','$electricity_charges')";    
+    $query = $this->db->query($sql);
+    return 1;
+
+  }
+
+  function updateElectricityBill($house_no,$month,$electricity_charges){
+
+    $sql="UPDATE `extra_charges` SET `electricity_charges`='$electricity_charges' WHERE `house_no`='$house_no' and `month` = '$month' ";    
     $query = $this->db->query($sql);
     return 1;
 

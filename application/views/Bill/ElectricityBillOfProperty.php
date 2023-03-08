@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.84.0">
-    <title>Rent Management System</title>
+    <title>Sidebars · Bootstrap v5.0</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
 
@@ -40,7 +40,6 @@
         height:100%;
         margin:3%;    
     }
-
     </style>
 
     
@@ -79,39 +78,56 @@
     <hr>
   </div>
   <div class="homediv">
-
   <div class="containe-fluid">
 	<div class="row mt-3 ml-3 mr-3">
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                  
-                    <div style="font-style:italic; font-size: 20px; color:red; font-size: 25px;"><b><i><?php echo $flats[0]['property_address'];?></i></b> &emsp;
-                    <a href="<?php echo base_url('Bill/ElectricityBillOfProperty/').$property_id; ?>" class="btn btn-primary"><b>Electricity Bill</b></a>&emsp;<a href="<?php echo base_url('Bill/WaterBillOfPoperty/').$property_id; ?>" class="btn btn-primary"><b>Water Bill</b></a>
+                    <div style="font-style:italic; font-size: 20px; color:red; font-size: 25px;" ><b>Electricity Bill</b>                    
                     </div>
                     <hr>
-                    <div class="row" style="height:65vh; overflow-x: hidden; overflow-y: auto;">
-                        <?php for($i =1; $i<=$flats[0]['flats']; $i++){ ?>
-
-                          <div class="col-md-3 mb-3">
-                            <div class="card border-warning">
-                                <div class="card-body bg-warning">
-                                    <div class="card-body text-white">
-                                        <span class="float-right summary_icon"> <i class="fa fa-home" style="color:black;"></i></span>
-                                        <h4 style="color:black;"><b><i><?php echo "Flat No : ".$i; ?></i></b></h4>
-                                    </div>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <a href="<?php echo base_url('Home/tenant_details/').$i.'/'.$flats[0]['property_id']; ?>" class="text-primary float-right" style="text-decoration : none; font-weight:bold;">View <span class="fa fa-angle-right"></span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                       <?php } ?>
+                    <div style="display:flex; justify-content:center;">
+                    <form action="<?php echo base_url("Bill/getElectricityBill"); ?>" method="get">
+                    <input type="hidden" name="property_id" value="<?php echo $property_id; ?>">
+                    <input
+                        id="month"
+                        type="month"
+                        name="month"
+                        min="2000-01"
+                        max="<?php echo date("Y-m"); ?>"
+                        value="<?php echo $month; ?>"
+                        style="height:100%;margin-right:10px;"
+                        required
+                        />
+                    <input type="submit" value="Submit" class="btn btn-primary">
+                    </form>
+                    </div>
+                    <br>
+                    <div class="row">
+                    <table class="table table-striped table-hover table-bordered" style="width:90%" align="center">
+                        <thead class="thead-dark">
+                            <tr>
+                            <th scope="col" style="text-align:center;">S.No.</th>
+                            <th scope="col" style="text-align:center;">Property</th>
+                            <th scope="col" style="text-align:center;">Month</th>
+                            <th scope="col" style="text-align:center;">Amount</th>
+                            <th scope="col" style="text-align:center;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <th scope="row" style="text-align:center;">1</th>
+                            <td style="text-align:center;"><?php echo $property_name; ?></td>
+                            <td style="text-align:center;"><?php echo $month_name; ?></td>
+                            <td style="text-align:center;"><?php echo $electricity_charges; ?></td>
+                            <td align="center"><?php if(!empty($electricity_charges)){?>
+                              <a href="<?php echo base_url("Bill/addElectricityBill/").$property_id."/".$month; ?>" class="btn btn-warning">Edit Amount</a>
+                            <?php }else{?>
+                              <a href="<?php echo base_url("Bill/addElectricityBill/").$property_id."/".$month; ?>" class="btn btn-primary">Add Amount</a>
+                            <?php } ?></td>
+                            </tr>   
+                        </tbody>
+                        </table>
                     </div>
 
                     
@@ -122,7 +138,13 @@
 </div>
   </div>
 </main>
-
+<script>
+    $("#datepicker").datepicker( {
+    format: "mm-yyyy",
+    startView: "months", 
+    minViewMode: "months"
+});
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 

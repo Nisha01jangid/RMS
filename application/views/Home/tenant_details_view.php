@@ -70,12 +70,12 @@
       <li class="nav-item">
         <a href="<?php echo base_url('Home') ?>" class="nav-link text-white" aria-current="page">Home</a>
       </li>
-      <li>
+      <!-- <li>
         <a href="#" class="nav-link text-white">Electricity Bill</a>
       </li>
       <li>
         <a href="<?php echo base_url('Bill/WaterBill') ?>" class="nav-link text-white">Water & Other Bills</a>
-      </li>
+      </li> -->
       <li>
         <a href="#" class="nav-link text-white">Report</a>
       </li>
