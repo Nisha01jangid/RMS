@@ -13,12 +13,7 @@ class Bill extends CI_Controller {
 	{
 
 	}
-	public function WaterBill()
-	{
-		$year = date('Y');
-		$data['houses'] = $this->BillM->getLastWaterBill($year);
-		$this->load->view('Bill/WaterBill', $data);
-	}
+
 	public function WaterBillOfPoperty($property_id)
 	{
 		$month = date('Y-m');
@@ -74,7 +69,7 @@ class Bill extends CI_Controller {
 		$property_id = $_POST['property_id'];
 		$month = $_POST['month'];
 		$water_bill = $_POST['water_bill'];
-		$check = $this->BillM->getWaterBill($property_id,$month);
+		$check = $this->BillM->getWaterBillOfProperty($property_id,$month);
 		if(empty($check)){
 			$this->BillM->insertWaterBill($property_id,$month,$water_bill);
 		}else{

@@ -15,9 +15,9 @@ class HomeM extends CI_Model {
 
   }
 
-  function countFlats($house_no){
+  function countFlats($property_id){
 
-    $sql="SELECT count(flat_no) as count from `houses` where `house_no`='$house_no'";    
+    $sql="SELECT count(flat_no) as count from `houses` where `property_id`='$property_id'";    
     $query = $this->db->query($sql);
     return $query->result_array()[0]['count'];
 
@@ -40,17 +40,17 @@ class HomeM extends CI_Model {
 
   }
 
-  public function check_flat_entry($flat_number, $property_id){
+  public function check_flat_entry($flat_no, $property_id){
 
-    $query = "SELECT * from tenants where flat_number = $flat_number and property_id = $property_id and `status` = 1";
+    $query = "SELECT * from tenants where flat_no = $flat_no and property_id = $property_id and `status` = 1";
 
     $result = $this->db->query($query);
     return $result->result_array();
   }
 
-  public function insert_tenant_details($name, $father_name, $dob, $email, $rent, $mobile, $Aadhaar, $joining_date, $members, $property_id, $flat_number){
+  public function insert_tenant_details($name, $father_name, $dob, $email, $rent, $mobile, $Aadhaar, $joining_date, $members, $property_id, $flat_no){
 
-    $query = "INSERT INTO `tenants` (`tenant_name`, `father_name`, `email`, `aadhaar_no`, `contact`, `members`, `rent`, `birth_date`, `property_id`, `flat_number`, `status`, `joining_date`) VALUES ('$name', '$father_name', '$email', '$Aadhaar', '$mobile', '$members', '$rent', '$dob', '$property_id', '$flat_number', 1, '$joining_date')";
+    $query = "INSERT INTO `tenants` (`tenant_name`, `father_name`, `email`, `aadhaar_no`, `contact`, `members`, `rent`, `birth_date`, `property_id`, `flat_no`, `status`, `joining_date`) VALUES ('$name', '$father_name', '$email', '$Aadhaar', '$mobile', '$members', '$rent', '$dob', '$property_id', '$flat_no', 1, '$joining_date')";
 
     $result = $this->db->query($query);
     return ;

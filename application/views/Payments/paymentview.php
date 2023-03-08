@@ -1,6 +1,8 @@
 <?php 
-// echo "<pre>";
-// print($payment_details);
+// foreach($tenants as $t){
+// 	echo $t['name'];
+// 	echo "<br>";
+// }
 // die();
 ?>
 <!DOCTYPE html>
@@ -73,6 +75,10 @@
 form{
 	width:80%;
 }
+#name{
+	width:70%;
+	height:5vh;
+}
 </style>
 
     <!-- Custom styles for this template -->
@@ -82,26 +88,32 @@ form{
 <body>
 <div id="overlay">
   <div id="text">
-  <form style="">
+  <form action="<?php echo base_url('Payments/add_new_entry'); ?>" method="POST">
   <div class="form-group" style="font-size:20px;font-weight:bold;">New Invoice</div>
   <hr>
     <div class="form-group">
-    <label for="name">Full Name :</label>
-    <select name="tenant" id="name">
+    <label for="name"><b>Full Name<span style="color:red;">*</span> : </b></label>&emsp;
+    <select name="tenant_id" id="name">
+		<option value="">Select tenant for payment</option>
 		<?php foreach($tenants as $t){ ?>
-			<option value="<?php echo  ?>"></option>
+			<option value="<?php echo $t['id']; ?>"><?php echo $t['name']; ?></option>
 		<?php } ?>
 	</select>
      </div>
 	 <br>
+    <!-- <div class="form-group">
+    <label for="name"><b>Month<span style="color:red;">*</span> : </b></label>&emsp;
+    <input id="month" type="month" name="month" min="2000-01" max="<?php echo date("Y-m"); ?>" value="<?php echo date("Y-m"); ?>" required />
+     </div>
+	 <br> -->
      <div class="form-group">
-    <label for="invoice">Invoice :</label>
-    <input type="text" class="form-control" id="invoice" name="father_name"  placeholder="Enter invoice number">
+    <label for="invoice"><b>Invoice :</b></label>
+    <input type="text" class="form-control" id="invoice" name="invoice"  placeholder="Enter invoice number">
      </div>
  	 <br>
     <div class="form-group">
-    <label for="amount">Amount Paid :</label>
-    <input type="number" class="form-control" id="amount" name="amount"  placeholder="Enter amount">
+    <label for="amount"><b>Amount Paid<span style="color:red;">*</span> :</b></label>
+    <input type="number" class="form-control" id="amount" name="amount"  placeholder="Enter amount" required>
     </div>
   <br>
   <button type="submit" class="btn btn-primary">Submit</button>&emsp;
@@ -125,12 +137,6 @@ form{
       <li class="nav-item">
         <a href="<?php echo base_url('Home') ?>" class="nav-link text-white" aria-current="page">Home</a>
       </li>
-      <!-- <li>
-        <a href="#" class="nav-link text-white">Electricity Bill</a>
-      </li>
-      <li>
-        <a href="<?php echo base_url('Bill/WaterBill') ?>" class="nav-link text-white">Water & Other Bills</a>
-      </li> -->
       <li>
         <a href="<?php echo base_url('Payments') ?>" class="nav-link text-white">Payments</a>
       </li>
@@ -153,10 +159,10 @@ form{
 						<span>
 							<!-- <a class="btn btn-primary btn-block btn-sm col-sm-2 float-right" href="<?php echo base_url("Payments/new_entry") ?>">
 							<i class="fa fa-plus"></i> New Entry </a> -->
-							<button class="btn btn-primary	"  onclick="on()">New Entry</button>
+							<button class="btn btn-primary"  onclick="on()">New Entry</button>
 						</span>
 					</div>
-					<div class="card-body">
+					<div class="card-body" style="height:70vh; overflow-x: hidden; overflow-y: auto;">
 						<table class="table table-condensed table-bordered table-hover">
 							<thead>
 								<tr>
@@ -188,8 +194,8 @@ form{
 										 <p> <b><?php echo number_format($row['amount'],2) ?></b></p>
 									</td>
 									<td class="text-center">
-										<button class="btn btn-sm btn-outline-primary edit_invoice" type="button" data-id="<?php echo $row['id'] ?>" >Edit</button>
-										<button class="btn btn-sm btn-outline-danger delete_invoice" type="button" data-id="<?php echo $row['id'] ?>">Delete</button>
+										<button class="btn btn-sm btn-outline-primary edit_invoice" type="button" id="<?php echo $row['id'] ?>" >Edit</button>
+										<button class="btn btn-sm btn-outline-danger delete_invoice" type="button" id="<?php echo $row['id'] ?>">Delete</button>
 									</td>
 								</tr>
 								<?php	} ?>
