@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.84.0">
-    <title>Rent Management System</title>
+    <title>RMS</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
 
@@ -87,11 +87,7 @@
     <input type="number" class="form-control" id="exampleInputEmail1" name="flats"  placeholder="Enter your flat numbers" required>
      </div>
      <br>
-     
-  <!-- <div class="form-group form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-  </div> -->
+
   <button type="submit" class="btn btn-primary" value="Submit">Submit</button>
 </form>
 </div></div></div></div></div></div>

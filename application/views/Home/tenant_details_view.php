@@ -1,8 +1,3 @@
-<?php 
-// echo "<pre>";
-// print_r($flat_entry);
-// die();
-?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -11,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.84.0">
-    <title>Rent Management System</title>
+    <title>RMS</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
 
@@ -63,12 +58,6 @@
       <li class="nav-item">
         <a href="<?php echo base_url('Home') ?>" class="nav-link text-white" aria-current="page">Home</a>
       </li>
-      <!-- <li>
-        <a href="#" class="nav-link text-white">Electricity Bill</a>
-      </li>
-      <li>
-        <a href="<?php echo base_url('Bill/WaterBill') ?>" class="nav-link text-white">Water & Other Bills</a>
-      </li> -->
       <li>
         <a href="<?php echo base_url('Payments') ?>" class="nav-link text-white">Payments</a>
       </li>

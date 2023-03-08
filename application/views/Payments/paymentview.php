@@ -1,10 +1,3 @@
-<?php 
-// foreach($tenants as $t){
-// 	echo $t['name'];
-// 	echo "<br>";
-// }
-// die();
-?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.84.0">
-	<title></title>
+	<title>RMS</title>
 	<link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
 
 <!-- Bootstrap core CSS -->
