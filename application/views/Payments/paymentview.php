@@ -186,7 +186,7 @@ form{
             <div class="card">
                 <div class="card-body">
 
-						<b style="font-style:italic; font-size: 20px;">List of Payments</b>&emsp;
+						<b style="font-style:italic; font-size: 23px; color:red;">List of Payments</b>&emsp;
 
 						<span>
 							<button class="btn btn-primary"  onclick="on()">New Entry</button>
