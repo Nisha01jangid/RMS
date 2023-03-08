@@ -29,6 +29,15 @@ class BillM extends CI_Model {
     return $query->result_array();
 
   }
+
+  function getWasteAndMiscBillOfProperty($property_id,$month){
+
+    $sql="SELECT waste_misc_bill from `extra_charges` where `property_id`='$property_id' and `month` = '$month'";    
+    $query = $this->db->query($sql);
+    return $query->result_array();
+
+  }
+
   function getPropertyName($property_id){
 
     $sql="SELECT property_name from `property` where `property_id`='$property_id' and `active` = 1";    
@@ -52,5 +61,22 @@ class BillM extends CI_Model {
     return 1;
 
   }
+
+  function insertWasteAndMiscBill($property_id,$month,$water_bill){
+
+    $sql="INSERT INTO `extra_charges` (`property_id`,`month`,`waste_misc_bill`) VALUES ('$property_id','$month','$water_bill')";    
+    $query = $this->db->query($sql);
+    return 1;
+
+  }
+
+  function updateWasteAndMiscBill($property_id,$month,$water_bill){
+
+    $sql="UPDATE `extra_charges` SET `waste_misc_bill`='$water_bill' WHERE `property_id`='$property_id' and `month` = '$month' ";    
+    $query = $this->db->query($sql);
+    return 1;
+
+  }
+
 
 }

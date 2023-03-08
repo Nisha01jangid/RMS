@@ -58,7 +58,6 @@ class HomeM extends CI_Model {
   }
 
   public function insertElectricityReading($property_id, $flat_no, $month, $reading){
-
     $query = "INSERT INTO `flats_electricity_reading` (`property_id`, `flat_no`, `month`, `reading`) VALUES ('$property_id', '$flat_no', '$month', '$reading')";
 
     $result = $this->db->query($query);
@@ -86,6 +85,9 @@ class HomeM extends CI_Model {
   public function getElectricityReading($property_id, $flat_no, $month){
 
     $query = "SELECT reading FROM flats_electricity_reading where property_id = $property_id and flat_no = $flat_no and `month`='$month'";
+
+    $query = "SELECT property_id , flat_no FROM tenants where property_id = $property_id and flat_no = $flat_number and status = 1";
+
 
     $result = $this->db->query($query);
     return $result->result_array();

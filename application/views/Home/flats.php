@@ -81,7 +81,7 @@
             <div class="card">
                 <div class="card-body">
                     <div style="font-style:italic; font-size: 20px; color:red; font-size: 25px;"><b><i><?php echo $flat[0]['property_address'];?></i></b> &emsp;
-                    <a href="#" class="btn btn-primary"><b>Electricity Bill</b></a>&emsp;<a href="<?php echo base_url('Bill/WaterBillOfPoperty/').$property_id; ?>" class="btn btn-primary"><b>Water Bill</b></a>
+                    <a href="#" class="btn btn-primary"><b>Electricity Bill</b></a>&emsp;<a href="<?php echo base_url('Bill/WaterBillOfPoperty/').$property_id; ?>" class="btn btn-primary"><b>Water Bill</b></a>&emsp;<a href="<?php echo base_url('Bill/WasteAndMiscBillOfPoperty/').$property_id; ?>" class="btn btn-primary"><b>Waste And Miscellaneous Bill</b></a>
                     </div>
                     <hr>
                     <div class="row" style="height:65vh; overflow-x: hidden; overflow-y: auto;">
