@@ -52,14 +52,7 @@
 <main>
 
   <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;height:100vh;">
-    <div class="dropdown">
-      <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false" style="margin: 0% 5%;">
-        <strong><?php echo $_SESSION['user']; ?></strong>
-      </a>
-      <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-        <li><a class="dropdown-item" href="#">Sign out</a></li>
-      </ul>
-    </div>
+  <h4><?php echo $_SESSION['user']; ?></h4>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
@@ -103,8 +96,8 @@
                             <th scope="row">1</th>
                             <td><?php echo $property_name; ?></td>
                             <td><?php echo  date("F", strtotime($month))." ".date("Y", strtotime($month)); ?></td>
-                            <td><input type="text" name="water_bill" value="<?php echo $water_bill; ?>"></td>
-                            <td><input type="submit" value="Submit" class="btn btn-primary"></td>
+                            <td style="text-align:center;"><input type="text" name="water_bill" value="<?php echo $water_bill; ?>"></td>
+                            <tdstyle="text-align:center;"><input type="submit" value="Submit" class="btn btn-primary"></td>
                             </tr>
                             
                         </tbody>
