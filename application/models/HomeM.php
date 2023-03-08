@@ -86,7 +86,6 @@ class HomeM extends CI_Model {
 
     $query = "SELECT reading FROM flats_electricity_reading where property_id = $property_id and flat_no = $flat_no and `month`='$month'";
 
-
     $result = $this->db->query($query);
     return $result->result_array();
   }

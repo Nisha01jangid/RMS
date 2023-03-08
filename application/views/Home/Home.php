@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.84.0">
-    <title>Rent Management System</title>
+    <title>RMS</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
 
@@ -63,7 +63,7 @@
         <a href="<?php echo base_url('Payments') ?>" class="nav-link text-white">Payments</a>
       </li>
       <li>
-        <a href="#" class="nav-link text-white">Report</a>
+        <a href="<?php echo base_url('Report/reportv') ?>" class="nav-link text-white">Report</a>
       </li>
     </ul>
     <hr>
