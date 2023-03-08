@@ -57,4 +57,12 @@ class HomeM extends CI_Model {
 
   }
 
+  public function check_flat_occupied($property_id, $flat_number){
+
+    $query = "SELECT property_id , flat_number FROM tenants where property_id = $property_id and flat_number = $flat_number and status = 1";
+
+    $result = $this->db->query($query);
+    return $result->result_array();
+  }
+
 }

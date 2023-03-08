@@ -38,8 +38,22 @@ class Home extends CI_Controller {
 	public function flats($property_id){
 
 		$property_id = $property_id;
-		$data['flats'] = $this->HomeM->get_flats($property_id);
+		$data['flat'] = $this->HomeM->get_flats($property_id);
 		$data['property_id'] = $property_id;
+
+		$data['flats'] = array();
+
+		for($i=1; $i<=$data['flat'][0]['flats']; $i++){
+
+			$flat_status = $this->HomeM->check_flat_occupied($property_id, $i);
+			if(!empty($flat_status)){
+				$data['flats'][$i] = 1;
+			} else {
+				$data['flats'][$i] = 0;
+			}
+
+		}
+
 		// echo "<pre>";
 		// print_r($data['flats']);
 		// die();
