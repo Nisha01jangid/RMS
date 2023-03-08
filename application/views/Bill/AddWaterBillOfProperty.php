@@ -103,8 +103,8 @@
                             <th scope="row">1</th>
                             <td><?php echo $property_name; ?></td>
                             <td><?php echo  date("F", strtotime($month))." ".date("Y", strtotime($month)); ?></td>
-                            <td><input type="text" name="water_bill" value="<?php echo $water_bill; ?>"></td>
-                            <td><input type="submit" value="Submit" class="btn btn-primary"></td>
+                            <td style="text-align:center;"><input type="text" name="water_bill" value="<?php echo $water_bill; ?>"></td>
+                            <tdstyle="text-align:center;"><input type="submit" value="Submit" class="btn btn-primary"></td>
                             </tr>
                             
                         </tbody>

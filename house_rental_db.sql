@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 08, 2023 at 08:08 AM
+-- Generation Time: Mar 08, 2023 at 01:54 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.2
 
@@ -78,6 +78,29 @@ INSERT INTO `extra_charges` (`sno`, `property_id`, `month`, `water_bill`, `elect
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `flats_electricity_reading`
+--
+
+CREATE TABLE `flats_electricity_reading` (
+  `sno` int(11) NOT NULL,
+  `property_id` int(10) NOT NULL,
+  `flat_no` int(10) NOT NULL,
+  `month` varchar(100) DEFAULT NULL,
+  `reading` double NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `flats_electricity_reading`
+--
+
+INSERT INTO `flats_electricity_reading` (`sno`, `property_id`, `flat_no`, `month`, `reading`, `timestamp`) VALUES
+(1, 1, 1, '2023-03', 150, '2023-03-08 12:51:30'),
+(2, 1, 2, '2023-03', 100, '2023-03-08 12:53:35');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `houses`
 --
 
@@ -140,20 +163,18 @@ CREATE TABLE `payments` (
 --
 
 INSERT INTO `payments` (`id`, `tenant_id`, `amount`, `invoice`, `date_created`) VALUES
-(1, 4, 0, '22C10', '2022-10-19 16:50:37'),
 (2, 1, 60000, '22C11', '2022-10-19 16:51:07'),
 (3, 2, 7000, '22C12', '2022-10-19 16:51:34'),
 (4, 3, 9000, '22C14', '2022-10-19 16:52:06'),
 (5, 5, 4000, 'GH45', '2022-10-23 19:43:00'),
 (6, 6, 10500, 'gh345', '2022-12-23 19:56:51'),
-(7, 1, 20000, 'cms1', '2023-03-05 10:20:38'),
-(8, 4, 0, '22C10', '2022-10-19 16:50:37'),
 (9, 1, 60000, '22C11', '2022-10-19 16:51:07'),
 (10, 2, 7000, '22C12', '2022-10-19 16:51:34'),
 (11, 3, 9000, '22C14', '2022-10-19 16:52:06'),
 (12, 5, 4000, 'GH45', '2022-10-23 19:43:00'),
 (13, 6, 10500, 'gh345', '2022-12-23 19:56:51'),
-(14, 1, 20000, 'cms1', '2023-03-05 10:20:38');
+(14, 1, 20000, 'cms1', '2023-03-05 10:20:38'),
+(15, 2, 1000, 'cms978', '2023-03-08 12:49:05');
 
 -- --------------------------------------------------------
 
@@ -188,7 +209,7 @@ CREATE TABLE `tenants` (
   `tenant_name` varchar(200) NOT NULL,
   `father_name` varchar(200) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `aadhar_no` int(20) NOT NULL,
+  `aadhaar_no` int(20) NOT NULL,
   `contact` varchar(50) NOT NULL,
   `members` int(10) NOT NULL,
   `rent` int(10) NOT NULL,
@@ -203,7 +224,7 @@ CREATE TABLE `tenants` (
 -- Dumping data for table `tenants`
 --
 
-INSERT INTO `tenants` (`id`, `tenant_name`, `father_name`, `email`, `aadhar_no`, `contact`, `members`, `rent`, `birth_date`, `property_id`, `flat_no`, `status`, `joining_date`) VALUES
+INSERT INTO `tenants` (`id`, `tenant_name`, `father_name`, `email`, `aadhaar_no`, `contact`, `members`, `rent`, `birth_date`, `property_id`, `flat_no`, `status`, `joining_date`) VALUES
 (1, 'Douglas', 'William', 'Mogusu@gmail.com', 12345, '85421658', 3, 10000, '2023-03-08', 1, 1, 1, '2022-07-01'),
 (2, 'Rachael', 'Pata nahi', 'wangeci@gmail.com', 54321, '4851256', 4, 15000, '2023-03-08', 1, 2, 1, '2022-08-01'),
 (3, 'zeph', 'NoBody', 'wanyama@gmail.com', 99999, '8956214', 2, 20000, '2023-03-08', 1, 3, 1, '2022-09-01'),
@@ -248,6 +269,12 @@ ALTER TABLE `categories`
 -- Indexes for table `extra_charges`
 --
 ALTER TABLE `extra_charges`
+  ADD PRIMARY KEY (`sno`);
+
+--
+-- Indexes for table `flats_electricity_reading`
+--
+ALTER TABLE `flats_electricity_reading`
   ADD PRIMARY KEY (`sno`);
 
 --
@@ -297,6 +324,12 @@ ALTER TABLE `extra_charges`
   MODIFY `sno` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
+-- AUTO_INCREMENT for table `flats_electricity_reading`
+--
+ALTER TABLE `flats_electricity_reading`
+  MODIFY `sno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `house_address`
 --
 ALTER TABLE `house_address`
@@ -306,7 +339,7 @@ ALTER TABLE `house_address`
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `property`

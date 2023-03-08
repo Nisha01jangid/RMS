@@ -97,9 +97,9 @@
                         ?>
 
                           <div class="col-md-3 mb-3">
-                            <div class="card border-warning">
-                                <div class="card-body bg-warning" style="padding:1px;">
-                                    <div class="card-body text-white" style="background-color:red;">
+                            <div class="card border-danger">
+                                <div class="card-body bg-danger" style="padding:1px;">
+                                    <div class="card-body text-white" style="background-color: #FF2400 ;">
                                         <span class="float-right summary_icon"> <i class="fa fa-home" style="color:black;"></i></span>
                                         <h4 style="color:black;"><b><i><?php echo "Flat No : ".$i; ?></i></b></h4>
                                         <h6 style="color:black;"><b><i>Occupied </i></b></h6>
@@ -117,9 +117,9 @@
                        <?php } else { ?>
 
                         <div class="col-md-3 mb-3">
-                            <div class="card border-warning">
-                                <div class="card-body bg-warning" style="padding:1px;">
-                                    <div class="card-body text-white" style="background-color:#00c04b;">
+                            <div class="card border-success">
+                                <div class="card-body bg-success" style="padding:1px;">
+                                    <div class="card-body text-white" style="background-color:#7CFC00;">
                                         <span class="float-right summary_icon"> <i class="fa fa-home" style="color:black;"></i></span>
                                         <h4 style="color:black;"><b><i><?php echo "Flat No : ".$i; ?></i></b></h4>
                                         <h6 style="color:black;"><b><i>Empty</i></b></h6>
