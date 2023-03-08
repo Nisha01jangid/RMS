@@ -73,31 +73,31 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                <div style="font-style:italic; font-size: 20px;" ><b>Water Bill</b>                    
+                <div style="font-style:italic; font-size: 23px; color:red;" ><b>Water Bill</b>                    
                     </div>
                     <hr>
                     <div>
                     <form action="<?php echo base_url("Bill/insertWaterBill"); ?>" method="post">
                     <div class="row">
-                    <table class="table" style="width:90%" align="center">
+                    <table class="table table-striped table-hover table-bordered" style="width:90%" align="center">
                         <thead class="thead-dark">
                             <tr>
-                            <th scope="col">Sno</th>
-                            <th scope="col">Property</th>
-                            <th scope="col">Month</th>
-                            <th scope="col">Amount</th>
-                            <th scope="col">Action</th>
+                            <th scope="col" style="text-align:center;">S.No.</th>
+                            <th scope="col" style="text-align:center;">Property</th>
+                            <th scope="col" style="text-align:center;">Month</th>
+                            <th scope="col" style="text-align:center;">Amount</th>
+                            <th scope="col" style="text-align:center;">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <input type="hidden" name="property_id" value="<?php echo $property_id; ?>">
                             <input type="hidden" name="month" value="<?php echo $month; ?>">
                             <tr>
-                            <th scope="row">1</th>
+                            <th scope="row" style="text-align:center;">1</th>
                             <td><?php echo $property_name; ?></td>
                             <td><?php echo  date("F", strtotime($month))." ".date("Y", strtotime($month)); ?></td>
                             <td style="text-align:center;"><input type="text" name="water_bill" value="<?php echo $water_bill; ?>"></td>
-                            <tdstyle="text-align:center;"><input type="submit" value="Submit" class="btn btn-primary"></td>
+                            <td style="text-align:center;"><input type="submit" value="Submit" class="btn btn-primary"></td>
                             </tr>
                             
                         </tbody>
