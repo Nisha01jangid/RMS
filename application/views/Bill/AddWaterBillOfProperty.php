@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.84.0">
-    <title>Water Bill</title>
+    <title>RMS</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
 
@@ -94,8 +94,8 @@
                             <input type="hidden" name="month" value="<?php echo $month; ?>">
                             <tr>
                             <th scope="row" style="text-align:center;">1</th>
-                            <td><?php echo $property_name; ?></td>
-                            <td><?php echo  date("F", strtotime($month))." ".date("Y", strtotime($month)); ?></td>
+                            <td style="text-align:center;"><?php echo $property_name; ?></td>
+                            <td style="text-align:center;"><?php echo  date("F", strtotime($month))." ".date("Y", strtotime($month)); ?></td>
                             <td style="text-align:center;"><input type="text" name="water_bill" value="<?php echo $water_bill; ?>"></td>
                             <td style="text-align:center;"><input type="submit" value="Submit" class="btn btn-primary"></td>
                             </tr>

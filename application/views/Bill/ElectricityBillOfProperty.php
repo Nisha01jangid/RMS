@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.84.0">
-    <title>Sidebars · Bootstrap v5.0</title>
+    <title>RMS</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
 
@@ -51,7 +51,7 @@
 
 <main>
 
-  <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;height:100vh;">
+  <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 250px;height:100vh;">
     <div class="dropdown">
       <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false" style="margin: 0% 5%;">
         <strong><?php echo $_SESSION['user']; ?></strong>
@@ -64,13 +64,10 @@
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
         <a href="<?php echo base_url('Home') ?>" class="nav-link text-white" aria-current="page">Home</a>
-      </li>
-      <!-- <li>
-        <a href="#" class="nav-link text-white">Electricity Bill</a>
-      </li>
-      <li>
-        <a href="<?php echo base_url('Bill/WaterBill') ?>" class="nav-link text-white">Water & Other Bills</a>
-      </li> -->
+      </li>      
+      <li class="nav-item">
+        <a href="<?php echo base_url('Payments') ?>" class="nav-link text-white" aria-current="page">Payments</a>
+      </li>      
       <li>
         <a href="#" class="nav-link text-white">Report</a>
       </li>
