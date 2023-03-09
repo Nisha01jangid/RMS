@@ -125,7 +125,7 @@
 <div class="card-body">
 
 
-<div style="display:flex; justify-content:center;">
+<!-- <div style="display:flex; justify-content:center;">
                     <form action="<?php echo base_url("Home/getFlatElectricityReading"); ?>" method="get">
                     <input type="hidden" name="property_id" value="<?php echo $property_id; ?>">
                     <input type="hidden" name="flat_no" value="<?php echo $flat_no; ?>">
@@ -141,17 +141,21 @@
                         />
                     <input type="submit" value="Submit" class="btn btn-primary">
                     </form>
-                    </div>
+                    </div> -->
                     <br>
                     <div class="row">
                     <table class="table table-striped table-hover table-bordered" style="width:90%" align="center">
                         <thead class="thead-dark">
                             <tr>
                             <th scope="col" style="text-align:center;">S.No.</th>
-                            <th scope="col" style="text-align:center;">Flat No.</th>
+                            <th scope="col" style="text-align:center;">Tenant Name</th>
                             <th scope="col" style="text-align:center;">Month</th>
-                            <th scope="col" style="text-align:center;">Reading</th>
-                            <th scope="col" style="text-align:center;">Action</th>
+                            <th scope="col" style="text-align:center;">Meter Reading</th>
+                            <th scope="col" style="text-align:center;">Water Bill</th>
+                            <th scope="col" style="text-align:center;">Waste And Miscellaneous</th>
+                            <th scope="col" style="text-align:center;">Rent</th>
+                            <th scope="col" style="text-align:center;">Amount Paid</th>
+                            <th scope="col" style="text-align:center;">Outstanding Amount</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -160,11 +164,16 @@
                             <td style="text-align:center;"><?php echo "Flat No. ".$flat_no; ?></td>
                             <td style="text-align:center;"><?php echo $month_name; ?></td>
                             <td style="text-align:center;"><?php echo $reading; ?></td>
-                            <td align="center"><?php if(!empty($reading)){?>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></t>
+                            <!-- <td align="center"><?php if(!empty($reading)){?>
                               <a href="<?php echo base_url("Home/addElectricityReading/").$property_id."/".$flat_no."/".$month; ?>" class="btn btn-warning">Edit Reading</a>
                             <?php }else{?>
                               <a href="<?php echo base_url("Home/addElectricityReading/").$property_id."/".$flat_no."/".$month; ?>" class="btn btn-primary">Add Reading</a>
-                            <?php } ?></td>
+                            <?php } ?></td> -->
                             </tr>   
                         </tbody>
                         </table>

@@ -81,7 +81,7 @@
             <div class="card">
                 <div class="card-body">
                     <div style="font-style:italic; font-size: 20px; color:red; font-size: 25px;"><b><i><?php echo $flat[0]['property_address'];?></i></b> &emsp;
-                    <a href="<?php echo base_url('Bill/ElectricityBillOfProperty/').$property_id; ?>" class="btn btn-primary"><b>Electricity Bill</b></a>&emsp;<a href="<?php echo base_url('Bill/WaterBillOfPoperty/').$property_id; ?>" class="btn btn-primary"><b>Water Bill</b></a>&emsp;<a href="<?php echo base_url('Bill/WasteAndMiscBillOfPoperty/').$property_id; ?>" class="btn btn-primary"><b>Waste And Miscellaneous Bill</b></a>
+                    <!-- <a href="<?php echo base_url('Bill/ElectricityBillOfProperty/').$property_id; ?>" class="btn btn-primary"><b>Electricity Bill</b></a>&emsp;<a href="<?php echo base_url('Bill/WaterBillOfPoperty/').$property_id; ?>" class="btn btn-primary"><b>Water Bill</b></a>&emsp;<a href="<?php echo base_url('Bill/WasteAndMiscBillOfPoperty/').$property_id; ?>" class="btn btn-primary"><b>Waste And Miscellaneous Bill</b></a> -->
                     </div>
                     <hr>
                     <div class="row" style="height:65vh; overflow-x: hidden; overflow-y: auto;">
@@ -100,8 +100,11 @@
                                 </div>
                                 <div class="card-footer">
                                     <div class="row">
-                                        <div class="col-lg-12">
+                                        <div class="col-lg-8">
                                             <a href="<?php echo base_url('Home/tenant_details/').$i.'/'.$flat[0]['property_id']; ?>" class="text-primary float-right" style="text-decoration : none; font-weight:bold;">View <span class="fa fa-angle-right"></span></a>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <a href="<?php echo base_url('Home/delete_flat_tenant/').$i.'/'.$flat[0]['property_id'];?>" class="text-primary float-right" style="text-decoration : none; font-weight:bold; "><span style="color:red;">Delete &nbsp;</span><span class="fa fa-trash" style="color:red;"> </a>
                                         </div>
                                     </div>
                                 </div>
@@ -120,8 +123,11 @@
                                 </div>
                                 <div class="card-footer">
                                     <div class="row">
-                                        <div class="col-lg-12">
+                                        <div class="col-lg-8">
                                             <a href="<?php echo base_url('Home/tenant_details/').$i.'/'.$flat[0]['property_id']; ?>" class="text-primary float-right" style="text-decoration : none; font-weight:bold;">View <span class="fa fa-angle-right"></span></a>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <a href="<?php echo base_url('Home/delete_flat_tenant/').$i.'/'.$flat[0]['property_id'];?>" class="text-primary float-right" style="text-decoration : none; font-weight:bold; "><span style="color:red;">Delete &nbsp;</span><span class="fa fa-trash" style="color:red;"> </a>
                                         </div>
                                     </div>
                                 </div>
