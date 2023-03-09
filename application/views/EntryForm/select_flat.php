@@ -1,3 +1,8 @@
+<?php
+// echo "<pre>";
+// print_r($flats);
+// die();
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -53,95 +58,57 @@
 <main>
 
   <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 250px;height:100vh;">
-    <h4><?php echo $_SESSION['user']; ?></h4>
+  <h4><?php echo $_SESSION['user']; ?></h4>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
         <a href="<?php echo base_url('Home') ?>" class="nav-link text-white" aria-current="page">Home</a>
       </li>
-
-      <li class="nav-item">
-        <a href="<?php echo base_url('EntryForm') ?>" class="nav-link text-white" aria-current="page">Entry Form</a>
-      </li>
-
       <li>
         <a href="<?php echo base_url('Payments') ?>" class="nav-link text-white">Payments</a>
       </li>
       <li>
-        <a href="<?php echo base_url('Report/reportv') ?>" class="nav-link text-white">Report</a>
+        <a href="#" class="nav-link text-white">Report</a>
       </li>
     </ul>
     <hr>
   </div>
   <div class="homediv">
-    
-  <?php
-    if($msg = $this->session->flashdata('property_inserted')) {?>
-    <div class="alert alert-success" style="font-style: italic; text-align:center;">
-    <strong><?php echo $msg; ?></strong>
-    </div>
-    <br>
-  <?php } ?>
-
-  <?php
-    if($msg = $this->session->flashdata('tenant_inserted')) {?>
-    <div class="alert alert-success" style="font-style: italic; text-align:center;">
-    <strong><?php echo $msg; ?></strong>
-    </div>
-    <br>
-  <?php } ?>
-
-  <?php
-    if($msg = $this->session->flashdata('Property_deleted')) {?>
-    <div class="alert alert-success" style="font-style: italic; text-align:center;">
-    <strong><?php echo $msg; ?></strong>
-    </div>
-    <br>
-  <?php } ?>
-
-  <?php
-    if($msg = $this->session->flashdata('tenant_deleted')) {?>
-    <div class="alert alert-success" style="font-style: italic; text-align:center;">
-    <strong><?php echo $msg; ?></strong>
-    </div>
-    <br>
-  <?php } ?>
 
   <div class="containe-fluid">
 	<div class="row mt-3 ml-3 mr-3">
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <div style="font-style:italic; font-size: 20px;"><b>Welcome back !</b> &emsp;
-                    <span><a class="btn btn-primary btn-block btn-sm col-sm-2 float-right" href="<?php echo base_url('Home/add_property'); ?>">
-                    <i class="fa fa-plus"></i> New Property
-                  </a></span>
+                    <div style="font-style:italic; font-size: 20px; color:red; font-size: 25px;"><b><i><?php echo $flat[0]['property_address'];?></i></b> &emsp;
+                    
                     </div>
                     <hr>
-                    <div class="row">
-                        <?php foreach($property as $p){ ?>
-                          <div class="col-md-4 mb-3">
-                            <div class="card border-warning">
-                                <div class="card-body bg-warning">
-                                    <div class="card-body text-white">
+                    <div class="row" style="height:65vh; overflow-x: hidden; overflow-y: auto;">
+                        <?php for($i =1; $i<=sizeof($flats); $i++){
+                          if($flats[$i] == 1){
+                        ?>
+
+                          <div class="col-md-3 mb-3">
+                            <div class="card border-danger">
+                                <div class="card-body bg-danger" style="padding:1px;">
+                                    <div class="card-body text-white" style="background-color: red ;">
                                         <span class="float-right summary_icon"> <i class="fa fa-home" style="color:black;"></i></span>
-                                        <h4 style="color:black;"><b><?php echo $p['property_name']." { ".$p['flats']." Flats }"; ?></b></h4>
-                                        <p style="color:black;"><b><?php echo $p['property_address']; ?></b></p>
+                                        <h4 style="color:black;"><b><i><?php echo "Flat No : ".$i; ?></i></b></h4>
+                                        <h6 style="color:black;"><b><i>Occupied </i></b></h6>
                                     </div>
                                 </div>
                                 <div class="card-footer">
                                     <div class="row">
-                                        <div class="col-lg-6">
-                                            <a href="<?php echo base_url('Home/flats/').$p['property_id'];?>" class="text-primary float-right" style="text-decoration : none; font-weight:bold;">View List &nbsp; <span class="fa fa-angle-right"></span></a>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <a href="<?php echo base_url('Home/delete_property/').$p['property_id'];?>" class="text-primary float-right" style="text-decoration : none; font-weight:bold; "><span style="color:red;">Delete Property&nbsp;</span><span class="fa fa-trash" style="color:red;"> </a>
+                                        <div class="col-lg-12">
+                                            <a href="<?php echo base_url('EntryForm/entry_form/').$i.'/'.$flat[0]['property_id']; ?>" class="text-primary float-right" style="text-decoration : none; font-weight:bold;">View <span class="fa fa-angle-right"></span></a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <?php } ?>
+                       <?php } ?>
+                       <?php } ?>
                     </div>
 
                     
