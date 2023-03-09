@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.84.0">
+    <title>RMS</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
+
+    <style>
+        main{
+            display:flex;
+            width:100%;
+            height:100%;
+        }
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    
+    .homediv{
+        width:75%;
+        height:100%;
+        margin:1% 3% 0% 3%;    
+    }
+
+    </style>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="<?php echo base_url('css/sidebar.css') ?>" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" rel="stylesheet">
+  </head>
+<body>
+  <main>  
+<div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 250px;height:100vh;" >
+<h4><?php echo $_SESSION['user']; ?></h4>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li class="nav-item">
+        <a href="<?php echo base_url('Home') ?>" class="nav-link text-white" aria-current="page">Home</a>
+      </li>
+      <li>
+        <a href="<?php echo base_url('Payments') ?>" class="nav-link text-white">Payments</a>
+      </li>
+      <li>
+        <a href="#" class="nav-link text-white">Report</a>
+      </li>
+    </ul>
+    <hr>
+  </div>
+
+<div class="homediv">
+
+  <h2 style="color:red; font-style:italic; font-weight:bold; font-size:25px;"> Tenant Details</h2>
+<div class="containe-fluid">
+<div class="row mt-3 ml-3 mr-3">
+<div class="col-lg-12">
+<div class="card">
+<div class="card-body">
+<div class="row">
+    <div class="form-group col">
+    <label for="exampleInputEmail1">Full Name:&nbsp; <span style="font-weight:normal;"><?php echo $flat_entry[0]['tenant_name']; ?></span></label>
+     </div>
+     <div class="form-group col">
+    <label for="exampleInputEmail1">Father's Name:&nbsp; <span style="font-weight:normal;"><?php echo $flat_entry[0]['father_name']; ?></span></label>
+     </div>
+</div>
+<div class="row">
+    <div class="form-group col">
+    <label for="exampleInputEmail1">Date of Birth:&nbsp;  <span style="font-weight:normal;"><?php echo $flat_entry[0]['birth_date']; ?></span></label>
+    </div>
+    <div class="form-group col">
+    <label for="exampleInputEmail1">Contact Number:&nbsp; <span style="font-weight:normal;"><?php echo $flat_entry[0]['contact']; ?></span></label>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group col">
+    <label for="exampleInputEmail1">Aadhaar Number:&nbsp; <span style="font-weight:normal;"><?php echo $flat_entry[0]['aadhaar_no']; ?></span></label>
+    </div>
+    <div class="form-group col">
+    <label for="exampleInputPassword1">Joining Date:&nbsp; <span style="font-weight:normal;"><?php echo $flat_entry[0]['joining_date']; ?></span></label>
+    </div>
+</div>
+<div class="form-group">
+    <label for="exampleInputEmail1">Email address:&nbsp; <span style="font-weight:normal;"><?php echo $flat_entry[0]['email']; ?></span></label>
+    </div>
+    <div class="row">
+    <div class="form-group col">
+    <label for="exampleInputEmail1">Family Members:&nbsp; <span style="font-weight:normal;"><?php echo $flat_entry[0]['members']; ?></span></label>
+   
+    </div>
+    <div class="form-group col">
+        <label for="exampleInputPassword1">Rent of Flat:&nbsp; <span style="font-weight:normal;"><?php echo $flat_entry[0]['rent']; ?></span></label>
+      </div>
+</div>
+
+</div></div></div></div></div>
+<h2 style="color:red; font-style:italic; font-weight:bold;"> Entry Form </h2>
+<div class="containe-fluid">
+<div class="row mt-3 ml-3 mr-3">
+<div class="col-lg-12">
+<div class="card">
+<div class="card-body">
+<form action="<?php echo base_url('Home/insert_tenant_details');?>" method="post">
+<div class="row">
+    <div class="form-group col">
+    <label for="exampleInputEmail1">Full Name:</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" name="name"  placeholder="Enter your name">
+     </div>
+     <div class="form-group col">
+    <label for="exampleInputEmail1">Father's Name:</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" name="father_name"  placeholder="Enter your father name">
+     </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="form-group col">
+    <label for="exampleInputEmail1">Date of Birth:</label>
+    <input type="date" class="form-control" id="exampleInputEmail1" name="dob"  placeholder="Enter your date of birth">
+    </div>
+    <div class="form-group col">
+    <label for="exampleInputEmail1">Contact Number:</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" name="mobile"  placeholder="Enter your contact number">
+     </div>
+  </div>
+
+     <br>
+
+  <div class="row">
+    <div class="form-group col">
+    <label for="exampleInputEmail1">Aadhaar Number:</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" name="Aadhaar"  placeholder="Enter your aadhaar number">
+    </div>
+    <div class="form-group col">
+    <label for="exampleInputPassword1">Joining Date:</label>
+    <input type="date" class="form-control" id="exampleInputPassword1" name="joining_date" placeholder="Enter joining date">
+     </div>
+  </div>
+  <br>
+    
+    <div class="form-group">
+    <label for="exampleInputEmail1">Email address:</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" name="email"  placeholder="Enter email address">
+    </div>
+     <br>
+    <div class="row">
+    <div class="form-group col">
+    <label for="exampleInputEmail1">Family Members:</label>
+    <input type="number" class="form-control" id="exampleInputEmail1" name="members"  placeholder="Enter members in the family">
+     </div>
+    <div class="form-group col">
+
+    <label for="exampleInputPassword1">Rent of Flat:</label>
+    <input type="number" class="form-control" id="exampleInputPassword1" name="rent" placeholder="Enter rent of flat" required>
+    </div>
+    </div>
+  <br>
+  <!-- <input type="hidden" name="flat_no" value="<?php echo $flat_no; ?>" >
+  <input type="hidden" name="property_id" value="<?php echo $property_id; ?>" >
+   -->
+  <!-- <div class="form-group form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+  </div> -->
+  <button type="submit" class="btn btn-primary" value="Submit">Submit</button>
+</form>
+</div></div></div></div></div></div>
+</main>
+</body>
+</html>
