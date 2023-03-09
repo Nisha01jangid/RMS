@@ -68,13 +68,14 @@ class Home extends CI_Controller {
 		redirect("Home/index");
 	}
 	
-	public function delete_flat_tenant($property_id){
+	public function delete_flat_tenant($flat_no, $property_id){
 
-		// $property_id = $property_id;
-		// $this->HomeM->delete_property($property_id);
+		$property_id = $property_id;
+		$flat_no = $flat_no;
+		$this->HomeM->delete_flat_tenant($property_id, $flat_no);
 		
-		// $this->session->set_flashdata('Property_deleted', 'Property Deleted Successfully :)');
-		// redirect("Home/index");
+		$this->session->set_flashdata('tenant_deleted', 'Tenant Deleted Successfully :)');
+		redirect("Home/index");
 	}
 
 	public function tenant_details($flat_no, $property_id){

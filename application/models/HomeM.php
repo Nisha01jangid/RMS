@@ -98,4 +98,12 @@ class HomeM extends CI_Model {
     return ;
   }
 
+  public function delete_flat_tenant($property_id, $flat_no){
+
+    $query = "UPDATE tenants SET `status` = 0 where property_id = $property_id and flat_no = $flat_no";
+
+    $result = $this->db->query($query);
+    return ;
+  }
+
 }
