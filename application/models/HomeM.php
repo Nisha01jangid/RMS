@@ -90,4 +90,20 @@ class HomeM extends CI_Model {
     return $result->result_array();
   }
 
+  public function delete_property($property_id){
+
+    $query = "UPDATE property SET `active` = 0 where property_id = $property_id";
+
+    $result = $this->db->query($query);
+    return ;
+  }
+
+  public function delete_flat_tenant($property_id, $flat_no){
+
+    $query = "UPDATE tenants SET `status` = 0 where property_id = $property_id and flat_no = $flat_no";
+
+    $result = $this->db->query($query);
+    return ;
+  }
+
 }

@@ -10,7 +10,7 @@ class ReportM extends CI_Model {
                        
       function get_payments($month_of_payment){
 
-      $sql = " SELECT payments.*, tenants.tenant_name,tenants.rent, houses.house_no, houses.flat_no FROM payments inner join tenants on tenants.id = payments.tenant_id inner join houses on houses.id = tenants.flat_number WHERE date_format(payments.date_created, '%Y-%m') = '$month_of_payment' order by unix_timestamp(date_created)  asc";
+      $sql = " SELECT payments.*, tenants.tenant_name,tenants.rent, houses.house_no, houses.flat_no FROM payments inner join tenants on tenants.id = payments.tenant_id inner join houses on houses.id = tenants.flat_no WHERE date_format(payments.date_created, '%Y-%m') = '$month_of_payment' order by unix_timestamp(date_created)  asc";
 
         // print($sql);
         // die();
