@@ -15,13 +15,34 @@ class EntryForm extends CI_Controller{
 		$this->load->view('EntryForm/select_property',$data);
 	}	
 
-
-	public function flats($property_id){
-
-		$property_id = $property_id;
-		$data['flat'] = $this->EntryFormM->get_flats($property_id);
+	public function electricity_water_rate($property_id)
+	{
 		$data['property_id'] = $property_id;
+		$this->load->view('EntryForm/electricity_water_rate', $data);
+	}
 
+
+	public function flats(){
+
+		$data['property_id'] = $_GET['property_id'];
+		$property_id = $data['property_id'];
+		$data['month'] = $_GET['month'];
+		$data['rate_per_unit'] = $_GET['rate_per_unit'];
+		$data['rate_per_person'] = $_GET['rate_per_person'];
+		$data['waste'] = $_GET['waste'];
+		
+		// echo "<pre>";
+		// print_r($data['property_id']);
+		// echo "<br>";
+		// print_r($data['month']);
+		// echo "<br>";
+		// print_r($data['rate_per_unit']);
+		// echo "<br>";
+		// print_r($data['rate_per_person']);
+		// echo "<br>";
+		// die();
+
+		$data['flat'] = $this->EntryFormM->get_flats($property_id);
 		$data['flats'] = array();
 
 		for($i=1; $i<=$data['flat'][0]['flats']; $i++){
@@ -42,20 +63,76 @@ class EntryForm extends CI_Controller{
 		$this->load->view('EntryForm/select_flat', $data);
 	}
 
-	public function entry_form($flat_no,$property_id){
+	public function entry_form($flat_no,$property_id,$property_name,$no_of_flats,$active_status,$month,$rate_per_unit,$rate_per_person,$waste){
+
 
 		$data['flat_no'] = $flat_no;
 		$data['property_id'] = $property_id;
+		$data['property_name'] = $property_name;
+		$data['no_of_flats'] = $no_of_flats;
+		$data['active_status'] = $active_status;
+		$data['month'] = $month;
+		$data['rate_per_unit'] = $rate_per_unit;
+		$data['rate_per_person'] = $rate_per_person;
+		$data['waste'] = $waste;
+
+		// echo "<pre>";
+		// print_r($data['property_id']);
+		// echo "<br>";
+		// print_r($data['month']);
+		// echo "<br>";
+		// print_r($rate_per_unit);
+		// echo "<br>";
+		// print_r($rate_per_person);
+		// die();
 
 		$data['flat_entry'] = $this->EntryFormM->check_flat_entry($flat_no, $property_id);
 
-		// echo "<pre>";
-		// print_r($flat_no);
-		// print_r($property_id);
-		// die();
 
 		$this->load->view('EntryForm/entry_form_view', $data);
 
+
+	}
+
+	public function insert_entry_form(){
+
+		$tenant_rent= $_POST['tenant_rent'];
+		$current_meter_reading= $_POST['current_meter_reading'];
+		$miscellaneous= $_POST['miscellaneous'];
+		$duedate= $_POST['duedate'];
+
+		$flat_no = $_POST['flat_no'];
+		$property_id = $_POST['property_id'];
+		$property_name = $_POST['property_name'];
+		$no_of_members = $_POST['no_of_members'];
+		$active_status = $_POST['active_status'];
+		$month = $_POST['month'];
+		$rate_per_unit = $_POST['rate_per_unit'];
+		$rate_per_person = $_POST['rate_per_person'];
+		$waste= $_POST['waste'];
+
+
+
+		// echo "<pre>";				
+		// print_r($property_id);
+		// echo "<br>";
+		// print_r($property_name);
+		// echo "<br>";
+		// print_r($month);
+		// echo "<br>";
+		// print_r($rate_per_unit);
+		// echo "<br>";
+		// print_r($no_of_flats);
+		// die();
+		
+
+		$this->EntryFormM->insert_entry_form($month,$property_id, $property_name, $flat_no, $no_of_members, $rate_per_unit,$rate_per_person, $tenant_rent, $current_meter_reading, $waste, $miscellaneous, $duedate, $active_status);
+
+		$this->session->set_flashdata('entry_form_inserted', 'Entry Form Inserted Successfully :)');
+
+		// redirect("EntryForm/flats");
+
+		redirect(base_url("EntryForm/flats?month=".$month."&rate_per_unit=".$rate_per_unit."&rate_per_person=".$rate_per_person."&property_id=".$property_id."&waste=".$waste));
 
 	}
 	
