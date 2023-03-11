@@ -1,6 +1,12 @@
 <?php
 // echo "<pre>";
-// print_r($flats);
+// print_r($property_id);
+// echo "<br>";
+// print_r($month);
+// echo "<br>";
+// print_r($rate_per_unit);
+// echo "<br>";
+// print_r($rate_per_person);
 // die();
 ?>
 <!doctype html>
@@ -75,6 +81,14 @@
   </div>
   <div class="homediv">
 
+      <?php
+    if($msg = $this->session->flashdata('entry_form_inserted')) {?>
+    <div class="alert alert-success" style="font-style: italic; text-align:center;">
+    <strong><?php echo $msg; ?></strong>
+    </div>
+    <br>
+  <?php } ?>
+
   <div class="containe-fluid">
 	<div class="row mt-3 ml-3 mr-3">
         <div class="col-lg-12">
@@ -101,10 +115,11 @@
                                 <div class="card-footer">
                                     <div class="row">
                                         <div class="col-lg-12">
-                                            <a href="<?php echo base_url('EntryForm/entry_form/').$i.'/'.$flat[0]['property_id']; ?>" class="text-primary float-right" style="text-decoration : none; font-weight:bold;">View <span class="fa fa-angle-right"></span></a>
+                                            <a href="<?php echo base_url('EntryForm/entry_form/').$i.'/'.$flat[0]['property_id'].'/'.$flat[0]['property_name'].'/'.$flat[0]['flats'].'/'.$flat[0]['active'].'/'.$month.'/'.$rate_per_unit.'/'.$rate_per_person.'/'.$waste; ?>" class="text-primary float-right" style="text-decoration : none; font-weight:bold;">View <span class="fa fa-angle-right"></span></a>
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                        <?php } ?>

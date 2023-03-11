@@ -1,4 +1,17 @@
+<?php
+    // echo "<pre>";
+    // print_r($property_id);
+    // echo "<br>";
+    // print_r($month);
+    // echo "<br>";
+    // print_r($rate_per_unit);
+    // echo "<br>";
+    // print_r($rate_per_person);
+    // die();
+?>
+
 <!doctype html>
+
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -64,7 +77,7 @@
 
 <div class="homediv">
 
-  <h2 style="color:red; font-style:italic; font-weight:bold; font-size:25px;"> Tenant Details</h2>
+<h2 style="color:red; font-style:italic; font-weight:bold; font-size:25px;"> Tenant Details</h2>
 <div class="containe-fluid">
 <div class="row mt-3 ml-3 mr-3">
 <div class="col-lg-12">
@@ -75,36 +88,27 @@
     <label for="exampleInputEmail1">Full Name:&nbsp; <span style="font-weight:normal;"><?php echo $flat_entry[0]['tenant_name']; ?></span></label>
      </div>
      <div class="form-group col">
-    <label for="exampleInputEmail1">Father's Name:&nbsp; <span style="font-weight:normal;"><?php echo $flat_entry[0]['father_name']; ?></span></label>
-     </div>
+    <label for="exampleInputEmail1">Aadhaar Number:&nbsp; <span style="font-weight:normal;"><?php echo $flat_entry[0]['aadhaar_no']; ?></span></label>
+    </div>
 </div>
 <div class="row">
-    <div class="form-group col">
-    <label for="exampleInputEmail1">Date of Birth:&nbsp;  <span style="font-weight:normal;"><?php echo $flat_entry[0]['birth_date']; ?></span></label>
-    </div>
+    
     <div class="form-group col">
     <label for="exampleInputEmail1">Contact Number:&nbsp; <span style="font-weight:normal;"><?php echo $flat_entry[0]['contact']; ?></span></label>
-    </div>
-</div>
-<div class="row">
-    <div class="form-group col">
-    <label for="exampleInputEmail1">Aadhaar Number:&nbsp; <span style="font-weight:normal;"><?php echo $flat_entry[0]['aadhaar_no']; ?></span></label>
     </div>
     <div class="form-group col">
     <label for="exampleInputPassword1">Joining Date:&nbsp; <span style="font-weight:normal;"><?php echo $flat_entry[0]['joining_date']; ?></span></label>
     </div>
 </div>
-<div class="form-group">
-    <label for="exampleInputEmail1">Email address:&nbsp; <span style="font-weight:normal;"><?php echo $flat_entry[0]['email']; ?></span></label>
-    </div>
     <div class="row">
+      <div class="form-group col">
+        <label for="exampleInputPassword1">Rent of Flat:&nbsp; <span style="font-weight:normal;"><?php echo $flat_entry[0]['rent']; ?></span></label>
+      </div>
     <div class="form-group col">
     <label for="exampleInputEmail1">Family Members:&nbsp; <span style="font-weight:normal;"><?php echo $flat_entry[0]['members']; ?></span></label>
    
     </div>
-    <div class="form-group col">
-        <label for="exampleInputPassword1">Rent of Flat:&nbsp; <span style="font-weight:normal;"><?php echo $flat_entry[0]['rent']; ?></span></label>
-      </div>
+    
 </div>
 
 </div></div></div></div></div>
@@ -114,63 +118,47 @@
 <div class="col-lg-12">
 <div class="card">
 <div class="card-body">
-<form action="<?php echo base_url('Home/insert_tenant_details');?>" method="post">
-<div class="row">
-    <div class="form-group col">
-    <label for="exampleInputEmail1">Full Name:</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" name="name"  placeholder="Enter your name">
-     </div>
-     <div class="form-group col">
-    <label for="exampleInputEmail1">Father's Name:</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" name="father_name"  placeholder="Enter your father name">
-     </div>
-  </div>
-  <br>
+<form action="<?php echo base_url('EntryForm/insert_entry_form');?>" method="post">
+
   <div class="row">
     <div class="form-group col">
-    <label for="exampleInputEmail1">Date of Birth:</label>
-    <input type="date" class="form-control" id="exampleInputEmail1" name="dob"  placeholder="Enter your date of birth">
+    <label for="tenant_rent">Rent</label>
+    <input type="number" class="form-control" id="tenant_rent" name="tenant_rent"  placeholder="Enter the Rent Amount">
     </div>
     <div class="form-group col">
-    <label for="exampleInputEmail1">Contact Number:</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" name="mobile"  placeholder="Enter your contact number">
+    <label for="current_meter_reading">Current Meter Reading (Unit)</label>
+    <input type="number" class="form-control" id="current_meter_reading" name="current_meter_reading"  placeholder="Enter the Current Meter Reading">
      </div>
   </div>
 
      <br>
 
   <div class="row">
-    <div class="form-group col">
-    <label for="exampleInputEmail1">Aadhaar Number:</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" name="Aadhaar"  placeholder="Enter your aadhaar number">
-    </div>
-    <div class="form-group col">
-    <label for="exampleInputPassword1">Joining Date:</label>
-    <input type="date" class="form-control" id="exampleInputPassword1" name="joining_date" placeholder="Enter joining date">
-     </div>
-  </div>
-  <br>
     
-    <div class="form-group">
-    <label for="exampleInputEmail1">Email address:</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" name="email"  placeholder="Enter email address">
-    </div>
-     <br>
-    <div class="row">
     <div class="form-group col">
-    <label for="exampleInputEmail1">Family Members:</label>
-    <input type="number" class="form-control" id="exampleInputEmail1" name="members"  placeholder="Enter members in the family">
+    <label for="miscellaneous">Miscellaneous</label>
+    <input type="number" class="form-control" id="miscellaneous" name="miscellaneous" placeholder="Enter Miscellaneous">
      </div>
-    <div class="form-group col">
 
-    <label for="exampleInputPassword1">Rent of Flat:</label>
-    <input type="number" class="form-control" id="exampleInputPassword1" name="rent" placeholder="Enter rent of flat" required>
-    </div>
+    <div class="form-group col">
+    <label for="duedate">Due Date:</label>
+    <input type="date" class="form-control" id="duedate" name="duedate"  placeholder="Enter the Due Date">
+     </div>
+  
     </div>
   <br>
-  <!-- <input type="hidden" name="flat_no" value="<?php echo $flat_no; ?>" >
+ 
+  <input type="hidden" name="flat_no" value="<?php echo $flat_no; ?>" >
   <input type="hidden" name="property_id" value="<?php echo $property_id; ?>" >
-   -->
+  <input type="hidden" name="property_name" value="<?php echo $property_name; ?>" >
+  <input type="hidden" name="no_of_members" value="<?php echo $flat_entry[0]['members']; ?>" >
+  <input type="hidden" name="active_status" value="<?php echo $active_status; ?>" >
+  <input type="hidden" name="month" value="<?php echo $month; ?>" >
+  <input type="hidden" name="rate_per_unit" value="<?php echo $rate_per_unit; ?>" >
+  <input type="hidden" name="rate_per_person" value="<?php echo $rate_per_person; ?>" >
+  <input type="hidden" name="waste" value="<?php echo $waste; ?>" >
+
+
   <!-- <div class="form-group form-check">
     <input type="checkbox" class="form-check-input" id="exampleCheck1">
     <label class="form-check-label" for="exampleCheck1">Check me out</label>
