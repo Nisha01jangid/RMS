@@ -106,4 +106,13 @@ class HomeM extends CI_Model {
     return ;
   }
 
+  public function get_tenant_entry_form_details($flat_no,$property_id){
+
+    $query = "SELECT * FROM entry_form_details WHERE property_id =$property_id AND flat_no = $flat_no AND status=1";
+    // print_r($query);
+    // die();
+    $result = $this->db->query($query);
+    return $result->result_array();
+  }
+
 }

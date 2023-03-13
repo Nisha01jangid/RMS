@@ -51,18 +51,23 @@
   </head>
 <body>
   <main>  
-<div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 250px;height:100vh;" >
-<h4><?php echo $_SESSION['user']; ?></h4>
+<div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 250px;height:100vh;">
+    <h4><?php echo $_SESSION['user']; ?></h4>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
         <a href="<?php echo base_url('Home') ?>" class="nav-link text-white" aria-current="page">Home</a>
       </li>
+
+      <li class="nav-item">
+        <a href="<?php echo base_url('EntryForm') ?>" class="nav-link text-white" aria-current="page">Entry Form</a>
+      </li>
+
       <li>
         <a href="<?php echo base_url('Payments') ?>" class="nav-link text-white">Payments</a>
       </li>
       <li>
-        <a href="#" class="nav-link text-white">Report</a>
+        <a href="<?php echo base_url('Report/reportv') ?>" class="nav-link text-white">Report</a>
       </li>
     </ul>
     <hr>
@@ -75,6 +80,11 @@
 <div class="col-lg-12">
 <div class="card">
 <div class="card-body">
+<div class="row">
+    <div class="form-group col"></div>
+    <label for="flat_no">Flat No:&nbsp;<span style="font-weight:normal;"><?php echo $flat_no; ?></span></label>
+</div>
+
 <div class="row">
     <div class="form-group col">
     <label for="exampleInputEmail1">Full Name:&nbsp; <span style="font-weight:normal;"><?php echo $flat_entry[0]['tenant_name']; ?></span></label>
@@ -116,73 +126,11 @@
 
 <br>
 
+<h2 style="color:red; font-style:italic; font-weight:bold; font-size:22px; display: inline-block; margin-right: 20px;">Month-Wise Report</h2> 
+<span>
+    <a style="display: inline-block;" class="btn btn-primary btn-block btn-sm col-sm-2 float-right" href="<?php echo base_url('Home/month_wise_report').'/'.$flat_no.'/'.$property_id; ?>" >Tenant Wise</a>
+</span>
 
-<h2 style=" color:red; font-style:italic; font-weight:bold; font-size:22px;"> Electricity Reading</h2>
-<div class="containe-fluid">
-<div class="row mt-3 ml-3 mr-3">
-<div class="col-lg-12">
-<div class="card">
-<div class="card-body">
-
-
-<!-- <div style="display:flex; justify-content:center;">
-                    <form action="<?php echo base_url("Home/getFlatElectricityReading"); ?>" method="get">
-                    <input type="hidden" name="property_id" value="<?php echo $property_id; ?>">
-                    <input type="hidden" name="flat_no" value="<?php echo $flat_no; ?>">
-                    <input
-                        id="month"
-                        type="month"
-                        name="month"
-                        min="2000-01"
-                        max="<?php echo date("Y-m"); ?>"
-                        value="<?php echo $month; ?>"
-                        style="height:100%;margin-right:10px;"
-                        required
-                        />
-                    <input type="submit" value="Submit" class="btn btn-primary">
-                    </form>
-                    </div> -->
-                    <br>
-                    <div class="row">
-                    <table class="table table-striped table-hover table-bordered" style="width:90%" align="center">
-                        <thead class="thead-dark">
-                            <tr>
-                            <th scope="col" style="text-align:center;">S.No.</th>
-                            <th scope="col" style="text-align:center;">Tenant Name</th>
-                            <th scope="col" style="text-align:center;">Month</th>
-                            <th scope="col" style="text-align:center;">Meter Reading</th>
-                            <th scope="col" style="text-align:center;">Water Bill</th>
-                            <th scope="col" style="text-align:center;">Waste And Miscellaneous</th>
-                            <th scope="col" style="text-align:center;">Rent</th>
-                            <th scope="col" style="text-align:center;">Amount Paid</th>
-                            <th scope="col" style="text-align:center;">Outstanding Amount</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                            <th scope="row" style="text-align:center;">1</th>
-                            <td style="text-align:center;"><?php echo "Flat No. ".$flat_no; ?></td>
-                            <td style="text-align:center;"><?php echo $month_name; ?></td>
-                            <td style="text-align:center;"><?php echo $reading; ?></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></t>
-                            <!-- <td align="center"><?php if(!empty($reading)){?>
-                              <a href="<?php echo base_url("Home/addElectricityReading/").$property_id."/".$flat_no."/".$month; ?>" class="btn btn-warning">Edit Reading</a>
-                            <?php }else{?>
-                              <a href="<?php echo base_url("Home/addElectricityReading/").$property_id."/".$flat_no."/".$month; ?>" class="btn btn-primary">Add Reading</a>
-                            <?php } ?></td> -->
-                            </tr>   
-                        </tbody>
-                        </table>
-                    </div>
-
-                    
-                </div>
-
-</div></div></div></div></div>
 </div>
 </main>
 </body>
