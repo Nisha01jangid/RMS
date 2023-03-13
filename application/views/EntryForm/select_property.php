@@ -1,4 +1,8 @@
-<!doctype html>
+<?php 
+// echo "<pre>";
+// print_r($property);
+// die();
+?><!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -74,13 +78,17 @@
     <hr>
   </div>
   <div class="homediv">
+
+     
     
   <div class="containe-fluid">
 	<div class="row mt-3 ml-3 mr-3">
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    
+                <div style="font-style:italic; font-size: 23px; color:red;"><b>Properties</b> &emsp;
+                  </a></span>
+                    </div> 
                     <hr>
                     <div class="row">
                         <?php foreach($property as $p){ ?>
@@ -96,7 +104,7 @@
                                 <div class="card-footer">
                                     <div class="row">
                                         <div class="col-lg-12">
-                                            <a href="<?php echo base_url('EntryForm/flats/').$p['property_id'];?>" class="text-primary float-right" style="text-decoration : none; font-weight:bold;">View List &nbsp; <span class="fa fa-angle-right"></span></a>
+                                            <a href="<?php echo base_url('EntryForm/electricity_water_rate/').$p['property_id'];?>" class="text-primary float-right" style="text-decoration : none; font-weight:bold;">View List &nbsp; <span class="fa fa-angle-right"></span></a>
                                         </div>
                                     </div>
                                 </div>

@@ -68,75 +68,65 @@
   </div>
 
 <div class="homediv">
-<h2 style="color:red; font-style:italic; font-weight:bold;"> Tenant Details</h2>
+
+<h2 style="color:red; font-style:italic; font-weight:bold;"> Entry Form </h2>
 <div class="containe-fluid">
 <div class="row mt-3 ml-3 mr-3">
 <div class="col-lg-12">
 <div class="card">
 <div class="card-body">
-<form action="<?php echo base_url('Home/insert_tenant_details');?>" method="post">
-<div class="row">
-    <div class="form-group col">
-    <label for="exampleInputEmail1">Full Name:</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" name="name"  placeholder="Enter your name">
-     </div>
-     <div class="form-group col">
-    <label for="exampleInputEmail1">Father's Name:</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" name="father_name"  placeholder="Enter your father name">
-     </div>
-  </div>
-  <br>
-  <div class="row">
-    <div class="form-group col">
-    <label for="exampleInputEmail1">Date of Birth:</label>
-    <input type="date" class="form-control" id="exampleInputEmail1" name="dob"  placeholder="Enter your date of birth">
-    </div>
-    <div class="form-group col">
-    <label for="exampleInputEmail1">Contact Number:</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" name="mobile"  placeholder="Enter your contact number">
-     </div>
-  </div>
+<form action="<?php echo base_url('EntryForm/flats');?>" method="get">
 
-     <br>
-
-  <div class="row">
-    <div class="form-group col">
-    <label for="exampleInputEmail1">Aadhaar Number:</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" name="Aadhaar"  placeholder="Enter your aadhaar number">
-    </div>
-    <div class="form-group col">
-    <label for="exampleInputPassword1">Joining Date:</label>
-    <input type="date" class="form-control" id="exampleInputPassword1" name="joining_date" placeholder="Enter joining date">
-     </div>
-  </div>
-  <br>
-    
-    <div class="form-group">
-    <label for="exampleInputEmail1">Email address:</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" name="email"  placeholder="Enter email address">
-    </div>
-     <br>
     <div class="row">
     <div class="form-group col">
-    <label for="exampleInputEmail1">Family Members:</label>
-    <input type="number" class="form-control" id="exampleInputEmail1" name="members"  placeholder="Enter members in the family">
-     </div>
-    <div class="form-group col">
-
-    <label for="exampleInputPassword1">Rent of Flat:</label>
-    <input type="number" class="form-control" id="exampleInputPassword1" name="rent" placeholder="Enter rent of flat" required>
-    </div>
-    </div>
+    <label for="month">Month</label>
+    <input type="month" class="form-control" id="month" name="month"  placeholder="Select the Month">
+    </div> 
+  </div>
   <br>
-  <input type="hidden" name="flat_no" value="<?php echo $flat_no; ?>" >
+
+  <div class="row">
+    <div class="form-group col">
+    <label for="rate_per_unit">Electricity Rate per Unit:</label>
+    <input type="number" class="form-control" id="rate_per_unit" name="rate_per_unit"  placeholder="Enter the Rate of Electricity ">
+    </div>
+  </div>
+
+     <br>
+
+  <div class="row">
+    <div class="form-group col">
+    <label for="rate_per_person">Water Pump Charges</label>
+    <input type="number" class="form-control" id="rate_per_person" name="rate_per_person"  placeholder="Enter Water Pump Charges (rate_per_person)">
+    </div> 
+  </div>
+<br>
+  <div class="row">
+    <div class="form-group col">
+    <label for="waste">Waste</label>
+    <input type="number" class="form-control" id="waste" name="waste"  placeholder="Enter Waste Amount">
+    </div>
+  </div>
+
+  <br>
+    
+  <br>
+ <!-- 
+    <input type="hidden" name="flat_no" value="<?php echo $flat_no; ?>" >
   <input type="hidden" name="property_id" value="<?php echo $property_id; ?>" >
-  
+  <input type="hidden" name="property_name" value="<?php echo $property_name; ?>" >
+  <input type="hidden" name="no_of_flats" value="<?php echo $no_of_flats; ?>" >
+  <input type="hidden" name="active_status" value="<?php echo $active_status; ?>" > 
+ -->
+<input type="hidden" name="property_id" value="<?php echo $property_id; ?>" >
+
   <!-- <div class="form-group form-check">
     <input type="checkbox" class="form-check-input" id="exampleCheck1">
     <label class="form-check-label" for="exampleCheck1">Check me out</label>
   </div> -->
   <button type="submit" class="btn btn-primary" value="Submit">Submit</button>
 </form>
+
 </div></div></div></div></div></div>
 </main>
 </body>

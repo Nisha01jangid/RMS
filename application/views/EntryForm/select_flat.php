@@ -1,6 +1,12 @@
 <?php
 // echo "<pre>";
-// print_r($flats);
+// print_r($property_id);
+// echo "<br>";
+// print_r($month);
+// echo "<br>";
+// print_r($rate_per_unit);
+// echo "<br>";
+// print_r($rate_per_person);
 // die();
 ?>
 <!doctype html>
@@ -58,22 +64,35 @@
 <main>
 
   <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 250px;height:100vh;">
-  <h4><?php echo $_SESSION['user']; ?></h4>
+    <h4><?php echo $_SESSION['user']; ?></h4>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
         <a href="<?php echo base_url('Home') ?>" class="nav-link text-white" aria-current="page">Home</a>
       </li>
+
+      <li class="nav-item">
+        <a href="<?php echo base_url('EntryForm') ?>" class="nav-link text-white" aria-current="page">Entry Form</a>
+      </li>
+
       <li>
         <a href="<?php echo base_url('Payments') ?>" class="nav-link text-white">Payments</a>
       </li>
       <li>
-        <a href="#" class="nav-link text-white">Report</a>
+        <a href="<?php echo base_url('Report/reportv') ?>" class="nav-link text-white">Report</a>
       </li>
     </ul>
     <hr>
   </div>
   <div class="homediv">
+
+      <?php
+    if($msg = $this->session->flashdata('entry_form_inserted')) {?>
+    <div class="alert alert-success" style="font-style: italic; text-align:center;">
+    <strong><?php echo $msg; ?></strong>
+    </div>
+    <br>
+  <?php } ?>
 
   <div class="containe-fluid">
 	<div class="row mt-3 ml-3 mr-3">
@@ -101,10 +120,11 @@
                                 <div class="card-footer">
                                     <div class="row">
                                         <div class="col-lg-12">
-                                            <a href="<?php echo base_url('EntryForm/entry_form/').$i.'/'.$flat[0]['property_id']; ?>" class="text-primary float-right" style="text-decoration : none; font-weight:bold;">View <span class="fa fa-angle-right"></span></a>
+                                            <a href="<?php echo base_url('EntryForm/entry_form/').$i.'/'.$flat[0]['property_id'].'/'.$flat[0]['property_name'].'/'.$flat[0]['flats'].'/'.$flat[0]['active'].'/'.$month.'/'.$rate_per_unit.'/'.$rate_per_person.'/'.$waste; ?>" class="text-primary float-right" style="text-decoration : none; font-weight:bold;">View <span class="fa fa-angle-right"></span></a>
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                        <?php } ?>

@@ -33,7 +33,13 @@
     .homediv{
         width:75%;
         height:100%;
-        margin:3%;    
+        margin:3%;  
+    }
+
+    label{
+        font-style:italic; 
+        font-weight:bold; 
+        font-size:20px;
     }
 
     </style>
@@ -45,57 +51,49 @@
   </head>
 <body>
   <main>  
-<div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 250px;height:100vh;">
-    <h4><?php echo $_SESSION['user']; ?></h4>
+<div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 250px;height:100vh;" >
+<h4><?php echo $_SESSION['user']; ?></h4>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
         <a href="<?php echo base_url('Home') ?>" class="nav-link text-white" aria-current="page">Home</a>
       </li>
-
-      <li class="nav-item">
-        <a href="<?php echo base_url('EntryForm') ?>" class="nav-link text-white" aria-current="page">Entry Form</a>
-      </li>
-
       <li>
         <a href="<?php echo base_url('Payments') ?>" class="nav-link text-white">Payments</a>
       </li>
       <li>
-        <a href="<?php echo base_url('Report/reportv') ?>" class="nav-link text-white">Report</a>
+        <a href="#" class="nav-link text-white">Report</a>
       </li>
     </ul>
     <hr>
   </div>
 
 <div class="homediv">
-<h2 style="color:red; font-style:italic; font-weight:bold;">Add New Property</h2>
+<h2 style="color:red; font-style:italic; font-weight:bold; font-size:25px;"> Payment Modes</h2>
 <div class="containe-fluid">
 <div class="row mt-3 ml-3 mr-3">
 <div class="col-lg-12">
 <div class="card">
 <div class="card-body">
-  
-<form action="<?php echo base_url("Home/insert_new_property");?>" method="post">
-<div class="form-group">
-  
-    <label for="exampleInputEmail1">Property Name:</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" name="property_name"  placeholder="Enter your property name" required>
-     </div>
-     <br>
-     <div class="form-group">
-    <label for="exampleInputEmail1">Property's Address:</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" name="property_address"  placeholder="Enter your property address" required>
-     </div>
-     <br>
-     <div class="form-group">
-    <label for="exampleInputEmail1">Number of flats:</label>
-    <input type="number" class="form-control" id="exampleInputEmail1" name="flats"  placeholder="Enter your flat numbers" required>
-     </div>
-     <br>
 
-  <button type="submit" class="btn btn-primary" value="Submit">Submit</button>
+<form action="<?php echo base_url('Home/payment_mode');?>" method="post">
+<input type="hidden" name="property_id" value="<?php echo $property_id;?>">   
+<input type="hidden" name="flat_no" value="<?php echo $flat_no;?>">   
+<div class="form-group">
+<label for="exampleInputEmail1">Payment Mode:</label>
+   <select class="form-control" id="exampleInputPassword1" name="payment_mode">
+    <option>Select Payment Mode</option>
+    <option value="online">Online Mode</option>
+    <option value="offline">Offline (Cash) Mode</option>
+   </select>
+</div>
+<br>
+<button type="submit" class="btn btn-primary" value="Submit">Submit</button>
 </form>
-</div></div></div></div></div></div>
+
+</div>
+
+</div></div></div></div></div>
 </main>
 </body>
 </html>
