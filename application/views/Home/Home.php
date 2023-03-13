@@ -107,6 +107,14 @@
     <br>
   <?php } ?>
 
+  <?php
+    if($msg = $this->session->flashdata('Payment_inserted')) {?>
+    <div class="alert alert-success" style="font-style: italic; text-align:center;">
+    <strong><?php echo $msg; ?></strong>
+    </div>
+    <br>
+  <?php } ?>
+
   <div class="containe-fluid">
 	<div class="row mt-3 ml-3 mr-3">
         <div class="col-lg-12">

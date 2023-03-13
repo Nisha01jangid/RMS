@@ -113,6 +113,22 @@ class HomeM extends CI_Model {
     // die();
     $result = $this->db->query($query);
     return $result->result_array();
+  public function insert_payment_online($mode, $date, $amount, $reference_id, $payment_mode, $property_id, $flat_no){
+
+    // $query = "INSERT INTO `tenants` (`tenant_name`, `father_name`, `email`, `aadhaar_no`, `contact`, `members`, `rent`, `birth_date`, `property_id`, `flat_no`, `status`, `joining_date`) VALUES ('$name', '$father_name', '$email', '$Aadhaar', '$mobile', '$members', '$rent', '$dob', '$property_id', '$flat_no', 1, '$joining_date')";
+
+    // $result = $this->db->query($query);
+    // return ;
+
+  }
+
+  public function insert_payment_offline($mode, $date, $amount, $description, $property_id, $flat_no){
+
+    // $query = "INSERT INTO `tenants` (`tenant_name`, `father_name`, `email`, `aadhaar_no`, `contact`, `members`, `rent`, `birth_date`, `property_id`, `flat_no`, `status`, `joining_date`) VALUES ('$name', '$father_name', '$email', '$Aadhaar', '$mobile', '$members', '$rent', '$dob', '$property_id', '$flat_no', 1, '$joining_date')";
+
+    // $result = $this->db->query($query);
+    // return ;
+
   }
 
 }
