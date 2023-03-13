@@ -22,12 +22,13 @@ public function month_of_payment(){
 
 public function payment_report(){
 
-	$data['month_of_payment'] = $_POST['month_of'];
+	$data['month_of_payment'] = $_POST['date'];
+	// $data['month_of_payment'] = $_POST['from'];
 	$data['payments']= $this->ReportM->get_payments($data['month_of_payment']);
 
-	// echo "<pre>";
-	// print_r($data['payments']);
-	// die();
+	echo "<pre>";
+	print_r($data);
+	die();
 	
 	$this->load->view('Report/payment_report',$data);
 }

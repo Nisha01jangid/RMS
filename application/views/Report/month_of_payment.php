@@ -73,12 +73,18 @@
 							</div>
 	
 					<br>
-					<form id="filter-report" action="<?php echo base_url('Report/payment_report') ?>" method=post id=month_of>
+					<form id="filter-report" action="<?php echo base_url('Report/payment_report') ?>" method=post id=date>
 						<div class="row form-group">
-							<label class="control-label col-md-2 offset-md-2 text-right" id="month_of">Month of: </label>
-							<input type="month" name="month_of" class='from-control col-md-4' value="">
-							<button class="btn btn-sm btn-block btn-primary col-md-2 ml-1"> Filter</button>
-						</div>
+							<label class="control-label col-md-2 offset-md-2 text-right" id="date">To: </label>
+							<input type="date" name="date" class='from-control col-md-4'>
+							</div>
+							<div class="row form-group">
+							<label class="control-label col-md-2 offset-md-2 text-right" id="date">From: </label>
+							<input type="date" name="date" class='from-control col-md-4'>
+							</div><br>
+							<div class="row form-group">
+							<button class="btn btn-sm btn-block btn-primary col-md-2 ml-1 offset-md-2"> Filter</button>
+							</div>
 					</form>
 <br><br>
 						</div>
