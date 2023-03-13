@@ -86,7 +86,9 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    
+                <div style="font-style:italic; font-size: 23px; color:red;"><b>Properties</b> &emsp;
+                  </a></span>
+                    </div> 
                     <hr>
                     <div class="row">
                         <?php foreach($property as $p){ ?>

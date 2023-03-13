@@ -151,11 +151,13 @@
                             <th scope="col" style="text-align:center;">Tenant Name</th>
                             <th scope="col" style="text-align:center;">Month</th>
                             <th scope="col" style="text-align:center;">Meter Reading</th>
-                            <th scope="col" style="text-align:center;">Water Bill</th>
+                            <th scope="col" style="text-align:center;">Water Pump</th>
                             <th scope="col" style="text-align:center;">Waste And Miscellaneous</th>
                             <th scope="col" style="text-align:center;">Rent</th>
                             <th scope="col" style="text-align:center;">Amount Paid</th>
                             <th scope="col" style="text-align:center;">Outstanding Amount</th>
+                            <th scope="col" style="text-align:center;">Due Date</th>
+                            <th scope="col" style="text-align:center;">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -168,12 +170,11 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td></t>
-                            <!-- <td align="center"><?php if(!empty($reading)){?>
-                              <a href="<?php echo base_url("Home/addElectricityReading/").$property_id."/".$flat_no."/".$month; ?>" class="btn btn-warning">Edit Reading</a>
-                            <?php }else{?>
-                              <a href="<?php echo base_url("Home/addElectricityReading/").$property_id."/".$flat_no."/".$month; ?>" class="btn btn-primary">Add Reading</a>
-                            <?php } ?></td> -->
+                            <td></td>
+                            <td></td>
+                            <td align="center">
+                              <a href="<?php echo base_url('Home/pay_bill/').$property_id.'/'.$flat_no;?>" class="btn btn-warning">Pay</a>
+                            </td> 
                             </tr>   
                         </tbody>
                         </table>
