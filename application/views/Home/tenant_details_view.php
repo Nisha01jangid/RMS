@@ -51,18 +51,23 @@
   </head>
 <body>
   <main>  
-<div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 250px;height:100vh;" >
-<h4><?php echo $_SESSION['user']; ?></h4>
+<div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 250px;height:100vh;">
+    <h4><?php echo $_SESSION['user']; ?></h4>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
         <a href="<?php echo base_url('Home') ?>" class="nav-link text-white" aria-current="page">Home</a>
       </li>
+
+      <li class="nav-item">
+        <a href="<?php echo base_url('EntryForm') ?>" class="nav-link text-white" aria-current="page">Entry Form</a>
+      </li>
+
       <li>
         <a href="<?php echo base_url('Payments') ?>" class="nav-link text-white">Payments</a>
       </li>
       <li>
-        <a href="#" class="nav-link text-white">Report</a>
+        <a href="<?php echo base_url('Report/reportv') ?>" class="nav-link text-white">Report</a>
       </li>
     </ul>
     <hr>
@@ -75,6 +80,11 @@
 <div class="col-lg-12">
 <div class="card">
 <div class="card-body">
+<div class="row">
+    <div class="form-group col"></div>
+    <label for="flat_no">Flat No:&nbsp;<span style="font-weight:normal;"><?php echo $flat_no; ?></span></label>
+</div>
+
 <div class="row">
     <div class="form-group col">
     <label for="exampleInputEmail1">Full Name:&nbsp; <span style="font-weight:normal;"><?php echo $flat_entry[0]['tenant_name']; ?></span></label>
@@ -115,6 +125,11 @@
 </div></div></div></div></div>
 
 <br>
+
+<h2 style="color:red; font-style:italic; font-weight:bold; font-size:22px; display: inline-block; margin-right: 20px;">Month-Wise Report</h2> 
+<span>
+    <a style="display: inline-block;" class="btn btn-primary btn-block btn-sm col-sm-2 float-right" href="<?php echo base_url('Home/month_wise_report').'/'.$flat_no.'/'.$property_id; ?>" >Tenant Wise</a>
+</span>
 
 
 <h2 style=" color:red; font-style:italic; font-weight:bold; font-size:22px;"> Electricity Reading</h2>
