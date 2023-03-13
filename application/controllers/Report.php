@@ -10,9 +10,7 @@ function __construct(){
 }
 
 public function reportv(){
-	
-		
-		$this->load->view('Report/report_front_page');
+	$this->load->view('Report/report_front_page');
 }
 
 public function month_of_payment(){

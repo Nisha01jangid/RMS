@@ -70,6 +70,9 @@
       <li>
         <a href="<?php echo base_url('Report/reportv') ?>" class="nav-link text-white">Report</a>
       </li>
+      <li>
+        <a href="<?php echo base_url('Invoice') ?>" class="nav-link text-white">Invoice</a>
+      </li>
     </ul>
     <hr>
   </div>
