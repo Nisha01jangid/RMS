@@ -134,29 +134,8 @@
 		<!-- <div class="card"> -->
 			<div class="card-body">
 				<div class="col-md-12">
-				
 				<div class="intro">
-							 <h3><center>Month of Payment </center></h3>
-							 
-							</div>
-	
-					<br>
-					<form id="filter-report" action="<?php echo base_url('Report/payment_report') ?>" method=post id=date>
-						<div class="row form-group">
-							<label class="control-label col-md-2 offset-md-2 text-right" id="date">To: </label>
-							<input type="date" name="date" class='from-control col-md-4'>
-							</div>
-							<div class="row form-group">
-							<label class="control-label col-md-2 offset-md-2 text-right" id="date">From: </label>
-							<input type="date" name="date" class='from-control col-md-4'>
-							</div><br>
-							<div class="row form-group">
-							<button class="btn btn-sm btn-block btn-primary col-md-2 ml-1 offset-md-2"> Filter</button>
-							</div>
-					</form>
-							<div class="intro">
 							 <h3><center>Rental Payments Report</center></h3>
-							 <h5><center>for the Month of <b><?php echo date('F ,Y',strtotime($month_of_payment.'-1')) ?></b></center></h5>
 							</div>
 						
 						<div class="row">
