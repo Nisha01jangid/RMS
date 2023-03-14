@@ -1,6 +1,6 @@
 <?php
 // echo "<pre>";
-// print_r($tenant_exist);
+// print_r($flat);
 // die();
 ?>
 <!doctype html>
