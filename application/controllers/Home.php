@@ -132,13 +132,13 @@ class Home extends CI_Controller {
 		// die();
 		$data['tenant_entry_form_details'] = $this->HomeM->get_tenant_entry_form_details($data['flat_no'],$data['property_id']);
 
-		// echo "<pre>";
-		// print_r($data['tenant_entry_form_details']);
+		$month = $data['tenant_entry_form_details'][0]['month'];
+		// echo $month;
 		// die();
+		$previous_month =  date('Y-m', strtotime('-1 month'));
+		$data['previous_reading'] = $this->HomeM->previousReading($property_id,$flat_no,$previous_month);
 
 		$this->load->view('Home/month_wise_reportv',$data);
-
-
 	}
 
 	public function getFlatElectricityReading()

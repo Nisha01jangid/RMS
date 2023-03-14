@@ -125,78 +125,29 @@
 </div></div></div></div></div>
 
 <br>
-
-<h2 style="color:red; font-style:italic; font-weight:bold; font-size:22px; display: inline-block; margin-right: 20px;">Month-Wise Report</h2> 
+<div class="row">
+    <div class="form-group col"> <h2 style="color:red; font-style:italic; font-weight:bold; font-size:22px; display: inline-block; margin-right: 20px;">Report</h2> 
 <span>
-    <a style="display: inline-block;" class="btn btn-primary btn-block btn-sm col-sm-2 float-right" href="<?php echo base_url('Home/month_wise_report').'/'.$flat_no.'/'.$property_id; ?>" >Tenant Wise</a>
+    <a style="display: inline-block;" class="btn btn-primary btn-block btn-sm col-sm-2 float-right" href="<?php echo base_url('Home/month_wise_report').'/'.$flat_no.'/'.$property_id; ?>" >View</a>
+</span></div>
+   
+<div class="form-group col">
+    <h2 style="color:red; font-style:italic; font-weight:bold; font-size:22px; display: inline-block; margin-right: 20px;">Police Verification Form</h2> 
+<span>
+    <a style="display: inline-block;" class="btn btn-primary btn-block btn-sm col-sm-2 float-right" href="<?php echo base_url('Home/month_wise_report').'/'.$flat_no.'/'.$property_id; ?>" >View </a>
 </span>
+</div>
+</div>
 
 
-<h2 style=" color:red; font-style:italic; font-weight:bold; font-size:22px;"> Electricity Reading</h2>
-<div class="containe-fluid">
-<div class="row mt-3 ml-3 mr-3">
-<div class="col-lg-12">
-<div class="card">
-<div class="card-body">
+<br>
+<br>
 
 
-<!-- <div style="display:flex; justify-content:center;">
-                    <form action="<?php echo base_url("Home/getFlatElectricityReading"); ?>" method="get">
-                    <input type="hidden" name="property_id" value="<?php echo $property_id; ?>">
-                    <input type="hidden" name="flat_no" value="<?php echo $flat_no; ?>">
-                    <input
-                        id="month"
-                        type="month"
-                        name="month"
-                        min="2000-01"
-                        max="<?php echo date("Y-m"); ?>"
-                        value="<?php echo $month; ?>"
-                        style="height:100%;margin-right:10px;"
-                        required
-                        />
-                    <input type="submit" value="Submit" class="btn btn-primary">
-                    </form>
-                    </div> -->
-                    <br>
-                    <div class="row">
-                    <table class="table table-striped table-hover table-bordered" style="width:90%" align="center">
-                        <thead class="thead-dark">
-                            <tr>
-                            <th scope="col" style="text-align:center;">S.No.</th>
-                            <th scope="col" style="text-align:center;">Tenant Name</th>
-                            <th scope="col" style="text-align:center;">Month</th>
-                            <th scope="col" style="text-align:center;">Meter Reading</th>
-                            <th scope="col" style="text-align:center;">Water Pump</th>
-                            <th scope="col" style="text-align:center;">Waste And Miscellaneous</th>
-                            <th scope="col" style="text-align:center;">Rent</th>
-                            <th scope="col" style="text-align:center;">Amount Paid</th>
-                            <th scope="col" style="text-align:center;">Outstanding Amount</th>
-                            <th scope="col" style="text-align:center;">Due Date</th>
-                            <th scope="col" style="text-align:center;">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                            <th scope="row" style="text-align:center;">1</th>
-                            <td style="text-align:center;"><?php echo "Flat No. ".$flat_no; ?></td>
-                            <td style="text-align:center;"><?php echo $month_name; ?></td>
-                            <td style="text-align:center;"><?php echo $reading; ?></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td align="center">
-                              <a href="<?php echo base_url('Home/pay_bill/').$property_id.'/'.$flat_no;?>" class="btn btn-warning">Pay</a>
-                            </td> 
-                            </tr>   
-                        </tbody>
-                        </table>
-                    </div>
 
-                    
-                </div>
+
+
+
 
 </div></div></div></div></div>
 </div>
