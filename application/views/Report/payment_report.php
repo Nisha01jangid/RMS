@@ -134,11 +134,8 @@
 		<!-- <div class="card"> -->
 			<div class="card-body">
 				<div class="col-md-12">
-				
-							
-							<div class="intro">
+				<div class="intro">
 							 <h3><center>Rental Payments Report</center></h3>
-							 <h5><center>for the Month of <b><?php echo date('F ,Y',strtotime($month_of_payment.'-1')) ?></b></center></h5>
 							</div>
 						
 						<div class="row">

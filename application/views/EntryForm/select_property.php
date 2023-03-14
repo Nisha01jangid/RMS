@@ -72,7 +72,7 @@
         <a href="<?php echo base_url('Payments') ?>" class="nav-link text-white">Payments</a>
       </li>
       <li>
-        <a href="<?php echo base_url('Report/reportv') ?>" class="nav-link text-white">Report</a>
+        <a href="<?php echo base_url('Report/month_of_payment') ?>" class="nav-link text-white">Report</a>
       </li>
     </ul>
     <hr>
