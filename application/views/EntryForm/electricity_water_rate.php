@@ -97,7 +97,7 @@
   <div class="row">
     <div class="form-group col">
     <label for="rate_per_person">Water Pump Charges</label>
-    <input type="number" class="form-control" id="rate_per_person" name="rate_per_person"  placeholder="Enter Water Pump Charges (rate_per_person)">
+    <input type="number" class="form-control" id="rate_per_person" name="rate_per_person"  placeholder="Enter Water Pump Charges">
     </div> 
   </div>
 <br>
