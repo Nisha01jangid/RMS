@@ -52,9 +52,6 @@ class Home extends CI_Controller {
 
 		}
 
-		// echo "<pre>";
-		// print_r($data['flats']);
-		// die();
 
 		$this->load->view('Home/flats', $data);
 	}
@@ -123,6 +120,27 @@ class Home extends CI_Controller {
 
 	}
 
+	public function month_wise_report($flat_no,$property_id)
+	{
+		$data['flat_no'] = $flat_no;
+		$data['property_id'] = $property_id;
+
+		// echo "<pre>";
+		// print_r($data['flat_no']);
+		// echo "<br>";
+		// print_r($data['property_id']);
+		// die();
+		$data['tenant_entry_form_details'] = $this->HomeM->get_tenant_entry_form_details($data['flat_no'],$data['property_id']);
+
+		$month = $data['tenant_entry_form_details'][0]['month'];
+		// echo $month;
+		// die();
+		$previous_month =  date('Y-m', strtotime('-1 month'));
+		$data['previous_reading'] = $this->HomeM->previousReading($property_id,$flat_no,$previous_month);
+
+		$this->load->view('Home/month_wise_reportv',$data);
+	}
+
 	public function getFlatElectricityReading()
 	{
 		$month = $_GET['month'];
@@ -183,5 +201,60 @@ class Home extends CI_Controller {
 		
 		redirect(base_url("Home/getFlatElectricityReading?property_id=").$property_id."&flat_no=".$flat_no."&month=".$month);
 	}
+
+	public function pay_bill($property_id, $flat_no){
+
+		$data['property_id'] = $property_id;
+		$data['flat_no'] = $flat_no;
+
+		$this->load->view('Home/Pay_bill', $data);
+
+	}
+
+	public function payment_mode(){
+
+		$data['mode'] = 0;
+		$data['property_id'] = $_POST['property_id'];
+	    $data['flat_no'] = $_POST['flat_no'];
+		if($_POST['payment_mode'] == 'online'){
+		 $data['mode'] = 1;
+		$this->load->view('Home/payment_mode', $data);
+	    } else {
+		$data['mode'] = 2;
+		$this->load->view('Home/payment_mode', $data);
+	    }
+} 
+
+public function insert_payment(){
+
+	if($_POST['mode'] == 1){
+
+	$mode = "online";
+	$date = $_POST['date'];
+	$amount = $_POST['amount'];
+	$reference_id = $_POST['ref_id'];
+	$payment_mode = $_POST['payment_mode'];
+	$property_id = $_POST['property_id'];
+	$flat_no = $_POST['flat_no'];
+	
+	 $this->HomeM->insert_payment_online($mode, $date, $amount, $reference_id, $payment_mode, $property_id, $flat_no);	
+	} else {
+
+	$mode = "offline";
+	$date = $_POST['date'];
+	$amount = $_POST['amount'];
+	$description = $_POST['description'];
+	$property_id = $_POST['property_id'];
+	$flat_no = $_POST['flat_no'];	
+	
+	 $this->HomeM->insert_payment_offline($mode, $date, $amount, $description, $property_id, $flat_no);
+	}
+
+	$this->session->set_flashdata('Payment_inserted', 'Payment Inserted Successfully :)');
+	redirect("Home/index");
+
+}
+
+
 }
 ?>

@@ -106,4 +106,40 @@ class HomeM extends CI_Model {
     return ;
   }
 
+  public function get_tenant_entry_form_details($flat_no,$property_id){
+
+    $query = "SELECT * FROM entry_form_details WHERE property_id =$property_id AND flat_no = $flat_no AND status=1 ORDER BY `month` ";
+    // print_r($query);
+    // die();
+    $result = $this->db->query($query);
+    return $result->result_array();
+    
+  
+  public function previousReading($property_id,$flat_no,$month){
+
+    $query = "SELECT * FROM entry_form_details WHERE property_id =$property_id AND flat_no = $flat_no AND month = '$month'";
+    // print_r($query);
+    // die();
+    $result = $this->db->query($query);
+    return $result->result_array()[0]['current_meter_reading'];
+  }
+  public function insert_payment_online($mode, $date, $amount, $reference_id, $payment_mode, $property_id, $flat_no){
+
+
+    // $query = "INSERT INTO `tenants` (`tenant_name`, `father_name`, `email`, `aadhaar_no`, `contact`, `members`, `rent`, `birth_date`, `property_id`, `flat_no`, `status`, `joining_date`) VALUES ('$name', '$father_name', '$email', '$Aadhaar', '$mobile', '$members', '$rent', '$dob', '$property_id', '$flat_no', 1, '$joining_date')";
+
+    // $result = $this->db->query($query);
+    // return ;
+
+  }
+
+  public function insert_payment_offline($mode, $date, $amount, $description, $property_id, $flat_no){
+
+    // $query = "INSERT INTO `tenants` (`tenant_name`, `father_name`, `email`, `aadhaar_no`, `contact`, `members`, `rent`, `birth_date`, `property_id`, `flat_no`, `status`, `joining_date`) VALUES ('$name', '$father_name', '$email', '$Aadhaar', '$mobile', '$members', '$rent', '$dob', '$property_id', '$flat_no', 1, '$joining_date')";
+
+    // $result = $this->db->query($query);
+    // return ;
+
+  }
+
 }

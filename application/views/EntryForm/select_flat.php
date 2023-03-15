@@ -64,17 +64,22 @@
 <main>
 
   <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 250px;height:100vh;">
-  <h4><?php echo $_SESSION['user']; ?></h4>
+    <h4><?php echo $_SESSION['user']; ?></h4>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
         <a href="<?php echo base_url('Home') ?>" class="nav-link text-white" aria-current="page">Home</a>
       </li>
+
+      <li class="nav-item">
+        <a href="<?php echo base_url('EntryForm') ?>" class="nav-link text-white" aria-current="page">Entry Form</a>
+      </li>
+
       <li>
         <a href="<?php echo base_url('Payments') ?>" class="nav-link text-white">Payments</a>
       </li>
       <li>
-        <a href="#" class="nav-link text-white">Report</a>
+        <a href="<?php echo base_url('Report/month_of_payment') ?>" class="nav-link text-white">Report</a>
       </li>
     </ul>
     <hr>

@@ -68,7 +68,7 @@
         <a href="<?php echo base_url('Payments') ?>" class="nav-link text-white">Payments</a>
       </li>
       <li>
-        <a href="<?php echo base_url('Report/reportv') ?>" class="nav-link text-white">Report</a>
+        <a href="<?php echo base_url('Report/month_of_payment') ?>" class="nav-link text-white">Report</a>
       </li>
       <li>
         <a href="<?php echo base_url('Invoice') ?>" class="nav-link text-white">Invoice</a>
@@ -104,6 +104,14 @@
 
   <?php
     if($msg = $this->session->flashdata('tenant_deleted')) {?>
+    <div class="alert alert-success" style="font-style: italic; text-align:center;">
+    <strong><?php echo $msg; ?></strong>
+    </div>
+    <br>
+  <?php } ?>
+
+  <?php
+    if($msg = $this->session->flashdata('Payment_inserted')) {?>
     <div class="alert alert-success" style="font-style: italic; text-align:center;">
     <strong><?php echo $msg; ?></strong>
     </div>
