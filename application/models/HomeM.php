@@ -114,7 +114,7 @@ class HomeM extends CI_Model {
     $result = $this->db->query($query);
     return $result->result_array();
     
-  
+  }
   public function previousReading($property_id,$flat_no,$month){
 
     $query = "SELECT * FROM entry_form_details WHERE property_id =$property_id AND flat_no = $flat_no AND month = '$month'";

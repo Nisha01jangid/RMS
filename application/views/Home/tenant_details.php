@@ -95,7 +95,12 @@
     </div>
     <div class="form-group col">
     <label>Gender</label>
-    <input type="text" class="form-control" name="gender"  placeholder="">
+    <select class="form-control" name="gender">
+    <option value="" selected disabled>Select Gender</option>
+    <option value="male">Male</option>
+    <option value="female">Female</option>
+    <option value="others">Others</option>
+    </select>
      </div>
     
   </div>
@@ -105,11 +110,11 @@
   <div class="row">
     <div class="form-group col">
     <label>Aadhaar Number:</label>
-    <input type="text" class="form-control" name="Aadhaar"  placeholder="Enter your aadhaar number">
+    <input type="number" class="form-control" name="Aadhaar"  placeholder="Enter your aadhaar number">
     </div>
     <div class="form-group col">
     <label>Contact Number:</label>
-    <input type="text" class="form-control" name="mobile"  placeholder="Enter your contact number">
+    <input type="number" class="form-control" name="mobile"  placeholder="Enter your contact number">
      </div>
   </div>
   <br>
@@ -170,57 +175,75 @@
     
     </div> -->
     <div>
+      
       <h4>Details of Family Members</h4>
     <div class="container my-4">
       <div class="card my-4 shadow">
         <div class="card-body">
-          <form action="index.php" method="post">
+          <!-- <form action="index.php" method="post"> -->
             <div>
               <label>Name :</label>
-              <input type="text" class="form-control" name="date"/>
+              <input type="text" class="form-control" name="member_name"/>
               <br>
             </div>
             <div>
               <label>Father's Name :</label>
-              <input type="text" class="form-control" name="date"/>
+              <input type="text" class="form-control" name="member_father_name"/>
               <br>
             </div>
             <div class="row">
             <div class ="form-group col">
               <label>Age :</label>
-              <input type="text" class="form-control" name="date"/>
+              <input type="number" class="form-control" name="member_age"/>
               <br>
             </div>
-            <div class ="form-group col">
-              <label>Gender :</label>
-              <input type="text" class="form-control" name="date"/>
-              <br>
-            </div>
+             <div class="form-group col">
+            <label>Gender</label>
+            <select class="form-control" name="member_gender">
+            <option value="" selected disabled>Select Gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="others">Others</option>
+            </select>
+             </div>
+             <br>
+             <div class="form-group col">
+            <label>Relation</label>
+            <select class="form-control" name="member_relation">
+            <option value="" selected disabled>Select the Relation</option>
+            <option value="father">Father</option>
+            <option value="mother">Mother</option>
+            <option value="husband">Husband</option>
+            <option value="wife">Wife</option>
+            <option value="child">Child</option>
+            <option value="others">Others</option>
+            </select>
+             </div>
            
-            <div class ="form-group col">
+            <!-- <div class ="form-group col">
               <label>Relation :</label>
-              <input type="text" class="form-control" name="date"/>
+              <input type="text" class="form-control" name="relation"/>
               <br>
-            </div>
+            </div> -->
              </div>
              <div class="row">
             <div class ="form-group col">
               <label>Mobile No :</label>
-              <input type="text" class="form-control" name="date"/>
+              <input type="number" class="form-control" name="member_mobile_no"/>
               <br>
             </div>
             <div class ="form-group col">
               <label>Aadhar No :</label>
-              <input type="text" class="form-control" name="date"/>
+              <input type="number" class="form-control" name="member_aadhar"/>
               <br>
             </div>
             </div>
             <div class="clearfix mt-4">
               <button type="button" id="add-button" class="btn btn-secondary float-left text-uppercase shadow-sm"><i class="fas fa-plus fa-fw"></i> Add</button>
               <button type="button" id="remove-button" class="btn btn-secondary float-left text-uppercase ml-1" disabled="disabled"><i class="fas fa-minus fa-fw"></i> Remove</button>
-              <button type="submit" class="btn btn-primary float-right text-uppercase shadow-sm">Submit</button>
+              <!-- <button type="submit" class="btn btn-primary float-right text-uppercase shadow-sm">Submit</button> -->
             </div>
-          </form>
+        
         </div>
       </div>
       
@@ -289,7 +312,7 @@
     <div class="form-group col">
 
     <label>State</label>
-    <input type="number" class="form-control" name="identifier_state1" placeholder="Enter the State" required>
+    <input type="text" class="form-control" name="identifier_state1" placeholder="Enter the State" required>
     </div>
      </div>
 <br>
@@ -302,7 +325,7 @@
     <div class="form-group col">
 
     <label>Email ID</label>
-    <input type="number" class="form-control" name="identifier_email1" placeholder="Enter Email ID" required>
+    <input type="email" class="form-control" name="identifier_email1" placeholder="Enter Email ID" required>
     </div>
      
 <br>
@@ -339,7 +362,7 @@
     <div class="form-group col">
 
     <label>State</label>
-    <input type="number" class="form-control" name="identifier_state2" placeholder="Enter the State" required>
+    <input type="text" class="form-control" name="identifier_state2" placeholder="Enter the State" required>
     </div>
      </div>
 <br>
@@ -352,7 +375,7 @@
     <div class="form-group col">
 
     <label>Email ID</label>
-    <input type="number" class="form-control" name="identifier_email2" placeholder="Enter Email ID" required>
+    <input type="email" class="form-control" name="identifier_email2" placeholder="Enter Email ID" required>
     </div>
      
 <br>
@@ -375,5 +398,102 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
  
     <script  src="./script.js"></script>
+    <script>
+      // Get the add and remove buttons
+const addButton = document.getElementById('add-button');
+const removeButton = document.getElementById('remove-button');
+
+// Add event listener to add button
+addButton.addEventListener('click', () => {
+  // Get the container where the new member details will be added
+  const container = document.querySelector('.container');
+
+  // Create a new member details card
+  const newCard = document.createElement('div');
+  newCard.classList.add('card', 'my-4', 'shadow');
+
+  // Set the card's HTML content
+  newCard.innerHTML = `
+    <div class="card-body">
+      <div>
+        <label>Name :</label>
+        <input type="text" class="form-control" name="member_name"/>
+        <br>
+      </div>
+      <div>
+        <label>Father's Name :</label>
+        <input type="text" class="form-control" name="member_father_name"/>
+        <br>
+      </div>
+      <div class="row">
+        <div class ="form-group col">
+          <label>Age :</label>
+          <input type="number" class="form-control" name="member_age"/>
+          <br>
+        </div>
+        <div class="form-group col">
+          <label>Gender</label>
+          <select class="form-control" name="member_gender">
+            <option value="" selected disabled>Select Gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="others">Others</option>
+          </select>
+        </div>
+        <br>
+        <div class="form-group col">
+    <label>Relation</label>
+    <select class="form-control" name="member_relation">
+    <option value="" selected disabled>Select the Relation</option>
+    <option value="father">Father</option>
+    <option value="mother">Mother</option>
+    <option value="husband">Husband</option>
+    <option value="wife">Wife</option>
+    <option value="child">Child</option>
+    <option value="others">Others</option>
+    </select>
+     </div>
+      </div>
+      <div class="row">
+        <div class ="form-group col">
+          <label>Mobile No :</label>
+          <input type="number" class="form-control" name="member_mobile_no"/>
+          <br>
+        </div>
+        <div class ="form-group col">
+          <label>Aadhar No :</label>
+          <input type="number" class="form-control" name="member_aadhar"/>
+          <br>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // Add the new card to the container
+  container.appendChild(newCard);
+
+  // Enable the remove button
+  removeButton.disabled = false;
+});
+
+// Add event listener to remove button
+removeButton.addEventListener('click', () => {
+  // Get the container that holds all the member details cards
+  const container = document.querySelector('.container');
+
+  // Get all the member details cards
+  const cards = container.querySelectorAll('.card');
+
+  // If there is only one card left, disable the remove button
+  if (cards.length === 1) {
+    removeButton.disabled = true;
+  }
+
+  // Remove the last card
+  container.removeChild(cards[cards.length - 1]);
+});
+
+    </script>
+
 </body>
 </html>

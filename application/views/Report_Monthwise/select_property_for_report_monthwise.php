@@ -70,68 +70,20 @@
       <li>
         <a href="<?php echo base_url('Report/month_of_payment') ?>" class="nav-link text-white">Report</a>
       </li>
-        <li>
-          <a href="<?php echo base_url('Report/select_property_for_report_monthwise') ?>" class="nav-link text-white">Report Month-Wise</a>  
-        </li>
+     
       <li>
-        <a href="<?php echo base_url('Invoice') ?>" class="nav-link text-white">Invoice</a>
+        <a href="<?php echo base_url('Report/select_property_for_report_monthwise') ?>" class="nav-link text-white">Report Month-Wise</a>
       </li>
     </ul>
     <hr>
   </div>
   <div class="homediv">
-    
-  <?php
-    if($msg = $this->session->flashdata('property_inserted')) {?>
-    <div class="alert alert-success" style="font-style: italic; text-align:center;">
-    <strong><?php echo $msg; ?></strong>
-    </div>
-    <br>
-  <?php } ?>
-
-  <?php
-    if($msg = $this->session->flashdata('tenant_inserted')) {?>
-    <div class="alert alert-success" style="font-style: italic; text-align:center;">
-    <strong><?php echo $msg; ?></strong>
-    </div>
-    <br>
-  <?php } ?>
-
-  <?php
-    if($msg = $this->session->flashdata('Property_deleted')) {?>
-    <div class="alert alert-success" style="font-style: italic; text-align:center;">
-    <strong><?php echo $msg; ?></strong>
-    </div>
-    <br>
-  <?php } ?>
-
-  <?php
-    if($msg = $this->session->flashdata('tenant_deleted')) {?>
-    <div class="alert alert-success" style="font-style: italic; text-align:center;">
-    <strong><?php echo $msg; ?></strong>
-    </div>
-    <br>
-  <?php } ?>
-
-  <?php
-    if($msg = $this->session->flashdata('Payment_inserted')) {?>
-    <div class="alert alert-success" style="font-style: italic; text-align:center;">
-    <strong><?php echo $msg; ?></strong>
-    </div>
-    <br>
-  <?php } ?>
-
   <div class="containe-fluid">
 	<div class="row mt-3 ml-3 mr-3">
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <div style="font-style:italic; font-size: 20px;"><b>Welcome back !</b> &emsp;
-                    <span><a class="btn btn-primary btn-block btn-sm col-sm-2 float-right" href="<?php echo base_url('Home/add_property'); ?>">
-                    <i class="fa fa-plus"></i> New Property
-                  </a></span>
-                    </div>
-                    <hr>
+                   
                     <div class="row">
                         <?php foreach($property as $p){ ?>
                           <div class="col-md-4 mb-3">
@@ -146,11 +98,9 @@
                                 <div class="card-footer">
                                     <div class="row">
                                         <div class="col-lg-6">
-                                            <a href="<?php echo base_url('Home/flats/').$p['property_id'];?>" class="text-primary float-right" style="text-decoration : none; font-weight:bold;">View List &nbsp; <span class="fa fa-angle-right"></span></a>
+                                            <a href="<?php echo base_url('Report/select_month_for_report_monthwise/').$p['property_id'];?>" class="text-primary float-right" style="text-decoration : none; font-weight:bold;">View List &nbsp; <span class="fa fa-angle-right"></span></a>
                                         </div>
-                                        <div class="col-lg-6">
-                                            <a href="<?php echo base_url('Home/delete_property/').$p['property_id'];?>" class="text-primary float-right" style="text-decoration : none; font-weight:bold; "><span style="color:red;">Delete Property&nbsp;</span><span class="fa fa-trash" style="color:red;"> </a>
-                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>
