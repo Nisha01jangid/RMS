@@ -9,6 +9,8 @@
     <title>RMS</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
 
     <style>
         main{
@@ -45,7 +47,7 @@
   </head>
 <body>
   <main>  
-<div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 250px;height:100vh;">
+<!-- <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 250px;height:100vh;">
     <h4><?php echo $_SESSION['user']; ?></h4>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
@@ -65,7 +67,7 @@
       </li>
     </ul>
     <hr>
-  </div>
+  </div> -->
 
 <div class="homediv">
 <h2 style="color:red; font-style:italic; font-weight:bold;"> Tenant Details</h2>
@@ -77,57 +79,285 @@
 <form action="<?php echo base_url('Home/insert_tenant_details');?>" method="post">
 <div class="row">
     <div class="form-group col">
-    <label for="exampleInputEmail1">Full Name:</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" name="name"  placeholder="Enter your name">
+    <label>Full Name:</label>
+    <input type="text" class="form-control"  name="name"  placeholder="Enter your name">
      </div>
      <div class="form-group col">
-    <label for="exampleInputEmail1">Father's Name:</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" name="father_name"  placeholder="Enter your father name">
+    <label>Father's Name:</label>
+    <input type="text" class="form-control" name="father_name"  placeholder="Enter your father name">
      </div>
   </div>
   <br>
   <div class="row">
     <div class="form-group col">
-    <label for="exampleInputEmail1">Date of Birth:</label>
-    <input type="date" class="form-control" id="exampleInputEmail1" name="dob"  placeholder="Enter your date of birth">
+    <label>Date of Birth:</label>
+    <input type="date" class="form-control" name="dob"  placeholder="Enter your date of birth">
     </div>
     <div class="form-group col">
-    <label for="exampleInputEmail1">Contact Number:</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" name="mobile"  placeholder="Enter your contact number">
+    <label>Gender</label>
+    <input type="text" class="form-control" name="gender"  placeholder="">
      </div>
+    
   </div>
 
      <br>
 
   <div class="row">
     <div class="form-group col">
-    <label for="exampleInputEmail1">Aadhaar Number:</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" name="Aadhaar"  placeholder="Enter your aadhaar number">
+    <label>Aadhaar Number:</label>
+    <input type="text" class="form-control" name="Aadhaar"  placeholder="Enter your aadhaar number">
     </div>
     <div class="form-group col">
-    <label for="exampleInputPassword1">Joining Date:</label>
-    <input type="date" class="form-control" id="exampleInputPassword1" name="joining_date" placeholder="Enter joining date">
+    <label>Contact Number:</label>
+    <input type="text" class="form-control" name="mobile"  placeholder="Enter your contact number">
      </div>
   </div>
   <br>
     
     <div class="form-group">
-    <label for="exampleInputEmail1">Email address:</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" name="email"  placeholder="Enter email address">
+    <label>Email address:</label>
+    <input type="email" class="form-control" name="email"  placeholder="Enter email address">
     </div>
      <br>
+     
     <div class="row">
-    <div class="form-group col">
-    <label for="exampleInputEmail1">Family Members:</label>
-    <input type="number" class="form-control" id="exampleInputEmail1" name="members"  placeholder="Enter members in the family">
-     </div>
+      <div class="form-group col">
+    <label>Joining Date:</label>
+    <input type="date" class="form-control" name="joining_date" placeholder="Enter joining date">
+  </div>
     <div class="form-group col">
 
-    <label for="exampleInputPassword1">Rent of Flat:</label>
-    <input type="number" class="form-control" id="exampleInputPassword1" name="rent" placeholder="Enter rent of flat" required>
+    <label>Rent of Flat:</label>
+    <input type="number" class="form-control" name="rent" placeholder="Enter rent of flat" required>
+    </div>
+     </div>
+  <br>
+   <div class="row">
+    <h4>Address</h4>
+    <br>
+    
+    <div class="form-group col">
+    <label>Permanent Address</label>
+    <input type="text" class="form-control" name="address" placeholder="Enter your Permanent Address">
+     </div>
+  </div>
+  <br>
+   <div class="row">
+    <div class="form-group col">
+    <label>District:</label>
+    <input type="text" class="form-control" name="district" placeholder="Enter the District">
+     </div>
+     <div class="form-group col">
+    <label>State:</label>
+    <input type="text" class="form-control" name="state" placeholder="Enter State">
+     </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="form-group col">
+    <label>Polic Station:</label>
+    <input type="text" class="form-control" name="polic_station" placeholder="Enter">
+     </div>
+  </div>
+  <br>
+    <!-- <div class="row">
+      <h4>Details of Family Members</h4>
+      <br>
+    <div class="form-group col">
+    <label>Family Members:</label>
+    <input type="number" class="form-control" name="members"  placeholder="Enter members in the family">
+     </div>
+    
+    </div> -->
+    <div>
+      <h4>Details of Family Members</h4>
+    <div class="container my-4">
+      <div class="card my-4 shadow">
+        <div class="card-body">
+          <form action="index.php" method="post">
+            <div>
+              <label>Name :</label>
+              <input type="text" class="form-control" name="date"/>
+              <br>
+            </div>
+            <div>
+              <label>Father's Name :</label>
+              <input type="text" class="form-control" name="date"/>
+              <br>
+            </div>
+            <div class="row">
+            <div class ="form-group col">
+              <label>Age :</label>
+              <input type="text" class="form-control" name="date"/>
+              <br>
+            </div>
+            <div class ="form-group col">
+              <label>Gender :</label>
+              <input type="text" class="form-control" name="date"/>
+              <br>
+            </div>
+           
+            <div class ="form-group col">
+              <label>Relation :</label>
+              <input type="text" class="form-control" name="date"/>
+              <br>
+            </div>
+             </div>
+             <div class="row">
+            <div class ="form-group col">
+              <label>Mobile No :</label>
+              <input type="text" class="form-control" name="date"/>
+              <br>
+            </div>
+            <div class ="form-group col">
+              <label>Aadhar No :</label>
+              <input type="text" class="form-control" name="date"/>
+              <br>
+            </div>
+            </div>
+            <div class="clearfix mt-4">
+              <button type="button" id="add-button" class="btn btn-secondary float-left text-uppercase shadow-sm"><i class="fas fa-plus fa-fw"></i> Add</button>
+              <button type="button" id="remove-button" class="btn btn-secondary float-left text-uppercase ml-1" disabled="disabled"><i class="fas fa-minus fa-fw"></i> Remove</button>
+              <button type="submit" class="btn btn-primary float-right text-uppercase shadow-sm">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      
     </div>
     </div>
   <br>
+
+<div class="row">
+      <h4>Vehicle detail:</h4>
+      <br>
+    <div class="form-group col">
+    <label>Two Wheeler:</label>
+    <input type="number" class="form-control" name="two_wheeler"  placeholder="Enter Here">
+    </div>
+    <div class="form-group col">
+    <label>Four wheeler:</label>
+    <input type="number" class="form-control" name="four_wheeler" placeholder="Enter Here" required>
+    </div>
+    </div>
+    <br>
+  
+    <div class="row">
+       <h4>Occupation detail:</h4>
+      <br>
+      <div class="form-group col">
+    <label>Occupation of the Tenant</label>
+    <input type="text" class="form-control" name="occupation" placeholder="Enter the Occupation">
+  </div>
+    <div class="form-group col">
+
+    <label>Office/College/School Address</label>
+    <input type="text" class="form-control" name="occupation_address" placeholder="Enter the Address" required>
+    </div>
+     </div>
+     <br>
+    
+     <div class="row">
+       <h4>Local Identifier/ Granter</h4>
+       <h5>1:</h5>
+      <br>
+      <div class="form-group col">
+    <label>Name</label>
+    <input type="text" class="form-control" name="identifier_name1" placeholder="Enter the Identifier's Name">
+  </div>
+    <div class="form-group col">
+
+    <label>Mobile No</label>
+    <input type="number" class="form-control" name="identifier_mobile1" placeholder="Enter rent of flat" required>
+    </div>
+     </div>
+     <br>
+    
+     <div class="row">
+      <div class="form-group col">
+    <label>Address</label>
+    <input type="text" class="form-control" name="identifier_address1" placeholder="Enter the Address">
+  </div>
+     </div>
+     <br>
+    
+     <div class="row">
+      <div class="form-group col">
+    <label>District</label>
+    <input type="text" class="form-control" name="identifier_district1" placeholder="Enter the District">
+  </div>
+    <div class="form-group col">
+
+    <label>State</label>
+    <input type="number" class="form-control" name="identifier_state1" placeholder="Enter the State" required>
+    </div>
+     </div>
+<br>
+ <div class="form-group col">
+    <label>Police Station</label>
+    <input type="text" class="form-control" name="identifier_policestation1" placeholder="Enter">
+  </div>
+  <br>
+
+    <div class="form-group col">
+
+    <label>Email ID</label>
+    <input type="number" class="form-control" name="identifier_email1" placeholder="Enter Email ID" required>
+    </div>
+     
+<br>
+
+ <div class="row">
+       <h4>Local Identifier/ Granter</h4>
+       <h5>2:</h5>
+      <br>
+      <div class="form-group col">
+    <label>Name</label>
+    <input type="text" class="form-control" name="identifier_name2" placeholder="Enter the Identifier's Name">
+  </div>
+    <div class="form-group col">
+
+    <label>Mobile No</label>
+    <input type="number" class="form-control" name="identifier_mobile2" placeholder="Enter rent of flat" required>
+    </div>
+     </div>
+     <br>
+    
+     <div class="row">
+      <div class="form-group col">
+    <label>Address</label>
+    <input type="text" class="form-control" name="identifier_address2" placeholder="Enter the Address">
+  </div>
+     </div>
+     <br>
+    
+     <div class="row">
+      <div class="form-group col">
+    <label>District</label>
+    <input type="text" class="form-control" name="identifier_district2" placeholder="Enter the District">
+  </div>
+    <div class="form-group col">
+
+    <label>State</label>
+    <input type="number" class="form-control" name="identifier_state2" placeholder="Enter the State" required>
+    </div>
+     </div>
+<br>
+ <div class="form-group col">
+    <label>Police Station</label>
+    <input type="text" class="form-control" name="identifier_policestation2" placeholder="Enter">
+  </div>
+  <br>
+
+    <div class="form-group col">
+
+    <label>Email ID</label>
+    <input type="number" class="form-control" name="identifier_email2" placeholder="Enter Email ID" required>
+    </div>
+     
+<br>
+
+
   <input type="hidden" name="flat_no" value="<?php echo $flat_no; ?>" >
   <input type="hidden" name="property_id" value="<?php echo $property_id; ?>" >
   
@@ -137,7 +367,13 @@
   </div> -->
   <button type="submit" class="btn btn-primary" value="Submit">Submit</button>
 </form>
+</div>
 </div></div></div></div></div></div>
 </main>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+ 
+    <script  src="./script.js"></script>
 </body>
 </html>
