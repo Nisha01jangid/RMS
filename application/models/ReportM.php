@@ -17,6 +17,29 @@ class ReportM extends CI_Model {
         $query = $this->db->query($sql);
         return $query->result_array();
       }
+       function getAllHouses(){
+
+    $sql="SELECT * from `property` where `active`= 1";    
+    $query = $this->db->query($sql);
+    return $query->result_array();
+
+  }    
+  
+    public function get_report_details_montwise($month,$property_id){
+
+    $query = "SELECT * FROM entry_form_details WHERE property_id =$property_id AND `month` = '$month' AND status=1 ORDER BY `month` ";
+ 
+    $result = $this->db->query($query);
+    return $result->result_array();
+    }
+     public function previousReading($property_id,$flat_no,$month){
+
+    $query = "SELECT * FROM entry_form_details WHERE property_id =$property_id AND flat_no = $flat_no AND month = '$month'";
+    // print_r($query);
+    // die();
+    $result = $this->db->query($query);
+    return $result->result_array()[0]['current_meter_reading'];
+  }
 
 }
 
