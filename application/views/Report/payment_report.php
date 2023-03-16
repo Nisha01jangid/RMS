@@ -173,19 +173,20 @@
 
 										 $i = 1; foreach ($payments as $row) { ?>
 
-										 <?php $tamount += $row['amount'];  ?>
+										 <?php $tamount += $row['rent']; ?>
 										<tr>
 										<td style="text-align: center;"><?php echo $i++ ?></td>
-										<td><?php echo date('M d,Y',strtotime($row['date_created'])) ?></td>
+										<td><?php echo date('M d,Y',strtotime($row['timestamp'])) ?></td>
 										<td><?php echo ucwords($row['tenant_name']) ?></td>
 										<td><?php echo $row['house_no'] ?></td>
 										<td><?php echo $row['flat_no'] ?></td>
-										<td><?php echo $row['invoice'] ?></td>
 										<td><?php echo $row['rent'] ?></td>
-										<td class="text-right"><?php echo number_format($row['amount'],2) ?></td>
-										<td><?php echo $row['rent']-$row['amount']?></td>
+										<!-- <td><?php echo $row['invoice'] ?></td> -->
+										<td><?php echo $row['rent'] ?></td>
+										<td class="text-right"><?php echo number_format($row['rent'],2) ?></td>
+										<td><?php echo $row['rent']-($row['rent'])?></td>
 										</tr>
-									 <?php } 
+									 <?php }
 										// }
 										
 									}else{ ?>
