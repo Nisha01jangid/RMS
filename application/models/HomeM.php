@@ -123,23 +123,32 @@ class HomeM extends CI_Model {
     $result = $this->db->query($query);
     return $result->result_array()[0]['current_meter_reading'];
   }
-  public function insert_payment_online($mode, $date, $amount, $reference_id, $payment_mode, $property_id, $flat_no){
+
+  public function insert_payment_online($mode, $date, $amount, $reference_id, $payment_mode, $property_id, $flat_no, $description, $month){
 
 
-    // $query = "INSERT INTO `tenants` (`tenant_name`, `father_name`, `email`, `aadhaar_no`, `contact`, `members`, `rent`, `birth_date`, `property_id`, `flat_no`, `status`, `joining_date`) VALUES ('$name', '$father_name', '$email', '$Aadhaar', '$mobile', '$members', '$rent', '$dob', '$property_id', '$flat_no', 1, '$joining_date')";
+    $query = "INSERT INTO `payment` (`property_id`, `flat_no`, `amount`, `reference_id`, `pay_mode`, `payment_date`, `status`, `description`, `month`) VALUES ('$property_id', '$flat_no', '$amount', '$reference_id', '$payment_mode', '$date', 1 , '$description', '$month')";
 
-    // $result = $this->db->query($query);
-    // return ;
+    $result = $this->db->query($query);
+    return ;
+
+  }
+
+  public function insert_payment_offline($mode, $date, $amount, $description, $property_id, $flat_no, $payment_mode, $month){
+
+    $query = "INSERT INTO `payment` (`property_id`, `flat_no`, `amount`, `pay_mode`, `payment_date`, `status`, `description`, `month`) VALUES ('$property_id', '$flat_no', '$amount', '$payment_mode', '$date', 1 , '$description', '$month')";
+
+    $result = $this->db->query($query);
+    return ;
 
   }
 
-  public function insert_payment_offline($mode, $date, $amount, $description, $property_id, $flat_no){
+  // public function get_tenant_amount($flat_no, $property_id, $month){
 
-    // $query = "INSERT INTO `tenants` (`tenant_name`, `father_name`, `email`, `aadhaar_no`, `contact`, `members`, `rent`, `birth_date`, `property_id`, `flat_no`, `status`, `joining_date`) VALUES ('$name', '$father_name', '$email', '$Aadhaar', '$mobile', '$members', '$rent', '$dob', '$property_id', '$flat_no', 1, '$joining_date')";
+  //   $query = "SELECT property_id, flat_no, amount FROM payment where property_id = $property_id and flat_no = $flat_no and 'month' = '$month'";
 
-    // $result = $this->db->query($query);
-    // return ;
-
-  }
+  //   $result = $this->db->query($query);
+  //   return $result->result_array();
+  // }
 
 }

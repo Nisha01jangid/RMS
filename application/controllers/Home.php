@@ -127,14 +127,19 @@ class Home extends CI_Controller {
 
 		// echo "<pre>";
 		// print_r($data['flat_no']);
-		// echo "<br>";
-		// print_r($data['property_id']);
-		// die();
+		
 		$data['tenant_entry_form_details'] = $this->HomeM->get_tenant_entry_form_details($data['flat_no'],$data['property_id']);
 
 		$month = $data['tenant_entry_form_details'][0]['month'];
-		// echo $month;
+		// $data = explode('-', $month);
+	    // $month_only = $data[1];
+	
+
+		// $data['paid_amount'] = $this->HomeM->get_tenant_amount($data['flat_no'], $data['property_id'], $month_only);
+		// echo "<pre>";
+		// print_r($data['paid_amount']);
 		// die();
+
 		$previous_month =  date('Y-m', strtotime('-1 month'));
 		$data['previous_reading'] = $this->HomeM->previousReading($property_id,$flat_no,$previous_month);
 
@@ -227,6 +232,10 @@ class Home extends CI_Controller {
 
 public function insert_payment(){
 
+	// echo "<pre>";
+	// print_r($_POST);
+	// die();
+
 	if($_POST['mode'] == 1){
 
 	$mode = "online";
@@ -236,8 +245,14 @@ public function insert_payment(){
 	$payment_mode = $_POST['payment_mode'];
 	$property_id = $_POST['property_id'];
 	$flat_no = $_POST['flat_no'];
+	$description = $_POST['description'];
+
+	$data = explode('-', $date);
+	$month = $data[1];
+	// echo $month;
+	// die();
 	
-	 $this->HomeM->insert_payment_online($mode, $date, $amount, $reference_id, $payment_mode, $property_id, $flat_no);	
+	 $this->HomeM->insert_payment_online($mode, $date, $amount, $reference_id, $payment_mode, $property_id, $flat_no, $description, $month);	
 	} else {
 
 	$mode = "offline";
@@ -245,15 +260,24 @@ public function insert_payment(){
 	$amount = $_POST['amount'];
 	$description = $_POST['description'];
 	$property_id = $_POST['property_id'];
-	$flat_no = $_POST['flat_no'];	
+	$flat_no = $_POST['flat_no'];
+	$payment_mode = "offline";
+	$data = explode('-', $date);
+	$month = $data[1];
 	
-	 $this->HomeM->insert_payment_offline($mode, $date, $amount, $description, $property_id, $flat_no);
+	
+	 $this->HomeM->insert_payment_offline($mode, $date, $amount, $description, $property_id, $flat_no, $payment_mode, $month);
 	}
 
 	$this->session->set_flashdata('Payment_inserted', 'Payment Inserted Successfully :)');
 	redirect("Home/index");
 
 }
+
+	public function police_verification_form($flat_no, $property_id){
+
+		$this->load->view('Home/police_verification_form');
+	}
 
 
 }
