@@ -52,28 +52,32 @@
 <body>
   <main> 
 
-<div class="homediv">
+<div class="homediv" style="margin:auto;">
 <div class="containe-fluid">
 <div class="row mt-3 ml-3 mr-3">
 <div class="col-lg-12">
 <div class="card">
 <div class="card-body">
 <div class="row">
+<center><img src="https://static.abplive.com/wp-content/uploads/sites/2/2020/06/09032227/mp-police.jpg?impolicy=abp_cdn&amp;imwidth=640"  style="width: 80px; height: 80px;"></center>
 
-<strong><center>TANENT/ SERVANT/ WORKER POLICE VERIFICATION FORM </center></strong>
+<strong><center>TENANT/ SERVANT/ WORKER POLICE VERIFICATION FORM </center></strong>
 <strong><center><h6>Dist- Singrauli (MP) </h6></center></strong><br> 
+<div style="border:1px solid black; font-size:13px; margin-bottom:6px;">
 Name of Landlord……………………………………………………Father Name………………………………………………………………….
 Full address………………………………………………………………………………………………………………….
 Mobile No……………………………………… Police station…………………………………………………………………………<br>
+  </div>
+  <div style="font-size:13px;">
 Name of Tanent/Servant/Labour: ……………………………..	Age…………..Gender…………………
 Fathers Name………………………………………………………………………………….
 Mobile No………………………………………….	Email ID………………………………………
 Complete Permanent Address………………………………………………………………………………….
 District:	…………………………………	State ………………………………Police Station 	…………………………………
-<br>
+  </div>
 Detail of family Member
 
-<table class="table table-bordered">
+<table class="table table-bordered" style="text-align:center;">
 <thead class="thead-dark">
     <th>S.No.</th>
     <th>Name</th>
@@ -85,6 +89,7 @@ Detail of family Member
     <th>Aadhaar</th>
 </thead>
 <tbody>
+  <tr style="text-align:center;">
     <td></td>
     <td></td>
     <td></td>
@@ -93,8 +98,20 @@ Detail of family Member
     <td></td>
     <td></td>
     <td></td>
+  </tr>
+  <tr style="text-align:center;">
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
 </tbody>
 </table>
+<div style="font-size:13px;">
 Total Number of family member   Male………………..Female……………Children Below 5 Year……………….
 Vehicle detail:      Two Wheeler…………………………………..	Four wheeler…………………….
 Occupation of talent……………………………………………………………………….				
@@ -109,13 +126,14 @@ Local Identifier/ Granter Name With Full Address   (1) Name…………………
 						District:	………………State……………..Police Station……….
 						Mobile No……………..Email ID………………………….
                         Signature of Landlord/Owner				
-                        Signature of Tanent/Servant/Labour	
+                        Signature of Tanent/Servant/Labour
+  </div>	
 <br><br>
-<div style="border:1px solid black;">
+<div style="border:1px solid black; font-size:13px;">
 <strong><center>Declaration</center></strong>
 I…………….. hereby state that all the information mentioned above is true to the best of my knowledge and I shall be held responsible for any discrepancy found later.
 <br>
-<div style="float:right;">
+<div style="float:right; font-size:12px;">
 Signature of Tanent/Servant/Labour
 </div>
 </div>

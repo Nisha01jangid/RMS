@@ -79,6 +79,7 @@
 <form action="<?php echo base_url('Home/payment_mode');?>" method="post">
 <input type="hidden" name="property_id" value="<?php echo $property_id;?>">   
 <input type="hidden" name="flat_no" value="<?php echo $flat_no;?>">   
+<input type="hidden" name="month" value="<?php echo $month;?>">   
 <div class="form-group">
 <label for="exampleInputEmail1">Payment Mode:</label>
    <select class="form-control" id="exampleInputPassword1" name="payment_mode">

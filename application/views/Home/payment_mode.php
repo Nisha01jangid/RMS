@@ -80,7 +80,8 @@
 <?php if($mode == 1){?>
 <input type="hidden" name="mode" value="<?php echo $mode;?>"> 
 <input type="hidden" name="property_id" value="<?php echo $property_id;?>">   
-<input type="hidden" name="flat_no" value="<?php echo $flat_no;?>">       
+<input type="hidden" name="flat_no" value="<?php echo $flat_no;?>"> 
+<input type="hidden" name="month" value="<?php echo $month;?>">         
 <div class="form-group">
     <label for="exampleInputEmail1">Date of Payment:</label>
     <input type="date" class="form-control" id="exampleInputEmail1" name="date"  placeholder="Enter payment date">
@@ -110,10 +111,22 @@
     <input type="text" class="form-control" id="exampleInputEmail1" name="description"  placeholder="Enter description..">
 </div>
 <br>
+<div class="form-group">
+    <label for="exampleInputEmail1">Received By:</label>
+    <select class="form-control" id="exampleInputPassword1" name="receiver">
+    <option>Select Payment Receiver</option>
+    <option value="1">Dr. Indra Kumar Shah</option>
+    <option value="2">Sir's Father</option>
+    <option value="3">Nisha</option>
+   </select>
+</div>
+<br>
 <?php } else { ?>
    <input type="hidden" name="mode" value="<?php echo $mode;?>"> 
    <input type="hidden" name="property_id" value="<?php echo $property_id;?>">   
-<input type="hidden" name="flat_no" value="<?php echo $flat_no;?>">    
+<input type="hidden" name="flat_no" value="<?php echo $flat_no;?>"> 
+<input type="hidden" name="month" value="<?php echo $month;?>"> 
+
 <div class="form-group">
     <label for="exampleInputEmail1">Date of Payment:</label>
     <input type="date" class="form-control" id="exampleInputEmail1" name="date"  placeholder="Enter payment date">
@@ -127,6 +140,16 @@
  <div class="form-group">
     <label for="exampleInputEmail1">Amount:</label>
     <input type="number" class="form-control" id="exampleInputEmail1" name="amount"  placeholder="Enter Amount..">
+</div>
+<br>
+<div class="form-group">
+    <label for="exampleInputEmail1">Received By:</label>
+    <select class="form-control" id="exampleInputPassword1" name="receiver">
+    <option>Select Payment Receiver</option>
+    <option value="1">Dr. Indra Kumar Shah</option>
+    <option value="2">Sir's Father</option>
+    <option value="3">Nisha</option>
+   </select>
 </div>
 <br>
 <?php } ?>

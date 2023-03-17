@@ -125,20 +125,26 @@ class Home extends CI_Controller {
 		$data['flat_no'] = $flat_no;
 		$data['property_id'] = $property_id;
 
-		// echo "<pre>";
-		// print_r($data['flat_no']);
-		
 		$data['tenant_entry_form_details'] = $this->HomeM->get_tenant_entry_form_details($data['flat_no'],$data['property_id']);
 
 		$month = $data['tenant_entry_form_details'][0]['month'];
-		// $data = explode('-', $month);
-	    // $month_only = $data[1];
+		
 	
+		for($i = 0; $i < sizeof($data['tenant_entry_form_details']); $i++){
 
-		// $data['paid_amount'] = $this->HomeM->get_tenant_amount($data['flat_no'], $data['property_id'], $month_only);
-		// echo "<pre>";
-		// print_r($data['paid_amount']);
-		// die();
+			$month = $data['tenant_entry_form_details'][$i]['month'];
+			$data1 = explode('-', $month);
+	        $month_only = $data1[1];
+
+			$data['paid_amount'] = $this->HomeM->get_tenant_amount($data['flat_no'], $data['property_id'], $month_only);
+
+			$data['tenant_entry_form_details'][$i]['amount_paid'] = $data['paid_amount'][0]['amount'];
+
+		}
+		
+		//  echo "<pre>";
+		//  print_r($data['tenant_entry_form_details']);
+		//  die();
 
 		$previous_month =  date('Y-m', strtotime('-1 month'));
 		$data['previous_reading'] = $this->HomeM->previousReading($property_id,$flat_no,$previous_month);
@@ -207,10 +213,11 @@ class Home extends CI_Controller {
 		redirect(base_url("Home/getFlatElectricityReading?property_id=").$property_id."&flat_no=".$flat_no."&month=".$month);
 	}
 
-	public function pay_bill($property_id, $flat_no){
+	public function pay_bill($property_id, $flat_no, $month){
 
 		$data['property_id'] = $property_id;
 		$data['flat_no'] = $flat_no;
+		$data['month'] = $month;
 
 		$this->load->view('Home/Pay_bill', $data);
 
@@ -221,6 +228,7 @@ class Home extends CI_Controller {
 		$data['mode'] = 0;
 		$data['property_id'] = $_POST['property_id'];
 	    $data['flat_no'] = $_POST['flat_no'];
+		$data['month'] = $_POST['month'];
 		if($_POST['payment_mode'] == 'online'){
 		 $data['mode'] = 1;
 		$this->load->view('Home/payment_mode', $data);
@@ -246,13 +254,24 @@ public function insert_payment(){
 	$property_id = $_POST['property_id'];
 	$flat_no = $_POST['flat_no'];
 	$description = $_POST['description'];
+	$receiver = $_POST['receiver'];
 
-	$data = explode('-', $date);
+	if($receiver == 1){
+		$receiver = "Dr. Indra Kumar Shah";
+	} else if($receiver == 2){
+
+		$receiver = "Sir's Father";
+	}else{
+		$receiver = "Nisha";
+	}
+
+	$month1 = $_POST['month'];
+	$data = explode('-', $month1);
 	$month = $data[1];
 	// echo $month;
 	// die();
 	
-	 $this->HomeM->insert_payment_online($mode, $date, $amount, $reference_id, $payment_mode, $property_id, $flat_no, $description, $month);	
+	 $this->HomeM->insert_payment_online($mode, $date, $amount, $reference_id, $payment_mode, $property_id, $flat_no, $description, $month, $receiver);	
 	} else {
 
 	$mode = "offline";
@@ -262,11 +281,23 @@ public function insert_payment(){
 	$property_id = $_POST['property_id'];
 	$flat_no = $_POST['flat_no'];
 	$payment_mode = "offline";
-	$data = explode('-', $date);
+	$month1 = $_POST['month'];
+	$data = explode('-', $month1);
 	$month = $data[1];
+
+	$receiver = $_POST['receiver'];
+
+	if($receiver == 1){
+		$receiver = "Dr. Indra Kumar Shah";
+	} else if($receiver == 2){
+
+		$receiver == "Sir's Father";
+	}else{
+		$receiver = "Nisha";
+	}
 	
 	
-	 $this->HomeM->insert_payment_offline($mode, $date, $amount, $description, $property_id, $flat_no, $payment_mode, $month);
+	 $this->HomeM->insert_payment_offline($mode, $date, $amount, $description, $property_id, $flat_no, $payment_mode, $month, $receiver);
 	}
 
 	$this->session->set_flashdata('Payment_inserted', 'Payment Inserted Successfully :)');
