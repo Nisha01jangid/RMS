@@ -60,8 +60,8 @@
 
 
 <body>
-	<div class="box">	
-	<div class="homediv">
+<div class="box" style="padding:0px 0px">	
+<div class="homediv">
 	<div class="col-lg-12">
 		<div class="card">
 			<div class="card-body">
@@ -77,17 +77,57 @@
 						<div class="row form-group">
 							<label class="control-label col-md-2 offset-md-2 text-right" id="month">Month of: </label>
 							<input type="month" name="month" class='from-control col-md-4' value="">
-							<button class="btn btn-sm btn-block btn-primary col-md-2 ml-1"> Filter</button>
+							</div><br>
+							<div class="row form-group">
+							<button class="btn btn-sm btn-block btn-primary col-md-2 ml-1 offset-md-2"> Filter</button>
 						</div>
 						<input type="hidden" name="property_id" value="<?php echo $property_id; ?>" >
 					</form>
 <br><br>
+
 						</div>
 						
 			
 			</div>
 		</div>
 	</div>
+</div>
+</div>
+<div class="box" style="padding:0px 0px">
+<div class="homediv">
+<div class="col-lg-12">
+		<div class="card">
+			<div class="card-body">
+				<div class="col-md-12">
+					<div class="intro">
+					<h3><center>Flat wise </center></h3><br>
+					</div>
+					<form id="filter-report" action="<?php echo base_url('Report/Report_Monthwise') ?>" method=post id=date>
+						<div class="row form-group">
+							<label class="control-label col-md-2 offset-md-2 text-right" id="date">From: </label>
+							<input type="date" name="from_date" class='from-control col-md-4'>
+							</div><br>
+							<div class="row form-group">
+							<label class="control-label col-md-2 offset-md-2 text-right" id="date">To: </label>
+							<input type="date" name="to_date" class='from-control col-md-4'>
+							</div><br>
+							<div class="row form-group">
+							<form action="<?php echo base_url('Report/select_month_for_report_monthwise') ?>">
+							<label class="control-label col-md-2 offset-md-2 text-right" id="flat_no" style = "padding-right:0px">Flat Number: </label>
+  							<select class='from-control col-md-4' id="flats" name="flats">
+							  <?php $i=1; foreach($flats as $p){ ?> 
+                            <li><?php echo $p[$i]['flats']; ?></li>
+                            <?php $i++;} ?>
+							</select>
+						</form></div><br>
+							<div class="row form-group">
+							<button class="btn btn-sm btn-block btn-primary col-md-2 ml-1 offset-md-2"> Filter</button>
+							</div>
+					</form>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </body>

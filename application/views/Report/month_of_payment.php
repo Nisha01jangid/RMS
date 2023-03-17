@@ -76,11 +76,15 @@
 					<form id="filter-report" action="<?php echo base_url('Report/payment_report') ?>" method=post id=date>
 						<div class="row form-group">
 							<label class="control-label col-md-2 offset-md-2 text-right" id="date">From: </label>
-							<input type="date" name="from_date" class='from-control col-md-4'>
-							</div>
+							<input type="datetime-local" name="from_date" class='from-control col-md-4'>
+							</div><br>
 							<div class="row form-group">
 							<label class="control-label col-md-2 offset-md-2 text-right" id="date">To: </label>
-							<input type="date" name="to_date" class='from-control col-md-4'>
+							<input type="datetime-local" name="to_date" class='from-control col-md-4'>
+							</div><br>
+							<div class="row form-group">
+							<label class="control-label col-md-2 offset-md-2 text-right" id="user">User: </label>
+							<label class="control-label col-md-2 offset-md-2 text-left" style="margin:0px" id="user"><?php echo $_SESSION['user']; ?></label>
 							</div><br>
 							<div class="row form-group">
 							<button class="btn btn-sm btn-block btn-primary col-md-2 ml-1 offset-md-2"> Filter</button>

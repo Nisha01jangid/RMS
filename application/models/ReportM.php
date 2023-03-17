@@ -9,18 +9,25 @@ class ReportM extends CI_Model {
       }
       
                        
-      function get_payments($to_date,$from_date){
+      function get_payments($to_date,$from_date,$user){
 
       // $sql = " SELECT payments.*, tenants.tenant_name,tenants.rent, houses.house_no, houses.flat_no FROM payments inner join tenants on tenants.id = payments.tenant_id inner join houses on houses.id = tenants.flat_no WHERE payments.date_created between '$to_date' and '$from_date' order by unix_timestamp(date_created)  asc";
 
-      $sql = " SELECT entry_form_details.*, tenants.tenant_name,tenants.rent, houses.house_no, houses.flat_no FROM entry_form_details , tenants , houses  WHERE tenants.property_id = entry_form_details.property_id AND tenants.flat_no = entry_form_details.flat_no AND houses.id = tenants.flat_no and entry_form_details.timestamp between '$to_date' and '$from_date' order by unix_timestamp(timestamp)  asc";
-
+      $sql = " SELECT entry_form_details.*, tenants.tenant_name,tenants.rent, houses.house_no, houses.flat_no FROM entry_form_details , tenants , houses , users  WHERE entry_form_details.user = '$user' and entry_form_details.user = users.username and tenants.property_id = entry_form_details.property_id AND tenants.flat_no = entry_form_details.flat_no AND houses.id = tenants.flat_no and entry_form_details.timestamp between '$to_date' and '$from_date' order by unix_timestamp(timestamp)  asc";
         $query = $this->db->query($sql);
         return $query->result_array();
       }
     public function getAllHouses(){
 
     $sql="SELECT * from `property` where `active`= 1";    
+    $query = $this->db->query($sql);
+    return $query->result_array();
+
+  }  
+
+       function getAllFlats($property_id){
+
+    $sql="SELECT flats from `property` where `property_id`= $property_id";    
     $query = $this->db->query($sql);
     return $query->result_array();
 

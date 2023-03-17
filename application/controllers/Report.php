@@ -22,7 +22,9 @@ public function payment_report(){
 
 	$data['from_date'] = $_POST['from_date'];
 	$data['to_date'] = $_POST['to_date'];
-	$data['payments']= $this->ReportM->get_payments($data['from_date'],$data['to_date']);
+	// $data['user']=$_SESSION['user'];
+	// print_r($data['user']);die();
+	$data['payments']= $this->ReportM->get_payments($data['from_date'],$data['to_date'],$_SESSION['user']);
 	$this->load->view('Report/payment_report',$data);
 }
 
@@ -42,7 +44,16 @@ public function balance_report(){
 	{
 		
 		$data['property_id'] = $property_id;
-
+		$i=0;
+        foreach($data as $p){
+            $check = $data['flats'] = $this->ReportM->getAllFlats($property_id);
+            if(!empty($check)){
+                $data['flats'][$i]['flats'] = $check[$i]['flats'];
+            }else{
+                $data['flats'][$i]['flats']="";
+            }
+            $i++;
+        }
 		$this->load->view('Report_Monthwise/select_month_for_report_monthwise',$data);
 	}
     
