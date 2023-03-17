@@ -95,7 +95,7 @@
 </div>
 <div class="row">
     <div class="form-group col">
-    <label for="exampleInputEmail1">Date of Birth:&nbsp;  <span style="font-weight:normal;"><?php echo $flat_entry[0]['birth_date']; ?></span></label>
+    <label for="exampleInputEmail1">Date of Birth:&nbsp;  <span style="font-weight:normal;"><?php echo $flat_entry[0]['dob']; ?></span></label>
     </div>
     <div class="form-group col">
     <label for="exampleInputEmail1">Contact Number:&nbsp; <span style="font-weight:normal;"><?php echo $flat_entry[0]['contact']; ?></span></label>

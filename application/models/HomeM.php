@@ -48,9 +48,17 @@ class HomeM extends CI_Model {
     return $result->result_array();
   }
 
-  public function insert_tenant_details($name, $father_name, $dob, $email, $rent, $mobile, $Aadhaar, $joining_date, $members, $property_id, $flat_no){
+  // public function insert_tenant_details($name, $father_name, $dob, $email, $rent, $mobile, $Aadhaar, $joining_date, $members, $property_id, $flat_no){
 
-    $query = "INSERT INTO `tenants` (`tenant_name`, `father_name`, `email`, `aadhaar_no`, `contact`, `members`, `rent`, `birth_date`, `property_id`, `flat_no`, `status`, `joining_date`) VALUES ('$name', '$father_name', '$email', '$Aadhaar', '$mobile', '$members', '$rent', '$dob', '$property_id', '$flat_no', 1, '$joining_date')";
+  //   $query = "INSERT INTO `tenants` (`tenant_name`, `father_name`, `email`, `aadhaar_no`, `contact`, `members`, `rent`, `birth_date`, `property_id`, `flat_no`, `status`, `joining_date`) VALUES ('$name', '$father_name', '$email', '$Aadhaar', '$mobile', '$members', '$rent', '$dob', '$property_id', '$flat_no', 1, '$joining_date')";
+
+  //   $result = $this->db->query($query);
+  //   return ;
+
+  // }
+   public function insert_tenant_details($name, $father_name, $dob, $gender, $email, $rent, $mobile, $Aadhaar, $joining_date, $address, $district, $state, $polic_station, $no_of_members, $two_wheeler, $four_wheeler, $occupation, $occupation_address, $identifier_name1, $identifier_mobile1, $identifier_address1, $identifier_district1, $identifier_state1, $identifier_policestation1, $identifier_email1, $identifier_name2, $identifier_mobile2,$identifier_address2, $identifier_district2, $identifier_state2, $identifier_policestation2, $identifier_email2,$property_id, $flat_no){
+
+    $query = "INSERT INTO `tenants` (`tenant_name`, `father_name`, `dob`, `gender`, `email`, `aadhaar_no`, `contact`, `joining_date`, `address`, `district`, `state`, `polic_station`, `two_wheeler`, `four_wheeler`, `tenant_occupation`, `tenant_occupation_address`, `granter1_name`, `granter1_contact`, `granter1_address`, `granter1_district`, `granter1_state`, `granter1_police_station`, `granter1_email`, `granter2_name`, `granter2_contact`,`granter2_address`, `granter2_district`, `granter2_state`, `granter2_police_station`, `granter2_email`,`property_id`, `flat_no`,`status`) VALUES ('$name', '$father_name', '$dob', '$gender', '$email', '$Aadhaar', '$mobile', '$joining_date', '$address', '$district', '$state', '$polic_station', '$two_wheeler', '$four_wheeler', '$occupation', '$occupation_address', '$identifier_name1', '$identifier_mobile1', '$identifier_address1', '$identifier_district1', '$identifier_state1', '$identifier_policestation1', '$identifier_email1', '$identifier_name2', '$identifier_mobile2','$identifier_address2', '$identifier_district2', '$identifier_state2', '$identifier_policestation2', '$identifier_email2','$property_id', '$flat_no', 1)";
 
     $result = $this->db->query($query);
     return ;
@@ -143,12 +151,12 @@ class HomeM extends CI_Model {
 
   }
 
-  // public function get_tenant_amount($flat_no, $property_id, $month){
+  public function get_tenant_amount($flat_no, $property_id, $month){
 
-  //   $query = "SELECT property_id, flat_no, amount FROM payment where property_id = $property_id and flat_no = $flat_no and 'month' = '$month'";
+    $query = "SELECT property_id, flat_no, amount FROM payment where property_id = $property_id and flat_no = $flat_no and month = '$month'";
 
-  //   $result = $this->db->query($query);
-  //   return $result->result_array();
-  // }
+    $result = $this->db->query($query);
+    return $result->result_array();
+  }
 
 }
