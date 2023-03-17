@@ -73,6 +73,10 @@
         <li>
           <a href="<?php echo base_url('Report/select_property_for_report_monthwise') ?>" class="nav-link text-white">Report Month-Wise</a>  
         </li>
+        <li>
+          <a href="<?php echo base_url('Report/User_Wise_Report') ?>" class="nav-link text-white">User-Wise Report</a>  
+        </li>
+        
       <li>
         <a href="<?php echo base_url('Invoice') ?>" class="nav-link text-white">Invoice</a>
       </li>

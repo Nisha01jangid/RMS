@@ -80,6 +80,16 @@ public function balance_report(){
     	$this->load->view('Report_Monthwise/Report_monthwise',$data);
     }
 
+    public function User_Wise_Report()
+    {
+    	$this->load->view('User_Wise_Report/select_user');
+    }
+
+     public function User_Wise_Report_detail()
+    {
+    	$data['user_name'] = $_POST['user_name'];
+    	$this->load->view('User_Wise_Report/user_wise_report',$data);
+    }
 	public function outstanding_amount(){
 
 		$data['property'] = $this->ReportM->getAllHouses();
@@ -109,6 +119,7 @@ public function balance_report(){
 
 		$this->load->view('Report_Monthwise/outstanding_amount_report_view', $data);
 	}
+
 
 }
 
