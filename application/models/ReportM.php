@@ -7,6 +7,7 @@ class ReportM extends CI_Model {
           // Call the Model constructor
           parent::__construct();
       }
+      
                        
       function get_payments($to_date,$from_date){
 
@@ -17,7 +18,7 @@ class ReportM extends CI_Model {
         $query = $this->db->query($sql);
         return $query->result_array();
       }
-       function getAllHouses(){
+    public function getAllHouses(){
 
     $sql="SELECT * from `property` where `active`= 1";    
     $query = $this->db->query($sql);
@@ -39,6 +40,15 @@ class ReportM extends CI_Model {
     // die();
     $result = $this->db->query($query);
     return $result->result_array()[0]['current_meter_reading'];
+  }
+
+  public function get_tenant_entry_form_details($property_id){
+
+    $query = "SELECT * FROM entry_form_details WHERE property_id = $property_id ORDER BY `month` ";
+    
+    $result = $this->db->query($query);
+    return $result->result_array();
+    
   }
 
 }

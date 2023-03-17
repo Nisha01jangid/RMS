@@ -124,31 +124,34 @@ class HomeM extends CI_Model {
     return $result->result_array()[0]['current_meter_reading'];
   }
 
-  public function insert_payment_online($mode, $date, $amount, $reference_id, $payment_mode, $property_id, $flat_no, $description, $month){
+  public function insert_payment_online($mode, $date, $amount, $reference_id, $payment_mode, $property_id, $flat_no, $description, $month, $receiver){
 
 
-    $query = "INSERT INTO `payment` (`property_id`, `flat_no`, `amount`, `reference_id`, `pay_mode`, `payment_date`, `status`, `description`, `month`) VALUES ('$property_id', '$flat_no', '$amount', '$reference_id', '$payment_mode', '$date', 1 , '$description', '$month')";
-
-    $result = $this->db->query($query);
-    return ;
-
-  }
-
-  public function insert_payment_offline($mode, $date, $amount, $description, $property_id, $flat_no, $payment_mode, $month){
-
-    $query = "INSERT INTO `payment` (`property_id`, `flat_no`, `amount`, `pay_mode`, `payment_date`, `status`, `description`, `month`) VALUES ('$property_id', '$flat_no', '$amount', '$payment_mode', '$date', 1 , '$description', '$month')";
+    $query = "INSERT INTO `payment` (`property_id`, `flat_no`, `amount`, `reference_id`, `pay_mode`, `payment_date`, `status`, `description`, `month`, `payment_receiver`) VALUES ('$property_id', '$flat_no', '$amount', '$reference_id', '$payment_mode', '$date', 1 , '$description', '$month', '$receiver')";
 
     $result = $this->db->query($query);
     return ;
 
   }
 
-  // public function get_tenant_amount($flat_no, $property_id, $month){
+  public function insert_payment_offline($mode, $date, $amount, $description, $property_id, $flat_no, $payment_mode, $month, $receiver){
 
-  //   $query = "SELECT property_id, flat_no, amount FROM payment where property_id = $property_id and flat_no = $flat_no and 'month' = '$month'";
+    $query = "INSERT INTO `payment` (`property_id`, `flat_no`, `amount`, `pay_mode`, `payment_date`, `status`, `description`, `month`, `payment_receiver`) VALUES ('$property_id', '$flat_no', '$amount', '$payment_mode', '$date', 1 , '$description', '$month', '$receiver')";
 
-  //   $result = $this->db->query($query);
-  //   return $result->result_array();
-  // }
+    $result = $this->db->query($query);
+    return ;
+
+  }
+
+  public function get_tenant_amount($flat_no, $property_id, $month){
+
+    $query = "SELECT SUM(amount) as amount FROM payment where property_id = $property_id and flat_no = $flat_no and month = $month";
+
+    // print_r($query);
+    // die();
+
+    $result = $this->db->query($query);
+    return $result->result_array();
+  }
 
 }
