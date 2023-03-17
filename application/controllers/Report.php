@@ -40,20 +40,10 @@ public function balance_report(){
 		$this->load->view('Report_Monthwise/select_property_for_report_monthwise',$data);
 	}
 
-	public function select_month_for_report_monthwise($property_id)
+	public function select_month_for_report_monthwise($property_id, $flats)
 	{
-		
 		$data['property_id'] = $property_id;
-		$i=0;
-        foreach($data as $p){
-            $check = $data['flats'] = $this->ReportM->getAllFlats($property_id);
-            if(!empty($check)){
-                $data['flats'][$i]['flats'] = $check[$i]['flats'];
-            }else{
-                $data['flats'][$i]['flats']="";
-            }
-            $i++;
-        }
+		$data['flats'] = $flats;
 		$this->load->view('Report_Monthwise/select_month_for_report_monthwise',$data);
 	}
     
@@ -65,7 +55,7 @@ public function balance_report(){
 
     	
 
-    	$data['report_monthwise_details'] = $this->ReportM->get_report_details_montwise($data['month'],$data['property_id']);
+    	$data['report_monthwise_details'] = $this->ReportM->get_report_details_monthwise($data['month'],$data['property_id']);
     	// echo "<pre>";
     	
     	// print_r($data['report_monthwise_details']);
@@ -77,6 +67,17 @@ public function balance_report(){
 		// die();
 		$previous_month =  date('Y-m', strtotime('-1 month'));
 		$data['previous_reading'] = $this->ReportM->previousReading($property_id,$flat_no,$previous_month);
+    	$this->load->view('Report_Monthwise/Report_monthwise',$data);
+    }
+
+	public function Report_flatwise()
+    {
+		$data['property_id'] = $property_id;
+		$data['flats'] =$_POST['flats'];
+    	$flats = $data['flats'];
+		$data['from_date'] = $_POST['from_date'];
+		$data['to_date'] = $_POST['to_date'];
+    	$data['report_flatwise_details'] = $this->ReportM->get_flatwise_payments($data['to_date'],$data['from_date'],$data['property_id'],$flats);
     	$this->load->view('Report_Monthwise/Report_monthwise',$data);
     }
 

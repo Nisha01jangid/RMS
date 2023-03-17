@@ -98,7 +98,7 @@
                                 <div class="card-footer">
                                     <div class="row">
                                         <div class="col-lg-6">
-                                            <a href="<?php echo base_url('Report/select_month_for_report_monthwise/').$p['property_id'];?>" class="text-primary float-right" style="text-decoration : none; font-weight:bold;">View List &nbsp; <span class="fa fa-angle-right"></span></a>
+                                            <a href="<?php echo base_url('Report/select_month_for_report_monthwise/').$p['property_id'].'/'.$p['flats'];?>" class="text-primary float-right" style="text-decoration : none; font-weight:bold;">View List &nbsp; <span class="fa fa-angle-right"></span></a>
                                         </div>
                                         
                                     </div>

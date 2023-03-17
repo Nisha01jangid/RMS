@@ -1,3 +1,8 @@
+<?php
+// print_r($flats);
+// die(); 
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -102,7 +107,7 @@
 					<div class="intro">
 					<h3><center>Flat wise </center></h3><br>
 					</div>
-					<form id="filter-report" action="<?php echo base_url('Report/Report_Monthwise') ?>" method=post id=date>
+					<form id="filter-report" action="<?php echo base_url('Report/Report_flatwise') ?>" method=post id=date>
 						<div class="row form-group">
 							<label class="control-label col-md-2 offset-md-2 text-right" id="date">From: </label>
 							<input type="date" name="from_date" class='from-control col-md-4'>
@@ -112,14 +117,14 @@
 							<input type="date" name="to_date" class='from-control col-md-4'>
 							</div><br>
 							<div class="row form-group">
-							<form action="<?php echo base_url('Report/select_month_for_report_monthwise') ?>">
 							<label class="control-label col-md-2 offset-md-2 text-right" id="flat_no" style = "padding-right:0px">Flat Number: </label>
   							<select class='from-control col-md-4' id="flats" name="flats">
-							  <?php $i=1; foreach($flats as $p){ ?> 
-                            <li><?php echo $p[$i]['flats']; ?></li>
-                            <?php $i++;} ?>
+								<option> Select Flat </option>
+							  <?php for($i=1; $i<=$flats; $i++){?>
+								<option><?php echo $i; ?></option>
+							  <?php } ?>
 							</select>
-						</form></div><br>
+							</div><br>
 							<div class="row form-group">
 							<button class="btn btn-sm btn-block btn-primary col-md-2 ml-1 offset-md-2"> Filter</button>
 							</div>
