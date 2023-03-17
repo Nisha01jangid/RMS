@@ -135,7 +135,7 @@
 			<div class="card-body">
 				<div class="col-md-12">
 				<div class="intro">
-							 <h3><center>Rental Payments Report</center></h3>
+							 <h3><center>User Payments Report</center></h3>
 							</div>
 						
 						<div class="row">
@@ -158,7 +158,7 @@
 										<th style="text-align: center;">Invoice</th>
 										<th style="text-align:center;">Rent</th>
 										<th style="text-align: center;">Amount Paid</th>
-										<th style="text-align: center;"> Outstanding Amount</th>
+										<th style="text-align: center;">Outstanding Amount</th>
 									</tr>
 								</thead>
 								<tbody>
