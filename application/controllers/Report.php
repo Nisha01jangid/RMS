@@ -79,6 +79,36 @@ public function balance_report(){
     	$data['user_name'] = $_POST['user_name'];
     	$this->load->view('User_Wise_Report/user_wise_report',$data);
     }
+	public function outstanding_amount(){
+
+		$data['property'] = $this->ReportM->getAllHouses();
+		$this->load->view('Report_Monthwise/outstanding_amount_report', $data);
+	}
+
+	public function outstanding_report_view($property_id){
+
+		$data['property_id'] = $property_id;
+		
+		$data['tenant_entry_form_details'] = $this->ReportM->get_tenant_entry_form_details($data['property_id']);
+	
+		// for($i = 0; $i < sizeof($data['tenant_entry_form_details']); $i++){
+
+		// 	$month = $data['tenant_entry_form_details'][$i]['month'];
+		// 	$data1 = explode('-', $month);
+	    //     $month_only = $data1[1];
+
+		// 	$data['paid_amount'] = $this->ReportM->get_tenant_amount($data['property_id'], $month_only);
+
+		// 	$data['tenant_entry_form_details'][$i]['amount_paid'] = $data['paid_amount'][0]['amount'];
+
+		// }
+		// echo "<pre>";
+		// print_r($tenant_entry);
+		// die();
+
+		$this->load->view('Report_Monthwise/outstanding_amount_report_view', $data);
+	}
+
 
 }
 
