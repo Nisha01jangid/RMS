@@ -89,42 +89,11 @@
     </ul>
     <hr>
   </div>
+
   <div class="homediv">
     
   <?php
-    if($msg = $this->session->flashdata('property_inserted')) {?>
-    <div class="alert alert-success" style="font-style: italic; text-align:center;">
-    <strong><?php echo $msg; ?></strong>
-    </div>
-    <br>
-  <?php } ?>
-
-  <?php
-    if($msg = $this->session->flashdata('tenant_inserted')) {?>
-    <div class="alert alert-success" style="font-style: italic; text-align:center;">
-    <strong><?php echo $msg; ?></strong>
-    </div>
-    <br>
-  <?php } ?>
-
-  <?php
-    if($msg = $this->session->flashdata('Property_deleted')) {?>
-    <div class="alert alert-success" style="font-style: italic; text-align:center;">
-    <strong><?php echo $msg; ?></strong>
-    </div>
-    <br>
-  <?php } ?>
-
-  <?php
-    if($msg = $this->session->flashdata('tenant_deleted')) {?>
-    <div class="alert alert-success" style="font-style: italic; text-align:center;">
-    <strong><?php echo $msg; ?></strong>
-    </div>
-    <br>
-  <?php } ?>
-
-  <?php
-    if($msg = $this->session->flashdata('Payment_inserted')) {?>
+    if($msg = $this->session->flashdata('Expenditure_inserted')) {?>
     <div class="alert alert-success" style="font-style: italic; text-align:center;">
     <strong><?php echo $msg; ?></strong>
     </div>
@@ -136,40 +105,43 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <div style="font-style:italic; font-size: 20px;"><b>Welcome back !</b> &emsp;
-                    <span><a class="btn btn-primary btn-block btn-sm col-sm-2 float-right" href="<?php echo base_url('Home/add_property'); ?>">
-                    <i class="fa fa-plus"></i> New Property
-                  </a></span>
+                <form action="<?php echo base_url('Report/insert_receiver_expenditure');?>" method="post">
+                    <div style="font-style:italic; font-size: 23px; color:red;"><b>Receiver Expenditure</b> 
                     </div>
                     <hr>
-                    <div class="row">
-                        <?php foreach($property as $p){ ?>
-                          <div class="col-md-4 mb-3">
-                            <div class="card border-warning">
-                                <div class="card-body bg-warning">
-                                    <div class="card-body text-white">
-                                        <span class="float-right summary_icon"> <i class="fa fa-home" style="color:black;"></i></span>
-                                        <h4 style="color:black;"><b><?php echo $p['property_name']." { ".$p['flats']." Flats }"; ?></b></h4>
-                                        <p style="color:black;"><b><?php echo $p['property_address']; ?></b></p>
-                                    </div>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <a href="<?php echo base_url('Home/flats/').$p['property_id'];?>" class="text-primary float-right" style="text-decoration : none; font-weight:bold;">View List &nbsp; <span class="fa fa-angle-right"></span></a>
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <a href="<?php echo base_url('Home/delete_property/').$p['property_id'];?>" class="text-primary float-right" style="text-decoration : none; font-weight:bold; "><span style="color:red;">Delete Property&nbsp;</span><span class="fa fa-trash" style="color:red;"> </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <?php } ?>
-                    </div>
-
-                    
+                    <div class="form-group col">
+                    <label for="exampleInputEmail1">Expenditure date:</label>
+                    <input type="date" class="form-control"  name="date"  placeholder="Enter start date...">
+                     </div>
+ 
+                <br>
+                <div class="form-group col">
+                 <label for="exampleInputEmail1">Payment User:</label>
+                 <select class="form-control" name="pay_user">
+                 <option value="">Select user</option>
+                <option value="1">Dr. Indra Kumar Shah</option>
+                <option value="2">Sir's Father</option>
+                <option value="3">Nisha</option>
+                </select>
                 </div>
+                <br>
+                <div class="form-group col">
+                 <label for="exampleInputEmail1">Expenditure Head:</label>
+                 <select class="form-control" name="head">
+                 <option value="">Select Payment Head</option>
+                <option value="1">Waste</option>
+                <option value="2">Maintenance</option>
+                <option value="3">Other</option>
+                </select>
+                </div>
+                <br>
+                <div class="form-group col">
+                 <label for="exampleInputEmail1">Amount:</label>
+                 <input type="number" class="form-control" name="amount"  placeholder="Enter expenditure...">
+                </div>
+                <br>
+                <button type="submit" class="btn btn-primary" value="Submit">Submit</button>
+</form>
             </div>      			
         </div>
     </div>

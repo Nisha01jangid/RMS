@@ -378,7 +378,7 @@ public function insert_payment(){
 		$receiver = "Dr. Indra Kumar Shah";
 	} else if($receiver == 2){
 
-		$receiver = "Sir's Father";
+		$receiver = "Sirs Father";
 	}else{
 		$receiver = "Nisha";
 	}
@@ -409,7 +409,7 @@ public function insert_payment(){
 		$receiver = "Dr. Indra Kumar Shah";
 	} else if($receiver == 2){
 
-		$receiver == "Sir's Father";
+		$receiver = "Sirs Father";
 	}else{
 		$receiver = "Nisha";
 	}
