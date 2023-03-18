@@ -73,79 +73,51 @@
         <li>
           <a href="<?php echo base_url('Report/select_property_for_report_monthwise') ?>" class="nav-link text-white">Report Month-Wise</a>  
         </li>
-        <li>
-          <a href="<?php echo base_url('Report/User_Wise_Report') ?>" class="nav-link text-white">User-Wise Report</a>  
-        </li>
-        
       <li>
         <a href="<?php echo base_url('Invoice') ?>" class="nav-link text-white">Invoice</a>
       </li>
       <li>
         <a href="<?php echo base_url('Report/outstanding_amount') ?>" class="nav-link text-white">Oustanding Report</a>
       </li>
-      <li>
-        <a href="<?php echo base_url('Report/receiver_expenditure') ?>" class="nav-link text-white"> Receiver Expenditure</a>
-      </li>
     </ul>
     <hr>
   </div>
-
   <div class="homediv">
-
-  <?php
-    if($msg = $this->session->flashdata('Expenditure_inserted')) {?>
-    <div class="alert alert-success" style="font-style: italic; text-align:center;">
-    <strong><?php echo $msg; ?></strong>
-    </div>
-    <br>
-  <?php } ?>
-
   <div class="containe-fluid">
 	<div class="row mt-3 ml-3 mr-3">
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                <form action="<?php echo base_url('Report/insert_receiver_expenditure');?>" method="post">
-                    <div style="font-style:italic; font-size: 23px; color:red;"><b>Receiver Expenditure</b>
-                    </b> &emsp;
-                    <span><a class="btn btn-primary btn-block btn-sm col-sm-2 float-right" href="<?php echo base_url('Report/view_expenditure'); ?>" style="font-weight:bold;">
-                    <i class="fa fa-plus"></i> View Expenditure
-                  </a></span> 
+                    <div style="font-style:italic; font-size: 23px; color:red;"><b>List of Expenditures</b> 
                     </div>
                     <hr>
-                    <div class="form-group col">
-                    <label for="exampleInputEmail1">Expenditure date:</label>
-                    <input type="date" class="form-control"  name="date"  placeholder="Enter start date...">
-                     </div>
- 
-                <br>
-                <div class="form-group col">
-                 <label for="exampleInputEmail1">Payment User:</label>
-                 <select class="form-control" name="pay_user">
-                 <option value="">Select user</option>
-                <option value="1">Dr. Indra Kumar Shah</option>
-                <option value="2">Sir's Father</option>
-                <option value="3">Nisha</option>
-                </select>
+                    <table class="table table-striped table-hover table-bordered" style="width:90%" align="center">
+                        <thead class="thead-dark">
+                            <tr>
+                            <th scope="col" style="text-align:center;">S.No.</th>
+                            <th scope="col" style="text-align:center;">Name</th>
+                            <th scope="col" style="text-align:center;">Date</th>
+                            <th scope="col" style="text-align:center;">Expenditure Head</th>
+                            <th scope="col" style="text-align:center;">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php 
+                            $i=1;
+                            foreach($expenditure as $e){ ?>
+                            <tr>
+                              <td style="text-align:center;"><?php echo $i;?></td>
+                              <td style="text-align:center;"><?php echo $e['receiver'];?></td>
+                              <td style="text-align:center;"><?php echo $e['date'];?></td>
+                              <td style="text-align:center;"><?php echo $e['head'];?></td>
+                              <td style="text-align:center;"><?php echo $e['amount'];?></td>
+                           </tr> 
+                           <?php $i++; }  ?>
+                            
+                        </tbody>
+                        </table>
+                    
                 </div>
-                <br>
-                <div class="form-group col">
-                 <label for="exampleInputEmail1">Expenditure Head:</label>
-                 <select class="form-control" name="head">
-                 <option value="">Select Payment Head</option>
-                <option value="1">Waste</option>
-                <option value="2">Maintenance</option>
-                <option value="3">Other</option>
-                </select>
-                </div>
-                <br>
-                <div class="form-group col">
-                 <label for="exampleInputEmail1">Amount:</label>
-                 <input type="number" class="form-control" name="amount"  placeholder="Enter expenditure...">
-                </div>
-                <br>
-                <button type="submit" class="btn btn-primary" value="Submit">Submit</button>
-</form>
             </div>      			
         </div>
     </div>

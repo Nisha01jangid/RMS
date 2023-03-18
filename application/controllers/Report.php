@@ -156,6 +156,15 @@ public function balance_report(){
 
 		}
 
+		public function view_expenditure(){
+
+			$data['expenditure'] = $this->ReportM->get_expenditure();
+			// print_r($data['expenditure']);
+			// die();
+
+		    $this->load->view('Report_Monthwise/view_expenditure', $data);	
+		}
+
 
 }
 

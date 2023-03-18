@@ -67,6 +67,18 @@ class ReportM extends CI_Model {
 
   }
 
+  public function get_expenditure(){
+
+    $query = "SELECT * FROM expenditure ";
+    
+    $result = $this->db->query($query);
+    return $result->result_array();
+    
+  }
+
+
+
+
 }
 
 ?>
