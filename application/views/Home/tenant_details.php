@@ -80,88 +80,82 @@
 <div class="row">
     <div class="form-group col">
     <label>Full Name:</label>
-    <input type="text" class="form-control"  name="name"  placeholder="Enter your name">
+    <input type="text" class="form-control"  name="name"  placeholder="Enter your name" required>
      </div>
      <div class="form-group col">
     <label>Father's Name:</label>
-    <input type="text" class="form-control" name="father_name"  placeholder="Enter your father name">
+    <input type="text" class="form-control" name="father_name"  placeholder="Enter your father name" required>
      </div>
   </div>
   <br>
   <div class="row">
     <div class="form-group col">
     <label>Date of Birth:</label>
-    <input type="date" class="form-control" name="dob"  placeholder="Enter your date of birth">
+    <input type="date" class="form-control" name="dob"  placeholder="Enter your date of birth" required>
     </div>
     <div class="form-group col">
     <label>Gender</label>
-    <select class="form-control" name="gender">
+    <select class="form-control" name="gender" required>
     <option value="" selected disabled>Select Gender</option>
     <option value="male">Male</option>
     <option value="female">Female</option>
     <option value="others">Others</option>
     </select>
      </div>
+     <div class="form-group col">
+    <label>Aadhaar Number:</label>
+    <input type="number" class="form-control" name="Aadhaar"  placeholder="Enter your aadhaar no" required>
+    </div>
+    <div class="form-group col">
+    <label>Contact Number:</label>
+    <input type="number" class="form-control" name="mobile"  placeholder="Enter your contact no" required>
+     </div>
     
   </div>
 
      <br>
 
   <div class="row">
-    <div class="form-group col">
-    <label>Aadhaar Number:</label>
-    <input type="number" class="form-control" name="Aadhaar"  placeholder="Enter your aadhaar number">
-    </div>
-    <div class="form-group col">
-    <label>Contact Number:</label>
-    <input type="number" class="form-control" name="mobile"  placeholder="Enter your contact number">
-     </div>
-  </div>
-  <br>
     
-    <div class="form-group">
+    
+     <div class="form-group col">
     <label>Email address:</label>
-    <input type="email" class="form-control" name="email"  placeholder="Enter email address">
+    <input type="email" class="form-control" name="email"  placeholder="Enter email address" required>
     </div>
-     <br>
-     
-    <div class="row">
-      <div class="form-group col">
-    <label>Joining Date:</label>
-    <input type="date" class="form-control" name="joining_date" placeholder="Enter joining date">
-  </div>
     <div class="form-group col">
+    <label>Joining Date:</label>
+    <input type="date" class="form-control" name="joining_date" placeholder="Enter joining date" required>
+  </div>
+  <div class="form-group col">
 
     <label>Rent of Flat:</label>
-    <input type="number" class="form-control" name="rent" placeholder="Enter rent of flat" required>
+    <input type="number" class="form-control" name="rent" placeholder="Enter rent of flat"  required>
     </div>
-     </div>
+  </div>
   <br>
+
    <div class="row">
     <h4>Address</h4>
     <br>
     
     <div class="form-group col">
     <label>Permanent Address</label>
-    <input type="text" class="form-control" name="address" placeholder="Enter your Permanent Address">
+    <input type="text" class="form-control" name="address" placeholder="Enter your Permanent Address" required>
      </div>
   </div>
   <br>
    <div class="row">
     <div class="form-group col">
     <label>District:</label>
-    <input type="text" class="form-control" name="district" placeholder="Enter the District">
+    <input type="text" class="form-control" name="district" placeholder="Enter the District" required>
      </div>
      <div class="form-group col">
     <label>State:</label>
-    <input type="text" class="form-control" name="state" placeholder="Enter State">
+    <input type="text" class="form-control" name="state" placeholder="Enter State" required>
      </div>
-  </div>
-  <br>
-  <div class="row">
-    <div class="form-group col">
+     <div class="form-group col">
     <label>Polic Station:</label>
-    <input type="text" class="form-control" name="polic_station" placeholder="Enter">
+    <input type="text" class="form-control" name="polic_station" placeholder="Enter" required>
      </div>
   </div>
   <br>
@@ -174,16 +168,16 @@
      </div>
     
     </div> -->
-    <div>
+  <!--    <div>
       
       <h4>Details of Family Members</h4>
     <div class="container my-4">
       <div class="card my-4 shadow">
         <div class="card-body">
-          <!-- <form action="index.php" method="post"> -->
+          
             <div>
               <label>Name :</label>
-              <input type="text" class="form-control" name="member_name"/>
+              <input type="text" class="form-control" name="member_name[]"/>
               <br>
             </div>
             <div>
@@ -218,14 +212,9 @@
             <option value="child">Child</option>
             <option value="others">Others</option>
             </select>
-             </div>
+             </div> 
            
-            <!-- <div class ="form-group col">
-              <label>Relation :</label>
-              <input type="text" class="form-control" name="relation"/>
-              <br>
-            </div> -->
-             </div>
+              </div>
              <div class="row">
             <div class ="form-group col">
               <label>Mobile No :</label>
@@ -240,16 +229,85 @@
             </div>
             <div class="clearfix mt-4">
               <button type="button" id="add-button" class="btn btn-secondary float-left text-uppercase shadow-sm"><i class="fas fa-plus fa-fw"></i> Add</button>
-              <button type="button" id="remove-button" class="btn btn-secondary float-left text-uppercase ml-1" disabled="disabled"><i class="fas fa-minus fa-fw"></i> Remove</button>
-              <!-- <button type="submit" class="btn btn-primary float-right text-uppercase shadow-sm">Submit</button> -->
-            </div>
+              <button type="button" id="remove-button" class="btn btn-secondary float-left text-uppercase ml-1" disabled="disabled"><i class="fas fa-minus fa-fw"></i> Remove</button> 
+               <button type="submit" class="btn btn-primary float-right text-uppercase shadow-sm">Submit</button> 
+             </div>
         
         </div>
       </div>
       
     </div>
-    </div>
-  <br>
+    </div>  -->
+
+    <div>
+        <h4>Details of Family Members</h4>
+        <br>
+        <div class="row">
+    <div class="form-group col">
+    <label>Number of Members</label>
+    <input type="number" class="form-control" name="no_of_members" placeholder="Enter">
+     </div>
+  </div>
+        <div class="container my-4">
+            <div class="card my-4 shadow">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="form-group col">
+                        <label>Name :</label>
+                        <input type="text" class="form-control" name="member_name[]"/>
+                        <br>
+                    </div>
+                     <div class="form-group col">
+                            <label>Age :</label>
+                            <input type="number" class="form-control" name="member_age[]"/>
+                            <br>
+                        </div>
+                        <div class="form-group col">
+                            <label>Gender</label>
+                            <select class="form-control" name="member_gender[]">
+                                <option value="" selected disabled>Select Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="others">Others</option>
+                            </select>
+                        </div>
+                      </div>
+                    <div class="row">
+                    
+                        <div class="form-group col">
+                            <label>Relation</label>
+                            <select class="form-control" name="member_relation[]">
+                                <option value="" selected disabled>Select the Relation</option>
+                                <option value="father">Father</option>
+                                <option value="mother">Mother</option>
+                                <option value="husband">Husband</option>
+                                <option value="wife">Wife</option>
+                                <option value="child">Child</option>
+                                <option value="others">Others</option>
+                            </select>
+                        </div> 
+                        <div class ="form-group col">
+                            <label>Mobile No :</label>
+                            <input type="number" class="form-control" name="member_mobile_no[]"/>
+                            <br>
+                        </div>
+                        <div class ="form-group col">
+                            <label>Aadhar No :</label>
+                            <input type="number" class="form-control" name="member_aadhar[]"/>
+                            <br>
+                          </div>
+                        </div>
+                      
+                        <div class="clearfix mt-4">
+              <button type="button" id="add-button" class="btn btn-secondary float-left text-uppercase shadow-sm"><i class="fas fa-plus fa-fw"></i> Add</button>
+              <button type="button" id="remove-button" class="btn btn-secondary float-left text-uppercase ml-1" disabled="disabled"><i class="fas fa-minus fa-fw"></i> Remove</button> 
+               <!-- <button type="submit" class="btn btn-primary float-right text-uppercase shadow-sm">Submit</button>  -->
+             </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
 
 <div class="row">
       <h4>Vehicle detail:</h4>
@@ -260,7 +318,7 @@
     </div>
     <div class="form-group col">
     <label>Four wheeler:</label>
-    <input type="number" class="form-control" name="four_wheeler" placeholder="Enter Here" required>
+    <input type="number" class="form-control" name="four_wheeler" placeholder="Enter Here">
     </div>
     </div>
     <br>
@@ -270,7 +328,7 @@
       <br>
       <div class="form-group col">
     <label>Occupation of the Tenant</label>
-    <input type="text" class="form-control" name="occupation" placeholder="Enter the Occupation">
+    <input type="text" class="form-control" name="occupation" placeholder="Enter the Occupation" required>
   </div>
     <div class="form-group col">
 
@@ -286,12 +344,17 @@
       <br>
       <div class="form-group col">
     <label>Name</label>
-    <input type="text" class="form-control" name="identifier_name1" placeholder="Enter the Identifier's Name">
+    <input type="text" class="form-control" name="identifier_name1" placeholder="Enter the Identifier's Name" required>
   </div>
     <div class="form-group col">
 
     <label>Mobile No</label>
-    <input type="number" class="form-control" name="identifier_mobile1" placeholder="Enter rent of flat" required>
+    <input type="number" class="form-control" name="identifier_mobile1" placeholder="Enter the mobile no" required>
+    </div>
+    <div class="form-group col">
+
+    <label>Email ID</label>
+    <input type="email" class="form-control" name="identifier_email1" placeholder="Enter Email ID" required>
     </div>
      </div>
      <br>
@@ -299,7 +362,7 @@
      <div class="row">
       <div class="form-group col">
     <label>Address</label>
-    <input type="text" class="form-control" name="identifier_address1" placeholder="Enter the Address">
+    <input type="text" class="form-control" name="identifier_address1" placeholder="Enter the Address" required>
   </div>
      </div>
      <br>
@@ -307,26 +370,18 @@
      <div class="row">
       <div class="form-group col">
     <label>District</label>
-    <input type="text" class="form-control" name="identifier_district1" placeholder="Enter the District">
+    <input type="text" class="form-control" name="identifier_district1" placeholder="Enter the District" required>
   </div>
     <div class="form-group col">
 
     <label>State</label>
     <input type="text" class="form-control" name="identifier_state1" placeholder="Enter the State" required>
     </div>
-     </div>
-<br>
- <div class="form-group col">
-    <label>Police Station</label>
-    <input type="text" class="form-control" name="identifier_policestation1" placeholder="Enter">
-  </div>
-  <br>
-
     <div class="form-group col">
-
-    <label>Email ID</label>
-    <input type="email" class="form-control" name="identifier_email1" placeholder="Enter Email ID" required>
-    </div>
+    <label>Police Station</label>
+    <input type="text" class="form-control" name="identifier_policestation1" placeholder="Enter" required>
+  </div>
+     </div>
      
 <br>
 
@@ -336,41 +391,13 @@
       <br>
       <div class="form-group col">
     <label>Name</label>
-    <input type="text" class="form-control" name="identifier_name2" placeholder="Enter the Identifier's Name">
+    <input type="text" class="form-control" name="identifier_name2" placeholder="Enter the Identifier's Name" required>
   </div>
     <div class="form-group col">
 
     <label>Mobile No</label>
-    <input type="number" class="form-control" name="identifier_mobile2" placeholder="Enter rent of flat" required>
+    <input type="number" class="form-control" name="identifier_mobile2" placeholder="Enter the mobile no" required>
     </div>
-     </div>
-     <br>
-    
-     <div class="row">
-      <div class="form-group col">
-    <label>Address</label>
-    <input type="text" class="form-control" name="identifier_address2" placeholder="Enter the Address">
-  </div>
-     </div>
-     <br>
-    
-     <div class="row">
-      <div class="form-group col">
-    <label>District</label>
-    <input type="text" class="form-control" name="identifier_district2" placeholder="Enter the District">
-  </div>
-    <div class="form-group col">
-
-    <label>State</label>
-    <input type="text" class="form-control" name="identifier_state2" placeholder="Enter the State" required>
-    </div>
-     </div>
-<br>
- <div class="form-group col">
-    <label>Police Station</label>
-    <input type="text" class="form-control" name="identifier_policestation2" placeholder="Enter">
-  </div>
-  <br>
 
     <div class="form-group col">
 
@@ -378,6 +405,32 @@
     <input type="email" class="form-control" name="identifier_email2" placeholder="Enter Email ID" required>
     </div>
      
+     </div>
+     <br>
+    
+     <div class="row">
+      <div class="form-group col">
+    <label>Address</label>
+    <input type="text" class="form-control" name="identifier_address2" placeholder="Enter the Address" required>
+  </div>
+     </div>
+     <br>
+    
+     <div class="row">
+      <div class="form-group col">
+    <label>District</label>
+    <input type="text" class="form-control" name="identifier_district2" placeholder="Enter the District" required>
+  </div>
+    <div class="form-group col">
+
+    <label>State</label>
+    <input type="text" class="form-control" name="identifier_state2" placeholder="Enter the State" required>
+    </div>
+    <div class="form-group col">
+    <label>Police Station</label>
+    <input type="text" class="form-control" name="identifier_policestation2" placeholder="Enter" required>
+  </div>
+     </div>
 <br>
 
 
@@ -391,7 +444,7 @@
   <button type="submit" class="btn btn-primary" value="Submit">Submit</button>
 </form>
 </div>
-</div></div></div></div></div></div>
+</div></div></div></div></div>
 </main>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
@@ -414,59 +467,54 @@ addButton.addEventListener('click', () => {
 
   // Set the card's HTML content
   newCard.innerHTML = `
-    <div class="card-body">
-      <div>
-        <label>Name :</label>
-        <input type="text" class="form-control" name="member_name"/>
-        <br>
-      </div>
-      <div>
-        <label>Father's Name :</label>
-        <input type="text" class="form-control" name="member_father_name"/>
-        <br>
-      </div>
-      <div class="row">
-        <div class ="form-group col">
-          <label>Age :</label>
-          <input type="number" class="form-control" name="member_age"/>
-          <br>
-        </div>
-        <div class="form-group col">
-          <label>Gender</label>
-          <select class="form-control" name="member_gender">
-            <option value="" selected disabled>Select Gender</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="others">Others</option>
-          </select>
-        </div>
-        <br>
-        <div class="form-group col">
-    <label>Relation</label>
-    <select class="form-control" name="member_relation">
-    <option value="" selected disabled>Select the Relation</option>
-    <option value="father">Father</option>
-    <option value="mother">Mother</option>
-    <option value="husband">Husband</option>
-    <option value="wife">Wife</option>
-    <option value="child">Child</option>
-    <option value="others">Others</option>
-    </select>
-     </div>
-      </div>
-      <div class="row">
-        <div class ="form-group col">
-          <label>Mobile No :</label>
-          <input type="number" class="form-control" name="member_mobile_no"/>
-          <br>
-        </div>
-        <div class ="form-group col">
-          <label>Aadhar No :</label>
-          <input type="number" class="form-control" name="member_aadhar"/>
-          <br>
-        </div>
-      </div>
-    </div>
+        <div class="card-body">
+                  <div class="row">
+                    <div class="form-group col">
+                        <label>Name :</label>
+                        <input type="text" class="form-control" name="member_name[]"/>
+                        <br>
+                    </div>
+                     <div class="form-group col">
+                            <label>Age :</label>
+                            <input type="number" class="form-control" name="member_age[]"/>
+                            <br>
+                        </div>
+                        <div class="form-group col">
+                            <label>Gender</label>
+                            <select class="form-control" name="member_gender[]">
+                                <option value="" selected disabled>Select Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="others">Others</option>
+                            </select>
+                        </div>
+                      </div>
+                    <div class="row">
+                    
+                        <div class="form-group col">
+                            <label>Relation</label>
+                            <select class="form-control" name="member_relation[]">
+                                <option value="" selected disabled>Select the Relation</option>
+                                <option value="father">Father</option>
+                                <option value="mother">Mother</option>
+                                <option value="husband">Husband</option>
+                                <option value="wife">Wife</option>
+                                <option value="child">Child</option>
+                                <option value="others">Others</option>
+                            </select>
+                        </div> 
+                        <div class ="form-group col">
+                            <label>Mobile No :</label>
+                            <input type="number" class="form-control" name="member_mobile_no[]"/>
+                            <br>
+                        </div>
+                        <div class ="form-group col">
+                            <label>Aadhar No :</label>
+                            <input type="number" class="form-control" name="member_aadhar[]"/>
+                            <br>
+                          </div>
+                        </div>
+                      </div>
   `;
 
   // Add the new card to the container

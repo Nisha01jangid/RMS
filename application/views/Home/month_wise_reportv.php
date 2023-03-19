@@ -1,6 +1,6 @@
 <?php
 // echo "<pre>";
-// print_r($flat_no);
+// print_r($paid_amount);
 // die();  
 ?>
 <!DOCTYPE html>
@@ -86,7 +86,7 @@
 
                     <br>
                     <div class="intro">
-                        <h2 style="text-align:center;"><?php echo "Flat No. $flat_no"; ?></h2>
+                        <h2 style="text-align:center;"><?php echo "Flat No.".$flat_no; ?></h2>
                         <br>
                     <table class="table table-striped table-hover table-bordered" style="width:90%" align="center">
                         <thead class="thead-dark">

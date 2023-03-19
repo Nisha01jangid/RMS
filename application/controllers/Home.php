@@ -85,12 +85,12 @@ class Home extends CI_Controller {
 		if(!empty($data['flat_entry'])){
 			$month = date('Y-m');
 			$month_name = date("F", strtotime($month))." ".date("Y", strtotime($month)); 
-			$reading = $this->HomeM->getElectricityReading($property_id,$flat_no,$month);
-			if(!empty($reading)){
-				$data['reading'] = $reading[0]['reading'];
-			}else{
-				$data['reading'] = "";
-			}
+			// $reading = $this->HomeM->getElectricityReading($property_id,$flat_no,$month);
+			// if(!empty($reading)){
+			// 	$data['reading'] = $reading[0]['reading'];
+			// }else{
+			// 	$data['reading'] = "";
+			// }
 			$data['month_name'] = $month_name;
 			$data['month'] = $month;
 			$this->load->view('Home/tenant_details_view', $data);
@@ -99,39 +99,151 @@ class Home extends CI_Controller {
          }
 	}
 
-	public function insert_tenant_details(){
+public function insert_tenant_details(){
 
-		$name = $_POST['name'];
-		$father_name = $_POST['father_name'];
-		$dob = $_POST['dob'];
-		$email = $_POST['email'];
-		$rent = $_POST['rent'];
-		$mobile = $_POST['mobile'];
-		$Aadhaar = $_POST['Aadhaar'];
-		$joining_date = $_POST['joining_date'];
-		$members = $_POST['members'];
-		$flat_no = $_POST['flat_no'];
-		$property_id = $_POST['property_id'];
+	// $data = $_POST;
+	// echo "<pre>";
+	// print_r($data);
+	// die();
 
-		$this->HomeM->insert_tenant_details($name, $father_name, $dob, $email, $rent, $mobile, $Aadhaar, $joining_date, $members, $property_id, $flat_no);
+	$name = $_POST['name'];
+	$father_name = $_POST['father_name'];
+	$dob = $_POST['dob'];
+	$gender = $_POST['gender'];
+	$email = $_POST['email'];
+	$rent = $_POST['rent'];
+	$mobile = $_POST['mobile'];
+	$Aadhaar = $_POST['Aadhaar'];
+	$joining_date = $_POST['joining_date'];
+	$address = $_POST['address'];
+	$district = $_POST['district'];
+	$state = $_POST['state'];
+	$polic_station = $_POST['polic_station'];
+	$no_of_members =$_POST['no_of_members'];
+	$two_wheeler = $_POST['two_wheeler'];
+	$four_wheeler = $_POST['four_wheeler'];
+	$occupation = $_POST['occupation'];
+	$occupation_address = $_POST['occupation_address'];
+	$identifier_name1 = $_POST['identifier_name1'];
+	$identifier_mobile1 = $_POST['identifier_mobile1'];
+	$identifier_address1 = $_POST['identifier_address1'];
+	$identifier_district1 = $_POST['identifier_district1'];
+	$identifier_state1 = $_POST['identifier_state1'];
+	$identifier_policestation1 = $_POST['identifier_policestation1'];
+	$identifier_email1 = $_POST['identifier_email1'];
 
-		$this->session->set_flashdata('tenant_inserted', 'Tenant Inserted Successfully :)');
-		redirect("Home/index");
+	$identifier_name2 = $_POST['identifier_name2'];
+	$identifier_mobile2 = $_POST['identifier_mobile2'];
+	$identifier_address2 = $_POST['identifier_address2'];
+	$identifier_district2 = $_POST['identifier_district2'];
+	$identifier_state2 = $_POST['identifier_state2'];
+	$identifier_policestation2 = $_POST['identifier_policestation2'];
+	$identifier_email2 = $_POST['identifier_email2'];
 
+	$flat_no = $_POST['flat_no'];
+	$property_id = $_POST['property_id'];
+
+    // $member_names = $_POST['member_name'];
+    // $member_father_names = $_POST['member_father_name'];
+    // $member_ages = $_POST['member_age'];
+    // $member_genders = $_POST['member_gender'];
+    // $member_relations = $_POST['member_relation'];
+    // $member_mobile_nos = $_POST['member_mobile_no'];
+    // $member_aadhars = $_POST['member_aadhar'];
+
+    for($i=0; $i<count($member_names); $i++){
+        $member_details[] = array(
+            'name' => $member_names[$i],
+            'age' => $member_ages[$i],
+            'gender' => $member_genders[$i],
+            'relation' => $member_relations[$i],
+            'mobile_no' => $member_mobile_nos[$i],
+            'aadhar' => $member_aadhars[$i]
+        );
 	}
+
+	$tenant_id = $this->HomeM->insert_tenant_details($name, $father_name, $dob, $gender, $email, $rent, $mobile, $Aadhaar, $joining_date, $address, $district, $state, $polic_station, $no_of_members, $two_wheeler, $four_wheeler, $occupation, $occupation_address, $identifier_name1, $identifier_mobile1, $identifier_address1, $identifier_district1, $identifier_state1, $identifier_policestation1, $identifier_email1, $identifier_name2, $identifier_mobile2,$identifier_address2, $identifier_district2, $identifier_state2, $identifier_policestation2, $identifier_email2,$property_id, $flat_no);
+
+
+	foreach($member_details as $m){
+		$this->HomeM->insert_tenant_relatives($tenant_id, $m['name'], $m['age'], $m['gender'], $m['relation'], $m['mobile_no'], $m['aadhar']);
+	}
+
+
+	$this->session->set_flashdata('tenant_inserted', 'Tenant Inserted Successfully :)');
+	redirect("Home/index");
+
+}
+
+		
+    // echo "<br>";
+    // print_r($member_father_names);
+    // echo "<br>";
+    // print_r($member_ages);
+    // echo "<br>";
+    // print_r($member_genders);
+    // echo "<br>";
+    // print_r($member_relations);
+    // echo "<br>";
+    // print_r($member_mobile_nos);
+    // echo "<br>";
+    // print_r($member_aadhars);
+    // echo "<br>";
+    
+    // print_r($mobile);
+    // echo "<br>";
+    // print_r($Aadhaar);
+    // echo "<br>";
+    // print_r($joining_date);
+    // echo "<br>";
+    // print_r($address);
+    // echo "<br>";
+    // print_r($district);
+    // echo "<br>";
+    // print_r($state);
+    // echo "<br>";
+    // print_r($polic_station);
+    // echo "<br>";
+    // print_r($two_wheeler);
+    // echo "<br>";
+    // print_r($four_wheeler);
+    // echo "<br>";
+    // print_r($occupation);
+    // echo "<br>";
+    // die();
+
+
+		// $this->HomeM->insert_tenant_details($name, $father_name, $dob, $email, $rent, $mobile, $Aadhaar, $joining_date, $members, $property_id, $flat_no);
+
 
 	public function month_wise_report($flat_no,$property_id)
 	{
 		$data['flat_no'] = $flat_no;
 		$data['property_id'] = $property_id;
+		
+		$data['tenant_entry_form_details'] = $this->HomeM->get_tenant_entry_form_details($data['flat_no'],$data['property_id']);
+
+
+		// $month = $data['tenant_entry_form_details'][0]['month'];
+		// $data = explode('-', $month);
+	    // $month_only = $data[1];
+
+	    // echo "<pre>";
+		// print_r($month_only);
+		// die();
 
 		$data['tenant_entry_form_details'] = $this->HomeM->get_tenant_entry_form_details($data['flat_no'],$data['property_id']);
 
 		$month = $data['tenant_entry_form_details'][0]['month'];
 		
+
 	
 		for($i = 0; $i < sizeof($data['tenant_entry_form_details']); $i++){
 
+		$data['paid_amount'] = $this->HomeM->get_tenant_amount($flat_no, $property_id, 03);
+		// echo "<pre>";
+		// print_r($data['paid_amount']);
+		// die();
 			$month = $data['tenant_entry_form_details'][$i]['month'];
 			$data1 = explode('-', $month);
 	        $month_only = $data1[1];
@@ -164,12 +276,12 @@ class Home extends CI_Controller {
 
 		if(!empty($data['flat_entry'])){
 			$month_name = date("F", strtotime($month))." ".date("Y", strtotime($month)); 
-			$reading = $this->HomeM->getElectricityReading($property_id,$flat_no,$month);
-			if(!empty($reading)){
-				$data['reading'] = $reading[0]['reading'];
-			}else{
-				$data['reading'] = "";
-			}
+			// $reading = $this->HomeM->getElectricityReading($property_id,$flat_no,$month);
+			// if(!empty($reading)){
+			// 	$data['reading'] = $reading[0]['reading'];
+			// }else{
+			// 	$data['reading'] = "";
+			// }
 			$data['month_name'] = $month_name;
 			$data['month'] = $month;
 			$this->load->view('Home/tenant_details_view', $data);
@@ -186,12 +298,12 @@ class Home extends CI_Controller {
 		$data['flat_entry'] = $this->HomeM->check_flat_entry($flat_no, $property_id);
 
 		$month_name = date("F", strtotime($month))." ".date("Y", strtotime($month)); 
-		$reading = $this->HomeM->getElectricityReading($property_id,$flat_no,$month);
-		if(!empty($reading)){
-			$data['reading'] = $reading[0]['reading'];
-		}else{
-			$data['reading'] = "";
-		}
+		// $reading = $this->HomeM->getElectricityReading($property_id,$flat_no,$month);
+		// if(!empty($reading)){
+		// 	$data['reading'] = $reading[0]['reading'];
+		// }else{
+		// 	$data['reading'] = "";
+		// }
 		$data['month_name'] = $month_name;
 		$data['month'] = $month;
 			
@@ -203,12 +315,12 @@ class Home extends CI_Controller {
 		$flat_no = $_POST['flat_no'];
 		$month = $_POST['month'];
 		$reading = $_POST['reading'];
-		$check = $this->HomeM->getElectricityReading($property_id, $flat_no, $month);
-		if(empty($check)){
-			$this->HomeM->insertElectricityReading($property_id, $flat_no, $month,$reading);
-		}else{
-			$this->HomeM->updateElectricityReading($property_id, $flat_no, $month,$reading);
-		}
+		// $check = $this->HomeM->getElectricityReading($property_id, $flat_no, $month);
+		// if(empty($check)){
+		// 	$this->HomeM->insertElectricityReading($property_id, $flat_no, $month,$reading);
+		// }else{
+		// 	$this->HomeM->updateElectricityReading($property_id, $flat_no, $month,$reading);
+		// }
 		
 		redirect(base_url("Home/getFlatElectricityReading?property_id=").$property_id."&flat_no=".$flat_no."&month=".$month);
 	}
@@ -260,7 +372,7 @@ public function insert_payment(){
 		$receiver = "Dr. Indra Kumar Shah";
 	} else if($receiver == 2){
 
-		$receiver = "Sir's Father";
+		$receiver = "Sirs Father";
 	}else{
 		$receiver = "Nisha";
 	}
@@ -291,7 +403,7 @@ public function insert_payment(){
 		$receiver = "Dr. Indra Kumar Shah";
 	} else if($receiver == 2){
 
-		$receiver == "Sir's Father";
+		$receiver = "Sirs Father";
 	}else{
 		$receiver = "Nisha";
 	}

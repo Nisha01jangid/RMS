@@ -81,6 +81,16 @@ public function balance_report(){
     	$this->load->view('Report_Monthwise/Report_flatwise',$data);
     }
 
+    public function User_Wise_Report()
+    {
+    	$this->load->view('User_Wise_Report/select_user');
+    }
+
+     public function User_Wise_Report_detail()
+    {
+    	$data['user_name'] = $_POST['user_name'];
+    	$this->load->view('User_Wise_Report/user_wise_report',$data);
+    }
 	public function outstanding_amount(){
 
 		$data['property'] = $this->ReportM->getAllHouses();
@@ -110,6 +120,52 @@ public function balance_report(){
 
 		$this->load->view('Report_Monthwise/outstanding_amount_report_view', $data);
 	}
+
+	public function receiver_expenditure(){
+
+		$this->load->view('Report_Monthwise/receiver_expenditure');
+	}
+
+	public function insert_receiver_expenditure(){
+		
+		$date = $_POST['date'];
+		$receiver = $_POST['pay_user'];
+		$head = $_POST['head'];
+		$amount = $_POST['amount'];
+
+	    if($receiver == 1){
+		$receiver = "Dr. Indra Kumar Shah";
+	    } else if($receiver == 2){
+
+		$receiver = "Sirs Father";
+	    }else{
+		$receiver = "Nisha";
+	    }
+
+	    if($head == 1){
+		$head = "Waste";
+	    } else if($head == 2){
+
+		$head = "Maintenance";
+	    }else{
+		$head = "Other";
+	    }
+
+		$this->ReportM->insert_receiver_expenditure($date, $receiver, $head, $amount);
+		$this->session->set_flashdata('Expenditure_inserted', 'Expenditure Inserted Successfully :)');
+	    redirect("Report/receiver_expenditure");
+
+		}
+
+		public function view_expenditure(){
+
+			$data['expenditure'] = $this->ReportM->get_expenditure();
+			// print_r($data['expenditure']);
+			// die();
+
+		    $this->load->view('Report_Monthwise/view_expenditure', $data);	
+		}
+
 
 }
 

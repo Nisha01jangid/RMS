@@ -63,6 +63,27 @@ class ReportM extends CI_Model {
     
   }
 
+  public function insert_receiver_expenditure($date, $receiver, $head, $amount){
+
+    $query = "INSERT INTO `expenditure` (`date`, `receiver`, `head`, `amount`) VALUES ('$date', '$receiver', '$head', '$amount')";
+
+    $result = $this->db->query($query);
+    return ;
+
+  }
+
+  public function get_expenditure(){
+
+    $query = "SELECT * FROM expenditure ";
+    
+    $result = $this->db->query($query);
+    return $result->result_array();
+    
+  }
+
+
+
+
 }
 
 ?>
