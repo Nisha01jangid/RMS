@@ -128,6 +128,7 @@
 							<div class="row form-group">
 							<button class="btn btn-sm btn-block btn-primary col-md-2 ml-1 offset-md-2"> Filter</button>
 							</div>
+						<input type="hidden" name="property_id" value="<?php echo $property_id; ?>" >
 					</form>
 </div>
 </div>

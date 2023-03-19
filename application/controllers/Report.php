@@ -72,13 +72,13 @@ public function balance_report(){
 
 	public function Report_flatwise()
     {
-		$data['property_id'] = $property_id;
 		$data['flats'] =$_POST['flats'];
     	$flats = $data['flats'];
 		$data['from_date'] = $_POST['from_date'];
 		$data['to_date'] = $_POST['to_date'];
+		$data['property_id'] =$_POST['property_id'];
     	$data['report_flatwise_details'] = $this->ReportM->get_flatwise_payments($data['to_date'],$data['from_date'],$data['property_id'],$flats);
-    	$this->load->view('Report_Monthwise/Report_monthwise',$data);
+    	$this->load->view('Report_Monthwise/Report_flatwise',$data);
     }
 
 	public function outstanding_amount(){
