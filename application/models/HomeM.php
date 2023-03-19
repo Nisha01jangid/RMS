@@ -58,29 +58,31 @@ class HomeM extends CI_Model {
   // }
    public function insert_tenant_details($name, $father_name, $dob, $gender, $email, $rent, $mobile, $Aadhaar, $joining_date, $address, $district, $state, $polic_station, $no_of_members, $two_wheeler, $four_wheeler, $occupation, $occupation_address, $identifier_name1, $identifier_mobile1, $identifier_address1, $identifier_district1, $identifier_state1, $identifier_policestation1, $identifier_email1, $identifier_name2, $identifier_mobile2,$identifier_address2, $identifier_district2, $identifier_state2, $identifier_policestation2, $identifier_email2,$property_id, $flat_no){
 
-    $query = "INSERT INTO `tenants` (`tenant_name`, `father_name`, `dob`, `gender`, `email`, `aadhaar_no`, `contact`, `joining_date`, `address`, `district`, `state`, `polic_station`, `two_wheeler`, `four_wheeler`, `tenant_occupation`, `tenant_occupation_address`, `granter1_name`, `granter1_contact`, `granter1_address`, `granter1_district`, `granter1_state`, `granter1_police_station`, `granter1_email`, `granter2_name`, `granter2_contact`,`granter2_address`, `granter2_district`, `granter2_state`, `granter2_police_station`, `granter2_email`,`property_id`, `flat_no`,`status`) VALUES ('$name', '$father_name', '$dob', '$gender', '$email', '$Aadhaar', '$mobile', '$joining_date', '$address', '$district', '$state', '$polic_station', '$two_wheeler', '$four_wheeler', '$occupation', '$occupation_address', '$identifier_name1', '$identifier_mobile1', '$identifier_address1', '$identifier_district1', '$identifier_state1', '$identifier_policestation1', '$identifier_email1', '$identifier_name2', '$identifier_mobile2','$identifier_address2', '$identifier_district2', '$identifier_state2', '$identifier_policestation2', '$identifier_email2','$property_id', '$flat_no', 1)";
+    $query = "INSERT INTO `tenants` (`tenant_name`, `father_name`, `dob`, `gender`, `email`, `aadhaar_no`, `contact`, `joining_date`, `address`, `district`, `state`, `polic_station`, `rent`, `members`, `two_wheeler`, `four_wheeler`, `tenant_occupation`, `tenant_occupation_address`, `granter1_name`, `granter1_contact`, `granter1_address`, `granter1_district`, `granter1_state`, `granter1_police_station`, `granter1_email`, `granter2_name`, `granter2_contact`,`granter2_address`, `granter2_district`, `granter2_state`, `granter2_police_station`, `granter2_email`,`property_id`, `flat_no`,`status`) VALUES ('$name', '$father_name', '$dob', '$gender', '$email', '$Aadhaar', '$mobile', '$joining_date', '$address', '$district', '$state', '$polic_station', '$rent', '$no_of_members', '$two_wheeler', '$four_wheeler', '$occupation', '$occupation_address', '$identifier_name1', '$identifier_mobile1', '$identifier_address1', '$identifier_district1', '$identifier_state1', '$identifier_policestation1', '$identifier_email1', '$identifier_name2', '$identifier_mobile2','$identifier_address2', '$identifier_district2', '$identifier_state2', '$identifier_policestation2', '$identifier_email2','$property_id', '$flat_no', 1)";
 
     $result = $this->db->query($query);
-    return ;
+    $insert_id = $this->db->insert_id();
+
+    return  $insert_id;
 
   }
 
-  public function insertElectricityReading($property_id, $flat_no, $month, $reading){
-    $query = "INSERT INTO `flats_electricity_reading` (`property_id`, `flat_no`, `month`, `reading`) VALUES ('$property_id', '$flat_no', '$month', '$reading')";
+  // public function insertElectricityReading($property_id, $flat_no, $month, $reading){
+  //   $query = "INSERT INTO `flats_electricity_reading` (`property_id`, `flat_no`, `month`, `reading`) VALUES ('$property_id', '$flat_no', '$month', '$reading')";
 
-    $result = $this->db->query($query);
-    return ;
+  //   $result = $this->db->query($query);
+  //   return ;
 
-  }
+  // }
 
-  public function updateElectricityReading($property_id, $flat_no, $month, $reading){
+  // public function updateElectricityReading($property_id, $flat_no, $month, $reading){
 
-    $query = "UPDATE `flats_electricity_reading` SET `reading` = $reading WHERE property_id = $property_id and flat_no = $flat_no and `month`='$month' ";
+  //   $query = "UPDATE `flats_electricity_reading` SET `reading` = $reading WHERE property_id = $property_id and flat_no = $flat_no and `month`='$month' ";
 
-    $result = $this->db->query($query);
-    return ;
+  //   $result = $this->db->query($query);
+  //   return ;
 
-  }
+  // }
 
   public function check_flat_occupied($property_id, $flat_no){
 
@@ -90,13 +92,13 @@ class HomeM extends CI_Model {
     return $result->result_array();
   }
 
-  public function getElectricityReading($property_id, $flat_no, $month){
+  // public function getElectricityReading($property_id, $flat_no, $month){
 
-    $query = "SELECT reading FROM flats_electricity_reading where property_id = $property_id and flat_no = $flat_no and `month`='$month'";
+  //   $query = "SELECT reading FROM flats_electricity_reading where property_id = $property_id and flat_no = $flat_no and `month`='$month'";
 
-    $result = $this->db->query($query);
-    return $result->result_array();
-  }
+  //   $result = $this->db->query($query);
+  //   return $result->result_array();
+  // }
 
   public function delete_property($property_id){
 
@@ -165,4 +167,12 @@ class HomeM extends CI_Model {
     return $result->result_array();
   }
 
+  public function insert_tenant_relatives($tenant_id, $name, $age, $gender, $relation, $mobile_no, $aadhar){
+
+    $query = "INSERT INTO `tenant_relatives` (`tenant_id`, `name`, `age`, `gender`, `relation`, `mobile_no`, `aadhar`, `active`) VALUES ('$tenant_id', '$name', '$age', '$gender', '$relation', '$mobile_no', '$aadhar', 1)";
+
+    $result = $this->db->query($query);
+    return ;
+
+  }
 }
