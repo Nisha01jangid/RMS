@@ -65,22 +65,22 @@ class HomeM extends CI_Model {
 
   }
 
-  public function insertElectricityReading($property_id, $flat_no, $month, $reading){
-    $query = "INSERT INTO `flats_electricity_reading` (`property_id`, `flat_no`, `month`, `reading`) VALUES ('$property_id', '$flat_no', '$month', '$reading')";
+  // public function insertElectricityReading($property_id, $flat_no, $month, $reading){
+  //   $query = "INSERT INTO `flats_electricity_reading` (`property_id`, `flat_no`, `month`, `reading`) VALUES ('$property_id', '$flat_no', '$month', '$reading')";
 
-    $result = $this->db->query($query);
-    return ;
+  //   $result = $this->db->query($query);
+  //   return ;
 
-  }
+  // }
 
-  public function updateElectricityReading($property_id, $flat_no, $month, $reading){
+  // public function updateElectricityReading($property_id, $flat_no, $month, $reading){
 
-    $query = "UPDATE `flats_electricity_reading` SET `reading` = $reading WHERE property_id = $property_id and flat_no = $flat_no and `month`='$month' ";
+  //   $query = "UPDATE `flats_electricity_reading` SET `reading` = $reading WHERE property_id = $property_id and flat_no = $flat_no and `month`='$month' ";
 
-    $result = $this->db->query($query);
-    return ;
+  //   $result = $this->db->query($query);
+  //   return ;
 
-  }
+  // }
 
   public function check_flat_occupied($property_id, $flat_no){
 
@@ -90,13 +90,13 @@ class HomeM extends CI_Model {
     return $result->result_array();
   }
 
-  public function getElectricityReading($property_id, $flat_no, $month){
+  // public function getElectricityReading($property_id, $flat_no, $month){
 
-    $query = "SELECT reading FROM flats_electricity_reading where property_id = $property_id and flat_no = $flat_no and `month`='$month'";
+  //   $query = "SELECT reading FROM flats_electricity_reading where property_id = $property_id and flat_no = $flat_no and `month`='$month'";
 
-    $result = $this->db->query($query);
-    return $result->result_array();
-  }
+  //   $result = $this->db->query($query);
+  //   return $result->result_array();
+  // }
 
   public function delete_property($property_id){
 
