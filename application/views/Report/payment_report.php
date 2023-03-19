@@ -1,9 +1,3 @@
-<?php 
-	// echo "<pre>";
-	// print_r($payments);
-	// die();
-
-?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,187 +14,73 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" rel="stylesheet">
 
 
-    <style>
-
-		.on-print{
-		display: none;
-		}
-
-		.box{
-		  padding: 20px 10px;
-		  max-width: 100%;
-		  margin: 0 auto;
-		}
-
-		.intro{
-			font-family: Comic Sans MS;
-		}
-
-		/*.main {
-		  background-color: lightgrey;
-		  width: 100%;
-		  border: 6px solid #FFFDD0;
-		  padding: 50px;
-		  margin: 20px;
-		}*/
-  
-		table {
-		  font-family: Arial, sans-serif;
-		  border-collapse: collapse;
-		  width: 100%;
-		}
-
-		th {
-		  background-color: #0077b6;
-		  color: black;
-		  font-size: 16px;
-		  font-weight: bold;
-		  text-align: center;
-		  padding: 10px;
-		  border: 1px solid #ddd;
-		}
-
-		td {
-		  text-align: center;
-		  padding: 10px;
-		  border: 1px solid #ddd;
-		}
-
-		tr:nth-child(even) {
-		  background-color: #f6f4eb;
-		}
-
-		tr:hover {
-		  background-color: #ddd;
-		}
-
-		tbody td:first-child {
-		  text-align: left;
-		}
-
-		tbody td:last-child {
-		  font-weight: bold;
-		  color: #0077b6;
-		}
-
-		body {
-            background-color: #fcfbf8;
-            color: black;
-        }
-        
-  
-		/*/*/
-		/*table{
-			width: 100%;
-			border-collapse: collapse
-		}*/
-		/*tr,td,th{
-			border:1px solid black;
-		}
-*/
-		/* main{
-            display:flex;
-            width:100%;
-            height:100%;
-        }*/
-     /* .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }*/
-    
-    /*.homediv{
-        width:75%;
-        height:100%;
-        margin:3%;    
-    }*/
-	</style>
-
+   
 </head>
 
 <body>
 	<div class="box">
-	<!-- <div class="container-fluid"> -->
-		<div class="main">
+	<div class="container-fluid">
+	<div class="main">
 	<div class="col-lg-12">
-		<!-- <div class="card"> -->
+		<div class="card">
 			<div class="card-body">
 				<div class="col-md-12">
 				<div class="intro">
-							 <h3><center>User Payments Report</center></h3>
+							 <h3><center>Receiver Payments Report</center></h3>
 							</div>
 						
-						<div class="row">
-							<div class="col-md-12 mb-2">
-							<button class="btn btn-sm btn-block btn-success col-md-2 ml-1 float-right" type="button" id="print"><i class="fa fa-print"></i> Print</button>
+						
+						<br>
+						<div class="intro">
+							 <h4 style="font-style:italic;"><center>Receiver Name: <span style="font-weight:normal; font-style:italic;"><?php echo $payments[0]['payment_receiver'];?></span></center></h4>
 							</div>
-						</div> 
+						
+						
 						<br>
 					 <!-- <div id="report">  -->
 						 <!-- <div class="on-print">  -->
 						<div class="row">
-							<table class="table table-bordered">
+							<table class="table table-striped table-hover table-bordered">
 								<thead>
+									<!-- <tr>
+										<th style="text-align: center;" colspan="3">Receiver Name</th>
+										<td style="text-align: center;"><?php //echo $payments[0]['payment_receiver'];?></td>
+                                    </tr> -->
 									<tr>
-										<th style="text-align: center;">S.No</th>
-										<th style="text-align: center;">Date</th>
-										<th style="text-align: center;">Tenant</th>
-										<th style="text-align: center;">Property </th>
-										<th style="text-align: center;">Flat No </th>
-										<th style="text-align: center;">Invoice</th>
-										<th style="text-align:center;">Rent</th>
-										<th style="text-align: center;">Amount Paid</th>
-										<th style="text-align: center;">Outstanding Amount</th>
+										<th style="text-align: center;">S.No.</th>
+										<th style="text-align: center;">Payment Date</th>
+										<th style="text-align: center;">Reference Id / Payment Mode</th>
+										<th style="text-align: center;">Amount </th>
 									</tr>
 								</thead>
 								<tbody>
 									<?php 
-									
-									$tamount = 0;
-
-									if(!empty($payments)){
-
-										// while($row=$payments){
-											// $tamount += $row['amount'];
-
-										 $i = 1; foreach ($payments as $row) { ?>
-
-										 <?php $tamount += $row['rent']; ?>
+										 $i = 1;
+										  foreach ($payments as $row) { ?>
 										<tr>
-										<td style="text-align: center;"><?php echo $i++ ?></td>
-										<td><?php echo date('M d,Y',strtotime($row['timestamp'])) ?></td>
-										<td><?php echo ucwords($row['tenant_name']) ?></td>
-										<td><?php echo $row['house_no'] ?></td>
-										<td><?php echo $row['flat_no'] ?></td>
-										<td><?php echo $row['rent'] ?></td>
-										<!-- <td><?php echo $row['invoice'] ?></td> -->
-										<td><?php echo $row['rent'] ?></td>
-										<td class="text-right"><?php echo number_format($row['rent'],2) ?></td>
-										<td><?php echo $row['rent']-($row['rent'])?></td>
-										</tr>
-									 <?php }
-										// }
+										<td style="text-align: center;"><?php echo $i; ?></td>
+										<td style="text-align: center;"><?php echo date('M d,Y',strtotime($row['payment_date'])); ?></td>
+										<?php if(!empty($row['reference_id'])){ ?>
+											<td style="text-align: center;"><?php echo $row['reference_id']; ?></td>
+										<?php } else {?>
+											<td style="text-align: center;"> Offline Payment </td>
+											<?php }?>
 										
-									}else{ ?>
+										<td style="text-align: center;"><?php echo $row['amount'] ?></td>
+									 <?php $i++; }?>
 									<tr>
-										<th colspan="6"><center>No Data.</center></th>
+									<td style="text-align: center; color:blue; font-weight:bold; font-size:20px;" colspan="3">Total </td>
+									<td style="text-align: center; font-weight:bold;"><?php echo $total[0]['total']; ?></td>
 									</tr>
-								<?php } ?>
+									<tr>
+									<td style="text-align: center; color:blue; font-weight:bold; font-size:20px;" colspan="3">Receiver Expenditure </td>
+									<td style="text-align: center; font-weight:bold;"><?php echo $receiver_expenditure[0]['amount']; ?></td>
+									</tr>	
+									<tr>
+									<td style="text-align: center; color:red; font-weight:bold; font-size:20px;" colspan="3">Grand Total (Amount Received - Expenditure)</td>
+									<td style="text-align: center; font-weight:bold;"><?php echo $total[0]['total'] - $receiver_expenditure[0]['amount']; ?></td>
+									</tr>	
 								</tbody>
-								<tfoot>
-									<tr>
-										<th colspan="7">Total Amount</th>
-										<th class='text-right'><?php echo number_format($tamount,2) ?></th>
-									</tr>
-								</tfoot>
 							</table>
 						</div>
 					
@@ -209,28 +89,8 @@
 		</div>
 	</div>
 	</div>
-	<!-- </div> -->
-<!-- </div> -->
-
-
-<script>
-	$('#print').click(function(){
-		var _style = $('noscript').clone()
-		var _content = $('#report').clone()
-		var nw = window.open("","_blank","width=800,height=700");
-		nw.document.write(_style.html())
-		nw.document.write(_content.html())
-		nw.document.close()
-		nw.print()
-		setTimeout(function(){
-		nw.close()
-		},500)
-	})
-	$('#filter-report').submit(function(e){
-		e.preventDefault()
-		location.href = 'index.php?page=payment_report&'+$(this).serialize()
-	})
-</script>
+  </div>
+</div>
 </body>
 </html>
 
