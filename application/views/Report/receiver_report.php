@@ -68,23 +68,27 @@
 				<div class="col-md-12">
 
 					<div class="intro">
-							 <h3><center>Month of Payment </center></h3>
-							 
+							 <h3><center>Receiver Report</center></h3>
 							</div>
 	
 					<br>
-					<form id="filter-report" action="<?php echo base_url('Report/payment_report') ?>" method=post id=date>
+					<form id="filter-report" action="<?php echo base_url('Report/receiver_payment_report') ?>" method=post id=date>
 						<div class="row form-group">
-							<label class="control-label col-md-2 offset-md-2 text-right" id="date">From: </label>
-							<input type="datetime-local" name="from_date" class='from-control col-md-4'>
+							<label class="control-label col-md-2 offset-md-2 text-right" id="date"><span style="font-weight:bold;">From:</span> </label>
+							<input type="date" name="from_date" class='from-control col-md-4'>
 							</div><br>
 							<div class="row form-group">
-							<label class="control-label col-md-2 offset-md-2 text-right" id="date">To: </label>
-							<input type="datetime-local" name="to_date" class='from-control col-md-4'>
+							<label class="control-label col-md-2 offset-md-2 text-right" id="date"><span style="font-weight:bold;">To:</span> </label>
+							<input type="date" name="to_date" class='from-control col-md-4'>
 							</div><br>
 							<div class="row form-group">
-							<label class="control-label col-md-2 offset-md-2 text-right" id="user">User: </label>
-							<label class="control-label col-md-2 offset-md-2 text-left" style="margin:0px" id="user"><?php echo $_SESSION['user']; ?></label>
+							<label class="control-label col-md-2 offset-md-2 text-right" id="user"><span style="font-weight:bold;">Receiver:</span> </label>
+							<select class="from-control col-md-4" name="receiver">
+                            <option value="">Select user</option>
+                            <option value="1">Dr. Indra Kumar Shah</option>
+                            <option value="2">Sir's Father</option>
+                            <option value="3">Nisha</option>
+                            </select>
 							</div><br>
 							<div class="row form-group">
 							<button class="btn btn-sm btn-block btn-primary col-md-2 ml-1 offset-md-2"> Filter</button>

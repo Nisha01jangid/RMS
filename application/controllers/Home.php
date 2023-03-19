@@ -85,12 +85,12 @@ class Home extends CI_Controller {
 		if(!empty($data['flat_entry'])){
 			$month = date('Y-m');
 			$month_name = date("F", strtotime($month))." ".date("Y", strtotime($month)); 
-			$reading = $this->HomeM->getElectricityReading($property_id,$flat_no,$month);
-			if(!empty($reading)){
-				$data['reading'] = $reading[0]['reading'];
-			}else{
-				$data['reading'] = "";
-			}
+			// $reading = $this->HomeM->getElectricityReading($property_id,$flat_no,$month);
+			// if(!empty($reading)){
+			// 	$data['reading'] = $reading[0]['reading'];
+			// }else{
+			// 	$data['reading'] = "";
+			// }
 			$data['month_name'] = $month_name;
 			$data['month'] = $month;
 			$this->load->view('Home/tenant_details_view', $data);
@@ -276,12 +276,12 @@ public function insert_tenant_details(){
 
 		if(!empty($data['flat_entry'])){
 			$month_name = date("F", strtotime($month))." ".date("Y", strtotime($month)); 
-			$reading = $this->HomeM->getElectricityReading($property_id,$flat_no,$month);
-			if(!empty($reading)){
-				$data['reading'] = $reading[0]['reading'];
-			}else{
-				$data['reading'] = "";
-			}
+			// $reading = $this->HomeM->getElectricityReading($property_id,$flat_no,$month);
+			// if(!empty($reading)){
+			// 	$data['reading'] = $reading[0]['reading'];
+			// }else{
+			// 	$data['reading'] = "";
+			// }
 			$data['month_name'] = $month_name;
 			$data['month'] = $month;
 			$this->load->view('Home/tenant_details_view', $data);
@@ -298,12 +298,12 @@ public function insert_tenant_details(){
 		$data['flat_entry'] = $this->HomeM->check_flat_entry($flat_no, $property_id);
 
 		$month_name = date("F", strtotime($month))." ".date("Y", strtotime($month)); 
-		$reading = $this->HomeM->getElectricityReading($property_id,$flat_no,$month);
-		if(!empty($reading)){
-			$data['reading'] = $reading[0]['reading'];
-		}else{
-			$data['reading'] = "";
-		}
+		// $reading = $this->HomeM->getElectricityReading($property_id,$flat_no,$month);
+		// if(!empty($reading)){
+		// 	$data['reading'] = $reading[0]['reading'];
+		// }else{
+		// 	$data['reading'] = "";
+		// }
 		$data['month_name'] = $month_name;
 		$data['month'] = $month;
 			
@@ -315,12 +315,12 @@ public function insert_tenant_details(){
 		$flat_no = $_POST['flat_no'];
 		$month = $_POST['month'];
 		$reading = $_POST['reading'];
-		$check = $this->HomeM->getElectricityReading($property_id, $flat_no, $month);
-		if(empty($check)){
-			$this->HomeM->insertElectricityReading($property_id, $flat_no, $month,$reading);
-		}else{
-			$this->HomeM->updateElectricityReading($property_id, $flat_no, $month,$reading);
-		}
+		// $check = $this->HomeM->getElectricityReading($property_id, $flat_no, $month);
+		// if(empty($check)){
+		// 	$this->HomeM->insertElectricityReading($property_id, $flat_no, $month,$reading);
+		// }else{
+		// 	$this->HomeM->updateElectricityReading($property_id, $flat_no, $month,$reading);
+		// }
 		
 		redirect(base_url("Home/getFlatElectricityReading?property_id=").$property_id."&flat_no=".$flat_no."&month=".$month);
 	}
