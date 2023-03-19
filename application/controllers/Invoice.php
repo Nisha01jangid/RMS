@@ -11,7 +11,11 @@ class Invoice extends CI_Controller {
 	
 	public function index()
 	{
-        $data['month'] = date("Y-m");
+        if(isset($_POST['month'])){
+            $data['month'] = $_POST['month'];
+        }else{
+            $data['month'] = date("Y-m");
+        }
         $data['property'] = $this->InvoiceM->get_property();
         $i=0;
         foreach($data['property'] as $p){
@@ -38,10 +42,11 @@ class Invoice extends CI_Controller {
                 $previous_reading = $this->InvoiceM->getFlatDetails($property_id,$f['flat_no'],$previous_month);
                 $units = $previous_reading[0]['current_meter_reading'];
                 $check = $this->InvoiceM->check_invoice($property_id, $f['flat_no'], $month);
+
                 if(!empty($check)){
-                    $this->InvoiceM->update_invoice($invoice, $property_id, $f['flat_no'], $month, $f['tenant_name'], $f['members'], $f['rent'], $flat_details[0]['electricity_rate'], $flat_details[0]['water_rate'], $units);    
+                    $this->InvoiceM->update_invoice($invoice, $property_id, $f['flat_no'], $month, $f['tenant_name'], $f['members'], $f['rent'], $flat_details[0]['electricity_rate'], $flat_details[0]['water_rate'], $units, $flat_details[0]['duedate']);    
                 }else{
-                    $this->InvoiceM->insert_invoice($invoice, $property_id, $f['flat_no'], $month, $f['tenant_name'], $f['members'], $f['rent'], $flat_details[0]['electricity_rate'], $flat_details[0]['water_rate'], $units);
+                    $this->InvoiceM->insert_invoice($invoice, $property_id, $f['flat_no'], $month, $f['tenant_name'], $f['members'], $f['rent'], $flat_details[0]['electricity_rate'], $flat_details[0]['water_rate'], $units, $flat_details[0]['duedate']);
                 }
                 
             }       
@@ -59,6 +64,9 @@ class Invoice extends CI_Controller {
     }
 
     public function view_invoice($property_id, $month){
+        if(isset($_POST['month'])){
+            $month = $_POST['month'];
+        }
         $data['flats'] = $this->InvoiceM->get_flats($property_id);
         
         $i=0;
@@ -91,6 +99,32 @@ class Invoice extends CI_Controller {
         
         $data['property_id']=$property_id;
         $data['month']=$month;
+        // echo "<pre>";
+        // print_r($data);
+        // die();
         $this->load->view('Invoice/ViewFlatInvoice',$data);
+    }
+
+    public function print_invoice($property_id, $month){
+        $data['flats'] = $this->InvoiceM->get_flats_invoice($property_id, $month);
+        $i=0;
+        foreach($data['flats'] as $f){
+            $check_payments = $this->InvoiceM->get_payments($property_id, $f['flat_no'], $month);
+            if(!empty($check_payments)){
+                $data['flats'][$i]['amount_paid']=$check_payments[0]['amount'];
+                $data['flats'][$i]['payment_date']=$check_payments[0]['date_created'];
+            }else{
+                $data['flats'][$i]['amount_paid'] = 0;
+                $data['flats'][$i]['payment_date'] = "";
+            }
+            $i++;
+        }
+        
+        $data['property_id']=$property_id;
+        $data['month']=$month;
+        // echo "<pre>";
+        // print_r($data);
+        // die();
+        $this->load->view('Invoice/PrintInvoice',$data);
     }
 }

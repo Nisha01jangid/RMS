@@ -27,7 +27,7 @@ class InvoiceM extends CI_Model {
       }
 
       function getFlatDetails($property_id, $flat_no, $month){
-        $sql = " SELECT * from entry_form_details where `property_id`=$property_id and flat_no=$flat_no and `month`='$month' and `status`=1";
+        $sql = " SELECT * from entry_form_details where `property_id`=$property_id and flat_no=$flat_no and `month`='$month'";
         $query = $this->db->query($sql);
         return $query->result_array();
       }
@@ -39,19 +39,25 @@ class InvoiceM extends CI_Model {
       }
 
       function get_flats($property_id){
-        $sql = " SELECT * from tenants where `property_id`=$property_id and `status`=1";
+        $sql = " SELECT * from tenants where `property_id`=$property_id and `status`=1 order by flat_no";
         $query = $this->db->query($sql);
         return $query->result_array();
       }
 
-      function insert_invoice($invoice, $property_id, $flat_no, $month, $tenant_name, $members, $rent, $electricity_rate, $water_rate, $units){
-        $sql = " INSERT INTO `invoice` (`invoice`,`property_id`,`flat_no`,`month`,`tenant_name`,`no_of_members`,`rent`,`electricity_rate`, `water_rate`, `electricity_units`) VALUES ('$invoice', $property_id, $flat_no, '$month','$tenant_name', $members, $rent, $electricity_rate, $water_rate, $units) ";
+      function get_flats_invoice($property_id, $month){
+        $sql = " SELECT * from invoice where `property_id`=$property_id and `month`='$month' order by flat_no";
+        $query = $this->db->query($sql);
+        return $query->result_array();
+      }
+
+      function insert_invoice($invoice, $property_id, $flat_no, $month, $tenant_name, $members, $rent, $electricity_rate, $water_rate, $units, $due_date){
+        $sql = " INSERT INTO `invoice` (`invoice`,`property_id`,`flat_no`,`month`,`tenant_name`,`no_of_members`,`rent`,`electricity_rate`, `water_rate`, `electricity_units`, `due_date`) VALUES ('$invoice', $property_id, $flat_no, '$month','$tenant_name', $members, $rent, $electricity_rate, $water_rate, $units, '$due_date') ";
         $query = $this->db->query($sql);
         return ;
       }
 
-      function update_invoice($invoice, $property_id, $flat_no, $month, $tenant_name, $members, $rent, $electricity_rate, $water_rate, $units){
-        $sql = " UPDATE `invoice` SET `tenant_name`='$tenant_name' and `no_of_members`=$members and `rent`=$rent and `electricity_rate`=$electricity_rate and `water_rate`=$water_rate and `electricity_units`=$units WHERE `invoice`='$invoice' and `property_id`=$property_id and `flat_no`=$flat_no and `month`='$month'";
+      function update_invoice($invoice, $property_id, $flat_no, $month, $tenant_name, $members, $rent, $electricity_rate, $water_rate, $units, $due_date){
+        $sql = " UPDATE `invoice` SET `tenant_name`='$tenant_name' and `no_of_members`=$members and `rent`=$rent and `electricity_rate`=$electricity_rate and `water_rate`=$water_rate and `electricity_units`=$units and `due_date`='$due_date' WHERE `invoice`='$invoice' and `property_id`=$property_id and `flat_no`=$flat_no and `month`='$month'";
         $query = $this->db->query($sql);
         return ;
       }
