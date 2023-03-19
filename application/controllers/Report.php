@@ -13,18 +13,33 @@ public function reportv(){
 	$this->load->view('Report/report_front_page');
 }
 
-public function month_of_payment(){
+public function receiver_report(){
 
-	$this->load->view('Report/month_of_payment');
+	$this->load->view('Report/receiver_report');
 }
 
-public function payment_report(){
+public function receiver_payment_report(){
 
 	$data['from_date'] = $_POST['from_date'];
 	$data['to_date'] = $_POST['to_date'];
-	// $data['user']=$_SESSION['user'];
-	// print_r($data['user']);die();
-	$data['payments']= $this->ReportM->get_payments($data['from_date'],$data['to_date'],$_SESSION['user']);
+	$receiver = $_POST['receiver'];
+
+	if($receiver == 1){
+		$receiver = "Dr. Indra Kumar Shah";
+	    } else if($receiver == 2){
+
+		$receiver = "Sirs Father";
+	    }else{
+		$receiver = "Nisha";
+    }
+	
+	$data['payments']= $this->ReportM->get_receiver_payments($data['from_date'], $data['to_date'], $receiver);
+	$data['total'] = $this->ReportM->get_total_receiver_payments($data['from_date'], $data['to_date'], $receiver);
+	$data['receiver_expenditure'] = $this->ReportM->get_receiver_expenditure($data['from_date'], $data['to_date'], $receiver);
+	// echo "<pre>";
+	// print_r($data['receiver_expenditure']);
+	// die();
+	
 	$this->load->view('Report/payment_report',$data);
 }
 

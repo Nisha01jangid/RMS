@@ -9,14 +9,23 @@ class ReportM extends CI_Model {
       }
       
                        
-      function get_payments($to_date,$from_date,$user){
+      function get_receiver_payments($from_date, $to_date, $receiver){
 
-      // $sql = " SELECT payments.*, tenants.tenant_name,tenants.rent, houses.house_no, houses.flat_no FROM payments inner join tenants on tenants.id = payments.tenant_id inner join houses on houses.id = tenants.flat_no WHERE payments.date_created between '$to_date' and '$from_date' order by unix_timestamp(date_created)  asc";
+      $sql = "SELECT amount, reference_id, payment_date, payment_receiver FROM payment where payment_date BETWEEN '$from_date' AND '$to_date' and payment_receiver = '$receiver'";
 
-      $sql = " SELECT entry_form_details.*, tenants.tenant_name,tenants.rent, houses.house_no, houses.flat_no FROM entry_form_details , tenants , houses , users  WHERE entry_form_details.user = '$user' and entry_form_details.user = users.username and tenants.property_id = entry_form_details.property_id AND tenants.flat_no = entry_form_details.flat_no AND houses.id = tenants.flat_no and entry_form_details.timestamp between '$to_date' and '$from_date' order by unix_timestamp(timestamp)  asc";
         $query = $this->db->query($sql);
         return $query->result_array();
       }
+
+      public function get_total_receiver_payments($from_date, $to_date, $receiver){
+
+        $sql = "SELECT SUM(amount) as total FROM payment where payment_date BETWEEN '$from_date' AND '$to_date' and payment_receiver = '$receiver'";
+  
+          $query = $this->db->query($sql);
+          return $query->result_array();
+        }
+
+
     public function getAllHouses(){
 
     $sql="SELECT * from `property` where `active`= 1";    
@@ -74,6 +83,14 @@ class ReportM extends CI_Model {
     $result = $this->db->query($query);
     return $result->result_array();
     
+  }
+
+  public function get_receiver_expenditure($from_date, $to_date, $receiver){
+
+    $query = "SELECT SUM(amount) AS amount FROM expenditure where date BETWEEN '$from_date' AND '$to_date' and receiver = '$receiver'";
+
+    $result = $this->db->query($query);
+    return $result->result_array();
   }
 
 
