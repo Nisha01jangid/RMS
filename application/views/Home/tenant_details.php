@@ -80,22 +80,22 @@
 <div class="row">
     <div class="form-group col">
     <label>Full Name:</label>
-    <input type="text" class="form-control"  name="name"  placeholder="Enter your name">
+    <input type="text" class="form-control"  name="name"  placeholder="Enter your name" required>
      </div>
      <div class="form-group col">
     <label>Father's Name:</label>
-    <input type="text" class="form-control" name="father_name"  placeholder="Enter your father name">
+    <input type="text" class="form-control" name="father_name"  placeholder="Enter your father name" required>
      </div>
   </div>
   <br>
   <div class="row">
     <div class="form-group col">
     <label>Date of Birth:</label>
-    <input type="date" class="form-control" name="dob"  placeholder="Enter your date of birth">
+    <input type="date" class="form-control" name="dob"  placeholder="Enter your date of birth" required>
     </div>
     <div class="form-group col">
     <label>Gender</label>
-    <select class="form-control" name="gender">
+    <select class="form-control" name="gender" required>
     <option value="" selected disabled>Select Gender</option>
     <option value="male">Male</option>
     <option value="female">Female</option>
@@ -104,11 +104,11 @@
      </div>
      <div class="form-group col">
     <label>Aadhaar Number:</label>
-    <input type="number" class="form-control" name="Aadhaar"  placeholder="Enter your aadhaar no">
+    <input type="number" class="form-control" name="Aadhaar"  placeholder="Enter your aadhaar no" required>
     </div>
     <div class="form-group col">
     <label>Contact Number:</label>
-    <input type="number" class="form-control" name="mobile"  placeholder="Enter your contact no">
+    <input type="number" class="form-control" name="mobile"  placeholder="Enter your contact no" required>
      </div>
     
   </div>
@@ -120,16 +120,16 @@
     
      <div class="form-group col">
     <label>Email address:</label>
-    <input type="email" class="form-control" name="email"  placeholder="Enter email address">
+    <input type="email" class="form-control" name="email"  placeholder="Enter email address" required>
     </div>
     <div class="form-group col">
     <label>Joining Date:</label>
-    <input type="date" class="form-control" name="joining_date" placeholder="Enter joining date">
+    <input type="date" class="form-control" name="joining_date" placeholder="Enter joining date" required>
   </div>
   <div class="form-group col">
 
     <label>Rent of Flat:</label>
-    <input type="number" class="form-control" name="rent" placeholder="Enter rent of flat" >
+    <input type="number" class="form-control" name="rent" placeholder="Enter rent of flat"  required>
     </div>
   </div>
   <br>
@@ -140,22 +140,22 @@
     
     <div class="form-group col">
     <label>Permanent Address</label>
-    <input type="text" class="form-control" name="address" placeholder="Enter your Permanent Address">
+    <input type="text" class="form-control" name="address" placeholder="Enter your Permanent Address" required>
      </div>
   </div>
   <br>
    <div class="row">
     <div class="form-group col">
     <label>District:</label>
-    <input type="text" class="form-control" name="district" placeholder="Enter the District">
+    <input type="text" class="form-control" name="district" placeholder="Enter the District" required>
      </div>
      <div class="form-group col">
     <label>State:</label>
-    <input type="text" class="form-control" name="state" placeholder="Enter State">
+    <input type="text" class="form-control" name="state" placeholder="Enter State" required>
      </div>
      <div class="form-group col">
     <label>Polic Station:</label>
-    <input type="text" class="form-control" name="polic_station" placeholder="Enter">
+    <input type="text" class="form-control" name="polic_station" placeholder="Enter" required>
      </div>
   </div>
   <br>
@@ -318,7 +318,7 @@
     </div>
     <div class="form-group col">
     <label>Four wheeler:</label>
-    <input type="number" class="form-control" name="four_wheeler" placeholder="Enter Here" required>
+    <input type="number" class="form-control" name="four_wheeler" placeholder="Enter Here">
     </div>
     </div>
     <br>
@@ -328,7 +328,7 @@
       <br>
       <div class="form-group col">
     <label>Occupation of the Tenant</label>
-    <input type="text" class="form-control" name="occupation" placeholder="Enter the Occupation">
+    <input type="text" class="form-control" name="occupation" placeholder="Enter the Occupation" required>
   </div>
     <div class="form-group col">
 
@@ -344,7 +344,7 @@
       <br>
       <div class="form-group col">
     <label>Name</label>
-    <input type="text" class="form-control" name="identifier_name1" placeholder="Enter the Identifier's Name">
+    <input type="text" class="form-control" name="identifier_name1" placeholder="Enter the Identifier's Name" required>
   </div>
     <div class="form-group col">
 
@@ -362,7 +362,7 @@
      <div class="row">
       <div class="form-group col">
     <label>Address</label>
-    <input type="text" class="form-control" name="identifier_address1" placeholder="Enter the Address">
+    <input type="text" class="form-control" name="identifier_address1" placeholder="Enter the Address" required>
   </div>
      </div>
      <br>
@@ -370,7 +370,7 @@
      <div class="row">
       <div class="form-group col">
     <label>District</label>
-    <input type="text" class="form-control" name="identifier_district1" placeholder="Enter the District">
+    <input type="text" class="form-control" name="identifier_district1" placeholder="Enter the District" required>
   </div>
     <div class="form-group col">
 
@@ -379,7 +379,7 @@
     </div>
     <div class="form-group col">
     <label>Police Station</label>
-    <input type="text" class="form-control" name="identifier_policestation1" placeholder="Enter">
+    <input type="text" class="form-control" name="identifier_policestation1" placeholder="Enter" required>
   </div>
      </div>
      
@@ -391,7 +391,7 @@
       <br>
       <div class="form-group col">
     <label>Name</label>
-    <input type="text" class="form-control" name="identifier_name2" placeholder="Enter the Identifier's Name">
+    <input type="text" class="form-control" name="identifier_name2" placeholder="Enter the Identifier's Name" required>
   </div>
     <div class="form-group col">
 
@@ -411,7 +411,7 @@
      <div class="row">
       <div class="form-group col">
     <label>Address</label>
-    <input type="text" class="form-control" name="identifier_address2" placeholder="Enter the Address">
+    <input type="text" class="form-control" name="identifier_address2" placeholder="Enter the Address" required>
   </div>
      </div>
      <br>
@@ -419,7 +419,7 @@
      <div class="row">
       <div class="form-group col">
     <label>District</label>
-    <input type="text" class="form-control" name="identifier_district2" placeholder="Enter the District">
+    <input type="text" class="form-control" name="identifier_district2" placeholder="Enter the District" required>
   </div>
     <div class="form-group col">
 
@@ -428,7 +428,7 @@
     </div>
     <div class="form-group col">
     <label>Police Station</label>
-    <input type="text" class="form-control" name="identifier_policestation2" placeholder="Enter">
+    <input type="text" class="form-control" name="identifier_policestation2" placeholder="Enter" required>
   </div>
      </div>
 <br>
