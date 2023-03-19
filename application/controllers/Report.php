@@ -93,6 +93,9 @@ public function balance_report(){
 		$data['to_date'] = $_POST['to_date'];
 		$data['property_id'] =$_POST['property_id'];
     	$data['report_flatwise_details'] = $this->ReportM->get_flatwise_payments($data['to_date'],$data['from_date'],$data['property_id'],$flats);
+		$month = $data['report_flatwise_details'][0]['month'];
+		$previous_month =  date('Y-m', strtotime('-1 month'));
+		$data['previous_reading'] = $this->ReportM->previousReading($data['property_id'],$flats,$previous_month);
     	$this->load->view('Report_Monthwise/Report_flatwise',$data);
     }
 

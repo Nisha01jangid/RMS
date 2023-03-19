@@ -93,6 +93,7 @@
                             <tr>
                             <th scope="col" style="text-align:center;">S.No.</th>
                             <th style="text-align:center;">Flat No.</th>
+                            <th style="text-align:center;">Month</th>
                             <th style="text-align:center;">Invoice No.</th>
                             <th scope="col" style="text-align:center;">Rent</th>
                             <th scope="col" style="text-align:center;">Meter Reading <br> (Current - Previous) * rate</th>
@@ -111,24 +112,23 @@
                             <tr>
                             <td scope="row" style="text-align:center;"><?php echo $i ?></td>
                             <td style="text-align:center;"><?php echo $value['flat_no'] ?></td>
-                            <td></td>
+                            <td style="text-align:center;"><?php echo $value['month'] ?></td>
+                            <td style="text-align:center;"><?php echo $value['invoice'] ?></td>
                             <td style="text-align:center;"><?php echo $value['rent'] ?></td>
                             <td style="text-align:center;"><?php if($i==1){$amount = ($value['current_meter_reading']-$previous_reading)*$value['electricity_rate'];
                             echo "(".$value['current_meter_reading']." - ".$previous_reading.") * ".$value['electricity_rate']." = ".$amount;}else{
                                 $amount = ($value['current_meter_reading']-$report_flatwise_details[$i-2]['current_meter_reading'])*$value['electricity_rate'];
                                 echo "(".$value['current_meter_reading']." - ".$report_flatwise_details[$i-2]['current_meter_reading'].") * ".$value['electricity_rate']." = ".$amount;
-                            } ?></td>
+                            } ?>
+                            </td>
                             <td><?php echo $value['no_of_members']."*".$value['water_rate']."=".$value['no_of_members']*$value['water_rate'] ?></td> 
-                            
                             <td><?php echo $value['waste'] ?></td>
                             <td><?php echo $value['miscellaneous'] ?></td>
                             <td><?php echo $value['rent']+( $value['no_of_members']*$value['water_rate'])+ $value['waste']+$value['miscellaneous']+$amount; ?></td>
-                           
+                            <td style="text-align:center;"><?php echo $value['amount_paid'] ?></td>
                             <td></td>
-                            <td> </td>
                             </tr>   
-
-                            <?php   $i++; } ?>
+                            <?php  $i++; } ?>
 
                             
                         </tbody>
