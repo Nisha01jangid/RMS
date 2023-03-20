@@ -61,9 +61,9 @@
       <li>
         <a href="<?php echo base_url('Invoice') ?>" class="nav-link text-white">Generate Invoice</a>
       </li>
-      <li>
+      <!-- <li>
         <a href="#" class="nav-link text-white">Print Invoice</a>
-      </li>
+      </li> -->
     </ul>
     <hr>
   </div>
@@ -84,7 +84,7 @@
                     </div>
                     <hr>
                     <div style="display:flex; justify-content:center;">
-                    <form action="<?php echo base_url("Bill/getBill"); ?>" method="get">
+                    <form action="<?php echo base_url("Invoice"); ?>" method="POST">
                     <input
                         id="month"
                         type="month"

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 19, 2023 at 04:34 PM
+-- Generation Time: Mar 19, 2023 at 07:54 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.2
 
@@ -202,8 +202,16 @@ CREATE TABLE `invoice` (
   `water_rate` double NOT NULL,
   `amount_paid` double NOT NULL,
   `payment_date` varchar(15) DEFAULT NULL,
+  `due_date` date NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `invoice`
+--
+
+INSERT INTO `invoice` (`sno`, `invoice`, `property_id`, `flat_no`, `month`, `tenant_name`, `no_of_members`, `rent`, `electricity_rate`, `electricity_units`, `water_rate`, `amount_paid`, `payment_date`, `due_date`, `timestamp`) VALUES
+(2, '2023-03/2', 1, 2, '2023-03', 'Rachael', 4, 15000, 100, 5, 150, 0, NULL, '2023-03-31', '2023-03-19 18:35:51');
 
 -- --------------------------------------------------------
 
@@ -218,6 +226,13 @@ CREATE TABLE `invoice_status` (
   `date` varchar(25) NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `invoice_status`
+--
+
+INSERT INTO `invoice_status` (`sno`, `property_id`, `month`, `date`, `timestamp`) VALUES
+(2, 1, '2023-03', '2023-03-19', '2023-03-19 18:35:51');
 
 -- --------------------------------------------------------
 
@@ -450,6 +465,18 @@ ALTER TABLE `house_address`
   ADD PRIMARY KEY (`sno`);
 
 --
+-- Indexes for table `invoice`
+--
+ALTER TABLE `invoice`
+  ADD PRIMARY KEY (`sno`);
+
+--
+-- Indexes for table `invoice_status`
+--
+ALTER TABLE `invoice_status`
+  ADD PRIMARY KEY (`sno`);
+
+--
 -- Indexes for table `payment`
 --
 ALTER TABLE `payment`
@@ -511,6 +538,18 @@ ALTER TABLE `flats_electricity_reading`
 -- AUTO_INCREMENT for table `house_address`
 --
 ALTER TABLE `house_address`
+  MODIFY `sno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `invoice`
+--
+ALTER TABLE `invoice`
+  MODIFY `sno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `invoice_status`
+--
+ALTER TABLE `invoice_status`
   MODIFY `sno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
