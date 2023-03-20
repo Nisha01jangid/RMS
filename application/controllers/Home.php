@@ -110,6 +110,7 @@ public function insert_tenant_details(){
 	$father_name = $_POST['father_name'];
 	$dob = $_POST['dob'];
 	$gender = $_POST['gender'];
+	$age = $_POST['age'];
 	$email = $_POST['email'];
 	$rent = $_POST['rent'];
 	$mobile = $_POST['mobile'];
@@ -120,10 +121,15 @@ public function insert_tenant_details(){
 	$state = $_POST['state'];
 	$polic_station = $_POST['polic_station'];
 	$no_of_members =$_POST['no_of_members'];
+	$no_of_male =$_POST['no_of_male'];
+	$no_of_female =$_POST['no_of_female'];
+	$no_of_children_below_5 =$_POST['no_of_children_below_5'];
+
 	$two_wheeler = $_POST['two_wheeler'];
 	$four_wheeler = $_POST['four_wheeler'];
 	$occupation = $_POST['occupation'];
 	$occupation_address = $_POST['occupation_address'];
+	$occupation_contact = $_POST['occupation_contact'];
 	$identifier_name1 = $_POST['identifier_name1'];
 	$identifier_mobile1 = $_POST['identifier_mobile1'];
 	$identifier_address1 = $_POST['identifier_address1'];
@@ -154,6 +160,7 @@ public function insert_tenant_details(){
     for($i=0; $i<count($member_names); $i++){
         $member_details[] = array(
             'name' => $member_names[$i],
+            'father_name' => $member_father_name[$i],
             'age' => $member_ages[$i],
             'gender' => $member_genders[$i],
             'relation' => $member_relations[$i],
@@ -162,11 +169,11 @@ public function insert_tenant_details(){
         );
 	}
 
-	$tenant_id = $this->HomeM->insert_tenant_details($name, $father_name, $dob, $gender, $email, $rent, $mobile, $Aadhaar, $joining_date, $address, $district, $state, $polic_station, $no_of_members, $two_wheeler, $four_wheeler, $occupation, $occupation_address, $identifier_name1, $identifier_mobile1, $identifier_address1, $identifier_district1, $identifier_state1, $identifier_policestation1, $identifier_email1, $identifier_name2, $identifier_mobile2,$identifier_address2, $identifier_district2, $identifier_state2, $identifier_policestation2, $identifier_email2,$property_id, $flat_no);
+	$tenant_id = $this->HomeM->insert_tenant_details($name, $father_name, $dob,$age,$gender, $email, $rent, $mobile, $Aadhaar, $joining_date, $address, $district, $state, $polic_station, $no_of_members, $no_of_male, $no_of_female, $no_of_children_below_5, $two_wheeler, $four_wheeler, $occupation, $occupation_address, $occupation_contact, $identifier_name1, $identifier_mobile1, $identifier_address1, $identifier_district1, $identifier_state1, $identifier_policestation1, $identifier_email1, $identifier_name2, $identifier_mobile2,$identifier_address2, $identifier_district2, $identifier_state2, $identifier_policestation2, $identifier_email2,$property_id, $flat_no);
 
 
 	foreach($member_details as $m){
-		$this->HomeM->insert_tenant_relatives($tenant_id, $m['name'], $m['age'], $m['gender'], $m['relation'], $m['mobile_no'], $m['aadhar']);
+		$this->HomeM->insert_tenant_relatives($tenant_id, $m['name'], $m['father_name'], $m['age'], $m['gender'], $m['relation'], $m['mobile_no'], $m['aadhar']);
 	}
 
 
@@ -419,7 +426,21 @@ public function insert_payment(){
 
 	public function police_verification_form($flat_no, $property_id){
 
-		$this->load->view('Home/police_verification_form');
+		$flat_no = $flat_no;
+		$property_id = $property_id;
+
+		$data['details_for_police_verification'] = $this->HomeM->fetch_details_for_police_verification($flat_no,$property_id);
+
+		// echo "<pre>";
+		// print_r($data['details_for_police_verification']);
+		// die();
+		$tenant_id = $data['details_for_police_verification'][0][id];
+
+		$data['family_member_details'] = $this->HomeM->get_family_member_details_for_police_verification($tenant_id);
+
+		
+
+		$this->load->view('Home/police_verification_form',$data);
 	}
 
 

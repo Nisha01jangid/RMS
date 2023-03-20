@@ -80,22 +80,22 @@
 <div class="row">
     <div class="form-group col">
     <label>Full Name:</label>
-    <input type="text" class="form-control"  name="name"  placeholder="Enter your name" required>
+    <input type="text" class="form-control"  name="name"  placeholder="Enter your name">
      </div>
      <div class="form-group col">
     <label>Father's Name:</label>
-    <input type="text" class="form-control" name="father_name"  placeholder="Enter your father name" required>
+    <input type="text" class="form-control" name="father_name"  placeholder="Enter your father name">
      </div>
   </div>
   <br>
   <div class="row">
     <div class="form-group col">
     <label>Date of Birth:</label>
-    <input type="date" class="form-control" name="dob"  placeholder="Enter your date of birth" required>
+    <input type="date" class="form-control" name="dob"  placeholder="Enter your date of birth">
     </div>
     <div class="form-group col">
     <label>Gender</label>
-    <select class="form-control" name="gender" required>
+    <select class="form-control" name="gender">
     <option value="" selected disabled>Select Gender</option>
     <option value="male">Male</option>
     <option value="female">Female</option>
@@ -103,13 +103,14 @@
     </select>
      </div>
      <div class="form-group col">
-    <label>Aadhaar Number:</label>
-    <input type="number" class="form-control" name="Aadhaar"  placeholder="Enter your aadhaar no" required>
-    </div>
-    <div class="form-group col">
-    <label>Contact Number:</label>
-    <input type="number" class="form-control" name="mobile"  placeholder="Enter your contact no" required>
+    <label>Age</label>
+    <input type="number" class="form-control" name="age"  placeholder="Enter your Age">
      </div>
+     <div class="form-group col">
+    <label>Aadhaar Number:</label>
+    <input type="number" class="form-control" name="Aadhaar"  placeholder="Enter your aadhaar no">
+    </div>
+    
     
   </div>
 
@@ -117,19 +118,22 @@
 
   <div class="row">
     
-    
+    <div class="form-group col">
+    <label>Contact Number:</label>
+    <input type="number" class="form-control" name="mobile"  placeholder="Enter your contact no">
+     </div>
      <div class="form-group col">
     <label>Email address:</label>
-    <input type="email" class="form-control" name="email"  placeholder="Enter email address" required>
+    <input type="email" class="form-control" name="email"  placeholder="Enter email address">
     </div>
     <div class="form-group col">
     <label>Joining Date:</label>
-    <input type="date" class="form-control" name="joining_date" placeholder="Enter joining date" required>
+    <input type="date" class="form-control" name="joining_date" placeholder="Enter joining date">
   </div>
   <div class="form-group col">
 
     <label>Rent of Flat:</label>
-    <input type="number" class="form-control" name="rent" placeholder="Enter rent of flat"  required>
+    <input type="number" class="form-control" name="rent" placeholder="Enter rent of flat" >
     </div>
   </div>
   <br>
@@ -140,22 +144,22 @@
     
     <div class="form-group col">
     <label>Permanent Address</label>
-    <input type="text" class="form-control" name="address" placeholder="Enter your Permanent Address" required>
+    <input type="text" class="form-control" name="address" placeholder="Enter your Permanent Address">
      </div>
   </div>
   <br>
    <div class="row">
     <div class="form-group col">
     <label>District:</label>
-    <input type="text" class="form-control" name="district" placeholder="Enter the District" required>
+    <input type="text" class="form-control" name="district" placeholder="Enter the District">
      </div>
      <div class="form-group col">
     <label>State:</label>
-    <input type="text" class="form-control" name="state" placeholder="Enter State" required>
+    <input type="text" class="form-control" name="state" placeholder="Enter State">
      </div>
      <div class="form-group col">
     <label>Polic Station:</label>
-    <input type="text" class="form-control" name="polic_station" placeholder="Enter" required>
+    <input type="text" class="form-control" name="polic_station" placeholder="Enter">
      </div>
   </div>
   <br>
@@ -239,6 +243,7 @@
     </div>
     </div>  -->
 
+
     <div>
         <h4>Details of Family Members</h4>
         <br>
@@ -247,6 +252,19 @@
     <label>Number of Members</label>
     <input type="number" class="form-control" name="no_of_members" placeholder="Enter">
      </div>
+     <div class="form-group col">
+    <label>Number of Male</label>
+    <input type="number" class="form-control" name="no_of_male" placeholder="Enter">
+     </div>
+     <div class="form-group col">
+    <label>Number of Female</label>
+    <input type="number" class="form-control" name="no_of_female" placeholder="Enter">
+     </div>
+     <div class="form-group col">
+    <label>Children below 5 years</label>
+    <input type="number" class="form-control" name="no_of_children_below_5" placeholder="Enter">
+     </div>
+
   </div>
         <div class="container my-4">
             <div class="card my-4 shadow">
@@ -257,11 +275,18 @@
                         <input type="text" class="form-control" name="member_name[]"/>
                         <br>
                     </div>
-                     <div class="form-group col">
+                    <div class="form-group col">
+                        <label>Father's Name :</label>
+                        <input type="text" class="form-control" name="member_father_name[]"/>
+                        <br>
+                    </div>  
+                    <div class="form-group col">
                             <label>Age :</label>
                             <input type="number" class="form-control" name="member_age[]"/>
                             <br>
-                        </div>
+                        </div>                 
+                      </div>
+                      <div class="row">
                         <div class="form-group col">
                             <label>Gender</label>
                             <select class="form-control" name="member_gender[]">
@@ -271,9 +296,6 @@
                                 <option value="others">Others</option>
                             </select>
                         </div>
-                      </div>
-                    <div class="row">
-                    
                         <div class="form-group col">
                             <label>Relation</label>
                             <select class="form-control" name="member_relation[]">
@@ -296,6 +318,10 @@
                             <input type="number" class="form-control" name="member_aadhar[]"/>
                             <br>
                           </div>
+                    </div>
+                    <div class="row">
+                    
+                        
                         </div>
                       
                         <div class="clearfix mt-4">
@@ -328,12 +354,17 @@
       <br>
       <div class="form-group col">
     <label>Occupation of the Tenant</label>
-    <input type="text" class="form-control" name="occupation" placeholder="Enter the Occupation" required>
+    <input type="text" class="form-control" name="occupation" placeholder="Enter the Occupation">
   </div>
     <div class="form-group col">
 
     <label>Office/College/School Address</label>
-    <input type="text" class="form-control" name="occupation_address" placeholder="Enter the Address" required>
+    <input type="text" class="form-control" name="occupation_address" placeholder="Enter the Address">
+    </div>
+    <div class="form-group col">
+
+    <label>Office contact Number</label>
+    <input type="text" class="form-control" name="occupation_contact" placeholder="Enter the Contact No">
     </div>
      </div>
      <br>
@@ -344,17 +375,17 @@
       <br>
       <div class="form-group col">
     <label>Name</label>
-    <input type="text" class="form-control" name="identifier_name1" placeholder="Enter the Identifier's Name" required>
+    <input type="text" class="form-control" name="identifier_name1" placeholder="Enter the Identifier's Name">
   </div>
     <div class="form-group col">
 
     <label>Mobile No</label>
-    <input type="number" class="form-control" name="identifier_mobile1" placeholder="Enter the mobile no" required>
+    <input type="number" class="form-control" name="identifier_mobile1" placeholder="Enter the mobile no">
     </div>
     <div class="form-group col">
 
     <label>Email ID</label>
-    <input type="email" class="form-control" name="identifier_email1" placeholder="Enter Email ID" required>
+    <input type="email" class="form-control" name="identifier_email1" placeholder="Enter Email ID">
     </div>
      </div>
      <br>
@@ -362,7 +393,7 @@
      <div class="row">
       <div class="form-group col">
     <label>Address</label>
-    <input type="text" class="form-control" name="identifier_address1" placeholder="Enter the Address" required>
+    <input type="text" class="form-control" name="identifier_address1" placeholder="Enter the Address">
   </div>
      </div>
      <br>
@@ -370,16 +401,16 @@
      <div class="row">
       <div class="form-group col">
     <label>District</label>
-    <input type="text" class="form-control" name="identifier_district1" placeholder="Enter the District" required>
+    <input type="text" class="form-control" name="identifier_district1" placeholder="Enter the District">
   </div>
     <div class="form-group col">
 
     <label>State</label>
-    <input type="text" class="form-control" name="identifier_state1" placeholder="Enter the State" required>
+    <input type="text" class="form-control" name="identifier_state1" placeholder="Enter the State">
     </div>
     <div class="form-group col">
     <label>Police Station</label>
-    <input type="text" class="form-control" name="identifier_policestation1" placeholder="Enter" required>
+    <input type="text" class="form-control" name="identifier_policestation1" placeholder="Enter">
   </div>
      </div>
      
@@ -391,18 +422,18 @@
       <br>
       <div class="form-group col">
     <label>Name</label>
-    <input type="text" class="form-control" name="identifier_name2" placeholder="Enter the Identifier's Name" required>
+    <input type="text" class="form-control" name="identifier_name2" placeholder="Enter the Identifier's Name">
   </div>
     <div class="form-group col">
 
     <label>Mobile No</label>
-    <input type="number" class="form-control" name="identifier_mobile2" placeholder="Enter the mobile no" required>
+    <input type="number" class="form-control" name="identifier_mobile2" placeholder="Enter the mobile no">
     </div>
 
     <div class="form-group col">
 
     <label>Email ID</label>
-    <input type="email" class="form-control" name="identifier_email2" placeholder="Enter Email ID" required>
+    <input type="email" class="form-control" name="identifier_email2" placeholder="Enter Email ID">
     </div>
      
      </div>
@@ -411,7 +442,7 @@
      <div class="row">
       <div class="form-group col">
     <label>Address</label>
-    <input type="text" class="form-control" name="identifier_address2" placeholder="Enter the Address" required>
+    <input type="text" class="form-control" name="identifier_address2" placeholder="Enter the Address">
   </div>
      </div>
      <br>
@@ -419,16 +450,16 @@
      <div class="row">
       <div class="form-group col">
     <label>District</label>
-    <input type="text" class="form-control" name="identifier_district2" placeholder="Enter the District" required>
+    <input type="text" class="form-control" name="identifier_district2" placeholder="Enter the District">
   </div>
     <div class="form-group col">
 
     <label>State</label>
-    <input type="text" class="form-control" name="identifier_state2" placeholder="Enter the State" required>
+    <input type="text" class="form-control" name="identifier_state2" placeholder="Enter the State">
     </div>
     <div class="form-group col">
     <label>Police Station</label>
-    <input type="text" class="form-control" name="identifier_policestation2" placeholder="Enter" required>
+    <input type="text" class="form-control" name="identifier_policestation2" placeholder="Enter">
   </div>
      </div>
 <br>
@@ -474,12 +505,19 @@ addButton.addEventListener('click', () => {
                         <input type="text" class="form-control" name="member_name[]"/>
                         <br>
                     </div>
+                    <div class="form-group col">
+                        <label>Father's Name :</label>
+                        <input type="text" class="form-control" name="member_father_name[]"/>
+                        <br>
+                    </div>
                      <div class="form-group col">
                             <label>Age :</label>
                             <input type="number" class="form-control" name="member_age[]"/>
                             <br>
                         </div>
-                        <div class="form-group col">
+                      </div>
+                    <div class="row">
+                    <div class="form-group col">
                             <label>Gender</label>
                             <select class="form-control" name="member_gender[]">
                                 <option value="" selected disabled>Select Gender</option>
@@ -488,9 +526,6 @@ addButton.addEventListener('click', () => {
                                 <option value="others">Others</option>
                             </select>
                         </div>
-                      </div>
-                    <div class="row">
-                    
                         <div class="form-group col">
                             <label>Relation</label>
                             <select class="form-control" name="member_relation[]">
