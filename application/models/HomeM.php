@@ -86,7 +86,7 @@ class HomeM extends CI_Model {
 
   public function check_flat_occupied($property_id, $flat_no){
 
-    $query = "SELECT property_id , flat_no FROM tenants where property_id = $property_id and flat_no = $flat_no and status = 1";
+    $query = "SELECT property_id , flat_no , tenant_name FROM tenants where property_id = $property_id and flat_no = $flat_no and status = 1";
 
     $result = $this->db->query($query);
     return $result->result_array();
@@ -193,4 +193,15 @@ class HomeM extends CI_Model {
     $result = $this->db->query($query);
     return $result->result_array();
   }
+
+  // public function get_invoive_status($property_id,$month)
+  // {
+  //   $query = " SELECT * FROM invoice_status WHERE property_id = $property_id AND month =$month ";
+
+  //   // print_r($query);
+  //   // die();
+
+  //   $result = $this->db->query($query);
+  //   return $result->result_array();
+  // }
 }

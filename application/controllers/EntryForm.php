@@ -75,6 +75,7 @@ class EntryForm extends CI_Controller{
 		$data['rate_per_unit'] = $rate_per_unit;
 		$data['rate_per_person'] = $rate_per_person;
 		$data['waste'] = $waste;
+		$month = $data['month'];
 
 		// echo "<pre>";
 		// print_r($data['property_id']);
@@ -88,6 +89,11 @@ class EntryForm extends CI_Controller{
 
 		$data['flat_entry'] = $this->EntryFormM->check_flat_entry($flat_no, $property_id);
 
+		$previous_month =  date('Y-m', strtotime('-1 month'));
+		// echo "<pre>";
+		// print_r($previous_month);
+		// die();
+		$data['previous_reading'] = $this->EntryFormM->previousReading($property_id,$flat_no,$previous_month);
 
 		$this->load->view('EntryForm/entry_form_view', $data);
 

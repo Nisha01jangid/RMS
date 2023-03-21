@@ -1,6 +1,6 @@
 <?php
 // echo "<pre>";
-// print_r($paid_amount);
+// print_r($invoice_status);
 // die();  
 ?>
 <!DOCTYPE html>

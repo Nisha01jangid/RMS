@@ -6,7 +6,7 @@
     // echo "<br>";
     // print_r($rate_per_unit);
     // echo "<br>";
-    // print_r($rate_per_person);
+    // print_r($previous_reading);
     // die();
 ?>
 
@@ -48,6 +48,11 @@
         height:100%;
         margin:1% 3% 0% 3%;    
     }
+     .details{
+      font-style: italic;
+      font-weight:bold; 
+      font-size: 13px;
+    }
 
     </style>
 
@@ -58,7 +63,7 @@
   </head>
 <body>
   <main>  
-<div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 250px;height:100vh;">
+  <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 250px;height:100vh;">
     <h4><?php echo $_SESSION['user']; ?></h4>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
@@ -69,13 +74,33 @@
       <li class="nav-item">
         <a href="<?php echo base_url('EntryForm') ?>" class="nav-link text-white" aria-current="page">Entry Form</a>
       </li>
+      <li>
+        <a href="<?php echo base_url('Invoice') ?>" class="nav-link text-white">Invoice</a>
+      </li>
+
+     <!--  <li>
+        <a href="<?php echo base_url('Payments') ?>" class="nav-link text-white">Payments</a>
+      </li> -->
+      <li>
+          <a href="<?php echo base_url('Report/select_property_for_report_monthwise') ?>" class="nav-link text-white">Main Report</a>  
+        </li>
 
       <li>
-        <a href="<?php echo base_url('Payments') ?>" class="nav-link text-white">Payments</a>
+        <a href="<?php echo base_url('Report/receiver_report') ?>" class="nav-link text-white">Receiver Report</a>
       </li>
+       <li>
+        <a href="<?php echo base_url('Report/receiver_expenditure') ?>" class="nav-link text-white"> Receiver Expenditure</a>
+      </li>
+        
+       <!--  <li>
+          <a href="<?php echo base_url('Report/User_Wise_Report') ?>" class="nav-link text-white">User-Wise Report</a>  
+        </li> -->
+        
+      
       <li>
-        <a href="<?php echo base_url('Report/month_of_payment') ?>" class="nav-link text-white">Report</a>
+        <a href="<?php echo base_url('Report/outstanding_amount') ?>" class="nav-link text-white">Oustanding Report</a>
       </li>
+     
     </ul>
     <hr>
   </div>
@@ -136,6 +161,15 @@
      </div>
   </div>
 
+<div class="row">
+    <div class="form-group col">
+      
+    </div>
+
+    <div class="form-group col">
+    <i>Previous Meter Reading (Unit) : </i> <span class="details"><?php echo $previous_reading; ?></span> 
+     </div>
+  </div>
      <br>
 
   <div class="row">

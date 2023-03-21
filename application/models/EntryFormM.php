@@ -46,6 +46,15 @@ class EntryFormM extends CI_Model {
     return ;
 
   }
+
+  public function previousReading($property_id,$flat_no,$month){
+
+    $query = "SELECT * FROM entry_form_details WHERE property_id =$property_id AND flat_no = $flat_no AND month = '$month'";
+    // print_r($query);
+    // die();
+    $result = $this->db->query($query);
+    return $result->result_array()[0]['current_meter_reading'];
+  }
                        
      
 }
