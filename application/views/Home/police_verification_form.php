@@ -66,7 +66,7 @@
     <link href="<?php echo base_url('css/sidebar.css') ?>" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" rel="stylesheet">
   </head>
-<body>
+<body style="margin:none">
   <main> 
 
 <div class="homediv" style="margin:auto;">
@@ -85,11 +85,9 @@ Name of Landlord……………………………………………………Fath
 Full address………………………………………………………………………………………………………………….
 Mobile No……………………………………… Police station…………………………………………………………………………<br>
   </div>
-
-
-<div style="font-size:13px;">
-
-  <br>Name of Tanent/Servant/Labour : <span class="details"><?php echo $details_for_police_verification[0]['tenant_name']; ?></span>&nbsp;&nbsp;&nbsp;Age <span class="details"><?php echo $details_for_police_verification[0]['age']; ?></span>&nbsp;&nbsp;  <span class="details"></span> &nbsp;&nbsp;Gender : <span class="details"><?php echo $details_for_police_verification[0]['gender']; ?></span>
+<div style="font-size:13px;padding-top:1%">
+<div style="border-style:solid; height:100px;width:100px;float:right;margin:5% 6% 2%"></div> 
+  Name of Tanent/Servant/Labour : <span class="details"><?php echo $details_for_police_verification[0]['tenant_name']; ?></span>&nbsp;&nbsp;&nbsp;Age <span class="details"><?php echo $details_for_police_verification[0]['age']; ?></span>&nbsp;&nbsp;  <span class="details"></span> &nbsp;&nbsp;Gender : <span class="details"><?php echo $details_for_police_verification[0]['gender']; ?></span>
 
 <br>Fathers Name : <span class="details"><?php echo $details_for_police_verification[0]['father_name']; ?></span>
 
@@ -98,11 +96,10 @@ Mobile No……………………………………… Police station………�
 <br>Complete Permanent Address : <span class="details"><?php echo $details_for_police_verification[0]['address']; ?></span>
 
 <br>District : <span class="details"><?php echo $details_for_police_verification[0]['district']; ?></span>	&nbsp;&nbsp;State : <span class="details"><?php echo $details_for_police_verification[0]['state']; ?></span>&nbsp;&nbsp;Police Station : <span class="details"><?php echo $details_for_police_verification[0]['polic_station']; ?></span>
-  </div>
-  <br>
+</div><br>
 Detail of Family Members
 
-<table class="table table-bordered" style="text-align:center; font-size:13px;">
+<table class="table table-bordered" style="text-align:center; font-size:13px; margin-bottom:0px">
 <thead class="thead-dark">
     <th>S.No.</th>
     <th>Name</th>
@@ -119,14 +116,14 @@ Detail of Family Members
     foreach ($family_member_details as $key => $value) { ?>
 
     <tr style="text-align:center;">
-    <td><?php echo $i ?></td>
-    <td><?php echo $value['name'] ?></td>
-    <td></td>
-    <td><?php echo $value['age'] ?></td>
-    <td><?php echo $value['gender'] ?></td>
-    <td><?php echo $value['relation'] ?></td>
-    <td><?php echo $value['mobile_no'] ?></td>
-    <td><?php echo $value['aadhar'] ?></td>
+    <td style="padding:4px"><?php echo $i ?></td>
+    <td style="padding:4px"><?php echo $value['name'] ?></td>
+    <td style="padding:4px"><?php echo $value['father_name'] ?></td>
+    <td style="padding:4px"><?php echo $value['age'] ?></td>
+    <td style="padding:4px"><?php echo $value['gender'] ?></td>
+    <td style="padding:4px"><?php echo $value['relation'] ?></td>
+    <td style="padding:4px"><?php echo $value['mobile_no'] ?></td>
+    <td style="padding:4px"><?php echo $value['aadhar'] ?></td>
     </tr>
 
     <?php $i++; } ?>
@@ -144,38 +141,39 @@ Total Number of family member : <span class="details"><?php echo $details_for_po
 
 <br>Office contact Number : <span class="details"><?php echo $details_for_police_verification[0]['occupation_contact']; ?></span>
 <br>Local Identifier/ Granter Name With Full Address   
+<div style="display:flex; justify-content: space-between;">
+<div style="width:40%;">
+            <br>(1) Name : <span class="details"><?php echo $details_for_police_verification[0]['granter1_name']; ?></span>
 
-            <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(1) Name : <span class="details"><?php echo $details_for_police_verification[0]['granter1_name']; ?></span>
+						<br>&emsp;&nbsp;Address : <span class="details"><?php echo $details_for_police_verification[0]['granter1_address']; ?></span>
 
-						<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;Address : <span class="details"><?php echo $details_for_police_verification[0]['granter1_address']; ?></span>
+						<br>&emsp;&nbsp;District : <span class="details"><?php echo $details_for_police_verification[0]['granter1_district']; ?></span>
 
-						<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;District : <span class="details"><?php echo $details_for_police_verification[0]['granter1_district']; ?></span>
+            <br>&emsp;&nbsp;State : <span class="details"><?php echo $details_for_police_verification[0]['granter1_state']; ?></span>
 
-            <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;State : <span class="details"><?php echo $details_for_police_verification[0]['granter1_state']; ?></span>
+            <br>&emsp;&nbsp;Police Station : <span class="details"><?php echo $details_for_police_verification[0]['granter1_police_station']; ?></span>
 
-            <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;Police Station : <span class="details"><?php echo $details_for_police_verification[0]['granter1_police_station']; ?></span>
+						<br>&emsp;&nbsp;Mobile No : <span class="details"><?php echo $details_for_police_verification[0]['granter1_contact']; ?></span>
 
-						<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;Mobile No : <span class="details"><?php echo $details_for_police_verification[0]['granter1_contact']; ?></span>
+            <br>&emsp;&nbsp;Email ID : <span class="details"><?php echo $details_for_police_verification[0]['granter1_email']; ?></span>
+            </div><div style="width:40%;">
+						<br>(2) Name : <span class="details"><?php echo $details_for_police_verification[0]['granter2_name']; ?></span>
 
-            <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;Email ID : <span class="details"><?php echo $details_for_police_verification[0]['granter1_email']; ?></span>
+            <br>&emsp;&nbsp;Address : <span class="details"><?php echo $details_for_police_verification[0]['granter2_address']; ?></span>
 
-						<br><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;(2) Name : <span class="details"><?php echo $details_for_police_verification[0]['granter2_name']; ?></span>
+            <br>&emsp;&nbsp;District : <span class="details"><?php echo $details_for_police_verification[0]['granter2_district']; ?></span>
 
-            <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;Address : <span class="details"><?php echo $details_for_police_verification[0]['granter2_address']; ?></span>
+            <br>&emsp;&nbsp;State : <span class="details"><?php echo $details_for_police_verification[0]['granter2_state']; ?></span>
 
-            <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;District : <span class="details"><?php echo $details_for_police_verification[0]['granter2_district']; ?></span>
+            <br>&emsp;&nbsp;Police Station : <span class="details"><?php echo $details_for_police_verification[0]['granter2_police_station']; ?></span>
 
-            <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;State : <span class="details"><?php echo $details_for_police_verification[0]['granter2_state']; ?></span>
+            <br>&emsp;&nbsp;Mobile No : <span class="details"><?php echo $details_for_police_verification[0]['granter2_contact']; ?></span>
 
-            <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;Police Station : <span class="details"><?php echo $details_for_police_verification[0]['granter2_police_station']; ?></span>
-
-            <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;Mobile No : <span class="details"><?php echo $details_for_police_verification[0]['granter2_contact']; ?></span>
-
-            <br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;Email ID : <span class="details"><?php echo $details_for_police_verification[0]['granter2_email']; ?></span>
-
+            <br>&emsp;&nbsp;Email ID : <span class="details"><?php echo $details_for_police_verification[0]['granter2_email']; ?></span>
+            </div></div>
                         <br><br><br><br>Signature of Landlord/Owner				
-                        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Signature of Tanent/Servant/Labour <br><br><br>
-  </div>	
+                        &emsp;&emsp; &emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Signature of Tanent/Servant/Labour <br><br>
+  </div></div>	
 
 <div style="border:1px solid black; font-size:13px;">
 <strong><center>Declaration</center></strong>
