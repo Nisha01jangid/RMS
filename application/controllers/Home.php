@@ -44,14 +44,20 @@ class Home extends CI_Controller {
 		for($i=1; $i<=$data['flat'][0]['flats']; $i++){
 
 			$flat_status = $this->HomeM->check_flat_occupied($property_id, $i);
+
+			// echo "<pre>";
+			// print_r($flat_status);
+			
+
 			if(!empty($flat_status)){
-				$data['flats'][$i] = 1;
+				$data['flats'][$i]['status'] = 1;
+				$data['flats'][$i]['tenant_name'] = $flat_status[0]['tenant_name'];
 			} else {
-				$data['flats'][$i] = 0;
+				$data['flats'][$i]['status'] = 0;
 			}
 
 		}
-
+// die();
 
 		$this->load->view('Home/flats', $data);
 	}
@@ -244,10 +250,11 @@ public function insert_tenant_details(){
 		$month = $data['tenant_entry_form_details'][0]['month'];
 		
 
-	
+	// $data['invoice_status'] = $this->HomeM->get_invoive_status($data['property_id'],$month);
+
 		for($i = 0; $i < sizeof($data['tenant_entry_form_details']); $i++){
 
-		$data['paid_amount'] = $this->HomeM->get_tenant_amount($flat_no, $property_id, 03);
+		// $data['paid_amount'] = $this->HomeM->get_tenant_amount($flat_no, $property_id, 03);
 		// echo "<pre>";
 		// print_r($data['paid_amount']);
 		// die();
@@ -259,11 +266,14 @@ public function insert_tenant_details(){
 
 			$data['tenant_entry_form_details'][$i]['amount_paid'] = $data['paid_amount'][0]['amount'];
 
+			
 		}
 		
-		//  echo "<pre>";
-		//  print_r($data['tenant_entry_form_details']);
-		//  die();
+		
+
+		 // echo "<pre>";
+		 // print_r($data['invoice_status']);
+		 // die();
 
 		$previous_month =  date('Y-m', strtotime('-1 month'));
 		$data['previous_reading'] = $this->HomeM->previousReading($property_id,$flat_no,$previous_month);
@@ -384,9 +394,9 @@ public function insert_payment(){
 		$receiver = "Nisha";
 	}
 
-	$month1 = $_POST['month'];
-	$data = explode('-', $month1);
-	$month = $data[1];
+	$month = $_POST['month'];
+	// $data = explode('-', $month1);
+	// $month = $data[1];
 	// echo $month;
 	// die();
 	
@@ -400,9 +410,11 @@ public function insert_payment(){
 	$property_id = $_POST['property_id'];
 	$flat_no = $_POST['flat_no'];
 	$payment_mode = "offline";
-	$month1 = $_POST['month'];
-	$data = explode('-', $month1);
-	$month = $data[1];
+	$month = $_POST['month'];
+	// echo $month1;
+	// die();
+	// $data = explode('-', $month1);
+	// $month = $data[1];
 
 	$receiver = $_POST['receiver'];
 
@@ -434,7 +446,7 @@ public function insert_payment(){
 		// echo "<pre>";
 		// print_r($data['details_for_police_verification']);
 		// die();
-		$tenant_id = $data['details_for_police_verification'][0][id];
+		$tenant_id = $data['details_for_police_verification'][0]['id'];
 
 		$data['family_member_details'] = $this->HomeM->get_family_member_details_for_police_verification($tenant_id);
 

@@ -61,7 +61,10 @@ class ReportM extends CI_Model {
   
     public function get_report_details_monthwise($month,$property_id){
 
-    $query = "SELECT * FROM entry_form_details WHERE property_id =$property_id AND `month` = '$month' AND status=1 ORDER BY `month` ";
+    $query = "SELECT * FROM entry_form_details WHERE property_id =$property_id AND `month` = '$month' AND status=1 ORDER BY `month`";
+
+    // print_r($query);
+    // die();
  
     $result = $this->db->query($query);
     return $result->result_array();
@@ -106,6 +109,15 @@ class ReportM extends CI_Model {
 
     $query = "SELECT SUM(amount) AS amount FROM expenditure where date BETWEEN '$from_date' AND '$to_date' and receiver = '$receiver'";
 
+    $result = $this->db->query($query);
+    return $result->result_array();
+  }
+
+  public function get_amount_received($property_id,$month,$flat)
+  {
+    $query = "SELECT SUM(amount) AS amount FROM payment where `property_id` = $property_id and `flat_no` = $flat and month = '$month'";
+//     print_r($query);
+// die();
     $result = $this->db->query($query);
     return $result->result_array();
   }
