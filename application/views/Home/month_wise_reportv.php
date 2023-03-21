@@ -114,7 +114,12 @@
                             <tr>
                             <td scope="row" style="text-align:center;"><?php echo $i ?></td>
                             <td style="text-align:center;"><?php echo $value['month'] ?></td>
-                            <td></td>
+                            <?php if(!empty($value['invoice_number'])) {?>
+                              <td style="color:green;"><?php echo $value['invoice_number'];?> </td>
+                              
+                            <?php } else {?>
+                              <td style="color:red;"><?php echo "Not Generated";?> </td>
+                              <?php }?>
                             <td style="text-align:center;"><?php echo $value['rent'] ?></td>
                             <td style="text-align:center;"><?php if($i==1){$amount = ($value['current_meter_reading']-$previous_reading)*$value['electricity_rate'];
                             echo "(".$value['current_meter_reading']." - ".$previous_reading.") * ".$value['electricity_rate']." = ".$amount;}else{

@@ -236,21 +236,30 @@ public function insert_tenant_details(){
 		
 		$data['tenant_entry_form_details'] = $this->HomeM->get_tenant_entry_form_details($data['flat_no'],$data['property_id']);
 
-
-		// $month = $data['tenant_entry_form_details'][0]['month'];
-		// $data = explode('-', $month);
-	    // $month_only = $data[1];
-
-	    // echo "<pre>";
-		// print_r($month_only);
-		// die();
-
 		$data['tenant_entry_form_details'] = $this->HomeM->get_tenant_entry_form_details($data['flat_no'],$data['property_id']);
 
 		$month = $data['tenant_entry_form_details'][0]['month'];
 		
 
-	// $data['invoice_status'] = $this->HomeM->get_invoive_status($data['property_id'],$month);
+	    $data['invoice_status'] = $this->HomeM->get_invoive_status($data['property_id'],$month);
+
+
+
+		if(!empty($data['invoice_status'])){
+
+			for($i=0; $i<sizeof($data['tenant_entry_form_details']); $i++){
+
+			$month = $data['tenant_entry_form_details'][$i]['month'];
+
+			$data['invoice_number'] = $this->HomeM->get_invoive_number($data['property_id'],$month, $data['flat_no']);
+			$data['tenant_entry_form_details'][$i]['invoice_number'] = 	$data['invoice_number'][0]['invoice'];
+			}
+
+
+		}
+		// echo "<pre>";
+		// print_r($data['tenant_entry_form_details']);
+		// die();
 
 		for($i = 0; $i < sizeof($data['tenant_entry_form_details']); $i++){
 
@@ -259,10 +268,8 @@ public function insert_tenant_details(){
 		// print_r($data['paid_amount']);
 		// die();
 			$month = $data['tenant_entry_form_details'][$i]['month'];
-			$data1 = explode('-', $month);
-	        $month_only = $data1[1];
 
-			$data['paid_amount'] = $this->HomeM->get_tenant_amount($data['flat_no'], $data['property_id'], $month_only);
+			$data['paid_amount'] = $this->HomeM->get_tenant_amount($data['flat_no'], $data['property_id'], $month);
 
 			$data['tenant_entry_form_details'][$i]['amount_paid'] = $data['paid_amount'][0]['amount'];
 
@@ -271,9 +278,9 @@ public function insert_tenant_details(){
 		
 		
 
-		 // echo "<pre>";
-		 // print_r($data['invoice_status']);
-		 // die();
+		//  echo "<pre>";
+		//  print_r($data['tenant_entry_form_details']);
+		//  die();
 
 		$previous_month =  date('Y-m', strtotime('-1 month'));
 		$data['previous_reading'] = $this->HomeM->previousReading($property_id,$flat_no,$previous_month);

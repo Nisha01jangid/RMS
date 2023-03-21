@@ -155,9 +155,9 @@ class HomeM extends CI_Model {
 
   public function get_tenant_amount($flat_no, $property_id, $month){
 
-    $query = "SELECT property_id, flat_no, amount FROM payment where property_id = $property_id and flat_no = $flat_no and month = '$month'";
+    // $query = "SELECT property_id, flat_no, amount FROM payment where property_id = $property_id and flat_no = $flat_no and month = '$month'";
 
-    $query = "SELECT SUM(amount) as amount FROM payment where property_id = $property_id and flat_no = $flat_no and month = $month";
+    $query = "SELECT SUM(amount) as amount FROM payment where property_id = $property_id and flat_no = $flat_no and month = '$month'";
 
     // print_r($query);
     // die();
@@ -194,14 +194,19 @@ class HomeM extends CI_Model {
     return $result->result_array();
   }
 
-  // public function get_invoive_status($property_id,$month)
-  // {
-  //   $query = " SELECT * FROM invoice_status WHERE property_id = $property_id AND month =$month ";
+  public function get_invoive_status($property_id,$month)
+  {
+    $query = " SELECT * FROM invoice_status WHERE property_id = $property_id AND month ='$month' order by `month`";
 
-  //   // print_r($query);
-  //   // die();
+    $result = $this->db->query($query);
+    return $result->result_array();
+  }
 
-  //   $result = $this->db->query($query);
-  //   return $result->result_array();
-  // }
+  public function get_invoive_number($property_id,$month, $flat_no)
+  {
+    $query = " SELECT invoice FROM invoice WHERE property_id = $property_id AND month ='$month' and flat_no = $flat_no order by `month`";
+
+    $result = $this->db->query($query);
+    return $result->result_array();
+  }
 }
