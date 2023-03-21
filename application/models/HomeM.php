@@ -155,13 +155,10 @@ class HomeM extends CI_Model {
 
   public function get_tenant_amount($flat_no, $property_id, $month){
 
-    // $query = "SELECT property_id, flat_no, amount FROM payment where property_id = $property_id and flat_no = $flat_no and month = '$month'";
-
     $query = "SELECT SUM(amount) as amount FROM payment where property_id = $property_id and flat_no = $flat_no and month = '$month'";
 
     // print_r($query);
     // die();
-
 
     $result = $this->db->query($query);
     return $result->result_array();
@@ -187,9 +184,6 @@ class HomeM extends CI_Model {
   {
     $query = " SELECT * FROM tenant_relatives WHERE tenant_id = $tenant_id AND active = 1";
 
-    // print_r($query);
-    // die();
-
     $result = $this->db->query($query);
     return $result->result_array();
   }
@@ -209,4 +203,43 @@ class HomeM extends CI_Model {
     $result = $this->db->query($query);
     return $result->result_array();
   }
+
+  public function insert_oustanding_amount($property_id, $flat_no, $month, $total, $amount, $outstanding){
+
+    $query = "INSERT INTO `outstanding_amount` (`property_id`, `flat_no`, `month`, `total`, `amount_received`, `outstanding_amount`, `status`) VALUES ('$property_id', '$flat_no', '$month', '$total', '$amount', '$outstanding', 1)";
+
+    $result = $this->db->query($query);
+    return ;
+  }
+
+  public function check_outstanding_exist($property_id, $flat_no, $month){
+
+    $query = " SELECT * FROM outstanding_amount WHERE property_id = $property_id AND month ='$month' and flat_no = $flat_no  and status = 1 order by `month`";
+
+    $result = $this->db->query($query);
+    return $result->result_array();
+
+  }
+
+  public function update_oustanding_amount($property_id, $flat_no, $month, $total, $amount, $outstanding){
+
+    $query = "UPDATE `outstanding_amount` SET `total` = '$total', `amount_received` = '$amount', `outstanding_amount` = '$outstanding' WHERE property_id = '$property_id' AND  flat_no = $flat_no AND month = '$month'";
+
+    $result = $this->db->query($query);
+    return ;
+  }
+
+  public function get_outstanding_amount($property_id, $flat_no, $month){
+
+    $query = " SELECT outstanding_amount FROM outstanding_amount WHERE property_id = $property_id AND month ='$month' and flat_no = $flat_no and status = 1 order by `month`";
+
+    // print_r($query);
+    // die();
+
+    $result = $this->db->query($query);
+    return $result->result_array();
+
+  }
+
+
 }
