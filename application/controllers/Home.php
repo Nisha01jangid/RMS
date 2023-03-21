@@ -434,7 +434,7 @@ public function insert_payment(){
 		// echo "<pre>";
 		// print_r($data['details_for_police_verification']);
 		// die();
-		$tenant_id = $data['details_for_police_verification'][0][id];
+		$tenant_id = $data['details_for_police_verification'][0]['id'];
 
 		$data['family_member_details'] = $this->HomeM->get_family_member_details_for_police_verification($tenant_id);
 
