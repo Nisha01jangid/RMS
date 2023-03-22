@@ -75,7 +75,7 @@ class EntryForm extends CI_Controller{
 		$data['rate_per_unit'] = $rate_per_unit;
 		$data['rate_per_person'] = $rate_per_person;
 		$data['waste'] = $waste;
-		$month = $data['month'];
+		
 
 		// echo "<pre>";
 		// print_r($data['property_id']);
@@ -89,10 +89,14 @@ class EntryForm extends CI_Controller{
 
 		$data['flat_entry'] = $this->EntryFormM->check_flat_entry($flat_no, $property_id);
 
-		$previous_month =  date('Y-m', strtotime('-1 month'));
+		$month = $data['month'];
+		// $previous_month =  date('Y-m', strtotime('-1 month'));
+		$previous_month = date('Y-m', strtotime($month . '-01 -1 month'));
+
 		// echo "<pre>";
 		// print_r($previous_month);
 		// die();
+
 		$data['previous_reading'] = $this->EntryFormM->previousReading($property_id,$flat_no,$previous_month);
 
 		$this->load->view('EntryForm/entry_form_view', $data);
@@ -104,6 +108,7 @@ class EntryForm extends CI_Controller{
 
 		$tenant_rent= $_POST['tenant_rent'];
 		$current_meter_reading= $_POST['current_meter_reading'];
+		$previous_meter_reading = $_POST['previous_meter_reading'];
 		$miscellaneous= $_POST['miscellaneous'];
 		$duedate= $_POST['duedate'];
 
@@ -132,7 +137,7 @@ class EntryForm extends CI_Controller{
 		// die();
 		
 
-		$this->EntryFormM->insert_entry_form($month,$property_id, $property_name, $flat_no, $no_of_members, $rate_per_unit,$rate_per_person, $tenant_rent, $current_meter_reading, $waste, $miscellaneous, $duedate, $active_status);
+		$this->EntryFormM->insert_entry_form($month,$property_id, $property_name, $flat_no, $no_of_members, $rate_per_unit,$rate_per_person, $tenant_rent, $previous_meter_reading, $current_meter_reading, $waste, $miscellaneous, $duedate, $active_status);
 
 		$this->session->set_flashdata('entry_form_inserted', 'Entry Form Inserted Successfully :)');
 

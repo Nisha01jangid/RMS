@@ -237,10 +237,7 @@ public function insert_tenant_details(){
 		$data['tenant_entry_form_details'] = $this->HomeM->get_tenant_entry_form_details($data['flat_no'],$data['property_id']);
 
 		$month = $data['tenant_entry_form_details'][0]['month'];
-		
-
 	    $data['invoice_status'] = $this->HomeM->get_invoive_status($data['property_id'],$month);
-
 
 
 		if(!empty($data['invoice_status'])){
@@ -302,6 +299,11 @@ public function insert_tenant_details(){
 		// echo "<pre>";
 		// print_r($data['tenant_entry_form_details']);
 		// die();
+
+
+		// $previous_month =  date('Y-m', strtotime('-1 month'));
+		$previous_month = date('Y-m', strtotime($month . '-01 -1 month'));
+		$data['previous_reading'] = $this->HomeM->previousReading($property_id,$flat_no,$previous_month);
 
 
 		$this->load->view('Home/month_wise_reportv',$data);

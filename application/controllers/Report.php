@@ -68,20 +68,57 @@ public function balance_report(){
     	$data['property_id'] =$_POST['property_id'];
     	$property_id = $data['property_id'];
 
-    	
-
     	$data['report_monthwise_details'] = $this->ReportM->get_report_details_monthwise($data['month'],$data['property_id']);
+
     	// echo "<pre>";
-    	
     	// print_r($data['report_monthwise_details']);
 		// die();
 
-    	$month = $data['report_monthwise_details'][0]['month'];
+		$month = $data['report_monthwise_details'][0]['month'];
+
+	    $data['invoice_status'] = $this->ReportM->get_invoive_status($data['property_id'],$month);
+
+		if(!empty($data['invoice_status'])){
+
+			
+			for($i=0; $i<sizeof($data['report_monthwise_details']); $i++){
+
+			$month = $data['report_monthwise_details'][$i]['month'];
+			$flat_no = $data['report_monthwise_details'][$i]['flat_no'];
+
+
+			$data['invoice_number'] = $this->ReportM->get_invoive_number($data['property_id'],$month, $flat_no);
+			$data['report_monthwise_details'][$i]['invoice_number'] = 	$data['invoice_number'][0]['invoice'];
+			}
+
+
+		}
+    	for($i = 0; $i < sizeof($data['report_monthwise_details']); $i++){
+
+			$month = $data['report_monthwise_details'][$i]['month'];
+			$flat_no = $data['report_monthwise_details'][$i]['flat_no'];
+
+			$data['paid_amount'] = $this->ReportM->get_tenant_amount($flat_no, $data['property_id'], $month);
+
+			$data['report_monthwise_details'][$i]['amount_paid'] = $data['paid_amount'][0]['amount'];
+
+			
+		}
+    	
+    	
+		// foreach ($data['report_monthwise_details'] as $key => $value) {
+
+
+		$month = $data['report_monthwise_details'][0]['month'];
     	$flat_no = $data['report_monthwise_details'][0]['flat_no'];
 		// echo $month;
 		// die();
-		$previous_month =  date('Y-m', strtotime('-1 month'));
-		$data['previous_reading'] = $this->ReportM->previousReading($property_id,$flat_no,$previous_month);
+		// $previous_month = date('Y-m', strtotime($month . '-01 -1 month'));
+		// $data['previous_reading'] = $this->ReportM->previousReading($property_id,$flat_no,$previous_month);
+		
+		// }
+
+    	
     	$this->load->view('Report_Monthwise/Report_monthwise',$data);
     }
 
