@@ -251,35 +251,60 @@ public function insert_tenant_details(){
 			}
 
 
+
 		}
+		
+		for($i = 0; $i < sizeof($data['tenant_entry_form_details']); $i++){
+
+			$month = $data['tenant_entry_form_details'][$i]['month'];
+
+			$previous_month =  date('Y-m', strtotime('-1 month'));
+		    $data['previous_reading'] = $this->HomeM->previousReading($property_id,$flat_no,$previous_month);
+
+			$data['paid_amount'] = $this->HomeM->get_tenant_amount($data['flat_no'], $data['property_id'], $month);
+			$data['tenant_entry_form_details'][$i]['previous_reading'] = $data['previous_reading'];
+
+			$rent = $data['tenant_entry_form_details'][$i]['rent'];
+			$waste = $data['tenant_entry_form_details'][$i]['waste'];
+			$miscellaneous = $data['tenant_entry_form_details'][$i]['miscellaneous'];
+			$water = $data['tenant_entry_form_details'][$i]['no_of_members'] * $data['tenant_entry_form_details'][$i]['water_rate'];
+			$electricity = $data['tenant_entry_form_details'][$i]['electricity_rate'] * $data['tenant_entry_form_details'][$i]['previous_reading'];
+
+			$total = $rent + $waste + $miscellaneous + $water + $electricity;
+
+			$data['tenant_entry_form_details'][$i]['amount_paid'] = $data['paid_amount'][0]['amount'];
+		    
+			$outstanding_amount = $total - $data['tenant_entry_form_details'][$i]['amount_paid'];
+			// echo $oustanding_amount;
+			$check = $this->HomeM->check_outstanding_exist($data['property_id'], $data['flat_no'], $month);
+			if(!empty($check)){
+			$this->HomeM->update_oustanding_amount($data['property_id'], $data['flat_no'], $month, $total, $data['tenant_entry_form_details'][$i]['amount_paid'], $outstanding_amount);
+
+			}else {
+			$this->HomeM->insert_oustanding_amount($data['property_id'], $data['flat_no'], $month, $total, $data['tenant_entry_form_details'][$i]['amount_paid'], $outstanding_amount);
+			}
+
+
+		}
+
+		for($i=0; $i<sizeof($data['tenant_entry_form_details']); $i++){
+
+			$month = $data['tenant_entry_form_details'][$i]['month'];
+
+			$outstanding = $this->HomeM->get_outstanding_amount($data['property_id'], $data['flat_no'], $month);
+
+			$data['tenant_entry_form_details'][$i]['outstanding_amount'] = $outstanding[0]['outstanding_amount'];
+		}
+
 		// echo "<pre>";
 		// print_r($data['tenant_entry_form_details']);
 		// die();
 
-		for($i = 0; $i < sizeof($data['tenant_entry_form_details']); $i++){
-
-		// $data['paid_amount'] = $this->HomeM->get_tenant_amount($flat_no, $property_id, 03);
-		// echo "<pre>";
-		// print_r($data['paid_amount']);
-		// die();
-			$month = $data['tenant_entry_form_details'][$i]['month'];
-
-			$data['paid_amount'] = $this->HomeM->get_tenant_amount($data['flat_no'], $data['property_id'], $month);
-
-			$data['tenant_entry_form_details'][$i]['amount_paid'] = $data['paid_amount'][0]['amount'];
-
-			
-		}
-		
-		
-
-		//  echo "<pre>";
-		//  print_r($data['tenant_entry_form_details']);
-		//  die();
 
 		// $previous_month =  date('Y-m', strtotime('-1 month'));
 		$previous_month = date('Y-m', strtotime($month . '-01 -1 month'));
 		$data['previous_reading'] = $this->HomeM->previousReading($property_id,$flat_no,$previous_month);
+
 
 		$this->load->view('Home/month_wise_reportv',$data);
 	}
