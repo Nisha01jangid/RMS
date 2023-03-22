@@ -100,6 +100,7 @@
                             <th scope="col" style="text-align:center;">Waste </th>
                             <th scope="col" style="text-align:center;">Miscellaneous</th>
                             <th scope="col" style="text-align:center;">Total</th>
+                            <th scope="col" style="text-align:center;">Total + Previous Outstanding</th>
     
                             <th scope="col" style="text-align:center;">Payment</th>
                             <th style="text-align:center;">Amount Paid</th>
@@ -135,18 +136,21 @@
 
                             </td>
 
-
+                            <?php $total = $value['rent']+( $value['no_of_members']*$value['water_rate'])+ $value['waste']+$value['miscellaneous']+$amount; ?>
                             <td><?php echo $value['no_of_members']."*".$value['water_rate']."=".$value['no_of_members']*$value['water_rate'] ?></td> 
                             
                             <td><?php echo $value['waste'] ?></td>
                             <td><?php echo $value['miscellaneous'] ?></td>
-                            <td><?php echo $value['rent']+( $value['no_of_members']*$value['water_rate'])+ $value['waste']+$value['miscellaneous']+$amount; ?></td>
+                            <td><?php echo  $total;  ?></td>
+                            <td><?php echo $value['total']; ?></td>
                             <td align="center">
-                              <button style="padding: 9px; background-color: #fce205; border-radius: 5px; border-color:#fce205; ;"><a style="text-decoration: none; font-size: 15px; font-weight: bold; color: black;" href="<?php echo base_url('Home/pay_bill/').$property_id.'/'.$flat_no.'/'.$value['month'];?>">Pay</a></button>
+                              <?php if(empty($value['invoice_number'])){ ?>
+                                <button style="padding: 9px; background-color: #fce205; border-radius: 5px; border-color:#fce205; ;"><a style="text-decoration: none; font-size: 15px; font-weight: bold; color: black;" href="<?php echo base_url('Home/pay_bill/').$property_id.'/'.$flat_no.'/'.$value['month'];?>">Pay</a></button>
+                                <?php }else{ ?>
+                                <?php echo "-";} ?>
                             </td> 
-                            <td style="text-align:center;"><?php echo $value['amount_paid']; ?></td>
-                            <?php $total = $value['rent']+( $value['no_of_members']*$value['water_rate'])+ $value['waste']+$value['miscellaneous']+$amount; ?>
-                            <td style="text-align:center;"> <?php echo $total - $value['amount_paid'];?></td>
+                            <td style="text-align:center;"><?php echo $value['amount_paid']; ?></td>                           
+                            <td style="text-align:center;"> <?php echo $value['outstanding_amount'];?></td>
                             </tr>   
 
                             <?php   $i++; } ?>
