@@ -1,6 +1,6 @@
 <?php
 // echo "<pre>";
-// print_r($paid_amount);
+// print_r($invoice_status);
 // die();  
 ?>
 <!DOCTYPE html>
@@ -114,14 +114,28 @@
                             <tr>
                             <td scope="row" style="text-align:center;"><?php echo $i ?></td>
                             <td style="text-align:center;"><?php echo $value['month'] ?></td>
-                            <td></td>
+                            <?php if(!empty($value['invoice_number'])) {?>
+                              <td style="color:green;"><?php echo $value['invoice_number'];?> </td>
+                              
+                            <?php } else {?>
+                              <td style="color:red;"><?php echo "Not Generated";?> </td>
+                              <?php }?>
                             <td style="text-align:center;"><?php echo $value['rent'] ?></td>
-                            <td style="text-align:center;"><?php if($i==1){$amount = ($value['current_meter_reading']-$previous_reading)*$value['electricity_rate'];
+
+
+                            <!-- <td style="text-align:center;"><?php if($i==1){$amount = ($value['current_meter_reading']-$previous_reading)*$value['electricity_rate'];
                             echo "(".$value['current_meter_reading']." - ".$previous_reading.") * ".$value['electricity_rate']." = ".$amount;}else{
                                 $amount = ($value['current_meter_reading']-$tenant_entry_form_details[$i-2]['current_meter_reading'])*$value['electricity_rate'];
                                 echo "(".$value['current_meter_reading']." - ".$tenant_entry_form_details[$i-2]['current_meter_reading'].") * ".$value['electricity_rate']." = ".$amount;
-                            } ?></td>
-                            <!-- <td style="text-align:center;"><?php //echo "( 100 - 94 ) * 100 = Rs 600" ; ?></td> -->
+                            } ?></td> -->
+                           
+
+                           <td style="text-align:center;"><?php $amount = ($value['current_meter_reading']-$value['previous_meter_reading'])*$value['electricity_rate'];
+                            echo "(".$value['current_meter_reading']." - ".$value['previous_meter_reading'].") * ".$value['electricity_rate']." = ".$amount; ?>
+
+                            </td>
+
+
                             <td><?php echo $value['no_of_members']."*".$value['water_rate']."=".$value['no_of_members']*$value['water_rate'] ?></td> 
                             
                             <td><?php echo $value['waste'] ?></td>
