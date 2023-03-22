@@ -108,7 +108,7 @@ class Invoice extends CI_Controller {
         $previous_month =  date('Y-m', strtotime($month. ' -1 months')); 
         $data['previous_invoice'] = $this->InvoiceM->check_invoice($property_id, $flat_no, $previous_month);
         $data['previous_outstanding'] = $this->InvoiceM->get_previous_outstanding($property_id,$flat_no,$previous_month);
-        
+
         if(!empty($data['paid_amount'])){
             $data['data']['amount_paid']=$data['paid_amount'][0]['amount'];
             $data['data']['payment_date']=$data['paid_amount'][0]['payment_date'];

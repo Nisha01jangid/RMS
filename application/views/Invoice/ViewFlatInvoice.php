@@ -29,7 +29,8 @@
           $total_units = $data['electricity_units']; 
           $total_unit_price = $details[0]['electricity_rate']*$total_units; 
           $total_others = $water_units + $total_unit_price + $details[0]['waste'] + $details[0]['miscellaneous'];
-          $total_amount_to_pay = $outstanding_details[0]['total']; 
+          $total_amount_to_pay = $details[0]['total']; 
+
           $outstanding_amount = $total_amount_to_pay-$data['amount_paid'];
           if(empty($previous_oustanding)){
             $prev_oustanding=0;
