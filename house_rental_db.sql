@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 21, 2023 at 04:57 AM
+-- Generation Time: Mar 22, 2023 at 01:50 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -37,7 +37,8 @@ CREATE TABLE `entry_form_details` (
   `electricity_rate` int(50) NOT NULL,
   `water_rate` int(50) NOT NULL,
   `rent` int(50) NOT NULL,
-  `current_meter_reading` int(50) NOT NULL,
+  `previous_meter_reading` int(100) NOT NULL,
+  `current_meter_reading` int(100) NOT NULL,
   `waste` int(50) NOT NULL,
   `miscellaneous` int(50) NOT NULL,
   `duedate` date NOT NULL,
@@ -49,12 +50,11 @@ CREATE TABLE `entry_form_details` (
 -- Dumping data for table `entry_form_details`
 --
 
-INSERT INTO `entry_form_details` (`id`, `month`, `property_id`, `property_name`, `flat_no`, `no_of_members`, `electricity_rate`, `water_rate`, `rent`, `current_meter_reading`, `waste`, `miscellaneous`, `duedate`, `status`, `timestamp`) VALUES
-(1, '2023-03', 1, 'P1', 2, 4, 100, 150, 5000, 10, 2000, 100, '2023-03-31', 1, '2023-03-17 09:05:39'),
-(2, '2023-04', 1, 'P1', 2, 4, 200, 250, 5000, 20, 100, 500, '2023-04-29', 1, '2023-03-17 09:05:39'),
-(3, '2023-02', 1, 'P1', 2, 4, 100, 150, 5000, 5, 2000, 100, '2023-03-31', 0, '2023-03-17 09:05:39'),
-(4, '2023-05', 1, 'P1', 2, 4, 100, 50, 5000, 30, 1000, 100, '2023-03-24', 1, '2023-03-17 09:05:39'),
-(5, '2023-04', 1, 'P1', 3, 2, 5, 10, 999, 100, 100, 888, '7777-07-07', 1, '2023-03-17 09:05:39');
+INSERT INTO `entry_form_details` (`id`, `month`, `property_id`, `property_name`, `flat_no`, `no_of_members`, `electricity_rate`, `water_rate`, `rent`, `previous_meter_reading`, `current_meter_reading`, `waste`, `miscellaneous`, `duedate`, `status`, `timestamp`) VALUES
+(1, '2023-03', 1, 'P1', 2, 4, 100, 150, 5000, 5, 10, 2000, 100, '2023-03-31', 1, '2023-03-22 07:51:20'),
+(2, '2023-04', 1, 'P1', 2, 4, 200, 250, 5000, 0, 20, 100, 500, '2023-04-29', 1, '2023-03-17 09:05:39'),
+(3, '2023-02', 1, 'P1', 2, 4, 100, 150, 5000, 0, 5, 2000, 100, '2023-03-31', 0, '2023-03-17 09:05:39'),
+(4, '2023-05', 1, 'P1', 2, 4, 100, 50, 5000, 0, 30, 1000, 100, '2023-03-24', 1, '2023-03-17 09:05:39');
 
 -- --------------------------------------------------------
 
@@ -92,14 +92,7 @@ CREATE TABLE `invoice` (
   `flat_no` int(10) NOT NULL,
   `month` varchar(100) NOT NULL,
   `tenant_name` varchar(500) NOT NULL,
-  `no_of_members` int(100) NOT NULL,
-  `rent` double NOT NULL,
-  `electricity_rate` double NOT NULL,
   `electricity_units` tinyint(1) NOT NULL,
-  `water_rate` double NOT NULL,
-  `amount_paid` double NOT NULL,
-  `payment_date` varchar(15) DEFAULT NULL,
-  `due_date` date NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -107,8 +100,8 @@ CREATE TABLE `invoice` (
 -- Dumping data for table `invoice`
 --
 
-INSERT INTO `invoice` (`sno`, `invoice`, `property_id`, `flat_no`, `month`, `tenant_name`, `no_of_members`, `rent`, `electricity_rate`, `electricity_units`, `water_rate`, `amount_paid`, `payment_date`, `due_date`, `timestamp`) VALUES
-(2, '2023-03/2', 1, 2, '2023-03', 'Rachael', 4, 15000, 100, 5, 150, 0, NULL, '2023-03-31', '2023-03-19 18:35:51');
+INSERT INTO `invoice` (`sno`, `invoice`, `property_id`, `flat_no`, `month`, `tenant_name`, `electricity_units`, `timestamp`) VALUES
+(1, '2023-03/2', 1, 2, '2023-03', 'Rachael', 5, '2023-03-22 11:54:47');
 
 -- --------------------------------------------------------
 
@@ -129,8 +122,34 @@ CREATE TABLE `invoice_status` (
 --
 
 INSERT INTO `invoice_status` (`sno`, `property_id`, `month`, `date`, `timestamp`) VALUES
-(2, 1, '2023-03', '2023-03-19', '2023-03-19 18:35:51'),
-(3, 2, '2023-03', '2023-03-20', '2023-03-20 19:21:06');
+(8, 1, '2023-03', '2023-03-22', '2023-03-22 11:54:47');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `outstanding_amount`
+--
+
+CREATE TABLE `outstanding_amount` (
+  `id` int(11) NOT NULL,
+  `property_id` int(200) NOT NULL,
+  `flat_no` int(200) NOT NULL,
+  `month` varchar(200) NOT NULL,
+  `total` int(11) NOT NULL,
+  `amount_received` int(11) NOT NULL,
+  `outstanding_amount` int(11) NOT NULL,
+  `status` int(11) NOT NULL,
+  `time_stamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `outstanding_amount`
+--
+
+INSERT INTO `outstanding_amount` (`id`, `property_id`, `flat_no`, `month`, `total`, `amount_received`, `outstanding_amount`, `status`, `time_stamp`) VALUES
+(1, 1, 2, '2023-03', 8200, 8200, 0, 1, '2023-03-22 11:13:07'),
+(2, 1, 2, '2023-04', 10600, 1200, 9400, 1, '2023-03-22 11:13:07'),
+(3, 1, 2, '2023-05', 18700, 5000, 13700, 1, '2023-03-22 11:13:07');
 
 -- --------------------------------------------------------
 
@@ -160,37 +179,9 @@ CREATE TABLE `payment` (
 INSERT INTO `payment` (`id`, `property_id`, `flat_no`, `pay_mode`, `payment_date`, `month`, `amount`, `reference_id`, `description`, `payment_receiver`, `status`, `time_stamp`) VALUES
 (1, 1, 2, 'gpay', '2023-03-19', '2023-03', 2000, 'fetuityuertwereryt', 'fyjhuhiuryt', 'Dr. Indra Kumar Shah', 1, '2023-03-20 10:43:24'),
 (2, 1, 2, 'gpay', '2023-03-19', '2023-04', 1200, '1233456qwerrr', 'jyfjydytfigo;uiyutrstdyfygu', 'Sirs Father', 1, '2023-03-20 10:43:34'),
-(3, 1, 2, 'offline', '2023-03-25', '2023-03', 4500, NULL, 'nfnfkherighbfwhj bbghotihjoefkwejbfk', 'Dr. Indra Kumar Shah', 1, '2023-03-20 10:43:42'),
+(3, 1, 2, 'offline', '2023-03-25', '2023-03', 4200, NULL, 'nfnfkherighbfwhj bbghotihjoefkwejbfk', 'Dr. Indra Kumar Shah', 1, '2023-03-22 09:48:53'),
 (4, 1, 2, 'offline', '2023-03-18', '2023-05', 5000, NULL, 'fsfefyytjyh', 'Dr. Indra Kumar Shah', 1, '2023-03-20 10:43:51'),
-(5, 1, 2, 'offline', '2023-03-20', '2023-03', 3212, NULL, 'rw', 'Dr. Indra Kumar Shah', 1, '2023-03-20 10:42:05');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `payments`
---
-
-CREATE TABLE `payments` (
-  `sno` int(30) NOT NULL,
-  `tenant_id` int(30) NOT NULL,
-  `amount` float NOT NULL,
-  `invoice` varchar(50) NOT NULL,
-  `date_created` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `payments`
---
-
-INSERT INTO `payments` (`sno`, `tenant_id`, `amount`, `invoice`, `date_created`) VALUES
-(2, 1, 60000, '22C11', '2023-10-19 11:21:07'),
-(3, 2, 7000, '22C12', '2023-10-19 11:21:34'),
-(4, 3, 25000, '22C14', '2022-10-19 11:22:06'),
-(5, 1, 4500, 'GH45', '2022-10-23 14:13:00'),
-(9, 6, 500, '22C11', '2023-10-19 11:21:07'),
-(10, 1, 7000, '22C12', '2023-10-19 11:21:34'),
-(11, 4, 9000, '22C14', '2022-10-19 11:22:06'),
-(17, 4, 5000, 'test50', '2023-03-08 15:58:36');
+(5, 1, 2, 'offline', '2023-03-20', '2023-03', 2000, NULL, 'rw', 'Dr. Indra Kumar Shah', 1, '2023-03-22 09:48:58');
 
 -- --------------------------------------------------------
 
@@ -278,7 +269,12 @@ INSERT INTO `tenants` (`id`, `tenant_name`, `father_name`, `gender`, `email`, `a
 (5, 'james', 'SomeBody', '', 'james@gmail.com', 78523, '8512469', 2, 0, 0, 0, 25000, '2023-03-08', 0, 2, 2, '', '', '', '', 0, 0, '', '', '0', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, '2022-09-01'),
 (6, 'DANIEL', 'RehneDo', '', 'daniel@gmail.com', 32587, '85745264', 3, 0, 0, 0, 30000, '2023-03-08', 0, 2, 3, '', '', '', '', 0, 0, '', '', '0', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 1, '2022-07-07'),
 (19, 'Sneha', 'Sanu Mathew', 'female', '0808io201048.ies@ipsacademy.org', 2147483647, '7489625561', 0, 0, 0, 0, 0, '2001-05-16', 0, 1, 1, 'A 34/303 Treasure Fantasy', 'Indore', 'Madhya Pradesh', 'Rajendra Nagar', 1, 1, 'Student ', 'IES IPS Academy Indore Madhya Pradesh', '0', 'Lydia Thomas ', '8767887654', 'A 99/209 Vasant Vihar', 'Indore', 'Madhya Pradesh', 'Rangwasa', 'etgothno@gmail.com', 'Rachel Johnson', '9877876545', 'A 99/209 Hiranandani Estate ', 'Indore', 'Madhya Pradesh', 'Not sure', 'edf@gmail.com', 1, '2023-03-17'),
-(24, 'Om Aditya Jain', 'Mr. Dinesh Jain', 'male', 'omadityajain@gmail.com', 2147483647, '9754854756', 4, 2, 1, 0, 1000000, '2002-10-21', 21, 1, 4, 'Dwarkapuri', 'Indore', 'Madhya Pradesh', 'Dwarkapuri', 2, 3, 'Student', 'IES IPS ACADEMY INDORE', '9876873345', 'Mr. Yash Parmar', '123456789', 'Rajendra Nagar', 'Indore', 'MP', 'Rajendra Nagar', 'yash@gmail.com', 'Mr. Sharansh Nayak', '987654321', 'Rajendra Nagar', 'Indore', 'MP', 'Rajendra Nagar', 'sharansh@gmail.com', 1, '2023-03-19');
+(24, 'Om Aditya Jain', 'Mr. Dinesh Jain', 'male', 'omadityajain@gmail.com', 2147483647, '9754854756', 4, 2, 1, 0, 1000000, '2002-10-21', 21, 1, 4, 'Dwarkapuri', 'Indore', 'Madhya Pradesh', 'Dwarkapuri', 2, 3, 'Student', 'IES IPS ACADEMY INDORE', '9876873345', 'Mr. Yash Parmar', '123456789', 'Rajendra Nagar', 'Indore', 'MP', 'Rajendra Nagar', 'yash@gmail.com', 'Mr. Sharansh Nayak', '987654321', 'Rajendra Nagar', 'Indore', 'MP', 'Rajendra Nagar', 'sharansh@gmail.com', 1, '2023-03-19'),
+(32, 'gjgjgjgj', '', '', '', 0, '', 0, 0, 0, 0, 0, '0000-00-00', 0, 1, 5, '', '', '', '', 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, '0000-00-00'),
+(33, 'tytytytyty', '', '', '', 0, '', 0, 0, 0, 0, 0, '0000-00-00', 0, 1, 5, '', '', '', '', 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, '0000-00-00'),
+(34, 'lieurjioejr', '', '', '', 0, '', 0, 0, 0, 0, 0, '0000-00-00', 0, 1, 5, '', '', '', '', 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, '0000-00-00'),
+(35, 'lieurjioejr', '', '', '', 0, '', 0, 0, 0, 0, 0, '0000-00-00', 0, 1, 5, '', '', '', '', 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 0, '0000-00-00'),
+(36, 'kljjrliajewpr', '', '', '', 0, '', 0, 0, 0, 0, 0, '0000-00-00', 0, 1, 5, '', '', '', '', 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 1, '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -306,7 +302,13 @@ CREATE TABLE `tenant_relatives` (
 INSERT INTO `tenant_relatives` (`sno`, `tenant_id`, `name`, `father_name`, `age`, `gender`, `relation`, `mobile_no`, `aadhar`, `active`) VALUES
 (1, 24, 'Mr. Dinesh Jain', '', 40, 'male', 'father', 2147483647, 2147483647, 1),
 (2, 24, 'Mrs. Deepti Jain', '', 40, 'female', 'mother', 2147483647, 2147483647, 1),
-(3, 24, 'Ms. Palak Jain', '', 18, 'female', 'others', 2147483647, 2147483647, 1);
+(3, 24, 'Ms. Palak Jain', '', 18, 'female', 'others', 2147483647, 2147483647, 1),
+(5, 32, 'ghsgdgdgd', '', 0, '', '', 0, 0, 1),
+(6, 32, 'gfhfjdkdfjf', '', 0, '', '', 0, 0, 1),
+(7, 33, 'kdfjklsadjfalasd', '', 0, '', '', 0, 0, 1),
+(8, 33, 'krjttert', '', 0, '', '', 0, 0, 1),
+(9, 36, 'kjkjdjflaskd', 'kjhdhflklnasdjf', 76, 'male', 'father', 2147483647, 4454, 1),
+(10, 36, 'dhfoasdfl', 'klfjglfdjgl', 78, 'female', 'father', 9856, 485904, 1);
 
 -- --------------------------------------------------------
 
@@ -354,16 +356,16 @@ ALTER TABLE `invoice_status`
   ADD PRIMARY KEY (`sno`);
 
 --
+-- Indexes for table `outstanding_amount`
+--
+ALTER TABLE `outstanding_amount`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `payment`
 --
 ALTER TABLE `payment`
   ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `payments`
---
-ALTER TABLE `payments`
-  ADD PRIMARY KEY (`sno`);
 
 --
 -- Indexes for table `property`
@@ -397,31 +399,31 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `entry_form_details`
 --
 ALTER TABLE `entry_form_details`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `invoice`
 --
 ALTER TABLE `invoice`
-  MODIFY `sno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `sno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `invoice_status`
 --
 ALTER TABLE `invoice_status`
-  MODIFY `sno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `sno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `outstanding_amount`
+--
+ALTER TABLE `outstanding_amount`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `payment`
 --
 ALTER TABLE `payment`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `payments`
---
-ALTER TABLE `payments`
-  MODIFY `sno` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `property`
@@ -433,13 +435,13 @@ ALTER TABLE `property`
 -- AUTO_INCREMENT for table `tenants`
 --
 ALTER TABLE `tenants`
-  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `tenant_relatives`
 --
 ALTER TABLE `tenant_relatives`
-  MODIFY `sno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `sno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `users`

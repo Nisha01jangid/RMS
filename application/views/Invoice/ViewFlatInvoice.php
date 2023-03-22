@@ -25,36 +25,41 @@
         ">
         <div class="upperdiv">
           <?php 
-          $water_units = $data['water_rate']*$data['no_of_members']; 
-          $total_units = $data['electricity_units']+$water_units; 
-          $total_unit_price = $data['electricity_rate']*$total_units; 
-          $total_amount_to_pay = $data['rent']+$total_unit_price; 
+          $water_units = $details[0]['water_rate']*$details[0]['no_of_members']; 
+          $total_units = $data['electricity_units']; 
+          $total_unit_price = $details[0]['electricity_rate']*$total_units; 
+          $total_others = $water_units + $total_unit_price + $details[0]['waste'] + $details[0]['miscellaneous'];
+          $total_amount_to_pay = $outstanding_details[0]['total']; 
           $outstanding_amount = $total_amount_to_pay-$data['amount_paid'];
-          // $previous_oustanding=;
+          if(empty($previous_oustanding)){
+            $prev_oustanding=0;
+          }else{
+            $prev_oustanding=$previous_oustanding[0]['outstanding_amount'];
+          }
           ?>
             <h5 style="text-align:center;margin-top:5px;"><u>हिसाब पर्ची</u></h5>
             <p style="margin-bottom:0px;"><span>क्र. <?php if(isset($data['invoice'])){echo $data['invoice'];}else{ ?>...............<?php } ?></span><span style="margin-left:150px">दिनांक <?php if(isset($data['timestamp'])) echo date('d-m-Y',strtotime($data['timestamp'])) ?></span></p>
             <p style="margin-bottom:0px;">नाम श्री/श्रीमती <?php echo $data['tenant_name']; ?></p>
-            <p style="margin-bottom:0px;"><span>किराया माह <?php echo date("F", strtotime($data['month']))." ".date("Y", strtotime($data['month'])); ?></span><span style="margin-left:150px">कमरा नं <?php echo $data['flat_no']; ?></span></p>
+            <p style="margin-bottom:0px;"><span>किराया माह <?php echo date("F Y", strtotime($month)); ?></span><span style="margin-left:120px">कमरा नं <?php echo $details[0]['flat_no']; ?></span></p>
             <hr style="height: 5px; background: black;">
             <p style="margin-bottom:0px;">1. वर्तमान - पिछला मी. रीडिंग यू &emsp;<?php echo $data['electricity_units']; ?> यू (लगभग)</p>
             <hr style="margin: 3px 0px;">
-            <p style="margin-bottom:0px;">2. प्रति सदस्य/माह पम्प यूनिट &emsp;<?php echo $data['water_rate']."*".$data['no_of_members']." = ".$water_units; ?> यू</p>
+            <p style="margin-bottom:0px;">2. प्रति सदस्य/माह पम्प यूनिट &emsp;<?php echo $details[0]['water_rate']."*".$details[0]['no_of_members']." = ".$water_units; ?></p>
             <p style="margin-bottom:0px;">&emsp;(यूनिट * सदस्य संख्या)</p>
             <hr style="margin: 3px 0px;">
-            <p style="margin-bottom:0px;">3. कुल खपत यू (1+2) * दर&emsp;₹ <?php echo $data['electricity_units']."+".$water_units." = ".$total_units."*".$data['electricity_rate']." = ".$total_unit_price; ?></p>
+            <p style="margin-bottom:0px;">3. कुल खपत यू (1+2) * दर&nbsp;₹ <?php echo $data['electricity_units']."*".$details[0]['electricity_rate']." = ".$total_unit_price."+".$water_units."+".$details[0]['waste']."+".$details[0]['miscellaneous']." = ".$total_others; ?></p>
             <hr style="margin: 3px 0px;">
-            <p style="margin-bottom:0px;">4. कमरे का किराया&emsp;₹ <?php echo $data['rent']; ?></p>
+            <p style="margin-bottom:0px;">4. कमरे का किराया&emsp;₹ <?php echo $details[0]['rent']; ?></p>
             <hr style="margin: 3px 0px;">
-            <p style="margin-bottom:0px;">5. पिछला बिल का क्र. <?php echo $data['invoice']; ?> &nbsp;का&nbsp;₹ /- बाकी</p>
+            <p style="margin-bottom:0px;">5. पिछला बिल का क्र. <?php if(!empty($previous_invoice)){echo $previous_invoice[0]['invoice']. " का ₹ "; if(empty($prev_outstanding)){echo "0";}else{echo $prev_oustanding;} ?>/- बाकी<?php }else{ ?>&nbsp;-&nbsp;का&nbsp;₹ 0&nbsp; /- बाकी<?php } ?></p>
             <hr style="margin: 3px 0px;">
-            <p style="margin-bottom:0px;">6. कुल (3+4+5) &emsp;₹ <?php echo $total_unit_price."+".$data['rent']."+..... = ".$total_amount_to_pay; ?></p>
+            <p style="margin-bottom:0px;">6. कुल (3+4+5) &emsp;₹ <?php echo $total_others."+".$details[0]['rent']."+".$prev_oustanding." = ".$total_amount_to_pay; ?></p>
             <hr style="margin: 3px 0px;">
-            <p style="margin-bottom:0px;">7. प्राप्त राशि (दिनांक सहित) &emsp;₹ <?php echo $data['amount_paid']."/- ".$data['payment_date']; ?></p>
+            <p style="margin-bottom:0px;">7. प्राप्त राशि (दिनांक सहित) &emsp;₹ <?php echo $data['amount_paid']."/- (".$data['payment_date'].")"; ?></p>
             <hr style="margin: 3px 0px;">
-            <p style="margin-bottom:0px;">8. शेष राशि &emsp;₹ <?php echo $total_amount_to_pay." - ".$data['amount_paid']." = ".$outstanding_amount; ?></p>
+            <p style="margin-bottom:0px;">8. शेष राशि &emsp;₹ <?php echo $total_amount_to_pay." - "; ?><?php if(!empty($data['amount_paid'])){echo $data['amount_paid']; }else{echo "0";} ?><?php echo " = ".$outstanding_details[0]['outstanding_amount']; ?> /-</p>
             <hr style="margin: 3px 0px;">
-            <p style="margin-bottom:0px;">भुगतान दिनांक <?php echo date('d-m-Y',strtotime($data['due_date'])); ?> तक आवश्यक |</p>
+            <p style="margin-bottom:0px;">भुगतान दिनांक <?php echo date('d-m-Y',strtotime($details[0]['duedate'])); ?> तक आवश्यक |</p>
             <p style="margin-bottom:0px; float:right; margin-right:50px;">ह०</p>
 
         </div>

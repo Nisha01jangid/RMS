@@ -156,6 +156,17 @@ class HomeM extends CI_Model {
     return $result->result_array();
   }
 
+  public function get_previous_outstanding($property_id, $flat_no, $month){
+
+    $query = "SELECT * FROM outstanding_amount where property_id = $property_id and flat_no = $flat_no and month = '$month'";
+
+    // print_r($query);
+    // die();
+
+    $result = $this->db->query($query);
+    return $result->result_array();
+  }
+
   public function insert_tenant_relatives($tenant_id, $name, $father_name, $age, $gender, $relation, $mobile_no, $aadhar){
 
     $query = "INSERT INTO `tenant_relatives` (`tenant_id`, `name`, `father_name`, `age`, `gender`, `relation`, `mobile_no`, `aadhar`, `active`) VALUES ('$tenant_id', '$name', '$father_name', '$age', '$gender', '$relation', '$mobile_no', '$aadhar', 1)";
