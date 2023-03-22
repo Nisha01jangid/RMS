@@ -1,6 +1,6 @@
 <?php
 // echo "<pre>";
-// print_r($invoice_status);
+// print_r($tenant_entry_form_details);
 // die();  
 ?>
 <!DOCTYPE html>
