@@ -21,13 +21,16 @@ class InvoiceM extends CI_Model {
       }
 
       function check_invoice($property_id, $flat_no, $month){
-        $sql = " SELECT * from invoice where `property_id`=$property_id and flat_no = $flat_no and `month`='$month'";
+        $sql = " SELECT * from invoice where `property_id`=$property_id and `flat_no` = $flat_no and `month`='$month'";
         $query = $this->db->query($sql);
         return $query->result_array();
       }
 
       function getFlatDetails($property_id, $flat_no, $month){
         $sql = " SELECT * from entry_form_details where `property_id`=$property_id and flat_no=$flat_no and `month`='$month'";
+
+        // print_r($sql);
+        // die();
         $query = $this->db->query($sql);
         return $query->result_array();
       }
@@ -50,14 +53,14 @@ class InvoiceM extends CI_Model {
         return $query->result_array();
       }
 
-      function insert_invoice($invoice, $property_id, $flat_no, $month, $tenant_name, $members, $rent, $electricity_rate, $water_rate, $units, $due_date){
-        $sql = " INSERT INTO `invoice` (`invoice`,`property_id`,`flat_no`,`month`,`tenant_name`,`no_of_members`,`rent`,`electricity_rate`, `water_rate`, `electricity_units`, `due_date`) VALUES ('$invoice', $property_id, $flat_no, '$month','$tenant_name', $members, $rent, $electricity_rate, $water_rate, $units, '$due_date') ";
+      function insert_invoice($invoice, $property_id, $flat_no, $month, $tenant_name, $units){
+        $sql = " INSERT INTO `invoice` (`invoice`,`property_id`,`flat_no`,`month`,`tenant_name`,`electricity_units`) VALUES ('$invoice', $property_id, $flat_no, '$month','$tenant_name',$units) ";
         $query = $this->db->query($sql);
         return ;
       }
 
-      function update_invoice($invoice, $property_id, $flat_no, $month, $tenant_name, $members, $rent, $electricity_rate, $water_rate, $units, $due_date){
-        $sql = " UPDATE `invoice` SET `tenant_name`='$tenant_name' and `no_of_members`=$members and `rent`=$rent and `electricity_rate`=$electricity_rate and `water_rate`=$water_rate and `electricity_units`=$units and `due_date`='$due_date' WHERE `invoice`='$invoice' and `property_id`=$property_id and `flat_no`=$flat_no and `month`='$month'";
+      function update_invoice($invoice, $property_id, $flat_no, $month, $tenant_name, $units){
+        $sql = " UPDATE `invoice` SET `tenant_name`='$tenant_name' and `electricity_units`=$units WHERE `invoice`='$invoice' and `property_id`=$property_id and `flat_no`=$flat_no and `month`='$month'";
         $query = $this->db->query($sql);
         return ;
       }
@@ -67,6 +70,25 @@ class InvoiceM extends CI_Model {
         $query = $this->db->query($sql);
         return $query->result_array();
       }
+
+      function get_report_details_monthwise($property_id,$flat_no,$month){
+        $sql = " SELECT * from entry_form_details where `property_id`=$property_id and flat_no=$flat_no and `month`='$month'";
+        $query = $this->db->query($sql);
+        return $query->result_array();
+      }
+      function get_outstanding_details($property_id,$flat_no,$month){
+        $sql = " SELECT * from outstanding_amount where `property_id`=$property_id and flat_no=$flat_no and `month`='$month'";
+        $query = $this->db->query($sql);
+        return $query->result_array();
+      }
+
+      public function get_tenant_amount($flat_no, $property_id, $month){
+
+    $query = "SELECT SUM(amount) as amount, `payment_date` FROM payment where property_id = $property_id and flat_no = $flat_no and month = '$month'";
+
+    $result = $this->db->query($query);
+    return $result->result_array();
+  }
 
       function insert_status($property_id,$month,$date){
         $sql = " INSERT INTO `invoice_status` (`property_id`,`month`,`date`) VALUES ($property_id,'$month','$date')";
@@ -79,6 +101,16 @@ class InvoiceM extends CI_Model {
         $query = $this->db->query($sql);
         return;
       }
+      public function get_previous_outstanding($property_id, $flat_no, $month){
+
+    $query = "SELECT * FROM outstanding_amount where property_id = $property_id and flat_no = $flat_no and month = '$month'";
+
+    // print_r($query);
+    // die();
+
+    $result = $this->db->query($query);
+    return $result->result_array();
+  }
 }
 
 ?>

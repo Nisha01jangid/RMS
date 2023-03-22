@@ -33,25 +33,35 @@ class Invoice extends CI_Controller {
     public function generate_invoice($property_id,$month){
         
         $flats = $this->InvoiceM->get_flats($property_id);
+        // echo "<pre>";
+        // print_r($flats);
+        // die();
         foreach($flats as $f){
+
             $flat_details = $this->InvoiceM->getFlatDetails($property_id,$f['flat_no'],$month);
+            // echo "<pre>";
+            // print_r($flat_details);
+            // die();
             if(!empty($flat_details)){
                 $invoice = $month."/".$f['flat_no'];
                 $current_reading = $flat_details[0]['current_meter_reading'];
-                $previous_month = date("Y-m", strtotime ( '-1 month' , strtotime ( $month ) )); 
-                $previous_reading = $this->InvoiceM->getFlatDetails($property_id,$f['flat_no'],$previous_month);
-                $units = $previous_reading[0]['current_meter_reading'];
+                // $previous_month = date("Y-m", strtotime ( '-1 month' , strtotime ( $month ) )); 
+                // $previous_reading = $this->InvoiceM->getFlatDetails($property_id,$f['flat_no'],$previous_month);
+
+                $previous_reading = $flat_details[0]['previous_meter_reading'];
+                $units = $current_reading - $previous_reading; 
+
                 $check = $this->InvoiceM->check_invoice($property_id, $f['flat_no'], $month);
 
                 if(!empty($check)){
-                    $this->InvoiceM->update_invoice($invoice, $property_id, $f['flat_no'], $month, $f['tenant_name'], $f['members'], $f['rent'], $flat_details[0]['electricity_rate'], $flat_details[0]['water_rate'], $units, $flat_details[0]['duedate']);    
+                    $this->InvoiceM->update_invoice($invoice, $property_id, $f['flat_no'], $month, $f['tenant_name'],$units);    
                 }else{
-                    $this->InvoiceM->insert_invoice($invoice, $property_id, $f['flat_no'], $month, $f['tenant_name'], $f['members'], $f['rent'], $flat_details[0]['electricity_rate'], $flat_details[0]['water_rate'], $units, $flat_details[0]['duedate']);
+                    $this->InvoiceM->insert_invoice($invoice, $property_id, $f['flat_no'], $month, $f['tenant_name'],$units);
                 }
                 
             }       
         }
-
+        // die();
         $check_status = $this->InvoiceM->get_invoice_status($property_id,$month);
         $date = date("Y-m-d");
         if(!empty($check_status)){
@@ -85,13 +95,26 @@ class Invoice extends CI_Controller {
     public function view_flat_invoice($property_id, $flat_no, $month){
         
         $data = $this->InvoiceM->check_invoice($property_id, $flat_no, $month);
-        if(!empty($data)){
-            $data['data'] = $data[0];
-        }
-        $check_payments = $this->InvoiceM->get_payments($property_id, $flat_no, $month);
-        if(!empty($check_payments)){
-            $data['data']['amount_paid']=$check_payments[0]['amount'];
-            $data['data']['payment_date']=$check_payments[0]['payment_date'];
+        $data['data'] = $data[0];
+        $data['details'] = $this->InvoiceM->get_report_details_monthwise($property_id,$flat_no,$month);
+        $data['outstanding_details'] = $this->InvoiceM->get_outstanding_details($property_id,$flat_no,$month);
+        // echo "<pre>";
+        // print_r($data);
+        // die();
+        // if(!empty($data)){
+        //     $data['data'] = $data[0];
+        // }
+        $data['paid_amount'] = $this->InvoiceM->get_tenant_amount($flat_no, $property_id, $month);
+        $previous_month =  date('Y-m', strtotime($month. ' -1 months')); 
+        $data['previous_invoice'] = $this->InvoiceM->check_invoice($property_id, $flat_no, $previous_month);
+        $data['previous_outstanding'] = $this->InvoiceM->get_previous_outstanding($property_id,$flat_no,$previous_month);
+        // echo "<pre>";
+        // print_r($check_payments);
+        // die();
+
+        if(!empty($data['paid_amount'])){
+            $data['data']['amount_paid']=$data['paid_amount'][0]['amount'];
+            $data['data']['payment_date']=$data['paid_amount'][0]['payment_date'];
         }else{
             $data['data']['amount_paid'] = 0;
             $data['data']['payment_date'] = "";
