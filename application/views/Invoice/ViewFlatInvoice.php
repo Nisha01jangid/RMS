@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,6 +30,7 @@
           $total_unit_price = $data['electricity_rate']*$total_units; 
           $total_amount_to_pay = $data['rent']+$total_unit_price; 
           $outstanding_amount = $total_amount_to_pay-$data['amount_paid'];
+          // $previous_oustanding=;
           ?>
             <h5 style="text-align:center;margin-top:5px;"><u>हिसाब पर्ची</u></h5>
             <p style="margin-bottom:0px;"><span>क्र. <?php if(isset($data['invoice'])){echo $data['invoice'];}else{ ?>...............<?php } ?></span><span style="margin-left:150px">दिनांक <?php if(isset($data['timestamp'])) echo date('d-m-Y',strtotime($data['timestamp'])) ?></span></p>
@@ -45,7 +46,7 @@
             <hr style="margin: 3px 0px;">
             <p style="margin-bottom:0px;">4. कमरे का किराया&emsp;₹ <?php echo $data['rent']; ?></p>
             <hr style="margin: 3px 0px;">
-            <p style="margin-bottom:0px;">5. पिछला बिल का क्र. ......&nbsp;का&nbsp;₹ .... /- बाकी</p>
+            <p style="margin-bottom:0px;">5. पिछला बिल का क्र. <?php echo $data['invoice']; ?> &nbsp;का&nbsp;₹ /- बाकी</p>
             <hr style="margin: 3px 0px;">
             <p style="margin-bottom:0px;">6. कुल (3+4+5) &emsp;₹ <?php echo $total_unit_price."+".$data['rent']."+..... = ".$total_amount_to_pay; ?></p>
             <hr style="margin: 3px 0px;">

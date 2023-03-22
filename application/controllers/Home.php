@@ -130,7 +130,6 @@ public function insert_tenant_details(){
 	$no_of_male =$_POST['no_of_male'];
 	$no_of_female =$_POST['no_of_female'];
 	$no_of_children_below_5 =$_POST['no_of_children_below_5'];
-
 	$two_wheeler = $_POST['two_wheeler'];
 	$four_wheeler = $_POST['four_wheeler'];
 	$occupation = $_POST['occupation'];
@@ -143,7 +142,6 @@ public function insert_tenant_details(){
 	$identifier_state1 = $_POST['identifier_state1'];
 	$identifier_policestation1 = $_POST['identifier_policestation1'];
 	$identifier_email1 = $_POST['identifier_email1'];
-
 	$identifier_name2 = $_POST['identifier_name2'];
 	$identifier_mobile2 = $_POST['identifier_mobile2'];
 	$identifier_address2 = $_POST['identifier_address2'];
@@ -151,7 +149,6 @@ public function insert_tenant_details(){
 	$identifier_state2 = $_POST['identifier_state2'];
 	$identifier_policestation2 = $_POST['identifier_policestation2'];
 	$identifier_email2 = $_POST['identifier_email2'];
-
 	$flat_no = $_POST['flat_no'];
 	$property_id = $_POST['property_id'];
 
@@ -162,25 +159,37 @@ public function insert_tenant_details(){
     // $member_relations = $_POST['member_relation'];
     // $member_mobile_nos = $_POST['member_mobile_no'];
     // $member_aadhars = $_POST['member_aadhar'];
+	// echo "<pre>";
+	// print_r($_POST);
+	// die();
 
-    for($i=0; $i<count($member_names); $i++){
-        $member_details[] = array(
-            'name' => $member_names[$i],
-            'father_name' => $member_father_name[$i],
-            'age' => $member_ages[$i],
-            'gender' => $member_genders[$i],
-            'relation' => $member_relations[$i],
-            'mobile_no' => $member_mobile_nos[$i],
-            'aadhar' => $member_aadhars[$i]
-        );
+    for($i=0; $i<count($member_name); $i++){
+        // $member_details[] = array(
+        //     'name' => $member_name[$i],
+        //     'father_name' => $member_father_name[$i],
+        //     'age' => $member_ages[$i],
+        //     'gender' => $member_genders[$i],
+        //     'relation' => $member_relations[$i],
+        //     'mobile_no' => $member_mobile_nos[$i],
+        //     'aadhar' => $member_aadhars[$i]
+        // );
+		$member_name = $member_name[$i];
+		$member_father_name = $member_father_name[$i];
+		$age = $member_age[$i];
+		$gender = $member_gender[$i];
+		$relation =$member_relation[$i]; 
+		$number = $member_mobile_no[$i];
+		$aadhaar = $member_aadhar[$i];
+
+		$this->HomeM->insert_tenant_relatives( $member_name, $member_father_name, $age, $gender, $relation, $number, $aadhaar);
 	}
 
 	$tenant_id = $this->HomeM->insert_tenant_details($name, $father_name, $dob,$age,$gender, $email, $rent, $mobile, $Aadhaar, $joining_date, $address, $district, $state, $polic_station, $no_of_members, $no_of_male, $no_of_female, $no_of_children_below_5, $two_wheeler, $four_wheeler, $occupation, $occupation_address, $occupation_contact, $identifier_name1, $identifier_mobile1, $identifier_address1, $identifier_district1, $identifier_state1, $identifier_policestation1, $identifier_email1, $identifier_name2, $identifier_mobile2,$identifier_address2, $identifier_district2, $identifier_state2, $identifier_policestation2, $identifier_email2,$property_id, $flat_no);
 
 
-	foreach($member_details as $m){
-		$this->HomeM->insert_tenant_relatives($tenant_id, $m['name'], $m['father_name'], $m['age'], $m['gender'], $m['relation'], $m['mobile_no'], $m['aadhar']);
-	}
+	// foreach($member_details as $m){
+	// $this->HomeM->insert_tenant_relatives( $m['name'], $m['father_name'], $m['age'], $m['gender'], $m['relation'], $m['mobile_no'], $m['aadhar']);
+	// }
 
 
 	$this->session->set_flashdata('tenant_inserted', 'Tenant Inserted Successfully :)');

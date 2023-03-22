@@ -106,9 +106,7 @@ class Invoice extends CI_Controller {
 
         if(!empty($check_payments)){
             $data['data']['amount_paid']=$check_payments[0]['amount'];
-            // $data['data']['payment_date']=$check_payments[0]['date_created'];
             $data['data']['payment_date']=$check_payments[0]['payment_date'];
-
         }else{
             $data['data']['amount_paid'] = 0;
             $data['data']['payment_date'] = "";
@@ -129,7 +127,7 @@ class Invoice extends CI_Controller {
             $check_payments = $this->InvoiceM->get_payments($property_id, $f['flat_no'], $month);
             if(!empty($check_payments)){
                 $data['flats'][$i]['amount_paid']=$check_payments[0]['amount'];
-                $data['flats'][$i]['payment_date']=$check_payments[0]['date_created'];
+                $data['flats'][$i]['payment_date']=$check_payments[0]['payment_date'];
             }else{
                 $data['flats'][$i]['amount_paid'] = 0;
                 $data['flats'][$i]['payment_date'] = "";

@@ -35,12 +35,6 @@ class InvoiceM extends CI_Model {
         return $query->result_array();
       }
 
-      // function get_payments($property_id, $flat_no, $month){
-      //   $sql = " SELECT sum(payments.amount) as amount, payments.date_created from payments, tenants where tenants.`property_id`=$property_id and tenants.flat_no=$flat_no and tenants.status = 1 and tenants.id = payments.tenant_id and payments.`date_created` LIKE '$month%'";
-      //   $query = $this->db->query($sql);
-      //   return $query->result_array();
-      // }
-
       function get_payments($property_id, $flat_no, $month){
         $sql = " SELECT sum(payment.amount) as amount, payment.payment_date from payment, tenants where tenants.`property_id`=$property_id and tenants.flat_no=$flat_no and tenants.status = 1 and payment.`property_id`=$property_id and payment.flat_no=$flat_no and payment.status = 1 and payment.`payment_date` LIKE '$month%'";
         $query = $this->db->query($sql);
