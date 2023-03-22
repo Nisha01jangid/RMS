@@ -115,6 +115,7 @@
                                 $total_waste = 0;
                                 $total_miscellaneous = 0;
                                 $total_amount = 0;
+                                $total_amount_paid =0;
 
                                 foreach ($report_monthwise_details as $key => $value) { ?>
                                     
@@ -122,16 +123,35 @@
                             <td scope="row" style="text-align:center;"><?php echo $i ?></td>
                             <td style="text-align:center;"><?php echo $value['month'] ?></td>
                             <td style="text-align:center;"><?php echo $value['flat_no'] ?></td>
-                            <td></td>
+
+
+                           <?php if(!empty($value['invoice_number'])) {?>
+                              <td style="color:green;"><?php echo $value['invoice_number'];?> </td>
+                              
+                            <?php } else {?>
+                              <td style="color:red;"><?php echo "Not Generated";?> </td>
+                              <?php }?>
+
+                              
                             <td style="text-align:center;"><?php echo $value['rent'] ?></td>
-                            <td style="text-align:center;"><?php if($i==1){$amount = ($value['current_meter_reading']-$previous_reading)*$value['electricity_rate'];
+
+
+                            <!-- <td style="text-align:center;"><?php if($i==1){$amount = ($value['current_meter_reading']-$previous_reading)*$value['electricity_rate'];
                             echo "(".$value['current_meter_reading']." - ".$previous_reading.") * ".$value['electricity_rate']." = ".$amount;}else{
                                 $amount = ($value['current_meter_reading']-$report_monthwise_details[$i-2]['current_meter_reading'])*$value['electricity_rate'];
                                 echo "(".$value['current_meter_reading']." - ".$report_monthwise_details[$i-2]['current_meter_reading'].") * ".$value['electricity_rate']." = ".$amount;
                             }
                             $total_electricity += $amount;
-                             ?></td>
+                             ?></td> -->
+
+
                             <!-- <td style="text-align:center;"><?php //echo "( 100 - 94 ) * 100 = Rs 600" ; ?></td> -->
+
+                             <td style="text-align:center;"><?php $amount = ($value['current_meter_reading']-$value['previous_meter_reading'])*$value['electricity_rate'];
+                            echo "(".$value['current_meter_reading']." - ".$value['previous_meter_reading'].") * ".$value['electricity_rate']." = ".$amount; ?>
+
+                            </td>
+
                             <td><?php echo $value['no_of_members']."*".$value['water_rate']."=".$value['no_of_members']*$value['water_rate'] ?></td> 
                             
                             <td><?php echo $value['waste'] ?></td>
@@ -144,15 +164,17 @@
                             $total_waste += $value['waste'];
                             $total_miscellaneous += $value['miscellaneous'];
                             $total_amount += $value['rent']+( $value['no_of_members']*$value['water_rate'])+ $value['waste']+$value['miscellaneous']+$amount;
+
+                            $total_amount_paid += $value['amount_paid'];
                             ?>
                            
-                            <td></td>
+                            <td><?php echo $value['amount_paid'] ?></td>
                             <td> </td>
                             </tr>   
 
                             <?php   $i++; } ?>
 
-                            <tr>
+                            <tr style="font-weight: bold;">
                             <td colspan="4" style="text-align:center; color:black;">Total</td>
                             <td style="text-align:center;"><?php echo $total_rent ?></td>
                             <td style="text-align:center;"><?php echo $total_electricity ?></td>
@@ -160,7 +182,7 @@
                             <td style="text-align:center;"><?php echo $total_waste ?></td>
                             <td style="text-align:center;"><?php echo $total_miscellaneous ?></td>
                             <td style="text-align:center;"><?php echo $total_amount ?></td>
-                            <td></td>
+                            <td style="text-align:center;"><?php echo $total_amount_paid ?></td>
                             <td></td>
                             </tr>
             

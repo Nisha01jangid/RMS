@@ -156,17 +156,19 @@
     <input type="number" class="form-control" id="tenant_rent" name="tenant_rent"  placeholder="Enter the Rent Amount">
     </div>
     <div class="form-group col">
+    <label for="previous_meter_reading">Previous Meter Reading (Unit)</label>
+    <input type="number" class="form-control" id="previous_meter_reading" name="previous_meter_reading"  placeholder="Enter the Previous Meter Reading">
+     </div>
+    <div class="form-group col">
     <label for="current_meter_reading">Current Meter Reading (Unit)</label>
     <input type="number" class="form-control" id="current_meter_reading" name="current_meter_reading"  placeholder="Enter the Current Meter Reading">
      </div>
+     
   </div>
 
 <div class="row">
-    <div class="form-group col">
-      
-    </div>
-
-    <div class="form-group col">
+    
+    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <div class="form-group col">
     <i>Previous Meter Reading (Unit) : </i> <span class="details"><?php echo $previous_reading; ?></span> 
      </div>
   </div>

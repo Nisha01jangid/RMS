@@ -61,7 +61,13 @@ class ReportM extends CI_Model {
   
     public function get_report_details_monthwise($month,$property_id){
 
-    $query = "SELECT * FROM entry_form_details WHERE property_id =$property_id AND `month` = '$month' AND status=1 ORDER BY `month`";
+    $query = "SELECT entry_form_details.* FROM entry_form_details WHERE `property_id` =$property_id AND `month` = '$month' AND status =1 ORDER BY `month`";
+
+    // $query = "SELECT DISTINCT entry_form_details.*, payment.amount
+    // FROM entry_form_details
+    // INNER JOIN payment ON entry_form_details.property_id = payment.property_id AND entry_form_details.month =payment.month
+    // WHERE entry_form_details.property_id = $property_id AND entry_form_details.month = '$month' AND payment.status = 1 AND entry_form_details.status = 1
+    // ORDER BY entry_form_details.month";
 
     // print_r($query);
     // die();
@@ -69,6 +75,30 @@ class ReportM extends CI_Model {
     $result = $this->db->query($query);
     return $result->result_array();
     }
+
+    public function get_invoive_status($property_id,$month)
+  {
+    $query = " SELECT * FROM invoice_status WHERE property_id = $property_id AND month ='$month' order by `month`";
+
+    $result = $this->db->query($query);
+    return $result->result_array();
+  }
+
+  public function get_invoive_number($property_id,$month, $flat_no)
+  {
+    $query = " SELECT invoice FROM invoice WHERE property_id = $property_id AND month ='$month' and flat_no = $flat_no order by `month`";
+
+    $result = $this->db->query($query);
+    return $result->result_array();
+  }
+
+     public function get_tenant_amount($flat_no, $property_id, $month){
+
+    $query = "SELECT SUM(amount) as amount FROM payment where property_id = $property_id and flat_no = $flat_no and month = '$month'";
+
+    $result = $this->db->query($query);
+    return $result->result_array();
+  }
      public function previousReading($property_id,$flat_no,$month){
 
     $query = "SELECT * FROM entry_form_details WHERE property_id =$property_id AND flat_no = $flat_no AND month = '$month'";

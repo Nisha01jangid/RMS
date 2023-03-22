@@ -38,9 +38,9 @@ class EntryFormM extends CI_Model {
     return $result->result_array();
   }
 
-  public function insert_entry_form($month,$property_id, $property_name, $flat_no, $no_of_members, $rate_per_unit,$rate_per_person, $rent, $current_meter_reading, $waste, $miscellaneous, $duedate, $active_status,$user){
+  public function insert_entry_form($month,$property_id, $property_name, $flat_no, $no_of_members, $rate_per_unit,$rate_per_person, $rent, $previous_meter_reading, $current_meter_reading, $waste, $miscellaneous, $duedate, $active_status){
     $_SESSION['user']=$user;
-    $query = "INSERT INTO `entry_form_details` (`month`, `property_id`, `property_name`, `flat_no`, `no_of_members`,`electricity_rate`,`water_rate`, `rent`, `current_meter_reading`, `waste`, `miscellaneous`, `duedate`, `status`,`user`) VALUES ('$month','$property_id', '$property_name', '$flat_no','$no_of_members','$rate_per_unit','$rate_per_person', '$rent', '$current_meter_reading', '$waste', '$miscellaneous', '$duedate', '$active_status','$user')";
+    $query = "INSERT INTO `entry_form_details` (`month`, `property_id`, `property_name`, `flat_no`, `no_of_members`,`electricity_rate`,`water_rate`, `rent`, `previous_meter_reading`, `current_meter_reading`, `waste`, `miscellaneous`, `duedate`, `status`) VALUES ('$month','$property_id', '$property_name', '$flat_no','$no_of_members','$rate_per_unit','$rate_per_person', '$rent', '$previous_meter_reading', '$current_meter_reading', '$waste', '$miscellaneous', '$duedate', '$active_status')";
 
     $result = $this->db->query($query);
     return ;
