@@ -124,7 +124,6 @@ public function insert_tenant_details(){
 	$no_of_male =$_POST['no_of_male'];
 	$no_of_female =$_POST['no_of_female'];
 	$no_of_children_below_5 =$_POST['no_of_children_below_5'];
-
 	$two_wheeler = $_POST['two_wheeler'];
 	$four_wheeler = $_POST['four_wheeler'];
 	$occupation = $_POST['occupation'];
@@ -137,7 +136,6 @@ public function insert_tenant_details(){
 	$identifier_state1 = $_POST['identifier_state1'];
 	$identifier_policestation1 = $_POST['identifier_policestation1'];
 	$identifier_email1 = $_POST['identifier_email1'];
-
 	$identifier_name2 = $_POST['identifier_name2'];
 	$identifier_mobile2 = $_POST['identifier_mobile2'];
 	$identifier_address2 = $_POST['identifier_address2'];
@@ -145,7 +143,6 @@ public function insert_tenant_details(){
 	$identifier_state2 = $_POST['identifier_state2'];
 	$identifier_policestation2 = $_POST['identifier_policestation2'];
 	$identifier_email2 = $_POST['identifier_email2'];
-
 	$flat_no = $_POST['flat_no'];
 	$property_id = $_POST['property_id'];
 
@@ -173,7 +170,7 @@ public function insert_tenant_details(){
 
 
 	foreach($member_details as $m){
-		$this->HomeM->insert_tenant_relatives($tenant_id, $m['name'], $m['father_name'], $m['age'], $m['gender'], $m['relation'], $m['mobile_no'], $m['aadhar']);
+	$this->HomeM->insert_tenant_relatives( $m['name'], $m['father_name'], $m['age'], $m['gender'], $m['relation'], $m['mobile_no'], $m['aadhar']);
 	}
 
 

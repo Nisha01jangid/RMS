@@ -15,14 +15,6 @@ class HomeM extends CI_Model {
 
   }
 
-  function countFlats($property_id){
-
-    $sql="SELECT count(flat_no) as count from `houses` where `property_id`='$property_id'";    
-    $query = $this->db->query($sql);
-    return $query->result_array()[0]['count'];
-
-  }
-
   function get_flats($property_id){
 
     $query = "SELECT * from property where property_id = '$property_id'";

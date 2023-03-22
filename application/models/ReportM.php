@@ -10,7 +10,7 @@ class ReportM extends CI_Model {
       
                        
       function get_payments($to_date,$from_date,$user){
-      $sql = " SELECT entry_form_details.*, tenants.tenant_name,tenants.rent, houses.house_no, houses.flat_no FROM entry_form_details , tenants , houses , users  WHERE entry_form_details.user = '$user' and entry_form_details.user = users.username and tenants.property_id = entry_form_details.property_id AND tenants.flat_no = entry_form_details.flat_no AND houses.id = tenants.flat_no and entry_form_details.timestamp between '$to_date' and '$from_date' order by unix_timestamp(timestamp)  asc";
+      $sql = " SELECT entry_form_details.*, tenants.tenant_name,tenants.rent, property.property_name FROM entry_form_details , tenants , property , users  WHERE entry_form_details.user = '$user' and entry_form_details.user = users.username and tenants.property_id = entry_form_details.property_id AND tenants.flat_no = entry_form_details.flat_no AND property.property_id = tenants.flat_no and entry_form_details.timestamp between '$to_date' and '$from_date' order by unix_timestamp(timestamp)  asc";
       $query = $this->db->query($sql);
         return $query->result_array();
       }
@@ -23,13 +23,10 @@ class ReportM extends CI_Model {
       }
 
       function get_flatwise_payments($to_date,$from_date,$property_id,$flat_no){
-        $sql = " SELECT entry_form_details.*, tenants.tenant_name,tenants.rent, houses.house_no, houses.flat_no , invoice.invoice, invoice.amount_paid FROM entry_form_details , tenants , houses , invoice  
-        WHERE  entry_form_details.property_id = $property_id and entry_form_details.flat_no = $flat_no
-         and entry_form_details.property_id =entry_form_details.property_id 
-         and entry_form_details.flat_no =entry_form_details.flat_no 
-         and tenants.property_id = entry_form_details.property_id 
-         AND tenants.flat_no = entry_form_details.flat_no 
-         AND houses.id = tenants.flat_no 
+        $sql = " SELECT entry_form_details.*, tenants.tenant_name,tenants.rent, invoice.invoice, invoice.amount_paid FROM entry_form_details , tenants , property , invoice  
+        WHERE  entry_form_details.property_id = $property_id and entry_form_details.flat_no = $flat_no and
+        tenants.property_id = $property_id and tenants.flat_no = $flat_no and tenants.property_id = entry_form_details.property_id and tenants.property_id = property.property_id
+         AND tenants.flat_no = entry_form_details.flat_no
         --  and entry_form_details.timestamp between '$to_date' and '$from_date' 
          order by unix_timestamp(entry_form_details.timestamp)  asc";
         // print_r($sql);die();
