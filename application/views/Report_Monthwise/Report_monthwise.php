@@ -167,9 +167,9 @@
 
                             $total_amount_paid += $value['amount_paid'];
                             ?>
-                           
+                           <?php $total = $value['rent']+( $value['no_of_members']*$value['water_rate'])+ $value['waste']+$value['miscellaneous']+$amount; ?>
                             <td><?php echo $value['amount_paid'] ?></td>
-                            <td> </td>
+                            <td><?php echo $total - $value['amount_paid'];?> </td>
                             </tr>   
 
                             <?php   $i++; } ?>
@@ -183,7 +183,7 @@
                             <td style="text-align:center;"><?php echo $total_miscellaneous ?></td>
                             <td style="text-align:center;"><?php echo $total_amount ?></td>
                             <td style="text-align:center;"><?php echo $total_amount_paid ?></td>
-                            <td></td>
+                            <td style="text-align:center;"></td>
                             </tr>
             
 
