@@ -73,7 +73,7 @@
 				<div class="col-md-12">
 
 					<div class="intro">
-							 <h3><center>Month of Payment </center></h3>
+							 <h3><center>Month Wise Report </center></h3>
 							 
 							</div>
 	
@@ -87,6 +87,7 @@
 							<button class="btn btn-sm btn-block btn-primary col-md-2 ml-1 offset-md-2"> Filter</button>
 						</div>
 						<input type="hidden" name="property_id" value="<?php echo $property_id; ?>" >
+							<input type="hidden" name="flats" value="<?php echo $flats; ?>" >
 					</form>
 <br><br>
 
