@@ -72,7 +72,7 @@ class InvoiceM extends CI_Model {
       }
 
       function get_report_details_monthwise($property_id,$flat_no,$month){
-        $sql = " SELECT * from entry_form_details where `property_id`=$property_id and flat_no=$flat_no and `month`='$month'";
+        $sql = " SELECT * from entry_form_details where `property_id`=$property_id and `flat_no`=$flat_no and `month`='$month'";
         $query = $this->db->query($sql);
         return $query->result_array();
       }

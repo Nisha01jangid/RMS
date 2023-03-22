@@ -78,7 +78,6 @@ class Invoice extends CI_Controller {
             $month = $_POST['month'];
         }
         $data['flats'] = $this->InvoiceM->get_flats($property_id);
-        
         $i=0;
         foreach($data['flats'] as $f){
             $check = $this->InvoiceM->check_invoice($property_id, $f['flat_no'], $month);
@@ -87,6 +86,7 @@ class Invoice extends CI_Controller {
             }
             $i++;
         }
+        
         $data['property_id']=$property_id;
         $data['month']=$month;
         $this->load->view('Invoice/ViewInvoice',$data);
@@ -108,9 +108,6 @@ class Invoice extends CI_Controller {
         $previous_month =  date('Y-m', strtotime($month. ' -1 months')); 
         $data['previous_invoice'] = $this->InvoiceM->check_invoice($property_id, $flat_no, $previous_month);
         $data['previous_outstanding'] = $this->InvoiceM->get_previous_outstanding($property_id,$flat_no,$previous_month);
-        // echo "<pre>";
-        // print_r($check_payments);
-        // die();
 
         if(!empty($data['paid_amount'])){
             $data['data']['amount_paid']=$data['paid_amount'][0]['amount'];
@@ -129,16 +126,49 @@ class Invoice extends CI_Controller {
     }
 
     public function print_invoice($property_id, $month){
-        $data['flats'] = $this->InvoiceM->get_flats_invoice($property_id, $month);
+
+        $data['flats_count'] = $this->InvoiceM->get_flats_invoice($property_id, $month);
+        
+        $data['flats'] = array();
         $i=0;
-        foreach($data['flats'] as $f){
-            $check_payments = $this->InvoiceM->get_payments($property_id, $f['flat_no'], $month);
-            if(!empty($check_payments)){
-                $data['flats'][$i]['amount_paid']=$check_payments[0]['amount'];
-                $data['flats'][$i]['payment_date']=$check_payments[0]['payment_date'];
-            }else{
-                $data['flats'][$i]['amount_paid'] = 0;
-                $data['flats'][$i]['payment_date'] = "";
+        foreach($data['flats_count'] as $f){
+            $check = $this->InvoiceM->check_invoice($property_id, $f['flat_no'], $month);
+            
+            if(!empty($check)){
+                $data['flats'][$i] = $check[0];
+                $entry_form_details = $this->InvoiceM->get_report_details_monthwise($property_id,$f['flat_no'],$month);
+
+                $data['flats'][$i]['water_rate'] = $entry_form_details[0]['water_rate'];
+                $data['flats'][$i]['no_of_members'] = $entry_form_details[0]['no_of_members'];
+                $data['flats'][$i]['electricity_rate'] = $entry_form_details[0]['electricity_rate'];
+                $data['flats'][$i]['waste'] = $entry_form_details[0]['waste'];
+                $data['flats'][$i]['miscellaneous'] = $entry_form_details[0]['miscellaneous'];
+                $data['flats'][$i]['rent'] = $entry_form_details[0]['rent'];
+                $data['flats'][$i]['duedate'] = $entry_form_details[0]['duedate'];
+                $outstanding_details = $this->InvoiceM->get_outstanding_details($property_id,$f['flat_no'],$month);
+                $data['flats'][$i]['outstanding_amount'] = $outstanding_details[0]['outstanding_amount'];
+                $paid_amount = $this->InvoiceM->get_tenant_amount($f['flat_no'], $property_id, $month);
+                if(!empty($paid_amount)){
+                    $data['flats'][$i]['amount_paid'] = $paid_amount[0]['amount'];
+                    $data['flats'][$i]['payment_date'] = $paid_amount[0]['payment_date'];
+                }else{
+                    $data['flats'][$i]['amount_paid'] = "0";
+                    $data['flats'][$i]['payment_date'] = "";
+                }
+                $previous_month =  date('Y-m', strtotime($month. ' -1 months')); 
+                $previous_invoice = $this->InvoiceM->check_invoice($property_id, $f['flat_no'], $previous_month);
+                if(!empty($previous_invoice)){
+                    $data['flats'][$i]['previous_invoice'] = $previous_invoice[0]['invoice'];
+                }else{
+                    $data['flats'][$i]['previous_invoice'] = "-";
+                }  
+                $data['flats'][$i]['previous_invoice'] = $previous_invoice[0]['invoice'];
+                $previous_outstanding = $this->InvoiceM->get_previous_outstanding($property_id,$f['flat_no'],$previous_month);
+                if(!empty($previous_outstanding)){
+                    $data['flats'][$i]['prev_outstanding'] = $previous_outstanding[0]['outstanding_amount'];
+                }else{
+                    $data['flats'][$i]['prev_outstanding'] = 0;
+                }                
             }
             $i++;
         }
