@@ -46,7 +46,7 @@
             <hr style="margin: 3px 0px;">
             <p style="margin-bottom:0px;">4. कमरे का किराया&emsp;₹ <?php echo $data['rent']; ?></p>
             <hr style="margin: 3px 0px;">
-            <p style="margin-bottom:0px;">5. पिछला बिल का क्र. <?php echo $data['invoice']; ?> &nbsp;का&nbsp;₹ <?php echo $data['outstanding']; ?> /- बाकी</p>
+            <p style="margin-bottom:0px;">5. पिछला बिल का क्र. <?php echo $data['invoice']; ?> &nbsp;का&nbsp;₹ /- बाकी</p>
             <hr style="margin: 3px 0px;">
             <p style="margin-bottom:0px;">6. कुल (3+4+5) &emsp;₹ <?php echo $total_unit_price."+".$data['rent']."+..... = ".$total_amount_to_pay; ?></p>
             <hr style="margin: 3px 0px;">
