@@ -96,11 +96,19 @@ class ReportM extends CI_Model {
     $result = $this->db->query($query);
     return $result->result_array();
   }
+
+   public function get_tenant_name($flat_no, $property_id){
+
+    $query = "SELECT tenant_name FROM tenants where property_id = $property_id and flat_no = $flat_no and status =1 ";
+    // print_r($query);
+    // die();
+    $result = $this->db->query($query);
+    return $result->result_array();
+  }
      public function previousReading($property_id,$flat_no,$month){
 
     $query = "SELECT * FROM entry_form_details WHERE property_id =$property_id AND flat_no = $flat_no AND month = '$month'";
-    // print_r($query);
-    // die();
+    
     $result = $this->db->query($query);
     return $result->result_array()[0]['current_meter_reading'];
   }
@@ -108,6 +116,15 @@ class ReportM extends CI_Model {
   public function get_tenant_entry_form_details($property_id){
 
     $query = "SELECT * FROM entry_form_details WHERE property_id = $property_id ORDER BY `month` ";
+    
+    $result = $this->db->query($query);
+    return $result->result_array();
+    
+  }
+
+  public function get_outstanding_report_details($property_id){
+
+    $query = "SELECT * FROM outstanding_amount WHERE property_id = $property_id ORDER BY `month` ";
     
     $result = $this->db->query($query);
     return $result->result_array();
