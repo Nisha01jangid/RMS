@@ -156,21 +156,22 @@ public function balance_report(){
 
 		$data['property_id'] = $property_id;
 		
-		$data['tenant_entry_form_details'] = $this->ReportM->get_tenant_entry_form_details($data['property_id']);
-	
-		// for($i = 0; $i < sizeof($data['tenant_entry_form_details']); $i++){
-
-		// 	$month = $data['tenant_entry_form_details'][$i]['month'];
-		// 	$data1 = explode('-', $month);
-	    //     $month_only = $data1[1];
-
-		// 	$data['paid_amount'] = $this->ReportM->get_tenant_amount($data['property_id'], $month_only);
-
-		// 	$data['tenant_entry_form_details'][$i]['amount_paid'] = $data['paid_amount'][0]['amount'];
-
-		// }
+		$data['outstanding_report_details'] = $this->ReportM->get_outstanding_report_details($data['property_id']);
 		// echo "<pre>";
-		// print_r($tenant_entry);
+		// print_r($data['outstanding_report_details']);
+		// die();
+	
+		for($i = 0; $i < sizeof($data['outstanding_report_details']); $i++){
+
+			$property_id = $data['outstanding_report_details'][$i]['property_id'];
+			$flat_no = $data['outstanding_report_details'][$i]['flat_no'];
+			$tenant_name = $this->ReportM->get_tenant_name($property_id,$flat_no);
+		// 	echo "<pre>";
+		// print_r($tenant_name);
+			$data['outstanding_report_details'][$i]['tenant_name'] = $tenant_name[0]['tenant_name'];
+		}
+		
+		
 		// die();
 
 		$this->load->view('Report_Monthwise/outstanding_amount_report_view', $data);
