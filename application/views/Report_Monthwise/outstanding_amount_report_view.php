@@ -1,3 +1,8 @@
+<?php  
+    // echo "<pre>";
+    // print_r($outstanding_report_details);
+    // die();
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -108,18 +113,28 @@
                             <th scope="col" style="text-align:center;">S.No.</th>
                             <th scope="col" style="text-align:center;">Flat</th>
                             <th scope="col" style="text-align:center;">Tenant Name</th>
+                            <th scope="col" style="text-align:center;">Month</th>
+                            <th scope="col" style="text-align:center;">Total Amount</th>
                             <th scope="col" style="text-align:center;">Paid Amount</th>
                             <th scope="col" style="text-align:center;">Outstanding Amount</th>
                             </tr>
                         </thead>
                         <tbody>
+                            <?php 
+                                $i=1;
+                                foreach ($outstanding_report_details as $key => $value) { ?>
                             <tr>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
+                              <td style="text-align: center;"><?php echo $i ?></td>
+                              <td style="text-align: center;"><?php echo $value['flat_no'] ?></td>
+                              <td style="text-align: center;"><?php echo$value['tenant_name'] ?></td>
+                              <td style="text-align: center;"><?php echo$value['month'] ?></td>
+                               <td style="text-align: center;"><?php echo $value['total'] ?></td>
+                              <td style="text-align: center;"><?php echo $value['amount_received'] ?></td>
+                              <td style="text-align: center;"><?php echo $value['outstanding_amount'] ?></td>
                            </tr> 
+
+                            <?php $i++; } ?>
+
                         </tbody>
                         </table>
                     
