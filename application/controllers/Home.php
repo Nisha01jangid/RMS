@@ -75,7 +75,8 @@ class Home extends CI_Controller {
 
 		$property_id = $property_id;
 		$flat_no = $flat_no;
-		$this->HomeM->delete_flat_tenant($property_id, $flat_no);
+		$tenant_id=$this->HomeM->get_tenant_id($property_id, $flat_no);
+		$this->HomeM->delete_flat_tenant($property_id, $flat_no,$tenant_id['0']['id']);
 		
 		$this->session->set_flashdata('tenant_deleted', 'Tenant Deleted Successfully :)');
 		redirect("Home/index");

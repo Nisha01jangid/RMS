@@ -100,12 +100,30 @@ class HomeM extends CI_Model {
     return ;
   }
 
-  public function delete_flat_tenant($property_id, $flat_no){
+  public function delete_flat_tenant($property_id, $flat_no, $tenant_id){
 
-    $query = "UPDATE tenants SET `status` = 0 where property_id = $property_id and flat_no = $flat_no";
-
+    $query = "UPDATE tenants , entry_form_details , outstanding_amount , payment , tenant_relatives SET tenants.status = 0 ,entry_form_details.status = 0 ,outstanding_amount.status = 0 ,payment.status = 0 ,tenant_relatives.active = 0 
+    where tenants.property_id = $property_id and tenants.flat_no = $flat_no
+    and tenants.id = $tenant_id and tenants.id = tenant_relatives.tenant_id
+    and entry_form_details.property_id = $property_id and entry_form_details.flat_no = $flat_no
+    and outstanding_amount.property_id = $property_id and outstanding_amount.flat_no = $flat_no
+    and payment.property_id = $property_id and payment.flat_no = $flat_no
+    and tenants.status =1
+    and entry_form_details.status =1
+    and outstanding_amount.status =1
+    and payment.status =1
+    and tenant_relatives.active =1
+    ";
     $result = $this->db->query($query);
     return ;
+  }
+
+  public function get_tenant_id($property_id,$flat_no){
+
+    $query = "SELECT id FROM tenants WHERE property_id =$property_id AND flat_no = $flat_no AND status=1";
+    $result = $this->db->query($query);
+    return $result->result_array();
+    
   }
 
   public function get_tenant_entry_form_details($flat_no,$property_id){
