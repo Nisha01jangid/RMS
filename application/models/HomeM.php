@@ -100,24 +100,48 @@ class HomeM extends CI_Model {
     return ;
   }
 
-  public function delete_flat_tenant($property_id, $flat_no, $tenant_id){
+  public function delete_tenant($property_id, $flat_no, $tenant_id){
 
-    $query = "UPDATE tenants , entry_form_details , outstanding_amount , payment , tenant_relatives SET tenants.status = 0 ,entry_form_details.status = 0 ,outstanding_amount.status = 0 ,payment.status = 0 ,tenant_relatives.active = 0 
-    where tenants.property_id = $property_id and tenants.flat_no = $flat_no
-    and tenants.id = $tenant_id and tenants.id = tenant_relatives.tenant_id
-    and entry_form_details.property_id = $property_id and entry_form_details.flat_no = $flat_no
-    and outstanding_amount.property_id = $property_id and outstanding_amount.flat_no = $flat_no
-    and payment.property_id = $property_id and payment.flat_no = $flat_no
-    and tenants.status =1
-    and entry_form_details.status =1
-    and outstanding_amount.status =1
-    and payment.status =1
-    and tenant_relatives.active =1
+    $query = "UPDATE tenants set `status` = 0
+    where `property_id` = $property_id and `flat_no` = $flat_no
+    and `id` = $tenant_id
     ";
     $result = $this->db->query($query);
     return ;
   }
 
+public function delete_tenant_relatives($property_id, $flat_no, $tenant_id){
+
+    $query = "UPDATE tenant_relatives set `active` = 0
+    where `tenant_id` = $tenant_id
+    ";
+    $result = $this->db->query($query);
+    return ;
+  }
+  public function delete_tenant_payments($property_id, $flat_no){
+
+    $query = "UPDATE payment set `status` = 0
+    where `property_id` = $property_id and `flat_no` = $flat_no
+    ";
+    $result = $this->db->query($query);
+    return ;
+  }
+  public function delete_tenant_outstanding($property_id, $flat_no){
+
+    $query = "UPDATE outstanding_amount set `status` = 0
+    where `property_id` = $property_id and `flat_no` = $flat_no
+    ";
+    $result = $this->db->query($query);
+    return ;
+  }
+  public function delete_tenant_entry_form_details($property_id, $flat_no){
+
+    $query = "UPDATE entry_form_details set `status` = 0
+    where `property_id` = $property_id and `flat_no` = $flat_no
+    ";
+    $result = $this->db->query($query);
+    return ;
+  }
   public function get_tenant_id($property_id,$flat_no){
 
     $query = "SELECT id FROM tenants WHERE property_id =$property_id AND flat_no = $flat_no AND status=1";
@@ -262,6 +286,49 @@ class HomeM extends CI_Model {
 
   }
   
+public function get_last_invoice($property_id, $flat_no){
 
+    $query = " SELECT invoice FROM invoice WHERE property_id = $property_id AND flat_no = $flat_no order by month desc";
+
+    // print_r($query);
+    // die();
+
+    $result = $this->db->query($query);
+    return $result->result_array();
+
+  }
+
+  public function get_outstanding($property_id, $flat_no, $month){
+
+    $query = " SELECT * FROM outstanding_amount WHERE property_id = $property_id AND month ='$month' and flat_no = $flat_no and status = 1 order by `month`";
+
+    // print_r($query);
+    // die();
+
+    $result = $this->db->query($query);
+    return $result->result_array();
+
+  }
+
+  public function update_outstanding($property_id, $flat_no, $month, $total){
+
+    $query = " UPDATE outstanding_amount SET `total` = $total WHERE property_id = $property_id AND month ='$month' and flat_no = $flat_no and status = 1 order by `month`";
+
+    // print_r($query);
+    // die();
+
+    $result = $this->db->query($query);
+    return ;
+
+  }
+
+  public function insert_outstanding($property_id, $flat_no, $month, $total){
+
+    $query = "INSERT INTO `outstanding_amount` (`property_id`, `flat_no`, `month`, `total`, `amount_received`, `outstanding_amount`, `status`) VALUES ('$property_id', '$flat_no', '$month', '$total', '0', '0', 1)";
+
+    $result = $this->db->query($query);
+    return ;
+
+  }
 
 }

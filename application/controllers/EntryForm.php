@@ -17,7 +17,9 @@ class EntryForm extends CI_Controller{
 
 	public function electricity_water_rate($property_id)
 	{
+		$data['month'] = date("Y-m");
 		$data['property_id'] = $property_id;
+		$data['details'] = $this->EntryFormM->get_entry_form_for_property($property_id,$data['month']);
 		$this->load->view('EntryForm/electricity_water_rate', $data);
 	}
 
@@ -89,16 +91,22 @@ class EntryForm extends CI_Controller{
 
 		$data['flat_entry'] = $this->EntryFormM->check_flat_entry($flat_no, $property_id);
 
+		
+
 		$month = $data['month'];
 		// $previous_month =  date('Y-m', strtotime('-1 month'));
 		$previous_month = date('Y-m', strtotime($month . '-01 -1 month'));
-
-		// echo "<pre>";
-		// print_r($previous_month);
-		// die();
+		$previous_rent = $this->EntryFormM->get_previous_rent($property_id,$flat_no,$previous_month);
+		if(!empty($previous_rent)){
+			$data['previous_rent']=$previous_rent[0]['rent'];
+		}else{
+			$data['previous_rent']="";
+		}
 
 		$data['previous_reading'] = $this->EntryFormM->previousReading($property_id,$flat_no,$previous_month);
-
+		// echo "<pre>";
+		// print_r($data);
+		// die();
 		$this->load->view('EntryForm/entry_form_view', $data);
 
 
@@ -124,8 +132,7 @@ class EntryForm extends CI_Controller{
 
 
 
-		// echo "<pre>";				
-		// print_r($property_id);
+	
 		// echo "<br>";
 		// print_r($property_name);
 		// echo "<br>";
@@ -135,9 +142,17 @@ class EntryForm extends CI_Controller{
 		// echo "<br>";
 		// print_r($no_of_flats);
 		// die();
-		
+		$check = $this->EntryFormM->get_entry_form($property_id,$flat_no,$month);
 
-		$this->EntryFormM->insert_entry_form($month,$property_id, $property_name, $flat_no, $no_of_members, $rate_per_unit,$rate_per_person, $tenant_rent, $previous_meter_reading, $current_meter_reading, $waste, $miscellaneous, $duedate, $active_status);
+		if(!empty($check)){
+			$this->EntryFormM->update_entry_form($month,$property_id, $property_name, $flat_no, $no_of_members, $rate_per_unit,$rate_per_person, $tenant_rent, $previous_meter_reading, $current_meter_reading, $waste, $miscellaneous, $duedate, $active_status);
+		}else{
+			$this->EntryFormM->insert_entry_form($month,$property_id, $property_name, $flat_no, $no_of_members, $rate_per_unit,$rate_per_person, $tenant_rent, $previous_meter_reading, $current_meter_reading, $waste, $miscellaneous, $duedate, $active_status);
+		}
+
+	
+
+		// $this->EntryFormM->insert_entry_form($month,$property_id, $property_name, $flat_no, $no_of_members, $rate_per_unit,$rate_per_person, $tenant_rent, $previous_meter_reading, $current_meter_reading, $waste, $miscellaneous, $duedate, $active_status);
 
 		$this->session->set_flashdata('entry_form_inserted', 'Entry Form Inserted Successfully :)');
 

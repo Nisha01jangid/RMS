@@ -134,20 +134,24 @@
     <label for="exampleInputPassword1">Joining Date:&nbsp; <span style="font-weight:normal;"><?php echo $flat_entry[0]['joining_date']; ?></span></label>
     </div>
 </div>
-<div class="form-group">
-    <label for="exampleInputEmail1">Email address:&nbsp; <span style="font-weight:normal;"><?php echo $flat_entry[0]['email']; ?></span></label>
+<div class="row">
+<div class="form-group col">
+    <label for="exampleInputEmail1">Contact:&nbsp; <span style="font-weight:normal;"><?php echo $flat_entry[0]['contact']; ?></span></label>
     </div>
-    <div class="row">
+    
     <div class="form-group col">
     <label for="exampleInputEmail1">Family Members:&nbsp; <span style="font-weight:normal;"><?php echo $flat_entry[0]['members']; ?></span></label>
-   
     </div>
-    <div class="form-group col">
+</div>
+    <div class="form-group">
+    <label for="exampleInputEmail1">Email address:&nbsp; <span style="font-weight:normal;"><?php echo $flat_entry[0]['email']; ?></span></label>
+    </div>
+    <!-- <div class="form-group col">
         <label for="exampleInputPassword1">Rent of Flat:&nbsp; <span style="font-weight:normal;"><?php echo $flat_entry[0]['rent']; ?></span></label>
-      </div>
+      </div> -->
 </div>
 
-</div></div></div></div></div>
+</div></div></div></div>
 
 <br>
 <div class="row">

@@ -56,14 +56,14 @@
       <li class="nav-item">
         <a href="<?php echo base_url('EntryForm') ?>" class="nav-link text-white" aria-current="page">Entry Form</a>
       </li>
-      <li>
+     <!--  <li>
         <a href="<?php echo base_url('Invoice') ?>" class="nav-link text-white">Invoice</a>
-      </li>
+      </li> -->
 
      <!--  <li>
         <a href="<?php echo base_url('Payments') ?>" class="nav-link text-white">Payments</a>
       </li> -->
-      <li>
+     <!--  <li>
           <a href="<?php echo base_url('Report/select_property_for_report_monthwise') ?>" class="nav-link text-white">Main Report</a>  
         </li>
 
@@ -72,16 +72,16 @@
       </li>
        <li>
         <a href="<?php echo base_url('Report/receiver_expenditure') ?>" class="nav-link text-white"> Receiver Expenditure</a>
-      </li>
+      </li> -->
         
        <!--  <li>
           <a href="<?php echo base_url('Report/User_Wise_Report') ?>" class="nav-link text-white">User-Wise Report</a>  
         </li> -->
         
       
-      <li>
+      <!-- <li>
         <a href="<?php echo base_url('Report/outstanding_amount') ?>" class="nav-link text-white">Oustanding Report</a>
-      </li>
+      </li -->>
      
     </ul>
     <hr>
@@ -100,7 +100,7 @@
     <div class="row">
     <div class="form-group col">
     <label for="month">Month</label>
-    <input type="month" class="form-control" id="month" name="month"  placeholder="Select the Month">
+    <input type="month" class="form-control" id="month" name="month" value="<?php echo $month; ?>" placeholder="Select the Month">
     </div> 
   </div>
   <br>
@@ -108,7 +108,7 @@
   <div class="row">
     <div class="form-group col">
     <label for="rate_per_unit">Electricity Rate per Unit:</label>
-    <input type="number" class="form-control" id="rate_per_unit" name="rate_per_unit"  placeholder="Enter the Rate of Electricity ">
+    <input type="text" class="form-control" id="rate_per_unit" name="rate_per_unit"  placeholder="Enter the Rate of Electricity " value="<?php if(!empty($details[0]['electricity_rate'])){echo $details[0]['electricity_rate'];}else{echo "";} ?>">
     </div>
   </div>
 
@@ -116,15 +116,15 @@
 
   <div class="row">
     <div class="form-group col">
-    <label for="rate_per_person">Water Pump Charges</label>
-    <input type="number" class="form-control" id="rate_per_person" name="rate_per_person"  placeholder="Enter Water Pump Charges">
+    <label for="rate_per_person">Water Pump Unit:</label>
+    <input type="text" class="form-control" id="rate_per_person" name="rate_per_person"  placeholder="Enter Water Pump Unit" value="<?php if(!empty($details[0]['water_rate'])){echo $details[0]['water_rate'];}else{echo "";} ?>">
     </div> 
   </div>
 <br>
   <div class="row">
     <div class="form-group col">
     <label for="waste">Waste</label>
-    <input type="number" class="form-control" id="waste" name="waste"  placeholder="Enter Waste Amount">
+    <input type="text" class="form-control" id="waste" name="waste"  placeholder="Enter Waste Amount" value="<?php if(!empty($details[0]['waste'])){echo $details[0]['waste'];}else{echo "";} ?>">
     </div>
   </div>
 

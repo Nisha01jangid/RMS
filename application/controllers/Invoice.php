@@ -39,9 +39,7 @@ class Invoice extends CI_Controller {
         foreach($flats as $f){
 
             $flat_details = $this->InvoiceM->getFlatDetails($property_id,$f['flat_no'],$month);
-            // echo "<pre>";
-            // print_r($flat_details);
-            // die();
+            
             if(!empty($flat_details)){
                 $invoice = $month."/".$f['flat_no'];
                 $current_reading = $flat_details[0]['current_meter_reading'];
@@ -50,7 +48,7 @@ class Invoice extends CI_Controller {
 
                 $previous_reading = $flat_details[0]['previous_meter_reading'];
                 $units = $current_reading - $previous_reading; 
-
+                
                 $check = $this->InvoiceM->check_invoice($property_id, $f['flat_no'], $month);
 
                 if(!empty($check)){
@@ -109,13 +107,13 @@ class Invoice extends CI_Controller {
         $data['previous_invoice'] = $this->InvoiceM->check_invoice($property_id, $flat_no, $previous_month);
         $data['previous_outstanding'] = $this->InvoiceM->get_previous_outstanding($property_id,$flat_no,$previous_month);
 
-        if(!empty($data['paid_amount'])){
-            $data['data']['amount_paid']=$data['paid_amount'][0]['amount'];
-            $data['data']['payment_date']=$data['paid_amount'][0]['payment_date'];
-        }else{
-            $data['data']['amount_paid'] = 0;
-            $data['data']['payment_date'] = "";
-        }
+        // if(!empty($data['paid_amount'])){
+        //     // $data['data']['amount_paid']=$data['paid_amount'][0]['amount'];
+        //     $data['data']['payment_date']=$data['paid_amount'][0]['payment_date'];
+        // }else{
+        //     // $data['data']['amount_paid'] = 0;
+        //     $data['data']['payment_date'] = "";
+        // }
         
         $data['property_id']=$property_id;
         $data['month']=$month;
