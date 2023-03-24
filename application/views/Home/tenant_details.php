@@ -94,7 +94,7 @@
     <input type="date" class="form-control" name="dob"  placeholder="Enter your date of birth">
     </div>
     <div class="form-group col">
-    <label>Gender</label>
+    <label>Gender:</label>
     <select class="form-control" name="gender">
     <option value="" selected disabled>Select Gender</option>
     <option value="male">Male</option>
@@ -103,7 +103,7 @@
     </select>
      </div>
      <div class="form-group col">
-    <label>Age</label>
+    <label>Age:</label>
     <input type="number" class="form-control" name="age"  placeholder="Enter your Age">
      </div>
      <div class="form-group col">
@@ -119,8 +119,8 @@
   <div class="row">
     
     <div class="form-group col">
-    <label>Contact Number:</label>
-    <input type="number" class="form-control" name="mobile"  placeholder="Enter your contact no">
+    <label>Mobile Number:</label>
+    <input type="number" class="form-control" name="mobile"  placeholder="Enter your mobile no">
      </div>
      <div class="form-group col">
     <label>Email address:</label>
@@ -139,11 +139,11 @@
   <br>
 
    <div class="row">
-    <h4>Address</h4>
+    <h4>Address:</h4>
     <br>
     
     <div class="form-group col">
-    <label>Permanent Address</label>
+    <label>Permanent Address:</label>
     <input type="text" class="form-control" name="address" placeholder="Enter your Permanent Address">
      </div>
   </div>
@@ -249,19 +249,19 @@
         <br>
         <div class="row">
     <div class="form-group col">
-    <label>Number of Members</label>
+    <label>Number of Members:</label>
     <input type="number" class="form-control" name="no_of_members" placeholder="Enter">
      </div>
      <div class="form-group col">
-    <label>Number of Male</label>
+    <label>Number of Male:</label>
     <input type="number" class="form-control" name="no_of_male" placeholder="Enter">
      </div>
      <div class="form-group col">
-    <label>Number of Female</label>
+    <label>Number of Female:</label>
     <input type="number" class="form-control" name="no_of_female" placeholder="Enter">
      </div>
      <div class="form-group col">
-    <label>Children below 5 years</label>
+    <label>Children below 5 years:</label>
     <input type="number" class="form-control" name="no_of_children_below_5" placeholder="Enter">
      </div>
 
@@ -288,7 +288,7 @@
                       </div>
                       <div class="row">
                         <div class="form-group col">
-                            <label>Gender</label>
+                            <label>Gender:</label>
                             <select class="form-control" name="member_gender[]">
                                 <option value="" selected disabled>Select Gender</option>
                                 <option value="male">Male</option>
@@ -297,7 +297,7 @@
                             </select>
                         </div>
                         <div class="form-group col">
-                            <label>Relation</label>
+                            <label>Relation:</label>
                             <select class="form-control" name="member_relation[]">
                                 <option value="" selected disabled>Select the Relation</option>
                                 <option value="father">Father</option>
@@ -339,12 +339,12 @@
       <h4>Vehicle detail:</h4>
       <br>
     <div class="form-group col">
-    <label>Two Wheeler:</label>
-    <input type="number" class="form-control" name="two_wheeler"  placeholder="Enter Here">
+    <label>No. of two wheeler:</label>
+    <input type="text" class="form-control" name="two_wheeler"  placeholder="Enter Here">
     </div>
     <div class="form-group col">
-    <label>Four wheeler:</label>
-    <input type="number" class="form-control" name="four_wheeler" placeholder="Enter Here">
+    <label>No. of four wheeler:</label>
+    <input type="text" class="form-control" name="four_wheeler" placeholder="Enter Here">
     </div>
     </div>
     <br>
@@ -353,17 +353,17 @@
        <h4>Occupation detail:</h4>
       <br>
       <div class="form-group col">
-    <label>Occupation of the Tenant</label>
+    <label>Occupation of the Tenant:</label>
     <input type="text" class="form-control" name="occupation" placeholder="Enter the Occupation">
   </div>
     <div class="form-group col">
 
-    <label>Office/College/School Address</label>
+    <label>Office/College/School Address:</label>
     <input type="text" class="form-control" name="occupation_address" placeholder="Enter the Address">
     </div>
     <div class="form-group col">
 
-    <label>Office contact Number</label>
+    <label>Office contact Number:</label>
     <input type="text" class="form-control" name="occupation_contact" placeholder="Enter the Contact No">
     </div>
      </div>
@@ -374,17 +374,17 @@
        <h5>1:</h5>
       <br>
       <div class="form-group col">
-    <label>Name</label>
+    <label>Name:</label>
     <input type="text" class="form-control" name="identifier_name1" placeholder="Enter the Identifier's Name">
   </div>
     <div class="form-group col">
 
-    <label>Mobile No</label>
+    <label>Mobile No:</label>
     <input type="number" class="form-control" name="identifier_mobile1" placeholder="Enter the mobile no">
     </div>
     <div class="form-group col">
 
-    <label>Email ID</label>
+    <label>Email ID:</label>
     <input type="email" class="form-control" name="identifier_email1" placeholder="Enter Email ID">
     </div>
      </div>
@@ -392,7 +392,7 @@
     
      <div class="row">
       <div class="form-group col">
-    <label>Address</label>
+    <label>Address:</label>
     <input type="text" class="form-control" name="identifier_address1" placeholder="Enter the Address">
   </div>
      </div>
@@ -400,16 +400,16 @@
     
      <div class="row">
       <div class="form-group col">
-    <label>District</label>
+    <label>District:</label>
     <input type="text" class="form-control" name="identifier_district1" placeholder="Enter the District">
   </div>
     <div class="form-group col">
 
-    <label>State</label>
+    <label>State:</label>
     <input type="text" class="form-control" name="identifier_state1" placeholder="Enter the State">
     </div>
     <div class="form-group col">
-    <label>Police Station</label>
+    <label>Police Station:</label>
     <input type="text" class="form-control" name="identifier_policestation1" placeholder="Enter">
   </div>
      </div>
@@ -421,18 +421,18 @@
        <h5>2:</h5>
       <br>
       <div class="form-group col">
-    <label>Name</label>
+    <label>Name:</label>
     <input type="text" class="form-control" name="identifier_name2" placeholder="Enter the Identifier's Name">
   </div>
     <div class="form-group col">
 
-    <label>Mobile No</label>
+    <label>Mobile No:</label>
     <input type="number" class="form-control" name="identifier_mobile2" placeholder="Enter the mobile no">
     </div>
 
     <div class="form-group col">
 
-    <label>Email ID</label>
+    <label>Email ID:</label>
     <input type="email" class="form-control" name="identifier_email2" placeholder="Enter Email ID">
     </div>
      
@@ -441,7 +441,7 @@
     
      <div class="row">
       <div class="form-group col">
-    <label>Address</label>
+    <label>Address:</label>
     <input type="text" class="form-control" name="identifier_address2" placeholder="Enter the Address">
   </div>
      </div>
@@ -449,16 +449,16 @@
     
      <div class="row">
       <div class="form-group col">
-    <label>District</label>
+    <label>District:</label>
     <input type="text" class="form-control" name="identifier_district2" placeholder="Enter the District">
   </div>
     <div class="form-group col">
 
-    <label>State</label>
+    <label>State:</label>
     <input type="text" class="form-control" name="identifier_state2" placeholder="Enter the State">
     </div>
     <div class="form-group col">
-    <label>Police Station</label>
+    <label>Police Station:</label>
     <input type="text" class="form-control" name="identifier_policestation2" placeholder="Enter">
   </div>
      </div>

@@ -132,7 +132,7 @@
 </div>
     <div class="row">
       <div class="form-group col">
-        <label for="exampleInputPassword1">Rent of Flat:&nbsp; <span style="font-weight:normal;"><?php echo $flat_entry[0]['rent']; ?></span></label>
+        <!-- <label for="exampleInputPassword1">Rent of Flat:&nbsp; <span style="font-weight:normal;"><?php echo $flat_entry[0]['rent']; ?></span></label> -->
       </div>
     <div class="form-group col">
     <label for="exampleInputEmail1">Family Members:&nbsp; <span style="font-weight:normal;"><?php echo $flat_entry[0]['members']; ?></span></label>
@@ -153,11 +153,11 @@
   <div class="row">
     <div class="form-group col">
     <label for="tenant_rent">Rent</label>
-    <input type="number" class="form-control" id="tenant_rent" name="tenant_rent"  placeholder="Enter the Rent Amount">
+    <input type="number" class="form-control" id="tenant_rent" name="tenant_rent"  placeholder="Enter the Rent Amount" value="<?php echo $previous_rent; ?>">
     </div>
     <div class="form-group col">
     <label for="previous_meter_reading">Previous Meter Reading (Unit)</label>
-    <input type="number" class="form-control" id="previous_meter_reading" name="previous_meter_reading"  placeholder="Enter the Previous Meter Reading">
+    <input type="number" class="form-control" id="previous_meter_reading" name="previous_meter_reading"  placeholder="Enter the Previous Meter Reading" value="<?php echo $previous_reading; ?>">
      </div>
     <div class="form-group col">
     <label for="current_meter_reading">Current Meter Reading (Unit)</label>
@@ -169,7 +169,7 @@
 <div class="row">
     
     &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <div class="form-group col">
-    <i>Previous Meter Reading (Unit) : </i> <span class="details"><?php echo $previous_reading; ?></span> 
+    <!-- <i>Previous Meter Reading (Unit) : </i> <span class="details"><?php echo $previous_reading; ?></span>  -->
      </div>
   </div>
      <br>

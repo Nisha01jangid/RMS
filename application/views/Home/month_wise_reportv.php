@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title></title>
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link href="<?php echo base_url('css/sidebar.css') ?>" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" rel="stylesheet">
 
@@ -96,7 +96,7 @@
                             <th style="text-align:center;">Invoice No.</th>
                             <th scope="col" style="text-align:center;">Rent</th>
                             <th scope="col" style="text-align:center;">Meter Reading <br> (Current - Previous) * rate</th>
-                            <th scope="col" style="text-align:center;">Water Pump Charges <br>( no. of members * rate )</th>
+                            <th scope="col" style="text-align:center;">Water Pump Charges <br>( no. of members * units )* rate</th>
                             <th scope="col" style="text-align:center;">Waste </th>
                             <th scope="col" style="text-align:center;">Miscellaneous</th>
                             <th scope="col" style="text-align:center;">Total</th>
@@ -119,7 +119,7 @@
                               <td style="color:green;"><?php echo $value['invoice_number'];?> </td>
                               
                             <?php } else {?>
-                              <td style="color:red;"><?php echo "Not Generated";?> </td>
+                              <td style="color:red;"><a href="<?php echo base_url("Home/generate_invoice/").$property_id."/".$flat_no."/".$value['month']; ?>" class="btn btn-success">Generate</a></td>
                               <?php }?>
                             <td style="text-align:center;"><?php echo $value['rent'] ?></td>
 
@@ -136,18 +136,20 @@
 
                             </td>
 
-                            <?php $total = $value['rent']+( $value['no_of_members']*$value['water_rate'])+ $value['waste']+$value['miscellaneous']+$amount; ?>
-                            <td><?php echo $value['no_of_members']."*".$value['water_rate']."=".$value['no_of_members']*$value['water_rate'] ?></td> 
+                            <?php $total = $value['rent']+( $value['no_of_members']*$value['water_rate']*$value['electricity_rate'])+ $value['waste']+$value['miscellaneous']+$amount; ?>
+                            <td><?php echo '('.$value['no_of_members']."*".$value['water_rate'].")*".$value['electricity_rate']."=".$value['no_of_members']*$value['water_rate']*$value['electricity_rate']; ?></td> 
                             
                             <td><?php echo $value['waste'] ?></td>
                             <td><?php echo $value['miscellaneous'] ?></td>
-                            <td><?php echo  $total;  ?></td>
+                            <td><?php echo  round($total);  ?></td>
                             <td><?php echo $value['total']; ?></td>
                             <td align="center">
-                              <?php if(empty($value['invoice_number'])){ ?>
+                              <?php if($value['invoice_number']==$last_invoice){ ?>
                                 <button style="padding: 9px; background-color: #fce205; border-radius: 5px; border-color:#fce205; ;"><a style="text-decoration: none; font-size: 15px; font-weight: bold; color: black;" href="<?php echo base_url('Home/pay_bill/').$property_id.'/'.$flat_no.'/'.$value['month'];?>">Pay</a></button>
-                                <?php }else{ ?>
-                                <?php echo "-";} ?>
+                                <a href="<?php echo base_url("Home/view_flat_invoice/").$property_id."/".$flat_no."/".$value['month']; ?>" class="btn btn-primary">Invoice</a>
+                                <?php }else{ if(!empty($value['invoice_number'])){ ?>
+                                    <a href="<?php echo base_url("Home/view_flat_invoice/").$property_id."/".$flat_no."/".$value['month']; ?>" class="btn btn-primary">Invoice</a>
+                                <?php }} ?>
                             </td> 
                             <td style="text-align:center;"><?php echo $value['amount_paid']; ?></td>                           
                             <td style="text-align:center;"> <?php echo $value['outstanding_amount'];?></td>

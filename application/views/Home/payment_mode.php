@@ -107,12 +107,12 @@
 <input type="hidden" name="property_id" value="<?php echo $property_id;?>">   
 <input type="hidden" name="flat_no" value="<?php echo $flat_no;?>"> 
 <input type="hidden" name="month" value="<?php echo $month;?>">         
-<div class="form-group">
+<div class="row">
+    <div class="form-group col">
     <label for="exampleInputEmail1">Date of Payment:</label>
     <input type="date" class="form-control" id="exampleInputEmail1" name="date"  placeholder="Enter payment date">
 </div>
- <br>
- <div class="form-group">
+ <div class="form-group col">
     <label for="exampleInputEmail1">Payment Mode:</label>
     <select class="form-control" id="exampleInputPassword1" name="payment_mode">
     <option>Select Payment Mode</option>
@@ -120,15 +120,17 @@
     <option value="paytm">Paytm</option>
    </select>
 </div>
+</div>
 <br>
-<div class="form-group">
+<div class="row">
+    <div class="form-group col">
     <label for="exampleInputEmail1">Reference Id:</label>
     <input type="text" class="form-control" id="exampleInputEmail1" name="ref_id"  placeholder="Enter Reference Id..">
 </div>
-<br>
-<div class="form-group">
+<div class="form-group col">
     <label for="exampleInputEmail1">Amount:</label>
     <input type="number" class="form-control" id="exampleInputEmail1" name="amount"  placeholder="Enter Amount..">
+</div>
 </div>
 <br>
 <div class="form-group">
@@ -140,9 +142,9 @@
     <label for="exampleInputEmail1">Received By:</label>
     <select class="form-control" id="exampleInputPassword1" name="receiver">
     <option>Select Payment Receiver</option>
-    <option value="1">Dr. Indra Kumar Shah</option>
-    <option value="2">Sir's Father</option>
-    <option value="3">Nisha</option>
+    <option value="1">Mr. Ram Kripal Shah</option>
+    <option value="2">Mr. Manoj Kumar Shah</option>
+    <option value="3">Dr. Indra Kumar Shah</option>
    </select>
 </div>
 <br>
@@ -171,9 +173,9 @@
     <label for="exampleInputEmail1">Received By:</label>
     <select class="form-control" id="exampleInputPassword1" name="receiver">
     <option>Select Payment Receiver</option>
-    <option value="1">Dr. Indra Kumar Shah</option>
-    <option value="2">Sir's Father</option>
-    <option value="3">Nisha</option>
+    <option value="1">Mr. Ram Kripal Shah</option>
+    <option value="2">Mr. Manoj Kumar Shah</option>
+    <option value="3">Dr. Indra Kumar Shah</option>
    </select>
 </div>
 <br>

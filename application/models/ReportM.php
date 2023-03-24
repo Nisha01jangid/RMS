@@ -23,11 +23,11 @@ class ReportM extends CI_Model {
       }
 
       function get_flatwise_payments($to_date,$from_date,$property_id,$flat_no){
-        $sql = " SELECT entry_form_details.*, tenants.tenant_name,tenants.rent, invoice.invoice, invoice.amount_paid FROM entry_form_details , tenants , property , invoice  
+        $sql = " SELECT entry_form_details.*, tenants.tenant_name,tenants.rent, invoice.invoice, sum(payment.amount) as amount_paid FROM entry_form_details , tenants , property , invoice, payment  
         WHERE  entry_form_details.property_id = $property_id and entry_form_details.flat_no = $flat_no and
         tenants.property_id = $property_id and tenants.flat_no = $flat_no and tenants.property_id = entry_form_details.property_id and tenants.property_id = property.property_id
          AND tenants.flat_no = entry_form_details.flat_no
-        --  and entry_form_details.timestamp between '$to_date' and '$from_date' 
+         and entry_form_details.timestamp between '$to_date' and '$from_date' and payment.property_id = $property_id and payment.flat_no=$flat_no and payment.month = '$month' 
          order by unix_timestamp(entry_form_details.timestamp)  asc";
         // print_r($sql);die();
         $query = $this->db->query($sql);

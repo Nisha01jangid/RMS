@@ -7,6 +7,7 @@ class Home extends CI_Controller {
         parent::__construct();
 		$this->load->library('session');
         $this->load->model('HomeM');
+        $this->load->model('InvoiceM');
     }	
 	
 	public function index()
@@ -76,7 +77,13 @@ class Home extends CI_Controller {
 		$property_id = $property_id;
 		$flat_no = $flat_no;
 		$tenant_id=$this->HomeM->get_tenant_id($property_id, $flat_no);
-		$this->HomeM->delete_flat_tenant($property_id, $flat_no,$tenant_id['0']['id']);
+
+		$this->HomeM->delete_tenant($property_id, $flat_no,$tenant_id[0]['id']);
+		$this->HomeM->delete_tenant_relatives($property_id, $flat_no,$tenant_id[0]['id']);
+		$this->HomeM->delete_tenant_payments($property_id, $flat_no);
+		$this->HomeM->delete_tenant_outstanding($property_id, $flat_no);
+		$this->HomeM->delete_tenant_entry_form_details($property_id, $flat_no);
+
 		
 		$this->session->set_flashdata('tenant_deleted', 'Tenant Deleted Successfully :)');
 		redirect("Home/index");
@@ -100,6 +107,7 @@ class Home extends CI_Controller {
 			// }
 			$data['month_name'] = $month_name;
 			$data['month'] = $month;
+			//echo "<pre>";print_r($data);die();
 			$this->load->view('Home/tenant_details_view', $data);
 		} else{
 			$this->load->view('Home/tenant_details', $data);
@@ -291,12 +299,14 @@ public function insert_tenant_details(){
 		    // $data['previous_reading'] = $this->HomeM->previousReading($property_id,$flat_no,$previous_month);
 
 			$data['paid_amount'] = $this->HomeM->get_tenant_amount($data['flat_no'], $data['property_id'], $month);
-			$data['tenant_entry_form_details'][$i]['previous_reading'] = $data['previous_reading'];
+			$data['tenant_entry_form_details'][$i]['previous_reading'] = $data['tenant_entry_form_details'][$i]['previous_meter_reading'];
 
 			$rent = $data['tenant_entry_form_details'][$i]['rent'];
 			$waste = $data['tenant_entry_form_details'][$i]['waste'];
 			$miscellaneous = $data['tenant_entry_form_details'][$i]['miscellaneous'];
-			$water = $data['tenant_entry_form_details'][$i]['no_of_members'] * $data['tenant_entry_form_details'][$i]['water_rate'];
+			$water = $data['tenant_entry_form_details'][$i]['no_of_members'] * $data['tenant_entry_form_details'][$i]['water_rate']*$data['tenant_entry_form_details'][$i]['electricity_rate'];
+			// echo $water;
+			// die();
 			$electricity = $data['tenant_entry_form_details'][$i]['electricity_rate'] * ($data['tenant_entry_form_details'][$i]['current_meter_reading'] - $data['tenant_entry_form_details'][$i]['previous_meter_reading']);
 
 			// echo $rent;
@@ -312,8 +322,9 @@ public function insert_tenant_details(){
 			// echo $data['previous_outstanding'];
 			// echo "<br>";
 			// echo "end";
-			$total = $rent + $waste + $miscellaneous + $water + $electricity + $data['previous_outstanding'];
+			$total = round($rent + $waste + $miscellaneous + $water + $electricity + $data['previous_outstanding']);
 			// echo $total;
+			// echo "<br>";
 			$data['tenant_entry_form_details'][$i]['total'] = $total;
 			$data['tenant_entry_form_details'][$i]['amount_paid'] = $data['paid_amount'][0]['amount'];
 		    
@@ -322,6 +333,7 @@ public function insert_tenant_details(){
 			// echo $oustanding_amount;
 			// echo $total;
 			// echo "<br>";
+
 			$check = $this->HomeM->check_outstanding_exist($data['property_id'], $data['flat_no'], $month);
 			if(!empty($check)){
 			$this->HomeM->update_oustanding_amount($data['property_id'], $data['flat_no'], $month, $total, $data['tenant_entry_form_details'][$i]['amount_paid'], $outstanding_amount);
@@ -331,6 +343,12 @@ public function insert_tenant_details(){
 			}
 
 
+		}
+		$last_invoice = $this->HomeM->get_last_invoice($property_id,$flat_no);
+		if(!empty($last_invoice)){
+			$data['last_invoice'] = $last_invoice[0]['invoice'];
+		}else{
+			$data['last_invoice'] = "";
 		}
 		// die();
 		// for($i=0; $i<sizeof($data['tenant_entry_form_details']); $i++){
@@ -343,7 +361,7 @@ public function insert_tenant_details(){
 		// }
 
 		// echo "<pre>";
-		// print_r($data['tenant_entry_form_details']);
+		// print_r($data);
 		// die();
 
 
@@ -460,12 +478,12 @@ public function insert_payment(){
 	$receiver = $_POST['receiver'];
 
 	if($receiver == 1){
-		$receiver = "Dr. Indra Kumar Shah";
+		$receiver = "Mr. Ram Kripal Shah";
 	} else if($receiver == 2){
 
-		$receiver = "Sirs Father";
+		$receiver = "Mr. Manoj Kumar Shah";
 	}else{
-		$receiver = "Nisha";
+		$receiver = "Dr. Indra Kumar Shah";
 	}
 
 	$month = $_POST['month'];
@@ -493,12 +511,12 @@ public function insert_payment(){
 	$receiver = $_POST['receiver'];
 
 	if($receiver == 1){
-		$receiver = "Dr. Indra Kumar Shah";
+		$receiver = "Mr. Ram Kripal Shah";
 	} else if($receiver == 2){
 
-		$receiver = "Sirs Father";
+		$receiver = "Mr. Manoj Kumar Shah";
 	}else{
-		$receiver = "Nisha";
+		$receiver = "Dr. Indra Kumar Shah";
 	}
 	
 	
@@ -529,6 +547,89 @@ public function insert_payment(){
 		$this->load->view('Home/police_verification_form',$data);
 	}
 
+	public function generate_invoice($property_id,$flat_no,$month){
 
+            $flat_details = $this->InvoiceM->getFlatDetails($property_id,$flat_no,$month);
+            // echo "<pre>";
+            // print_r($flat_details);
+            // die();
+            if(!empty($flat_details)){
+                $invoice = $month."/".$flat_no;
+                $current_reading = $flat_details[0]['current_meter_reading'];
+
+                $previous_reading = $flat_details[0]['previous_meter_reading'];
+                $units = $current_reading - $previous_reading; 
+
+                $check = $this->InvoiceM->check_invoice($property_id, $flat_no, $month);
+
+                if(!empty($check)){
+                    $this->InvoiceM->update_invoice($invoice, $property_id, $flat_no, $month, $flat_details[0]['tenant_name'],$units);    
+                }else{
+                    $this->InvoiceM->insert_invoice($invoice, $property_id, $flat_no, $month, $flat_details[0]['tenant_name'],$units);
+                }
+                $previous_month =  date('Y-m', strtotime($month. ' -1 months')); 
+		        $previous_outstanding = $this->InvoiceM->get_previous_outstanding($property_id,$flat_no,$previous_month);
+		        if(!empty($previous_outstanding)){
+		        	$prev_out = $previous_outstanding[0]['outstanding_amount'];
+		        }else{
+		        	$prev_out=0;
+		        }
+                $total = ($flat_details[0]['no_of_members']*$flat_details[0]['water_rate']*$flat_details[0]['electricity_rate']) + $units*$flat_details[0]['electricity_rate'] + $flat_details[0]['rent'] + $flat_details[0]['waste'] + $flat_details[0]['miscellaneous']+$prev_out;
+
+                $check_outstanding = $this->HomeM->get_outstanding($property_id,$flat_no,$month);
+                if(!empty($check_outstanding)){
+                	$this->HomeM->update_outstanding($property_id,$flat_no,$month,$total);
+                }else{
+                	$this->HomeM->insert_oustanding($property_id,$flat_no,$month,$total);
+                }
+
+                $check_status = $this->InvoiceM->get_invoice_status($property_id,$month);
+		        $date = date("Y-m-d");
+		        if(!empty($check_status)){
+		            $this->InvoiceM->update_status($property_id,$month, $date);
+		        }else{
+		            $this->InvoiceM->insert_status($property_id,$month, $date);
+		        }
+		        // $this->session->set_flashdata('invoice', 'Invoice Generated Successfully :)');
+            }
+            else{
+            	// $this->session->set_flashdata('invoice', 'Invoice Not Generated :)');
+            }
+
+		redirect("Home/month_wise_report/".$flat_no."/".$property_id);
+    }
+
+    public function view_flat_invoice($property_id, $flat_no, $month){
+        
+        $data = $this->InvoiceM->check_invoice($property_id, $flat_no, $month);
+        $data['data'] = $data[0];
+        $data['details'] = $this->InvoiceM->get_report_details_monthwise($property_id,$flat_no,$month);
+        $data['outstanding_details'] = $this->InvoiceM->get_outstanding_details($property_id,$flat_no,$month);
+        // echo "<pre>";
+        // print_r($data);
+        // die();
+        // if(!empty($data)){
+        //     $data['data'] = $data[0];
+        // }
+        $data['paid_amount'] = $this->InvoiceM->get_tenant_amount($flat_no, $property_id, $month);
+        $previous_month =  date('Y-m', strtotime($month. ' -1 months')); 
+        $data['previous_invoice'] = $this->InvoiceM->check_invoice($property_id, $flat_no, $previous_month);
+        $data['previous_outstanding'] = $this->InvoiceM->get_previous_outstanding($property_id,$flat_no,$previous_month);
+
+        if(!empty($data['paid_amount'])){
+            $data['data']['amount_paid']=$data['paid_amount'][0]['amount'];
+            $data['data']['payment_date']=$data['paid_amount'][0]['payment_date'];
+        }else{
+            $data['data']['amount_paid'] = 0;
+            $data['data']['payment_date'] = "";
+        }
+        
+        $data['property_id']=$property_id;
+        $data['month']=$month;
+        // echo "<pre>";
+        // print_r($data);
+        // die();
+        $this->load->view('Invoice/ViewFlatInvoice',$data);
+    }
 }
 ?>

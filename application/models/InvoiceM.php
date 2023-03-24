@@ -27,7 +27,7 @@ class InvoiceM extends CI_Model {
       }
 
       function getFlatDetails($property_id, $flat_no, $month){
-        $sql = " SELECT * from entry_form_details where `property_id`=$property_id and flat_no=$flat_no and `month`='$month'";
+        $sql = " SELECT entry_form_details.*, tenants.tenant_name from entry_form_details,tenants where entry_form_details.`property_id`=$property_id and entry_form_details.flat_no=$flat_no and entry_form_details.`month`='$month' and tenants.property_id=$property_id and tenants.flat_no=$flat_no and tenants.status=1";
 
         // print_r($sql);
         // die();
@@ -84,7 +84,7 @@ class InvoiceM extends CI_Model {
 
       public function get_tenant_amount($flat_no, $property_id, $month){
 
-    $query = "SELECT SUM(amount) as amount, `payment_date` FROM payment where property_id = $property_id and flat_no = $flat_no and month = '$month'";
+    $query = "SELECT amount, `payment_date` FROM payment where property_id = $property_id and flat_no = $flat_no and month = '$month' order by payment_date desc";
 
     $result = $this->db->query($query);
     return $result->result_array();

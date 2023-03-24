@@ -25,13 +25,13 @@ public function receiver_payment_report(){
 	$receiver = $_POST['receiver'];
 
 	if($receiver == 1){
-		$receiver = "Dr. Indra Kumar Shah";
-	    } else if($receiver == 2){
+		$receiver = "Mr. Ram Kripal Shah";
+	} else if($receiver == 2){
 
-		$receiver = "Sirs Father";
-	    }else{
-		$receiver = "Nisha";
-    }
+		$receiver = "Mr. Manoj Kumar Shah";
+	}else{
+		$receiver = "Dr. Indra Kumar Shah";
+	}
 	
 	$data['payments']= $this->ReportM->get_receiver_payments($data['from_date'], $data['to_date'], $receiver);
 	$data['total'] = $this->ReportM->get_total_receiver_payments($data['from_date'], $data['to_date'], $receiver);
@@ -129,7 +129,11 @@ public function balance_report(){
 		$data['from_date'] = $_POST['from_date'];
 		$data['to_date'] = $_POST['to_date'];
 		$data['property_id'] =$_POST['property_id'];
+		// echo $data['flats'];
+		// die();
     	$data['report_flatwise_details'] = $this->ReportM->get_flatwise_payments($data['to_date'],$data['from_date'],$data['property_id'],$flats);
+    	// echo "ehllo";
+		// die();
 		$month = $data['report_flatwise_details'][0]['month'];
 		$previous_month =  date('Y-m', strtotime('-1 month'));
 		$data['previous_reading'] = $this->ReportM->previousReading($data['property_id'],$flats,$previous_month);
@@ -190,13 +194,13 @@ public function balance_report(){
 		$amount = $_POST['amount'];
 
 	    if($receiver == 1){
-		$receiver = "Dr. Indra Kumar Shah";
-	    } else if($receiver == 2){
+		$receiver = "Mr. Ram Kripal Shah";
+		} else if($receiver == 2){
 
-		$receiver = "Sirs Father";
-	    }else{
-		$receiver = "Nisha";
-	    }
+			$receiver = "Mr. Manoj Kumar Shah";
+		}else{
+			$receiver = "Dr. Indra Kumar Shah";
+		}
 
 	    if($head == 1){
 		$head = "Waste";
