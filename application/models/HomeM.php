@@ -53,9 +53,20 @@ class HomeM extends CI_Model {
     $query = "INSERT INTO `tenants` (`tenant_name`, `father_name`, `dob`,`age`, `gender`, `email`, `aadhaar_no`, `contact`, `joining_date`, `address`, `district`, `state`, `polic_station`, `rent`, `members`, `no_of_male`, `no_of_female`, `no_of_children_below_5`, `two_wheeler`, `four_wheeler`, `tenant_occupation`, `tenant_occupation_address`, `occupation_contact`, `granter1_name`, `granter1_contact`, `granter1_address`, `granter1_district`, `granter1_state`, `granter1_police_station`, `granter1_email`, `granter2_name`, `granter2_contact`,`granter2_address`, `granter2_district`, `granter2_state`, `granter2_police_station`, `granter2_email`,`property_id`, `flat_no`,`status`) VALUES ('$name', '$father_name', '$dob', '$age', '$gender', '$email', '$Aadhaar', '$mobile', '$joining_date', '$address', '$district', '$state', '$polic_station', '$rent', '$no_of_members','$no_of_male', '$no_of_female', '$no_of_children_below_5', '$two_wheeler', '$four_wheeler', '$occupation', '$occupation_address','$occupation_contact', '$identifier_name1', '$identifier_mobile1', '$identifier_address1', '$identifier_district1', '$identifier_state1', '$identifier_policestation1', '$identifier_email1', '$identifier_name2', '$identifier_mobile2','$identifier_address2', '$identifier_district2', '$identifier_state2', '$identifier_policestation2', '$identifier_email2','$property_id', '$flat_no', 1)";
 
     $result = $this->db->query($query);
-    $insert_id = $this->db->insert_id();
+      $insert_id = $this->db->insert_id();
 
-    return  $insert_id;
+      return  $insert_id;
+
+  }
+
+   public function edit_tenant_details($tenant_id, $name, $father_name, $dob, $age, $gender, $email, $rent, $mobile, $Aadhaar, $joining_date, $address, $district, $state, $polic_station, $no_of_members,$no_of_male, $no_of_female, $no_of_children_below_5, $two_wheeler, $four_wheeler, $occupation, $occupation_address, $occupation_contact, $identifier_name1, $identifier_mobile1, $identifier_address1, $identifier_district1, $identifier_state1, $identifier_policestation1, $identifier_email1, $identifier_name2, $identifier_mobile2,$identifier_address2, $identifier_district2, $identifier_state2, $identifier_policestation2, $identifier_email2,$property_id, $flat_no){
+    // echo $Aadhaar;
+    // die();
+    $query = "UPDATE `tenants` SET `tenant_name`='$name', `father_name`='$father_name', `dob`='$dob',`age`='$age', `gender`='$gender', `email`='$email', `aadhaar_no`='$Aadhaar', `contact`='$mobile', `joining_date`='$joining_date', `address`='$address', `district`='$district', `state`='$state', `polic_station`='$polic_station', `rent`='$rent', `members`='$no_of_members', `no_of_male`='$no_of_male', `no_of_female`='$no_of_female', `no_of_children_below_5`='$no_of_children_below_5', `two_wheeler`='$two_wheeler', `four_wheeler`='$four_wheeler', `tenant_occupation`='$occupation', `tenant_occupation_address`='$occupation_address', `occupation_contact`='$occupation_contact', `granter1_name`='$identifier_name1', `granter1_contact`='$identifier_mobile1', `granter1_address`='$identifier_address1', `granter1_district`='$identifier_district1', `granter1_state`='$identifier_state1', `granter1_police_station`='$identifier_policestation1', `granter1_email`='$identifier_email1', `granter2_name`='$identifier_name2', `granter2_contact`='$identifier_mobile2',`granter2_address`='$identifier_address2', `granter2_district`='$identifier_district2', `granter2_state`='$identifier_state2', `granter2_police_station`='$identifier_policestation2', `granter2_email`='$identifier_email2' WHERE `id`='$tenant_id' and `property_id`='$property_id' and `flat_no` = '$flat_no' ";
+// print_r($query);
+// die();
+    $result = $this->db->query($query);
+    return;
 
   }
 
@@ -209,6 +220,15 @@ public function delete_tenant_relatives($property_id, $flat_no, $tenant_id){
     return $result->result_array();
   }
 
+  public function update_tenant_relatives($tenant_id,$sno, $name, $father_name, $age, $gender, $relation, $mobile_no, $aadhar){
+
+    $query = "UPDATE `tenant_relatives` SET `name`='$name', `father_name`='$father_name', `age`='$age', `gender`='$gender', `relation`='$relation', `mobile_no`='$mobile_no', `aadhar`='$aadhar' WHERE `tenant_id`='$tenant_id' and `sno`='$sno'";
+
+    $result = $this->db->query($query);
+    return ;
+
+  }
+
   public function insert_tenant_relatives($tenant_id, $name, $father_name, $age, $gender, $relation, $mobile_no, $aadhar){
 
     $query = "INSERT INTO `tenant_relatives` (`tenant_id`, `name`, `father_name`, `age`, `gender`, `relation`, `mobile_no`, `aadhar`, `active`) VALUES ('$tenant_id', '$name', '$father_name', '$age', '$gender', '$relation', '$mobile_no', '$aadhar', 1)";
@@ -217,6 +237,7 @@ public function delete_tenant_relatives($property_id, $flat_no, $tenant_id){
     return ;
 
   }
+
   public function fetch_details_for_police_verification($flat_no,$property_id)
   {
     $query = "SELECT * FROM tenants where property_id = $property_id AND flat_no = $flat_no AND status = 1";

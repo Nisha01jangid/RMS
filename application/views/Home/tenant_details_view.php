@@ -164,6 +164,7 @@
     <h2 style="color:red; font-style:italic; font-weight:bold; font-size:22px; display: inline-block; margin-right: 20px;">Police Verification Form</h2> 
 <span>
     <a style="display: inline-block;" class="btn btn-primary btn-block btn-sm col-sm-2 float-right" href="<?php echo base_url('Home/police_verification_form').'/'.$flat_no.'/'.$property_id; ?>" >View </a>
+    <a style="display: inline-block;" class="btn btn-warning btn-block btn-sm col-sm-2 float-right" href="<?php echo base_url('Home/edit_police_verification_form').'/'.$flat_no.'/'.$property_id; ?>" >Edit </a>
 </span>
 </div>
 </div>
