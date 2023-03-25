@@ -123,8 +123,9 @@ class Invoice extends CI_Controller {
         $this->load->view('Invoice/ViewFlatInvoice',$data);
     }
 
-    public function print_invoice($property_id, $month){
-
+    public function print_invoice(){
+        $property_id = $_POST['property_id'];
+        $month = $_POST['month'];
         $data['flats_count'] = $this->InvoiceM->get_flats_invoice($property_id, $month);
         
         $data['flats'] = array();
@@ -147,10 +148,10 @@ class Invoice extends CI_Controller {
                 $data['flats'][$i]['outstanding_amount'] = $outstanding_details[0]['outstanding_amount'];
                 $paid_amount = $this->InvoiceM->get_tenant_amount($f['flat_no'], $property_id, $month);
                 if(!empty($paid_amount)){
-                    $data['flats'][$i]['amount_paid'] = $paid_amount[0]['amount'];
+                    $data['flats'][$i]['paid_amount'] = $paid_amount;
                     $data['flats'][$i]['payment_date'] = $paid_amount[0]['payment_date'];
                 }else{
-                    $data['flats'][$i]['amount_paid'] = "0";
+                    $data['flats'][$i]['paid_amount'] = "";
                     $data['flats'][$i]['payment_date'] = "";
                 }
                 $previous_month =  date('Y-m', strtotime($month. ' -1 months')); 

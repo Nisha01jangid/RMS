@@ -59,7 +59,6 @@ class ReportM extends CI_Model {
     public function get_report_details_monthwise($month,$property_id){
 
     $query = "SELECT entry_form_details.* FROM entry_form_details WHERE `property_id` =$property_id AND `month` = '$month' AND status =1 ORDER BY `month`";
-
     // $query = "SELECT DISTINCT entry_form_details.*, payment.amount
     // FROM entry_form_details
     // INNER JOIN payment ON entry_form_details.property_id = payment.property_id AND entry_form_details.month =payment.month
