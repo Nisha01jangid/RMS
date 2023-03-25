@@ -206,7 +206,101 @@ public function insert_tenant_details(){
 
 }
 
-		
+public function edit_tenant_details(){
+
+	// $data = $_POST;
+	// echo "<pre>";
+	// print_r($data);
+	// die();
+
+	$name = $_POST['name'];
+	$father_name = $_POST['father_name'];
+	$dob = $_POST['dob'];
+	$gender = $_POST['gender'];
+	$age = $_POST['age'];
+	$email = $_POST['email'];
+	$rent = $_POST['rent'];
+	$mobile = $_POST['mobile'];
+	$Aadhaar = $_POST['Aadhaar'];
+	$joining_date = $_POST['joining_date'];
+	$address = $_POST['address'];
+	$district = $_POST['district'];
+	$state = $_POST['state'];
+	$polic_station = $_POST['polic_station'];
+	$no_of_members =$_POST['no_of_members'];
+	$no_of_male =$_POST['no_of_male'];
+	$no_of_female =$_POST['no_of_female'];
+	$no_of_children_below_5 =$_POST['no_of_children_below_5'];
+	$two_wheeler = $_POST['two_wheeler'];
+	$four_wheeler = $_POST['four_wheeler'];
+	$occupation = $_POST['occupation'];
+	$occupation_address = $_POST['occupation_address'];
+	$occupation_contact = $_POST['occupation_contact'];
+	$identifier_name1 = $_POST['identifier_name1'];
+	$identifier_mobile1 = $_POST['identifier_mobile1'];
+	$identifier_address1 = $_POST['identifier_address1'];
+	$identifier_district1 = $_POST['identifier_district1'];
+	$identifier_state1 = $_POST['identifier_state1'];
+	$identifier_policestation1 = $_POST['identifier_policestation1'];
+	$identifier_email1 = $_POST['identifier_email1'];
+	$identifier_name2 = $_POST['identifier_name2'];
+	$identifier_mobile2 = $_POST['identifier_mobile2'];
+	$identifier_address2 = $_POST['identifier_address2'];
+	$identifier_district2 = $_POST['identifier_district2'];
+	$identifier_state2 = $_POST['identifier_state2'];
+	$identifier_policestation2 = $_POST['identifier_policestation2'];
+	$identifier_email2 = $_POST['identifier_email2'];
+	$flat_no = $_POST['flat_no'];
+	$property_id = $_POST['property_id'];
+	$tenant_id = $_POST['tenant_id'];
+
+    $sno = $_POST['sno'];
+    $member_name = $_POST['member_name'];
+    $member_father_name = $_POST['member_father_name'];
+    $member_age = $_POST['member_age'];
+    $member_gender = $_POST['member_gender'];
+    $member_relation = $_POST['member_relation'];
+    $member_mobile_no = $_POST['member_mobile_no'];
+    $member_aadhar = $_POST['member_aadhar'];
+	// echo "<pre>";
+	// echo $Aadhaar;
+	// echo "<br>";
+	// print_r($_POST);
+	// die();
+	$this->HomeM->edit_tenant_details($tenant_id, $name, $father_name, $dob,$age,$gender, $email, $rent, $mobile, $Aadhaar, $joining_date, $address, $district, $state, $polic_station, $no_of_members, $no_of_male, $no_of_female, $no_of_children_below_5, $two_wheeler, $four_wheeler, $occupation, $occupation_address, $occupation_contact, $identifier_name1, $identifier_mobile1, $identifier_address1, $identifier_district1, $identifier_state1, $identifier_policestation1, $identifier_email1, $identifier_name2, $identifier_mobile2,$identifier_address2, $identifier_district2, $identifier_state2, $identifier_policestation2, $identifier_email2,$property_id, $flat_no);
+
+	
+
+    for($i=0; $i<count($member_name); $i++){
+        $member_details[] = array(
+            'sno'=>$sno[$i],
+            'name' => $member_name[$i],
+            'father_name' => $member_father_name[$i],
+            'age' => $member_age[$i],
+            'gender' => $member_gender[$i],
+            'relation' => $member_relation[$i],
+            'mobile_no' => $member_mobile_no[$i],
+            'aadhar' => $member_aadhar[$i]
+        );
+	}
+	
+
+	foreach($member_details as $m){
+		$this->HomeM->update_tenant_relatives($tenant_id,$m['sno'], $m['name'], $m['father_name'], $m['age'], $m['gender'], $m['relation'], $m['mobile_no'], $m['aadhar']);
+	}
+
+	// $tenant_id = $this->HomeM->insert_tenant_details($name, $father_name, $dob,$age,$gender, $email, $rent, $mobile, $Aadhaar, $joining_date, $address, $district, $state, $polic_station, $no_of_members, $no_of_male, $no_of_female, $no_of_children_below_5, $two_wheeler, $four_wheeler, $occupation, $occupation_address, $occupation_contact, $identifier_name1, $identifier_mobile1, $identifier_address1, $identifier_district1, $identifier_state1, $identifier_policestation1, $identifier_email1, $identifier_name2, $identifier_mobile2,$identifier_address2, $identifier_district2, $identifier_state2, $identifier_policestation2, $identifier_email2,$property_id, $flat_no);
+
+
+	// foreach($member_details as $m){
+	// $this->HomeM->insert_tenant_relatives( $m['name'], $m['father_name'], $m['age'], $m['gender'], $m['relation'], $m['mobile_no'], $m['aadhar']);
+	// }
+
+
+	$this->session->set_flashdata('tenant_inserted', 'Tenant Updated Successfully :)');
+	redirect("Home/index");
+
+}		
     // echo "<br>";
     // print_r($member_father_names);
     // echo "<br>";
@@ -546,6 +640,24 @@ public function insert_payment(){
 
 		$this->load->view('Home/police_verification_form',$data);
 	}
+
+	public function edit_police_verification_form($flat_no, $property_id){
+
+		$data['flat_no'] = $flat_no;
+		$data['property_id'] = $property_id;
+
+		$data['details'] = $this->HomeM->fetch_details_for_police_verification($flat_no,$property_id);
+
+		$tenant_id = $data['details'][0]['id'];
+
+		$data['family_details'] = $this->HomeM->get_family_member_details_for_police_verification($tenant_id);
+		// echo "<pre>";
+		// print_r($data);
+		// die();
+		$data['tenant_id'] = $tenant_id;
+		$this->load->view('Home/edit_tenant_details',$data);
+	}
+
 
 	public function generate_invoice($property_id,$flat_no,$month){
 
