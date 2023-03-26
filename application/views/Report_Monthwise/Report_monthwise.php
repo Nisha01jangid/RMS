@@ -86,7 +86,8 @@
 
                     <br>
                     <div class="intro">
-                        <h2 style="text-align:center;"><?php echo "Flat No.".$flat_no; ?></h2>
+                      <h1 style="text-align:center;"><b>Monthwise Report</b></h1>
+                        <h2 style="text-align:center;"><?php echo "Month: ".$month; ?></h2>
                         <br>
                     <table class="table table-striped table-hover table-bordered" style="width:90%" align="center">
                         <thead class="thead-dark">
@@ -145,10 +146,10 @@
                             <td><?php echo $value['total']; ?></td>
                             <td align="center">
                               <?php if($value['invoice_number']==$last_invoice){ ?>
-                                <button style="padding: 9px; background-color: #fce205; border-radius: 5px; border-color:#fce205; ;"><a style="text-decoration: none; font-size: 15px; font-weight: bold; color: black;" href="<?php echo base_url('Home/pay_bill/').$property_id.'/'.$flat_no.'/'.$value['month'];?>">Pay</a></button>
-                                <a href="<?php echo base_url("Home/view_flat_invoice/").$property_id."/".$flat_no."/".$value['month']; ?>" class="btn btn-primary">Invoice</a>
+                                <button style="padding: 9px; background-color: #fce205; border-radius: 5px; border-color:#fce205; ;"><a style="text-decoration: none; font-size: 15px; font-weight: bold; color: black;" href="<?php echo base_url('Home/pay_bill/').$property_id.'/'.$value['flat_no'].'/'.$value['month'];?>">Pay</a></button>
+                                <a href="<?php echo base_url("Home/view_flat_invoice/").$property_id."/".$value['flat_no']."/".$value['month']; ?>" class="btn btn-primary">Invoice</a>
                                 <?php }else{ if(!empty($value['invoice_number'])){ ?>
-                                    <a href="<?php echo base_url("Home/view_flat_invoice/").$property_id."/".$flat_no."/".$value['month']; ?>" class="btn btn-primary">Invoice</a>
+                                    <a href="<?php echo base_url("Home/view_flat_invoice/").$property_id."/".$value['flat_no']."/".$value['month']; ?>" class="btn btn-primary">Invoice</a>
                                 <?php }} ?>
                             </td> 
                             <td style="text-align:center;"><?php echo $value['amount_paid']; ?></td>                           
