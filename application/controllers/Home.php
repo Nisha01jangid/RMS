@@ -366,10 +366,16 @@ public function edit_tenant_details(){
 				// $month = $data['tenant_entry_form_details'][$i]['month'];
 
 				$data['invoice_number'] = $this->HomeM->get_invoive_number($data['property_id'],$month, $data['flat_no']);
+
 				if(!empty($data['invoice_number'])){
 					$data['tenant_entry_form_details'][$i]['invoice_number'] = 	$data['invoice_number'][0]['invoice'];
+					// $to_date = date('Y-m-d',strtotime($data['invoice_number'][0]['timestamp']));
+					// echo $to_date;
+					// echo "<br>";
+					// die();
 				}else{
 					$data['tenant_entry_form_details'][$i]['invoice_number']="";
+					// $to_date=date('Y-m-d');
 				}
 				// }
 
@@ -378,6 +384,12 @@ public function edit_tenant_details(){
 			// }
 		
 			$previous_month =  date('Y-m', strtotime($month. ' -1 months')); 
+			// $previous_flat_invoice = $this->HomeM->get_invoive_number($data['property_id'],$previous_month, $data['flat_no']);
+			// if(!empty($previous_flat_invoice)){
+			// 	$from_date = date('Y-m-d',strtotime($previous_flat_invoice[0]['timestamp']));
+			// }else{
+			// 	$from_date="";
+			// }
 			// echo $previous_month;
 			// die();
 			$previous_outstanding = $this->HomeM->get_previous_outstanding($property_id,$flat_no,$previous_month);
@@ -393,6 +405,7 @@ public function edit_tenant_details(){
 		    // $data['previous_reading'] = $this->HomeM->previousReading($property_id,$flat_no,$previous_month);
 
 			$data['paid_amount'] = $this->HomeM->get_tenant_amount($data['flat_no'], $data['property_id'], $month);
+			// $data['paid_amount'] = $this->HomeM->get_tenant_amount($data['flat_no'], $data['property_id'], $to_date, $from_date);
 			$data['tenant_entry_form_details'][$i]['previous_reading'] = $data['tenant_entry_form_details'][$i]['previous_meter_reading'];
 
 			$rent = $data['tenant_entry_form_details'][$i]['rent'];
@@ -742,6 +755,13 @@ public function insert_payment(){
         // print_r($data);
         // die();
         $this->load->view('Invoice/ViewFlatInvoice',$data);
+    }
+
+    public function delete_flat_invoice($property_id, $flat_no, $month){
+        
+        $this->InvoiceM->delete_invoice($property_id, $flat_no, $month);
+
+        redirect(base_url('Home/month_wise_report/'.$flat_no."/".$property_id));
     }
 
 }

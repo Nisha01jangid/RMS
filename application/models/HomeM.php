@@ -264,7 +264,7 @@ public function delete_tenant_relatives($property_id, $flat_no, $tenant_id){
 
   public function get_invoive_number($property_id,$month, $flat_no)
   {
-    $query = " SELECT invoice FROM invoice WHERE property_id = $property_id AND month ='$month' and flat_no = $flat_no order by `month`";
+    $query = " SELECT invoice,`timestamp` FROM invoice WHERE property_id = $property_id AND month ='$month' and flat_no = $flat_no order by `month`";
 
     $result = $this->db->query($query);
     return $result->result_array();
