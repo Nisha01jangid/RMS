@@ -69,7 +69,14 @@ public function balance_report(){
     	$property_id = $data['property_id'];
 
     	$data['report_monthwise_details'] = $this->ReportM->get_report_details_monthwise($data['month'],$data['property_id']);
+    	
+		for($i=0; $i<sizeof($data['report_monthwise_details']); $i++){
+			$property_id = $data['report_monthwise_details'][$i]['property_id'];
+			$flat_no = $data['report_monthwise_details'][$i]['flat_no'];
+		$data['tenant_name'] = $this->ReportM->get_tenant_name($flat_no, $property_id);
+		$data['report_monthwise_details'][$i]['tenant_name'] = 	$data['tenant_name'][0]['tenant_name'];
 
+		}
     	// echo "<pre>";
     	// print_r($data['report_monthwise_details']);
 		// die();
@@ -89,6 +96,43 @@ public function balance_report(){
 
 			$data['invoice_number'] = $this->ReportM->get_invoive_number($data['property_id'],$month, $flat_no);
 			$data['report_monthwise_details'][$i]['invoice_number'] = 	$data['invoice_number'][0]['invoice'];
+
+
+			$previous_month =  date('Y-m', strtotime($month. ' -1 months')); 
+			// echo $previous_month;
+			// die();
+			$previous_outstanding = $this->ReportM->get_previous_outstanding($property_id,$flat_no,$previous_month);
+			// print_r($previous_outstanding);
+			// echo "<br>";
+			if(!empty($previous_outstanding)){
+				$data['previous_outstanding'] = $previous_outstanding[0]['outstanding_amount'];
+			}else{
+				$data['previous_outstanding'] = 0;
+			}
+			$data['paid_amount'] = $this->ReportM->get_tenant_amount($flat_no, $data['property_id'], $month);
+			$data['report_monthwise_details'][$i]['previous_reading'] = $data['report_monthwise_details'][$i]['previous_meter_reading'];
+
+			$rent = $data['report_monthwise_details'][$i]['rent'];
+			$waste = $data['report_monthwise_details'][$i]['waste'];
+			$miscellaneous = $data['report_monthwise_details'][$i]['miscellaneous'];
+			$water = $data['report_monthwise_details'][$i]['no_of_members'] * $data['report_monthwise_details'][$i]['water_rate']*$data['report_monthwise_details'][$i]['electricity_rate'];
+			// echo $water;
+			// die();
+			$electricity = $data['report_monthwise_details'][$i]['electricity_rate'] * ($data['report_monthwise_details'][$i]['current_meter_reading'] - $data['report_monthwise_details'][$i]['previous_meter_reading']);
+			$total = round($rent + $waste + $miscellaneous + $water + $electricity + $data['previous_outstanding']);
+			$data['report_monthwise_details'][$i]['total'] = $total;
+			$data['report_monthwise_details'][$i]['amount_paid'] = $data['paid_amount'][0]['amount'];
+			$outstanding_amount = $total - $data['report_monthwise_details'][$i]['amount_paid'];
+			$data['report_monthwise_details'][$i]['outstanding_amount'] = $outstanding_amount;
+			$check = $this->ReportM->check_outstanding_exist($data['property_id'], $flat_no, $month);
+			if(!empty($check)){
+			$this->ReportM->update_oustanding_amount($data['property_id'], $flat_no, $month, $total, $data['report_monthwise_details'][$i]['amount_paid'], $outstanding_amount);
+
+			}else {
+			$this->ReportM->insert_oustanding_amount($data['property_id'], $data['flat_no'], $month, $total, $data['report_monthwise_details'][$i]['amount_paid'], $outstanding_amount);
+			}
+
+
 			}
 
 
@@ -104,20 +148,15 @@ public function balance_report(){
 
 			
 		}
-    	
-    	
-		// foreach ($data['report_monthwise_details'] as $key => $value) {
-
-
 		$month = $data['report_monthwise_details'][0]['month'];
     	$flat_no = $data['report_monthwise_details'][0]['flat_no'];
-		// echo $month;
-		// die();
-		// $previous_month = date('Y-m', strtotime($month . '-01 -1 month'));
-		// $data['previous_reading'] = $this->ReportM->previousReading($property_id,$flat_no,$previous_month);
-		
-		// }
-
+		$last_invoice = $this->ReportM->get_last_invoice($property_id,$flat_no);
+		if(!empty($last_invoice)){
+			$data['last_invoice'] = $last_invoice[0]['invoice'];
+		}else{
+			$data['last_invoice'] = "";
+		}
+// echo "<pre>";print_r($data);die();
     	
     	$this->load->view('Report_Monthwise/Report_monthwise',$data);
     }
@@ -134,9 +173,93 @@ public function balance_report(){
     	$data['report_flatwise_details'] = $this->ReportM->get_flatwise_payments($data['to_date'],$data['from_date'],$data['property_id'],$flats);
     	// echo "ehllo";
 		// die();
+		// echo "<pre>";
+    	// print_r($data['report_flatwise_details']);
+		// die();
+		for($i=0; $i<sizeof($data['report_flatwise_details']); $i++){
+			$property_id = $data['report_flatwise_details'][$i]['property_id'];
+			$flat_no = $data['report_flatwise_details'][$i]['flat_no'];
+		$data['tenant_name'] = $this->ReportM->get_tenant_name($flat_no, $property_id);
+		$data['report_flatwise_details'][$i]['tenant_name'] = 	$data['tenant_name'][0]['tenant_name'];
+
+		}
+
+
 		$month = $data['report_flatwise_details'][0]['month'];
-		$previous_month =  date('Y-m', strtotime('-1 month'));
-		$data['previous_reading'] = $this->ReportM->previousReading($data['property_id'],$flats,$previous_month);
+
+	    $data['invoice_status'] = $this->ReportM->get_invoive_status($data['property_id'],$month);
+
+		if(!empty($data['invoice_status'])){
+
+			
+			for($i=0; $i<sizeof($data['report_flatwise_details']); $i++){
+
+			$month = $data['report_flatwise_details'][$i]['month'];
+			$flat_no = $data['report_flatwise_details'][$i]['flat_no'];
+
+
+			$data['invoice_number'] = $this->ReportM->get_invoive_number($data['property_id'],$month, $flat_no);
+			$data['report_flatwise_details'][$i]['invoice_number'] = 	$data['invoice_number'][0]['invoice'];
+
+
+			$previous_month =  date('Y-m', strtotime($month. ' -1 months')); 
+			// echo $previous_month;
+			// die();
+			$previous_outstanding = $this->ReportM->get_previous_outstanding($property_id,$flat_no,$previous_month);
+			// print_r($previous_outstanding);
+			// echo "<br>";
+			if(!empty($previous_outstanding)){
+				$data['previous_outstanding'] = $previous_outstanding[0]['outstanding_amount'];
+			}else{
+				$data['previous_outstanding'] = 0;
+			}
+			$data['paid_amount'] = $this->ReportM->get_tenant_amount($flat_no, $data['property_id'], $month);
+			$data['report_flatwise_details'][$i]['previous_reading'] = $data['report_flatwise_details'][$i]['previous_meter_reading'];
+
+			$rent = $data['report_flatwise_details'][$i]['rent'];
+			$waste = $data['report_flatwise_details'][$i]['waste'];
+			$miscellaneous = $data['report_flatwise_details'][$i]['miscellaneous'];
+			$water = $data['report_flatwise_details'][$i]['no_of_members'] * $data['report_flatwise_details'][$i]['water_rate']*$data['report_flatwise_details'][$i]['electricity_rate'];
+			// echo $water;
+			// die();
+			$electricity = $data['report_flatwise_details'][$i]['electricity_rate'] * ($data['report_flatwise_details'][$i]['current_meter_reading'] - $data['report_flatwise_details'][$i]['previous_meter_reading']);
+			$total = round($rent + $waste + $miscellaneous + $water + $electricity + $data['previous_outstanding']);
+			$data['report_flatwise_details'][$i]['total'] = $total;
+			$data['report_flatwise_details'][$i]['amount_paid'] = $data['paid_amount'][0]['amount'];
+			$outstanding_amount = $total - $data['report_flatwise_details'][$i]['amount_paid'];
+			$data['report_flatwise_details'][$i]['outstanding_amount'] = $outstanding_amount;
+			$check = $this->ReportM->check_outstanding_exist($data['property_id'], $flat_no, $month);
+			if(!empty($check)){
+			$this->ReportM->update_oustanding_amount($data['property_id'], $flat_no, $month, $total, $data['report_flatwise_details'][$i]['amount_paid'], $outstanding_amount);
+
+			}else {
+			$this->ReportM->insert_oustanding_amount($data['property_id'], $data['flat_no'], $month, $total, $data['report_flatwise_details'][$i]['amount_paid'], $outstanding_amount);
+			}
+
+
+			}
+
+
+		}
+    	for($i = 0; $i < sizeof($data['report_flatwise_details']); $i++){
+
+			$month = $data['report_flatwise_details'][$i]['month'];
+			$flat_no = $data['report_flatwise_details'][$i]['flat_no'];
+
+			$data['paid_amount'] = $this->ReportM->get_tenant_amount($flat_no, $data['property_id'], $month);
+
+			$data['report_flatwise_details'][$i]['amount_paid'] = $data['paid_amount'][0]['amount'];
+
+			
+		}
+		$month = $data['report_flatwise_details'][0]['month'];
+    	$flat_no = $data['report_flatwise_details'][0]['flat_no'];
+		$last_invoice = $this->ReportM->get_last_invoice($property_id,$flat_no);
+		if(!empty($last_invoice)){
+			$data['last_invoice'] = $last_invoice[0]['invoice'];
+		}else{
+			$data['last_invoice'] = "";
+		}
     	$this->load->view('Report_Monthwise/Report_flatwise',$data);
     }
 

@@ -29,8 +29,6 @@ class InvoiceM extends CI_Model {
       function getFlatDetails($property_id, $flat_no, $month){
         $sql = " SELECT entry_form_details.*, tenants.tenant_name from entry_form_details,tenants where entry_form_details.`property_id`=$property_id and entry_form_details.flat_no=$flat_no and entry_form_details.`month`='$month' and tenants.property_id=$property_id and tenants.flat_no=$flat_no and tenants.status=1";
 
-        // print_r($sql);
-        // die();
         $query = $this->db->query($sql);
         return $query->result_array();
       }

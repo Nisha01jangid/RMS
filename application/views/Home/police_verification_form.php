@@ -41,7 +41,7 @@
       }
     
     .homediv{
-        width:75%;
+        width:100%;
         height:100%;
         margin:3%;  
 
@@ -86,7 +86,7 @@ Full address…………………………………………………………�
 Mobile No……………………………………… Police station…………………………………………………………………………<br>
   </div>
 <div style="font-size:13px;padding-top:1%">
-<div style="border-style:solid; height:100px;width:100px;float:right;margin:5% 6% 2%"></div> 
+<div style="border-style:solid; height:100px;width:100px;float:right;margin:2%"></div> 
   Name of Tanent/Servant/Labour : <span class="details"><?php echo $details_for_police_verification[0]['tenant_name']; ?></span>&nbsp;&nbsp;&nbsp;Age <span class="details"><?php echo $details_for_police_verification[0]['age']; ?></span>&nbsp;&nbsp;  <span class="details"></span> &nbsp;&nbsp;Gender : <span class="details"><?php echo $details_for_police_verification[0]['gender']; ?></span>
 
 <br>Fathers Name : <span class="details"><?php echo $details_for_police_verification[0]['father_name']; ?></span>
@@ -134,18 +134,18 @@ Detail of Family Members
 Total Number of family member : <span class="details"><?php echo $details_for_police_verification[0]['members']; ?></span>&nbsp;&nbsp;Male : <span class="details"><?php echo $details_for_police_verification[0]['no_of_male']; ?></span>&nbsp;&nbsp; Female : <span class="details"><?php echo $details_for_police_verification[0]['no_of_female']; ?></span>&nbsp;&nbsp; Children Below 5 Year : <span class="details"><?php echo $details_for_police_verification[0]['no_of_children_below_5']; ?></span>&nbsp;&nbsp; 
 
 <br>Vehicle detail:      Two Wheeler : <span class="details"><?php echo $details_for_police_verification[0]['two_wheeler']; ?></span>&nbsp;&nbsp;	Four wheeler : <span class="details"><?php echo $details_for_police_verification[0]['four_wheeler']; ?></span>
-
-<br> Occupation of the Tenant : <span class="details"><?php echo $details_for_police_verification[0]['tenant_occupation']; ?></span>		
+&emsp;&emsp;
+Occupation of the Tenant : <span class="details"><?php echo $details_for_police_verification[0]['tenant_occupation']; ?></span>		
 
 <br>Office/College/School Address : <span class="details"><?php echo $details_for_police_verification[0]['tenant_occupation_address']; ?></span>
-
-<br>Office contact Number : <span class="details"><?php echo $details_for_police_verification[0]['occupation_contact']; ?></span>
+&emsp;&emsp;
+Office contact Number : <span class="details"><?php echo $details_for_police_verification[0]['occupation_contact']; ?></span>
 <br>Local Identifier/ Granter Name With Full Address   
 <div style="display:flex; justify-content: space-between;">
 <div style="width:40%;">
             <br>(1) Name : <span class="details"><?php echo $details_for_police_verification[0]['granter1_name']; ?></span>
 
-						<br>&emsp;&nbsp;Address : <span class="details"><?php echo $details_for_police_verification[0]['granter1_address']; ?></span>
+						<br>&emsp;&nbsp;Address : <span class="details" style="width:100px;"><?php echo $details_for_police_verification[0]['granter1_address']; ?></span>
 
 						<br>&emsp;&nbsp;District : <span class="details"><?php echo $details_for_police_verification[0]['granter1_district']; ?></span>
 
@@ -171,8 +171,8 @@ Total Number of family member : <span class="details"><?php echo $details_for_po
 
             <br>&emsp;&nbsp;Email ID : <span class="details"><?php echo $details_for_police_verification[0]['granter2_email']; ?></span>
             </div></div>
-                        <br><br><br><br>Signature of Landlord/Owner				
-                        &emsp;&emsp; &emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Signature of Tanent/Servant/Labour <br><br>
+                        <br><br>Signature of Landlord/Owner				
+                        <span style="float:right;margin-right:5%">Signature of Tanent/Servant/Labour</span> <br><br>
   </div></div>	
 
 <div style="border:1px solid black; font-size:13px;">

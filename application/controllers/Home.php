@@ -743,5 +743,6 @@ public function insert_payment(){
         // die();
         $this->load->view('Invoice/ViewFlatInvoice',$data);
     }
+
 }
 ?>
