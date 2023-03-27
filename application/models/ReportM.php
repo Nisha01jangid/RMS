@@ -95,7 +95,7 @@ class ReportM extends CI_Model {
 
    public function get_tenant_name($flat_no, $property_id){
 
-    $query = "SELECT tenant_name FROM tenants where property_id = $property_id and flat_no = $flat_no and status =1 ";
+    $query = "SELECT tenant_name, contact FROM tenants where property_id = $property_id and flat_no = $flat_no and status =1 ";
     // print_r($query);
     // die();
     $result = $this->db->query($query);
@@ -144,6 +144,7 @@ class ReportM extends CI_Model {
     return $result->result_array();
     
   }
+  
 
   public function get_receiver_expenditure($from_date, $to_date, $receiver){
 

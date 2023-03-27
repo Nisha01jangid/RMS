@@ -1,6 +1,6 @@
 <?php
 // echo "<pre>";
-// print_r($tenant_entry_form_details);
+// print_r($report_flatwise_details);
 // die();  
 ?>
 <!DOCTYPE html>
@@ -27,12 +27,12 @@
         }
 
         .intro{
-            font-family: Comic Sans MS;
+            font-family: Times New Roman;
         }
 
         table {
           background-color: #fcfbf8;
-          font-family: Comic Sans MS;
+          font-family: Times New Roman;
           border-collapse: collapse;
           width: 100%;
         }
@@ -87,7 +87,11 @@
                     <br>
                     <div class="intro">
                     <h1 style="text-align:center;"><b>Flatwise Report</b></h1>
-                        <br>
+                    <?php 
+                                foreach ($report_flatwise_details as $key => $value) { ?>
+                    <h3 style="text-align:center;"><b>Flat No. : <?php echo $value['flat_no']?></b></h3>
+                        <?php break;}?>
+                        <h4 style="text-align:center;"><b>From: <?php echo $from_date?> To: <?php echo $to_date?></b></h4>
                     <table class="table table-striped table-hover table-bordered" style="width:90%" align="center">
                         <thead class="thead-dark">
                             <tr>
@@ -102,7 +106,7 @@
                             <th scope="col" style="text-align:center;">Total</th>
                             <th scope="col" style="text-align:center;">Total + Previous Outstanding</th>
     
-                            <th scope="col" style="text-align:center;">Payment</th>
+                            <!-- <th scope="col" style="text-align:center;">Payment</th> -->
                             <th style="text-align:center;">Amount Paid</th>
                             <th scope="col" style="text-align:center;">Outstanding Amount</th>
                             </tr>
@@ -114,7 +118,7 @@
                                     
                             <tr>
                             <td scope="row" style="text-align:center;"><?php echo $i ?></td>
-                            <td style="text-align:center;"><?php echo $value['tenant_name'] ?></td>
+                            <td style="text-align:center;"><?php echo $value['tenant_name']." (".$value['contact'].")"; ?></td>
                             <?php if(!empty($value['invoice_number'])) {?>
                               <td style="color:green;"><?php echo $value['invoice_number'];?> </td>
                               
@@ -142,14 +146,14 @@
                             <td><?php echo $value['miscellaneous'] ?></td>
                             <td><?php echo  round($total);  ?></td>
                             <td><?php echo $value['total']; ?></td>
-                            <td align="center">
+                            <!-- <td align="center">
                               <?php if($value['invoice_number']==$last_invoice){ ?>
                                 <button style="padding: 9px; background-color: #fce205; border-radius: 5px; border-color:#fce205; ;"><a style="text-decoration: none; font-size: 15px; font-weight: bold; color: black;" href="<?php echo base_url('Home/pay_bill/').$property_id.'/'.$value['flat_no'].'/'.$value['month'];?>">Pay</a></button>
                                 <a href="<?php echo base_url("Home/view_flat_invoice/").$property_id."/".$value['flat_no']."/".$value['month']; ?>" class="btn btn-primary">Invoice</a>
                                 <?php }else{ if(!empty($value['invoice_number'])){ ?>
                                     <a href="<?php echo base_url("Home/view_flat_invoice/").$property_id."/".$value['flat_no']."/".$value['month']; ?>" class="btn btn-primary">Invoice</a>
                                 <?php }} ?>
-                            </td> 
+                            </td>  -->
                             <td style="text-align:center;"><?php echo $value['amount_paid']; ?></td>                           
                             <td style="text-align:center;"> <?php echo $value['outstanding_amount'];?></td>
                             </tr>   

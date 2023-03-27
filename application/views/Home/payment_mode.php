@@ -159,11 +159,7 @@
     <input type="date" class="form-control" id="exampleInputEmail1" name="date"  placeholder="Enter payment date">
 </div>
  <br>
- <div class="form-group">
-    <label for="exampleInputEmail1">Description:</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" name="description"  placeholder="Enter description..">
-</div>
-<br>
+ 
  <div class="form-group">
     <label for="exampleInputEmail1">Amount:</label>
     <input type="number" class="form-control" id="exampleInputEmail1" name="amount"  placeholder="Enter Amount..">
@@ -177,6 +173,11 @@
     <option value="2">Mr. Manoj Kumar Shah</option>
     <option value="3">Dr. Indra Kumar Shah</option>
    </select>
+</div>
+<br>
+<div class="form-group">
+    <label for="exampleInputEmail1">Description:</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" name="description"  placeholder="Enter description..">
 </div>
 <br>
 <?php } ?>

@@ -81,15 +81,15 @@
 <strong><center>TENANT/ SERVANT/ WORKER POLICE VERIFICATION FORM </center></strong>
 <strong><center><h6>Dist- Singrauli (MP) </h6></center></strong><br> 
 <div style="border:1px solid black; font-size:13px; margin-bottom:6px;">
-Name of Landlord……………………………………………………Father Name………………………………………………………………….
+Name of Landlord……………………………………………………Father's / Husband Name………………………………………………………………….
 Full address………………………………………………………………………………………………………………….
 Mobile No……………………………………… Police station…………………………………………………………………………<br>
   </div>
 <div style="font-size:13px;padding-top:1%">
-<div style="border-style:solid; height:100px;width:100px;float:right;margin:2%"></div> 
+<div style="border-style:solid;height:100px;width:100px;float:right;margin:2%">photo</div> 
   Name of Tanent/Servant/Labour : <span class="details"><?php echo $details_for_police_verification[0]['tenant_name']; ?></span>&nbsp;&nbsp;&nbsp;Age <span class="details"><?php echo $details_for_police_verification[0]['age']; ?></span>&nbsp;&nbsp;  <span class="details"></span> &nbsp;&nbsp;Gender : <span class="details"><?php echo $details_for_police_verification[0]['gender']; ?></span>
 
-<br>Fathers Name : <span class="details"><?php echo $details_for_police_verification[0]['father_name']; ?></span>
+<br>Father's / Husband Name : <span class="details"><?php echo $details_for_police_verification[0]['father_name']; ?></span>
 
 <br>Mobile No : <span class="details"><?php echo $details_for_police_verification[0]['contact']; ?></span>	&nbsp;&nbsp;Email ID : <span class="details"><?php echo $details_for_police_verification[0]['email']; ?></span>
 
@@ -103,7 +103,7 @@ Detail of Family Members
 <thead class="thead-dark">
     <th>S.No.</th>
     <th>Name</th>
-    <th>Father Name</th>
+    <th>Father's / Husband Name</th>
     <th>Age</th>
     <th>Gender</th>
     <th>Relation</th>
@@ -134,14 +134,13 @@ Detail of Family Members
 Total Number of family member : <span class="details"><?php echo $details_for_police_verification[0]['members']; ?></span>&nbsp;&nbsp;Male : <span class="details"><?php echo $details_for_police_verification[0]['no_of_male']; ?></span>&nbsp;&nbsp; Female : <span class="details"><?php echo $details_for_police_verification[0]['no_of_female']; ?></span>&nbsp;&nbsp; Children Below 5 Year : <span class="details"><?php echo $details_for_police_verification[0]['no_of_children_below_5']; ?></span>&nbsp;&nbsp; 
 
 <br>Vehicle detail:      Two Wheeler : <span class="details"><?php echo $details_for_police_verification[0]['two_wheeler']; ?></span>&nbsp;&nbsp;	Four wheeler : <span class="details"><?php echo $details_for_police_verification[0]['four_wheeler']; ?></span>
+&emsp;&emsp;<br>
+Occupation of the Tenant : <span class="details"><?php echo $details_for_police_verification[0]['tenant_occupation']; ?></span>	
+Office/College/School Address : <span class="details"><?php echo $details_for_police_verification[0]['tenant_occupation_address']; ?></span>
 &emsp;&emsp;
-Occupation of the Tenant : <span class="details"><?php echo $details_for_police_verification[0]['tenant_occupation']; ?></span>		
-
-<br>Office/College/School Address : <span class="details"><?php echo $details_for_police_verification[0]['tenant_occupation_address']; ?></span>
-&emsp;&emsp;
-Office contact Number : <span class="details"><?php echo $details_for_police_verification[0]['occupation_contact']; ?></span>
-<br>Local Identifier/ Granter Name With Full Address   
-<div style="display:flex; justify-content: space-between;">
+Office contact Number : <span class="details"><?php echo $details_for_police_verification[0]['occupation_contact']; ?></span><br><br>
+Local Identifier/ Granter Name With Full Address  
+<div style="display:flex; justify-content: space-between;margin-top:-18px;">
 <div style="width:40%;">
             <br>(1) Name : <span class="details"><?php echo $details_for_police_verification[0]['granter1_name']; ?></span>
 
@@ -175,7 +174,7 @@ Office contact Number : <span class="details"><?php echo $details_for_police_ver
                         <span style="float:right;margin-right:5%">Signature of Tanent/Servant/Labour</span> <br><br>
   </div></div>	
 
-<div style="border:1px solid black; font-size:13px;">
+<div style="border:1px solid black; font-size:13px;padding:10px">
 <strong><center>Declaration</center></strong>
 I <span class="details"><?php echo $details_for_police_verification[0]['tenant_name']; ?></span> hereby state that all the information mentioned above is true to the best of my knowledge and I shall be held responsible for any discrepancy found later.
 <br>
@@ -184,7 +183,12 @@ I <span class="details"><?php echo $details_for_police_verification[0]['tenant_n
 </div>
 </div>
 
-
+<br>
+<div style="float:left; font-size:12px;">
+<br><br>Police station in ward no.<br>
+Date :<br>
+<div style="border-style:solid;height:25px;width:50px;margin:0px;">Seal</div>
+</div>
 
 </div>
 

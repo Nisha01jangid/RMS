@@ -75,6 +75,7 @@ public function balance_report(){
 			$flat_no = $data['report_monthwise_details'][$i]['flat_no'];
 		$data['tenant_name'] = $this->ReportM->get_tenant_name($flat_no, $property_id);
 		$data['report_monthwise_details'][$i]['tenant_name'] = 	$data['tenant_name'][0]['tenant_name'];
+		$data['report_monthwise_details'][$i]['contact'] = 	$data['tenant_name'][0]['contact'];
 
 		}
     	// echo "<pre>";
@@ -181,6 +182,7 @@ public function balance_report(){
 			$flat_no = $data['report_flatwise_details'][$i]['flat_no'];
 		$data['tenant_name'] = $this->ReportM->get_tenant_name($flat_no, $property_id);
 		$data['report_flatwise_details'][$i]['tenant_name'] = 	$data['tenant_name'][0]['tenant_name'];
+		$data['report_flatwise_details'][$i]['contact'] = 	$data['tenant_name'][0]['contact'];
 
 		}
 
