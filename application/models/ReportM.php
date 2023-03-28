@@ -14,6 +14,36 @@ class ReportM extends CI_Model {
       $query = $this->db->query($sql);
         return $query->result_array();
       }
+
+      function get_no_of_flats($property_id){
+    
+        $sql="SELECT flats from `property` where `property_id`= $property_id";    
+        $query = $this->db->query($sql);
+        return $query->result_array();
+      }    
+
+      function get_payment_details($from_date, $to_date, $flat_no, $property_id){
+
+        $sql = "SELECT DISTINCT  month  FROM payment where payment_date BETWEEN '$from_date' AND '$to_date' and property_id ='$property_id' AND flat_no = '$flat_no' ";
+  
+        // print_r($sql);
+        // die();
+  
+          $query = $this->db->query($sql);
+          return $query->result_array();
+        }
+
+        function get_payment($month, $flat_no, $property_id){
+
+          $sql = "SELECT * FROM payment where month = '$month' and property_id ='$property_id' AND flat_no = '$flat_no'";
+    
+          // print_r($sql);
+          // die();
+    
+            $query = $this->db->query($sql);
+            return $query->result_array();
+          }
+          
       function get_receiver_payments($from_date, $to_date, $receiver){
 
       $sql = "SELECT amount, reference_id, payment_date, payment_receiver FROM payment where payment_date BETWEEN '$from_date' AND '$to_date' and payment_receiver = '$receiver'";
@@ -23,7 +53,7 @@ class ReportM extends CI_Model {
       }
 
       function get_flatwise_payments($to_date,$from_date,$property_id,$flat_no){
-        $sql = "SELECT * FROM entry_form_details WHERE `property_id` =$property_id AND `flat_no` =$flat_no AND status =1
+        $sql = "SELECT * FROM entry_form_details WHERE `property_id` =$property_id AND `flat_no` =$flat_no
          and `timestamp` between '$from_date' and '$to_date'
           order by month asc";
         // print_r($sql);die();
