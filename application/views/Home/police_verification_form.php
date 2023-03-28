@@ -81,7 +81,7 @@
 <strong><center>TENANT/ SERVANT/ WORKER POLICE VERIFICATION FORM </center></strong>
 <strong><center><h6>Dist- Singrauli (MP) </h6></center></strong><br> 
 <div style="border:1px solid black; font-size:13px; margin-bottom:6px;">
-Name of Landlord : <b>Dr Indra Kumar Shah</b> &emsp;&emsp;Father's / Husband Name: <b>Mr. Sir ke Papa</b><br>
+Name of Landlord : <b>Dr.Indra Kumar Shah</b> &emsp;&emsp;Father's / Husband Name: <b>Mr. RK Shah</b><br>
 Full address: <b>Institute of Engineering and Science</b><br>
 Mobile No: <b>1234567890</b>&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Police station: <b>Rajendra Nagar</b><br>
   </div>
@@ -96,7 +96,7 @@ Mobile No: <b>1234567890</b>&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Pol
 <br>Complete Permanent Address : <span class="details"><?php echo $details_for_police_verification[0]['address']; ?></span>
 
 <br>District : <span class="details"><?php echo $details_for_police_verification[0]['district']; ?></span>	&nbsp;&nbsp;State : <span class="details"><?php echo $details_for_police_verification[0]['state']; ?></span>&nbsp;&nbsp;Police Station : <span class="details"><?php echo $details_for_police_verification[0]['polic_station']; ?></span>
-</div><br>
+</div>
 Detail of Family Members
 
 <table class="table table-bordered" style="text-align:center; font-size:13px; margin-bottom:0px">
@@ -135,43 +135,44 @@ Total Number of family member : <span class="details"><?php echo $details_for_po
 
 <br>Vehicle detail:      Two Wheeler : <span class="details"><?php echo $details_for_police_verification[0]['two_wheeler']; ?></span>&nbsp;&nbsp;	Four wheeler : <span class="details"><?php echo $details_for_police_verification[0]['four_wheeler']; ?></span>
 &emsp;&emsp;<br>
-Occupation of the Tenant : <span class="details"><?php echo $details_for_police_verification[0]['tenant_occupation']; ?></span>	
+Occupation of the Tenant : <span class="details"><?php echo $details_for_police_verification[0]['tenant_occupation']; ?></span>	&emsp;
 Office/College/School Address : <span class="details"><?php echo $details_for_police_verification[0]['tenant_occupation_address']; ?></span>
-&emsp;&emsp;
+<br>
 Office contact Number : <span class="details"><?php echo $details_for_police_verification[0]['occupation_contact']; ?></span><br><br>
 Local Identifier/ Granter Name With Full Address  
 <div style="display:flex; justify-content: space-between;margin-top:-18px;">
 <div style="width:40%;">
-            <br>(1) Name : <span class="details"><?php echo $details_for_police_verification[0]['granter1_name']; ?></span>
+            <br>Name : <span class="details"><?php echo $details_for_police_verification[0]['granter1_name']; ?></span>
 
-						<br>&emsp;&nbsp;Address : <span class="details" style="width:100px;"><?php echo $details_for_police_verification[0]['granter1_address']; ?></span>
+						<br>Address : <span class="details" style="width:100px;"><?php echo $details_for_police_verification[0]['granter1_address']; ?></span>
 
-						<br>&emsp;&nbsp;District : <span class="details"><?php echo $details_for_police_verification[0]['granter1_district']; ?></span>
+						<br>District : <span class="details"><?php echo $details_for_police_verification[0]['granter1_district']; ?></span>
 
-            <br>&emsp;&nbsp;State : <span class="details"><?php echo $details_for_police_verification[0]['granter1_state']; ?></span>
+            <br>State : <span class="details"><?php echo $details_for_police_verification[0]['granter1_state']; ?></span>
 
-            <br>&emsp;&nbsp;Police Station : <span class="details"><?php echo $details_for_police_verification[0]['granter1_police_station']; ?></span>
+            <br>Police Station : <span class="details"><?php echo $details_for_police_verification[0]['granter1_police_station']; ?></span>
 
-						<br>&emsp;&nbsp;Mobile No : <span class="details"><?php echo $details_for_police_verification[0]['granter1_contact']; ?></span>
+						<br>Mobile No : <span class="details"><?php echo $details_for_police_verification[0]['granter1_contact']; ?></span>
 
-            <br>&emsp;&nbsp;Email ID : <span class="details"><?php echo $details_for_police_verification[0]['granter1_email']; ?></span>
+            <br>Email ID : <span class="details"><?php echo $details_for_police_verification[0]['granter1_email']; ?></span>
             </div><div style="width:40%;">
-						<br>(2) Name : <span class="details"><?php echo $details_for_police_verification[0]['granter2_name']; ?></span>
+						<br> Name : <span class="details"><?php echo $details_for_police_verification[0]['granter2_name']; ?></span>
 
-            <br>&emsp;&nbsp;Address : <span class="details"><?php echo $details_for_police_verification[0]['granter2_address']; ?></span>
+            <br>Address : <span class="details"><?php echo $details_for_police_verification[0]['granter2_address']; ?></span>
 
-            <br>&emsp;&nbsp;District : <span class="details"><?php echo $details_for_police_verification[0]['granter2_district']; ?></span>
+            <br>District : <span class="details"><?php echo $details_for_police_verification[0]['granter2_district']; ?></span>
 
-            <br>&emsp;&nbsp;State : <span class="details"><?php echo $details_for_police_verification[0]['granter2_state']; ?></span>
+            <br>State : <span class="details"><?php echo $details_for_police_verification[0]['granter2_state']; ?></span>
 
-            <br>&emsp;&nbsp;Police Station : <span class="details"><?php echo $details_for_police_verification[0]['granter2_police_station']; ?></span>
+            <br>Police Station : <span class="details"><?php echo $details_for_police_verification[0]['granter2_police_station']; ?></span>
 
-            <br>&emsp;&nbsp;Mobile No : <span class="details"><?php echo $details_for_police_verification[0]['granter2_contact']; ?></span>
+            <br>Mobile No : <span class="details"><?php echo $details_for_police_verification[0]['granter2_contact']; ?></span>
 
-            <br>&emsp;&nbsp;Email ID : <span class="details"><?php echo $details_for_police_verification[0]['granter2_email']; ?></span>
+            <br>Email ID : <span class="details"><?php echo $details_for_police_verification[0]['granter2_email']; ?></span>
             </div></div>
                         <br><br>Signature of Landlord/Owner				
-                        <span style="float:right;margin-right:5%">Signature of Tanent/Servant/Labour</span> <br><br>
+                        <span style="float:right;margin-right:5%">Signature of Tanent/Servant/Labour</span> <br>
+                        <b>Dr. Indra Kumar Shah</b> <span style="float:right; font-weight:bold; margin-right:5%;"><?php echo $details_for_police_verification[0]['tenant_name'];?></span>
   </div></div>	
 
 <div style="border:1px solid black; font-size:13px;padding:10px">
@@ -181,7 +182,7 @@ Local Identifier/ Granter Name With Full Address
 <br>
 </div>
 <div style="float:left; font-size:12px;">
-<br><br>Police station in ward no.<br>
+<br>Police station in ward no.<br>
 Date :<br>
 <div style="border-style:solid;height:25px;width:50px;margin:0px;">Seal</div>
 </div>
