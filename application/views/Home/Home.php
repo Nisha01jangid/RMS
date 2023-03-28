@@ -56,11 +56,11 @@
     <h4><?php echo $_SESSION['user']; ?></h4>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
-      <li class="nav-item">
+      <li>
         <a href="<?php echo base_url('Home') ?>" class="nav-link text-white" aria-current="page">Home</a>
       </li>
 
-      <li class="nav-item">
+      <li>
         <a href="<?php echo base_url('EntryForm') ?>" class="nav-link text-white" aria-current="page">Entry Form</a>
       </li>
       <!-- <li>
@@ -70,29 +70,50 @@
      <!--  <li>
         <a href="<?php echo base_url('Payments') ?>" class="nav-link text-white">Payments</a>
       </li> -->
-      <!-- <li>
+      <button class="dropdown-btn">Reports 
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-container">
+        <li>
           <a href="<?php echo base_url('Report/select_property_for_report_monthwise') ?>" class="nav-link text-white">Main Report</a>  
         </li>
 
       <li>
         <a href="<?php echo base_url('Report/receiver_report') ?>" class="nav-link text-white">Receiver Report</a>
-      </li>
-       <li>
-        <a href="<?php echo base_url('Report/receiver_expenditure') ?>" class="nav-link text-white"> Receiver Expenditure</a>
-      </li> -->
-        
-       <!--  <li>
+      </li>      
+       <!-- <li>
           <a href="<?php echo base_url('Report/User_Wise_Report') ?>" class="nav-link text-white">User-Wise Report</a>  
         </li> -->
-        
-      
-      <!-- <li>
+       <li>
         <a href="<?php echo base_url('Report/outstanding_amount') ?>" class="nav-link text-white">Oustanding Report</a>
-      </li> -->
-     
-    </ul>
+      </li>
+      <!-- <li>
+          <a href="<?php echo base_url('Report/TR_Report?property_id=' . $property_id) ?>" class="nav-link text-white">TR Report</a>  
+        </li>  -->
+        <li>
+        <a href="<?php echo base_url('Report/receiver_expenditure') ?>" class="nav-link text-white"> Receiver Expenditure</a>
+      </li>  
+  </div>
+
+			</ul>
     <hr>
   </div>
+
+  <script>
+  var dropdown = document.getElementsByClassName("dropdown-btn");
+  var i;
+
+for (i = 0; i < dropdown.length; i++) {
+  dropdown[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var dropdownContent = this.nextElementSibling;
+    if (dropdownContent.style.display === "block") {
+      dropdownContent.style.display = "none";
+    } else {
+      dropdownContent.style.display = "block";
+    }
+  });
+}</script>
   <div class="homediv">
     
   <?php

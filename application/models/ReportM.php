@@ -53,13 +53,22 @@ class ReportM extends CI_Model {
       }
 
       function get_flatwise_payments($to_date,$from_date,$property_id,$flat_no){
-        $sql = "SELECT * FROM entry_form_details WHERE `property_id` =$property_id AND `flat_no` =$flat_no
-         and `timestamp` between '$from_date' and '$to_date'
+        $sql = "SELECT entry_form_details.id,invoice.month,entry_form_details.property_id,entry_form_details.property_name,entry_form_details.flat_no,entry_form_details.no_of_members,entry_form_details.electricity_rate,entry_form_details.water_rate,entry_form_details.rent,entry_form_details.previous_meter_reading,entry_form_details.current_meter_reading,entry_form_details.waste,entry_form_details.miscellaneous,entry_form_details.duedate,entry_form_details.status,invoice.timestamp FROM invoice,entry_form_details WHERE entry_form_details.`property_id` =$property_id and entry_form_details.`property_id` = invoice.property_id and entry_form_details.`flat_no` = invoice.flat_no AND entry_form_details.`flat_no` =$flat_no and entry_form_details.`property_id` =$property_id AND entry_form_details.`flat_no` =$flat_no and invoice.`timestamp` between '$from_date' and '$to_date'
           order by month asc";
         // print_r($sql);die();
         $query = $this->db->query($sql);
         return $query->result_array();
       }
+
+      // function get_months($to_date,$from_date,$property_id,$flat_no){
+      //   $sql = "SELECT invoice.month,invoice.invoice FROM invoice, entry_form_details WHERE invoice.`property_id` =$property_id AND invoice.`flat_no` =$flat_no and 
+      //    and entry_form_details.`property_id` =$property_id AND entry_form_details.`flat_no` =$flat_no
+      //    and date_format(entry_form_details.timestamp,'%Y-%m') between date_format('$from_date','%Y-%m') and date_format('$to_date','%Y-%m')
+      //     order by month asc";
+      //   // print_r($sql);die();
+      //   $query = $this->db->query($sql);
+      //   return $query->result_array();
+      // }
       public function get_total_receiver_payments($from_date, $to_date, $receiver){
 
         $sql = "SELECT SUM(amount) as total FROM payment where payment_date BETWEEN '$from_date' AND '$to_date' and payment_receiver = '$receiver'";
@@ -125,7 +134,7 @@ class ReportM extends CI_Model {
 
    public function get_tenant_name($flat_no, $property_id,$month){
 
-    $query = "SELECT tenant_name FROM invoice where property_id = $property_id and flat_no = $flat_no and `month`='$month' ";
+    $query = "SELECT tenants.tenant_name,contact FROM invoice, tenants where invoice.property_id = $property_id and tenants.property_id = $property_id and invoice.flat_no = $flat_no and tenants.flat_no = $flat_no and tenants.tenant_name = invoice.tenant_name and `month`='$month' ";
     // print_r($query);
     // die();
     $result = $this->db->query($query);
