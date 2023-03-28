@@ -84,7 +84,8 @@
             <p style="margin-bottom:0px;">8. शेष राशि: &emsp;<b>₹ <?php echo round($total_amount_to_pay)." - "; ?><?php if(!empty($amount_paid)){echo $amount_paid; }else{echo "0";} ?><?php echo " = ".$f['outstanding_amount']; ?></b> /-</p>
             <hr style="margin: 3px 0px;">
             <p style="margin-bottom:0px;">भुगतान दिनांक: <b><?php echo date("d-m-Y",strtotime($f['duedate'])); ?></b> तक आवश्यक |</p>
-            <h4 style="margin:15px 0px 0px 30px;">बाकी : <b>₹ <?php echo $f['outstanding_amount']; ?></b></h4>
+            <!-- <h4 style="margin:15px 0px 0px 30px;">बाकी : <b>₹ <?php echo $f['outstanding_amount']; ?></b></h4> -->
+            <h4 style="margin:15px 0px 0px 30px;"><?php if($f['outstanding_amount']>=0){ ?>बाकी : <b>₹ <?php echo $f['outstanding_amount']; ?></b><?php }else{ ?>जमा: <b>₹ <?php echo (0-$f['outstanding_amount']); ?></b><?php } ?></h4>
             <p style="margin-bottom:0px; float:right; margin-right:50px;">ह०</p>
 
         </div>
