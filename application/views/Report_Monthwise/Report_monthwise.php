@@ -27,7 +27,7 @@
         }
 
         .intro{
-            font-family: Comic Sans MS;
+            font-family: Times New Roman;
         }
 
         table {

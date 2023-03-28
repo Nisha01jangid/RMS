@@ -347,65 +347,53 @@ public function edit_tenant_details(){
 		$data['property_id'] = $property_id;
 		
 		$data['tenant_entry_form_details'] = $this->HomeM->get_tenant_entry_form_details($data['flat_no'],$data['property_id']);
-
-		// echo "<pre>";
-		// print_r($data['tenant_entry_form_details']);
-		// die();
-		// $month = $data['tenant_entry_form_details'][0]['month'];
 	    
 		for($i = 0; $i < sizeof($data['tenant_entry_form_details']); $i++){
 
 			$month = $data['tenant_entry_form_details'][$i]['month'];
-			// $data['invoice_status'] = $this->HomeM->get_invoive_status($data['property_id'],$month);
-
-
-			// if(!empty($data['invoice_status'])){
-
-				// for($i=0; $i<sizeof($data['tenant_entry_form_details']); $i++){
-
-				// $month = $data['tenant_entry_form_details'][$i]['month'];
 
 				$data['invoice_number'] = $this->HomeM->get_invoive_number($data['property_id'],$month, $data['flat_no']);
 
 				if(!empty($data['invoice_number'])){
 					$data['tenant_entry_form_details'][$i]['invoice_number'] = 	$data['invoice_number'][0]['invoice'];
-					// $to_date = date('Y-m-d',strtotime($data['invoice_number'][0]['timestamp']));
-					// echo $to_date;
-					// echo "<br>";
-					// die();
+					$to_date = date('Y-m-d',strtotime($data['invoice_number'][0]['timestamp']));
 				}else{
 					$data['tenant_entry_form_details'][$i]['invoice_number']="";
-					// $to_date=date('Y-m-d');
+					$to_date=date('Y-m-d');
 				}
-				// }
-
-
-
-			// }
 		
 			$previous_month =  date('Y-m', strtotime($month. ' -1 months')); 
-			// $previous_flat_invoice = $this->HomeM->get_invoive_number($data['property_id'],$previous_month, $data['flat_no']);
-			// if(!empty($previous_flat_invoice)){
-			// 	$from_date = date('Y-m-d',strtotime($previous_flat_invoice[0]['timestamp']));
-			// }else{
-			// 	$from_date="";
-			// }
-			// echo $previous_month;
-			// die();
+			$previous_flat_invoice = $this->HomeM->get_invoive_number($data['property_id'],$previous_month, $data['flat_no']);
+			if(!empty($previous_flat_invoice)){
+				$from_date = date('Y-m-d',strtotime($previous_flat_invoice[0]['timestamp']));
+				// echo $month;
+				// echo "<br>";
+				// echo "todate : ".$to_date;
+				// echo "<br>";
+				// echo "fromdate : ".$from_date;
+				// echo "<br>";
+				
+				$data['paid_amount'] = $this->HomeM->get_tenant_amount($data['flat_no'], $data['property_id'], $to_date, $from_date);
+				
+			}else{
+				// echo $month;
+				// echo "<br>";
+				// echo "todate : ".$to_date;
+				// echo "<br>";
+				// echo "fromdate : ".$from_date;
+				// echo "<br>";
+				$data['paid_amount'] = $this->HomeM->get_tenant_amount_todate($data['flat_no'], $data['property_id'], $to_date);
+			}
+
 			$previous_outstanding = $this->HomeM->get_previous_outstanding($property_id,$flat_no,$previous_month);
-			// print_r($previous_outstanding);
-			// echo "<br>";
 			if(!empty($previous_outstanding)){
 				$data['previous_outstanding'] = $previous_outstanding[0]['outstanding_amount'];
 			}else{
 				$data['previous_outstanding'] = 0;
 			}
-			// echo $data['previous_outstanding'];
 
-		    // $data['previous_reading'] = $this->HomeM->previousReading($property_id,$flat_no,$previous_month);
-
-			$data['paid_amount'] = $this->HomeM->get_tenant_amount($data['flat_no'], $data['property_id'], $month);
-			// $data['paid_amount'] = $this->HomeM->get_tenant_amount($data['flat_no'], $data['property_id'], $to_date, $from_date);
+			// $data['paid_amount'] = $this->HomeM->get_tenant_amount($data['flat_no'], $data['property_id'], $month);
+			
 			$data['tenant_entry_form_details'][$i]['previous_reading'] = $data['tenant_entry_form_details'][$i]['previous_meter_reading'];
 
 			$rent = $data['tenant_entry_form_details'][$i]['rent'];
@@ -736,7 +724,16 @@ public function insert_payment(){
         // if(!empty($data)){
         //     $data['data'] = $data[0];
         // }
-        $data['paid_amount'] = $this->InvoiceM->get_tenant_amount($flat_no, $property_id, $month);
+		$to_date = date('Y-m-d',strtotime($data[0]['timestamp']));
+		$previous_month =  date('Y-m', strtotime($month. ' -1 months')); 
+			$previous_flat_invoice = $this->InvoiceM->check_invoice($property_id, $flat_no, $previous_month);
+			if(!empty($previous_flat_invoice)){
+				$from_date = date('Y-m-d',strtotime($previous_flat_invoice[0]['timestamp']));
+				$data['paid_amount'] = $this->InvoiceM->get_tenant_amount($flat_no, $property_id, $to_date, $from_date);
+			}else{
+				$data['paid_amount'] = $this->InvoiceM->get_tenant_amount_todate($flat_no, $property_id, $to_date);
+			}
+
         $previous_month =  date('Y-m', strtotime($month. ' -1 months')); 
         $data['previous_invoice'] = $this->InvoiceM->check_invoice($property_id, $flat_no, $previous_month);
         $data['previous_outstanding'] = $this->InvoiceM->get_previous_outstanding($property_id,$flat_no,$previous_month);

@@ -85,14 +85,15 @@
        <li>
         <a href="<?php echo base_url('Report/receiver_expenditure') ?>" class="nav-link text-white"> Receiver Expenditure</a>
       </li>
+        
+       <!--  <li>
+          <a href="<?php echo base_url('Report/User_Wise_Report') ?>" class="nav-link text-white">User-Wise Report</a>  
+        </li> -->
+        
       
       <li>
         <a href="<?php echo base_url('Report/outstanding_amount') ?>" class="nav-link text-white">Oustanding Report</a>
       </li>
-    
-      <li>
-          <a href="<?php echo base_url('Report/TR_Report?property_id=' . $property_id) ?>" class="nav-link text-white">TR Report</a>  
-        </li> 
      
     </ul>
     <hr>

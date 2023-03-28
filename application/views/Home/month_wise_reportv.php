@@ -27,12 +27,12 @@
         }
 
         .intro{
-            font-family: Comic Sans MS;
+            font-family: Times New Roman;
         }
 
         table {
           background-color: #fcfbf8;
-          font-family: Comic Sans MS;
+          font-family: Times New Roman;
           border-collapse: collapse;
           width: 100%;
         }

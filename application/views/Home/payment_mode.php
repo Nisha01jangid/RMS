@@ -118,6 +118,8 @@
     <option>Select Payment Mode</option>
     <option value="gpay">Google Pay</option>
     <option value="paytm">Paytm</option>
+    <option value="phonepe">PhonePe</option>
+    <option value="others">Others</option>
    </select>
 </div>
 </div>
@@ -134,18 +136,20 @@
 </div>
 <br>
 <div class="form-group">
-    <label for="exampleInputEmail1">Description:</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" name="description"  placeholder="Enter description..">
-</div>
-<br>
-<div class="form-group">
     <label for="exampleInputEmail1">Received By:</label>
     <select class="form-control" id="exampleInputPassword1" name="receiver">
     <option>Select Payment Receiver</option>
     <option value="1">Mr. Ram Kripal Shah</option>
     <option value="2">Mr. Manoj Kumar Shah</option>
     <option value="3">Dr. Indra Kumar Shah</option>
+    <option value="4">Mr. MG</option>
+    <option value="5">Mr. AG</option>
    </select>
+</div>
+<br>
+<div class="form-group">
+    <label for="exampleInputEmail1">Description:</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" name="description"  placeholder="Enter description..">
 </div>
 <br>
 <?php } else { ?>
@@ -172,6 +176,8 @@
     <option value="1">Mr. Ram Kripal Shah</option>
     <option value="2">Mr. Manoj Kumar Shah</option>
     <option value="3">Dr. Indra Kumar Shah</option>
+    <option value="4">Mr. MG</option>
+    <option value="5">Mr. AG</option>
    </select>
 </div>
 <br>

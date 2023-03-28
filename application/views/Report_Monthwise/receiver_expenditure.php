@@ -127,9 +127,11 @@
                  <label for="exampleInputEmail1">Payment User:</label>
                  <select class="form-control" name="pay_user">
                  <option value="">Select user</option>
-                <option value="1">Dr. Indra Kumar Shah</option>
-                <option value="2">Sir's Father</option>
-                <option value="3">Nisha</option>
+                <option value="1">Mr. Ram Kripal Shah</option>
+                <option value="2">Mr. Manoj Kumar Shah</option>
+                <option value="3">Dr. Indra Kumar Shah</option>
+                <option value="4">Mr. MG</option>
+                <option value="5">Mr. AG</option>
                 </select>
                 </div>
                 <br>

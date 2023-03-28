@@ -86,13 +86,6 @@ class InvoiceM extends CI_Model {
         return;
       }
 
-      public function get_tenant_amount($flat_no, $property_id, $month){
-
-    $query = "SELECT amount, `payment_date` FROM payment where property_id = $property_id and flat_no = $flat_no and month = '$month' order by payment_date desc";
-
-    $result = $this->db->query($query);
-    return $result->result_array();
-  }
   //     public function get_tenant_amount($flat_no, $property_id, $month){
 
   //   $query = "SELECT amount, `payment_date` FROM payment where property_id = $property_id and flat_no = $flat_no and month = '$month' order by payment_date desc";
@@ -100,6 +93,20 @@ class InvoiceM extends CI_Model {
   //   $result = $this->db->query($query);
   //   return $result->result_array();
   // }
+      public function get_tenant_amount($flat_no, $property_id, $to_date, $from_date){
+
+    $query = "SELECT amount, `payment_date` FROM payment where property_id = $property_id and flat_no = $flat_no and payment_date between '$from_date' and '$to_date' order by payment_date";
+
+    $result = $this->db->query($query);
+    return $result->result_array();
+  }
+      public function get_tenant_amount_todate($flat_no, $property_id, $to_date){
+
+    $query = "SELECT amount, `payment_date` FROM payment where property_id = $property_id and flat_no = $flat_no and payment_date <= '$to_date' order by payment_date";
+
+    $result = $this->db->query($query);
+    return $result->result_array();
+  }
 
       function insert_status($property_id,$month,$date){
         $sql = " INSERT INTO `invoice_status` (`property_id`,`month`,`date`) VALUES ($property_id,'$month','$date')";

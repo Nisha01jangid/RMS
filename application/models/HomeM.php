@@ -198,9 +198,30 @@ public function delete_tenant_relatives($property_id, $flat_no, $tenant_id){
 
   }
 
-  public function get_tenant_amount($flat_no, $property_id, $month){
+  public function get_tenant_amount($flat_no, $property_id, $to_date, $from_date){
 
-    $query = "SELECT SUM(amount) as amount FROM payment where property_id = $property_id and flat_no = $flat_no and month = '$month'";
+    $query = "SELECT SUM(amount) as amount FROM payment where property_id = $property_id and flat_no = $flat_no and payment_date between '$from_date' and '$to_date' order by payment_date";
+
+    // print_r($query);
+    // die();
+
+    $result = $this->db->query($query);
+    return $result->result_array();
+  }
+  // public function get_tenant_amount($flat_no, $property_id, $month){
+
+  //   $query = "SELECT SUM(amount) as amount FROM payment where property_id = $property_id and flat_no = $flat_no and month = '$month'";
+
+  //   // print_r($query);
+  //   // die();
+
+  //   $result = $this->db->query($query);
+  //   return $result->result_array();
+  // }
+
+  public function get_tenant_amount_todate($flat_no, $property_id, $to_date){
+
+    $query = "SELECT sum(amount) as amount FROM payment where property_id = $property_id and flat_no = $flat_no and payment_date <= '$to_date' order by payment_date";
 
     // print_r($query);
     // die();
