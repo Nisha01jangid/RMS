@@ -76,14 +76,14 @@
 <div class="card">
 <div class="card-body">
 <div class="row">
-<center><img src="https://static.abplive.com/wp-content/uploads/sites/2/2020/06/09032227/mp-police.jpg?impolicy=abp_cdn&amp;imwidth=640"  style="width: 80px; height: 80px;"></center>
+<!-- <center><img src="https://static.abplive.com/wp-content/uploads/sites/2/2020/06/09032227/mp-police.jpg?impolicy=abp_cdn&amp;imwidth=640"  style="width: 80px; height: 80px;"></center> -->
 
 <strong><center>TENANT/ SERVANT/ WORKER POLICE VERIFICATION FORM </center></strong>
 <strong><center><h6>Dist- Singrauli (MP) </h6></center></strong><br> 
 <div style="border:1px solid black; font-size:13px; margin-bottom:6px;">
-Name of Landlord……………………………………………………Father's / Husband Name………………………………………………………………….
-Full address………………………………………………………………………………………………………………….
-Mobile No……………………………………… Police station…………………………………………………………………………<br>
+Name of Landlord : <b>Dr Indra Kumar Shah</b> &emsp;&emsp;Father's / Husband Name: <b>Mr. Sir ke Papa</b><br>
+Full address: <b>Institute of Engineering and Science</b><br>
+Mobile No: <b>1234567890</b>&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Police station: <b>Rajendra Nagar</b><br>
   </div>
 <div style="font-size:13px;padding-top:1%">
 <div style="border-style:solid;height:100px;width:100px;float:right;margin:2%">photo</div> 
@@ -115,15 +115,15 @@ Detail of Family Members
     $i=1;
     foreach ($family_member_details as $key => $value) { ?>
 
-    <tr style="text-align:center;">
-    <th style="padding:4px"><?php echo $i ?></th>
-    <th style="padding:4px"><?php echo $value['name'] ?></th>
-    <th style="padding:4px"><?php echo $value['father_name'] ?></th>
-    <th style="padding:4px"><?php echo $value['age'] ?></th>
-    <th style="padding:4px"><?php echo $value['gender'] ?></th>
-    <th style="padding:4px"><?php echo $value['relation'] ?></th>
-    <th style="padding:4px"><?php echo $value['mobile_no'] ?></th>
-    <th style="padding:4px"><?php echo $value['aadhar'] ?></th>
+    <tr>
+    <th style="padding:4px; text-align:center;" ><?php echo $i ?></th>
+    <th style="padding:4px; text-transform: uppercase; text-align:left;"><?php echo $value['name'] ?></th>
+    <th style="padding:4px; text-transform: uppercase; text-align:left;"><?php echo $value['father_name'] ?></th>
+    <th style="padding:4px; text-align:center;"><?php echo $value['age'] ?></th>
+    <th style="padding:4px; text-align:center;"><?php echo $value['gender'] ?></th>
+    <th style="padding:4px; text-align:center;"><?php echo $value['relation'] ?></th>
+    <th style="padding:4px; text-align:center;"><?php echo $value['mobile_no'] ?></th>
+    <th style="padding:4px; text-align:center;"><?php echo $value['aadhar'] ?></th>
     </tr>
 
     <?php $i++; } ?>
@@ -175,15 +175,11 @@ Local Identifier/ Granter Name With Full Address
   </div></div>	
 
 <div style="border:1px solid black; font-size:13px;padding:10px">
-<strong><center>Declaration</center></strong>
-I <span class="details"><?php echo $details_for_police_verification[0]['tenant_name']; ?></span> hereby state that all the information mentioned above is true to the best of my knowledge and I shall be held responsible for any discrepancy found later.
+<strong><center><u>Declaration</center></u></strong>
+&emsp; &emsp;I <span class="details"><?php echo $details_for_police_verification[0]['tenant_name']; ?></span> hereby state that all the information mentioned above is true to the best of my knowledge and I shall be held responsible for any discrepancy found later.
+<br><span style="float:right; font-size:12px;">Signature of Tanent/Servant/Labour</span>
 <br>
-<div style="float:right; font-size:12px;">
-<br><br>Signature of Tanent/Servant/Labour
 </div>
-</div>
-
-<br>
 <div style="float:left; font-size:12px;">
 <br><br>Police station in ward no.<br>
 Date :<br>
