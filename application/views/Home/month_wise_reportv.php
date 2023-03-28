@@ -147,8 +147,10 @@
                               <?php if($value['invoice_number']==$last_invoice){ ?>
                                 <button style="padding: 9px; background-color: #fce205; border-radius: 5px; border-color:#fce205; ;"><a style="text-decoration: none; font-size: 15px; font-weight: bold; color: black;" href="<?php echo base_url('Home/pay_bill/').$property_id.'/'.$flat_no.'/'.$value['month'];?>">Pay</a></button>
                                 <a href="<?php echo base_url("Home/view_flat_invoice/").$property_id."/".$flat_no."/".$value['month']; ?>" class="btn btn-primary">Invoice</a>
+                                <a href="<?php echo base_url("Home/delete_flat_invoice/").$property_id."/".$flat_no."/".$value['month']; ?>" class="btn btn-danger">Delete</a>
                                 <?php }else{ if(!empty($value['invoice_number'])){ ?>
                                     <a href="<?php echo base_url("Home/view_flat_invoice/").$property_id."/".$flat_no."/".$value['month']; ?>" class="btn btn-primary">Invoice</a>
+                                    <a href="<?php echo base_url("Home/delete_flat_invoice/").$property_id."/".$flat_no."/".$value['month']; ?>" class="btn btn-danger">Delete</a>
                                 <?php }} ?>
                             </td> 
                             <td style="text-align:center;"><?php echo $value['amount_paid']; ?></td>                           

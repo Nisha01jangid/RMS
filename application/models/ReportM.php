@@ -53,12 +53,9 @@ class ReportM extends CI_Model {
       }
 
       function get_flatwise_payments($to_date,$from_date,$property_id,$flat_no){
-        $sql = " SELECT entry_form_details.*, tenants.tenant_name,tenants.rent, invoice.invoice, sum(payment.amount) as amount_paid FROM entry_form_details , tenants , property , invoice, payment  
-        WHERE  entry_form_details.property_id = $property_id and entry_form_details.flat_no = $flat_no and
-        tenants.property_id = $property_id and tenants.flat_no = $flat_no and tenants.property_id = entry_form_details.property_id and tenants.property_id = property.property_id
-         AND tenants.flat_no = entry_form_details.flat_no
-         and entry_form_details.timestamp between '$to_date' and '$from_date' and payment.property_id = $property_id and payment.flat_no=$flat_no and payment.month = '$month' 
-         order by unix_timestamp(entry_form_details.timestamp)  asc";
+        $sql = "SELECT * FROM entry_form_details WHERE `property_id` =$property_id AND `flat_no` =$flat_no AND status =1
+         and `timestamp` between '$from_date' and '$to_date'
+          order by month asc";
         // print_r($sql);die();
         $query = $this->db->query($sql);
         return $query->result_array();
@@ -96,7 +93,6 @@ class ReportM extends CI_Model {
     public function get_report_details_monthwise($month,$property_id){
 
     $query = "SELECT entry_form_details.* FROM entry_form_details WHERE `property_id` =$property_id AND `month` = '$month' AND status =1 ORDER BY `month`";
-
     // $query = "SELECT DISTINCT entry_form_details.*, payment.amount
     // FROM entry_form_details
     // INNER JOIN payment ON entry_form_details.property_id = payment.property_id AND entry_form_details.month =payment.month
@@ -149,7 +145,7 @@ class ReportM extends CI_Model {
 
    public function get_tenant_name($flat_no, $property_id){
 
-    $query = "SELECT tenant_name FROM tenants where property_id = $property_id and flat_no = $flat_no and status =1 ";
+    $query = "SELECT tenant_name, contact FROM tenants where property_id = $property_id and flat_no = $flat_no and status =1 ";
     // print_r($query);
     // die();
     $result = $this->db->query($query);
@@ -198,6 +194,7 @@ class ReportM extends CI_Model {
     return $result->result_array();
     
   }
+  
 
   public function get_receiver_expenditure($from_date, $to_date, $receiver){
 
@@ -216,8 +213,65 @@ class ReportM extends CI_Model {
     return $result->result_array();
   }
 
+  public function get_previous_outstanding($property_id, $flat_no, $month){
 
+    $query = "SELECT * FROM outstanding_amount where property_id = $property_id and flat_no = $flat_no and month = '$month'";
 
+    // print_r($query);
+    // die();
+
+    $result = $this->db->query($query);
+    return $result->result_array();
+  }
+
+  public function insert_oustanding_amount($property_id, $flat_no, $month, $total, $amount, $outstanding){
+
+    $query = "INSERT INTO `outstanding_amount` (`property_id`, `flat_no`, `month`, `total`, `amount_received`, `outstanding_amount`, `status`) VALUES ('$property_id', '$flat_no', '$month', '$total', '$amount', '$outstanding', 1)";
+
+    $result = $this->db->query($query);
+    return ;
+  }
+
+  public function check_outstanding_exist($property_id, $flat_no, $month){
+
+    $query = " SELECT * FROM outstanding_amount WHERE property_id = $property_id AND month ='$month' and flat_no = $flat_no  and status = 1 order by `month`";
+
+    $result = $this->db->query($query);
+    return $result->result_array();
+
+  }
+
+  public function update_oustanding_amount($property_id, $flat_no, $month, $total, $amount, $outstanding){
+
+    $query = "UPDATE `outstanding_amount` SET `total` = '$total', `amount_received` = '$amount', `outstanding_amount` = '$outstanding' WHERE property_id = '$property_id' AND  flat_no = $flat_no AND month = '$month'";
+
+    $result = $this->db->query($query);
+    return ;
+  }
+
+  public function get_outstanding_amount($property_id, $flat_no, $month){
+
+    $query = " SELECT outstanding_amount FROM outstanding_amount WHERE property_id = $property_id AND month ='$month' and flat_no = $flat_no and status = 1 order by `month`";
+
+    // print_r($query);
+    // die();
+
+    $result = $this->db->query($query);
+    return $result->result_array();
+
+  }
+
+  public function get_last_invoice($property_id, $flat_no){
+
+    $query = " SELECT invoice FROM invoice WHERE property_id = $property_id AND flat_no = $flat_no order by month desc";
+
+    // print_r($query);
+    // die();
+
+    $result = $this->db->query($query);
+    return $result->result_array();
+
+  }
 
 }
 
