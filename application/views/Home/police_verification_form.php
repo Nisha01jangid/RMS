@@ -101,14 +101,14 @@ Detail of Family Members
 
 <table class="table table-bordered" style="text-align:center; font-size:13px; margin-bottom:0px">
 <thead class="thead-dark">
-    <th>S.No.</th>
-    <th>Name</th>
-    <th>Father's / Husband Name</th>
-    <th>Age</th>
-    <th>Gender</th>
-    <th>Relation</th>
-    <th>Mobile No.</th>
-    <th>Aadhaar</th>
+    <td>S.No.</td>
+    <td>Name</td>
+    <td>Father's / Husband Name</td>
+    <td>Age</td>
+    <td>Gender</td>
+    <td>Relation</td>
+    <td>Mobile No.</td>
+    <td>Aadhaar</td>
 </thead>
 <tbody>
   <?php  
@@ -116,14 +116,14 @@ Detail of Family Members
     foreach ($family_member_details as $key => $value) { ?>
 
     <tr style="text-align:center;">
-    <td style="padding:4px"><?php echo $i ?></td>
-    <td style="padding:4px"><?php echo $value['name'] ?></td>
-    <td style="padding:4px"><?php echo $value['father_name'] ?></td>
-    <td style="padding:4px"><?php echo $value['age'] ?></td>
-    <td style="padding:4px"><?php echo $value['gender'] ?></td>
-    <td style="padding:4px"><?php echo $value['relation'] ?></td>
-    <td style="padding:4px"><?php echo $value['mobile_no'] ?></td>
-    <td style="padding:4px"><?php echo $value['aadhar'] ?></td>
+    <th style="padding:4px"><?php echo $i ?></th>
+    <th style="padding:4px"><?php echo $value['name'] ?></th>
+    <th style="padding:4px"><?php echo $value['father_name'] ?></th>
+    <th style="padding:4px"><?php echo $value['age'] ?></th>
+    <th style="padding:4px"><?php echo $value['gender'] ?></th>
+    <th style="padding:4px"><?php echo $value['relation'] ?></th>
+    <th style="padding:4px"><?php echo $value['mobile_no'] ?></th>
+    <th style="padding:4px"><?php echo $value['aadhar'] ?></th>
     </tr>
 
     <?php $i++; } ?>
