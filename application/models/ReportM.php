@@ -7,7 +7,37 @@ class ReportM extends CI_Model {
           // Call the Model constructor
           parent::__construct();
       }
-      
+
+       function get_no_of_flats($property_id){
+    
+        $sql="SELECT flats from `property` where `property_id`= $property_id";    
+    $query = $this->db->query($sql);
+    return $query->result_array();
+  }    
+
+   function get_payment_details($from_date, $to_date, $flat_no, $property_id){
+
+      $sql = "SELECT DISTINCT  month  FROM payment where payment_date BETWEEN '$from_date' AND '$to_date' and property_id ='$property_id' AND flat_no = '$flat_no' ";
+
+      // print_r($sql);
+      // die();
+
+        $query = $this->db->query($sql);
+        return $query->result_array();
+      }
+
+       function get_payment($month, $flat_no, $property_id){
+
+      $sql = "SELECT * FROM payment where month = '$month' and property_id ='$property_id' AND flat_no = '$flat_no'";
+
+      // print_r($sql);
+      // die();
+
+        $query = $this->db->query($sql);
+        return $query->result_array();
+      }
+  
+
                        
       function get_payments($to_date,$from_date,$user){
       $sql = " SELECT entry_form_details.*, tenants.tenant_name,tenants.rent, property.property_name FROM entry_form_details , tenants , property , users  WHERE entry_form_details.user = '$user' and entry_form_details.user = users.username and tenants.property_id = entry_form_details.property_id AND tenants.flat_no = entry_form_details.flat_no AND property.property_id = tenants.flat_no and entry_form_details.timestamp between '$to_date' and '$from_date' order by unix_timestamp(timestamp)  asc";
@@ -52,6 +82,13 @@ class ReportM extends CI_Model {
     return $query->result_array();
 
   }    
+
+   function get_number_of_flats($property_id){
+    
+        $sql = " SELECT * from tenants where `property_id`=$property_id and `status`=1 order by flat_no";
+        $query = $this->db->query($sql);
+        return $query->result_array();
+  }    
   
     public function get_report_details_monthwise($month,$property_id){
 
@@ -61,6 +98,19 @@ class ReportM extends CI_Model {
     // INNER JOIN payment ON entry_form_details.property_id = payment.property_id AND entry_form_details.month =payment.month
     // WHERE entry_form_details.property_id = $property_id AND entry_form_details.month = '$month' AND payment.status = 1 AND entry_form_details.status = 1
     // ORDER BY entry_form_details.month";
+
+    // print_r($query);
+    // die();
+ 
+    $result = $this->db->query($query);
+    return $result->result_array();
+    }
+
+     public function get_tr_report_details($month, $property_id, $flat_no){
+
+    $query = "SELECT entry_form_details.* FROM entry_form_details WHERE `month` = '$month' AND `property_id` =$property_id AND `flat_no` = $flat_no AND status =1 ORDER BY `month`";
+
+// $sql = "SELECT amount, reference_id, payment_date, payment_receiver FROM payment where payment_date BETWEEN '$from_date' AND '$to_date' and payment_receiver = '$receiver'";
 
     // print_r($query);
     // die();
