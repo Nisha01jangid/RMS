@@ -74,13 +74,13 @@ public function balance_report(){
 			$property_id = $data['report_monthwise_details'][$i]['property_id'];
 			$flat_no = $data['report_monthwise_details'][$i]['flat_no'];
 		$data['tenant_name'] = $this->ReportM->get_tenant_name($flat_no, $property_id,$data['month']);
+		// echo "<pre>";
+		// print_r($data['tenant_name']);
+		// die();
 		$data['report_monthwise_details'][$i]['tenant_name'] = 	$data['tenant_name'][0]['tenant_name'];
 		$data['report_monthwise_details'][$i]['contact'] = 	$data['tenant_name'][0]['contact'];
-
-		}
-    	// echo "<pre>";
-    	// print_r($data['report_monthwise_details']);
-		// die();
+		
+	}
 
 		$month = $data['report_monthwise_details'][0]['month'];
 
@@ -184,8 +184,9 @@ public function balance_report(){
 		$data['tenant_name'] = $this->ReportM->get_tenant_name($flat_no, $property_id,$data['report_flatwise_details'][0]['month']);
 		$data['report_flatwise_details'][$i]['tenant_name'] = 	$data['tenant_name'][0]['tenant_name'];
 		$data['report_flatwise_details'][$i]['contact'] = 	$data['tenant_name'][0]['contact'];
-
-		}
+		
+	}
+// echo"<pre>";	print_r($data);die();
 
 
 		$month = $data['report_flatwise_details'][0]['month'];
@@ -236,7 +237,7 @@ public function balance_report(){
 			$this->ReportM->update_oustanding_amount($data['property_id'], $flat_no, $month, $total, $data['report_flatwise_details'][$i]['amount_paid'], $outstanding_amount);
 
 			}else {
-			$this->ReportM->insert_oustanding_amount($data['property_id'], $data['flat_no'], $month, $total, $data['report_flatwise_details'][$i]['amount_paid'], $outstanding_amount);
+			$this->ReportM->insert_oustanding_amount($data['property_id'], $flat_no, $month, $total, $data['report_flatwise_details'][$i]['amount_paid'], $outstanding_amount);
 			}
 
 
