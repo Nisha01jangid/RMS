@@ -125,10 +125,12 @@
      <!--  <li>
         <a href="<?php echo base_url('Payments') ?>" class="nav-link text-white">Payments</a>
       </li> -->
+
       <!-- <button class="dropdown-btn">Reports 
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-container">
+
         <li>
           <a href="<?php echo base_url('Report/select_property_for_report_monthwise') ?>" class="nav-link text-white">Main Report</a>  
         </li>
@@ -148,6 +150,7 @@
         <li>
         <a href="<?php echo base_url('Report/receiver_expenditure') ?>" class="nav-link text-white"> Receiver Expenditure</a>
       </li>  
+
   </div> -->
 
 <div class="dropdown">
@@ -161,6 +164,7 @@
     <a href="<?php echo base_url('Report/TR_Report') ?>">TR Report</a>
   </div>
 </div>
+
 
 
 
@@ -253,7 +257,22 @@ for (i = 0; i < dropdown.length; i++) {
                                             <a href="<?php echo base_url('Home/flats/').$p['property_id'];?>" class="text-primary float-right" style="text-decoration : none; font-weight:bold;">View List &nbsp; <span class="fa fa-angle-right"></span></a>
                                         </div>
                                         <div class="col-lg-6">
-                                            <a href="<?php echo base_url('Home/delete_property/').$p['property_id'];?>" class="text-primary float-right" style="text-decoration : none; font-weight:bold; " onclick="return confirm('Are you sure you want to delete this property?');"><span style="color:red;">Delete Property&nbsp;</span><span class="fa fa-trash" style="color:red;"> </a>
+
+                                    <a href="<?php echo base_url('Home/delete_property/').$p['property_id'];?>" class="text-primary float-right" style="text-decoration : none; font-weight:bold; " onclick="return confirm('Are you sure you want to delete this property?');"><span style="color:red;">Delete Property&nbsp;</span><span class="fa fa-trash" style="color:red;"> </a>
+
+                                  <!-- <a href="<?php echo base_url('Home/delete_property/').$p['property_id'];?>" class="text-primary float-right" style="text-decoration : none; font-weight:bold; "  onclick="confirm('Are You Sure,You Want To Delete !!!!')"><span style="color:red;">Delete Property&nbsp;</span><span class="fa fa-trash" style="color:red;"> </a> -->
+                                            <!-- <button onclick="myFunction()">Delete Property</button>
+                                            <script>
+function myFunction() {
+  let text = "Are you ?";
+  if (confirm() == true) {
+    <?php //echo base_url('Home/delete_property/').$p['property_id'];?>
+  } else {
+    <?php// echo base_url();?>
+  }
+} -->
+<!-- </script> -->
+
                                         </div>
                                     </div>
                                 </div>
@@ -278,4 +297,15 @@ for (i = 0; i < dropdown.length; i++) {
       <script src="<?php echo base_url('js/sidebars.js') ?>"></script>
   </body>
 </html>
+
+<script>
+
+  // function delete()
+  // {
+  //   alert("Are You Sure,You Want To Delete !!!!");
+  // 
+//   $(document).on("click","#link",function(){
+//  alert("Are You Sure,You Want To Delete !!!!");
+// });
+  </script>
  

@@ -119,7 +119,17 @@
                               <td style="color:green;"><?php echo $value['invoice_number'];?> </td>
                               
                             <?php } else {?>
-                              <td style="color:red;"><a href="<?php echo base_url("Home/generate_invoice/").$property_id."/".$flat_no."/".$value['month']; ?>" class="btn btn-success">Generate</a></td>
+<td>
+                              <form action="<?php echo base_url("Home/generate_invoice"); ?>" method="POST">
+                    <input name="invoice_date" type="date"
+                  
+                        />
+                        <input type="hidden" name="property_id" value="<?php echo $property_id; ?>">
+                        <input type="hidden" name="flat_no" value="<?php echo $flat_no; ?>">
+                        <input type="hidden" name="month" value="<?php echo $value['month']; ?>">
+                    <input type="submit" value="Generate" class="btn btn-primary">
+
+                              <!-- <td style="color:red;"><a href="<?php echo base_url("Home/generate_invoice/").$property_id."/".$flat_no."/".$value['month']; ?>" class="btn btn-success">Generate </a></td> -->
                               <?php }?>
                             <td style="text-align:center;"><?php echo $value['rent'] ?></td>
 

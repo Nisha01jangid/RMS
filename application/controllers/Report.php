@@ -29,8 +29,16 @@ public function receiver_payment_report(){
 	} else if($receiver == 2){
 
 		$receiver = "Mr. Manoj Kumar Shah";
-	}else{
+	}else if($receiver == 3){
 		$receiver = "Dr. Indra Kumar Shah";
+	}
+	else if($receiver == 4){
+
+		$receiver = "Mr. MG";
+	}
+	else {
+
+			$receiver = "Mr. AG";
 	}
 	
 	$data['payments']= $this->ReportM->get_receiver_payments($data['from_date'], $data['to_date'], $receiver);
@@ -202,6 +210,7 @@ public function balance_report(){
 			$flat_no = $data['report_flatwise_details'][$i]['flat_no'];
 
 
+			// print_r($data);die();
 			$data['invoice_number'] = $this->ReportM->get_invoive_number($data['property_id'],$month, $flat_no);
 			$data['report_flatwise_details'][$i]['invoice_number'] = 	$data['invoice_number'][0]['invoice'];
 
@@ -326,15 +335,22 @@ public function balance_report(){
 		$head = $_POST['head'];
 		$amount = $_POST['amount'];
 
-	    if($receiver == 1){
-		$receiver = "Mr. Ram Kripal Shah";
+		if($receiver == 1){
+			$receiver = "Mr. Ram Kripal Shah";
 		} else if($receiver == 2){
-
+	
 			$receiver = "Mr. Manoj Kumar Shah";
-		}else{
+		}else if($receiver == 3){
 			$receiver = "Dr. Indra Kumar Shah";
 		}
-
+		else if($receiver == 4){
+	
+			$receiver = "Mr. MG";
+		}
+		else {
+	
+				$receiver = "Mr. AG";
+		}
 	    if($head == 1){
 		$head = "Waste";
 	    } else if($head == 2){
