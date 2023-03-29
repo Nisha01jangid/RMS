@@ -362,7 +362,8 @@ public function edit_tenant_details(){
 					$to_date=date('Y-m-d');
 				}
 		
-			$previous_month =  date('Y-m', strtotime($month. ' -1 months')); 
+			// $previous_month =  date('Y-m', strtotime($month. ' -1 months')); 
+			$previous_month = date('Y-m', strtotime($month . '-01 -1 month'));
 			$previous_flat_invoice = $this->HomeM->get_invoive_number($data['property_id'],$previous_month, $data['flat_no']);
 			if(!empty($previous_flat_invoice)){
 				$from_date = date('Y-m-d',strtotime($previous_flat_invoice[0]['timestamp']));
@@ -577,8 +578,16 @@ public function insert_payment(){
 	} else if($receiver == 2){
 
 		$receiver = "Mr. Manoj Kumar Shah";
-	}else{
+	}else if($receiver == 3){
 		$receiver = "Dr. Indra Kumar Shah";
+	}
+	else if($receiver == 4){
+
+		$receiver = "Mr. MG";
+	}
+	else {
+
+			$receiver = "Mr. AG";
 	}
 
 	$month = $_POST['month'];
@@ -610,8 +619,16 @@ public function insert_payment(){
 	} else if($receiver == 2){
 
 		$receiver = "Mr. Manoj Kumar Shah";
-	}else{
+	}else if($receiver == 3){
 		$receiver = "Dr. Indra Kumar Shah";
+	}
+	else if($receiver == 4){
+
+		$receiver = "Mr. MG";
+	}
+	else {
+
+			$receiver = "Mr. AG";
 	}
 	
 	
@@ -660,9 +677,16 @@ public function insert_payment(){
 	}
 
 
-	public function generate_invoice($property_id,$flat_no,$month){
+	public function generate_invoice(){
+		// echo "<pre>";
+		// print_r($_POST);
+		// die();
+		$flat_no = $_POST['flat_no'];
+		$property_id = $_POST['property_id'];
+		$invoice_date = $_POST['invoice_date'];
+		$month = $_POST['month'];
 
-            $flat_details = $this->InvoiceM->getFlatDetails($property_id,$flat_no,$month);
+		$flat_details = $this->InvoiceM->getFlatDetails($property_id,$flat_no,$month);
             // echo "<pre>";
             // print_r($flat_details);
             // die();
@@ -676,9 +700,9 @@ public function insert_payment(){
                 $check = $this->InvoiceM->check_invoice($property_id, $flat_no, $month);
 
                 if(!empty($check)){
-                    $this->InvoiceM->update_invoice($invoice, $property_id, $flat_no, $month, $flat_details[0]['tenant_name'],$units);    
+                    $this->InvoiceM->update_invoice($invoice, $property_id, $flat_no, $month, $flat_details[0]['tenant_name'],$units,$invoice_date);    
                 }else{
-                    $this->InvoiceM->insert_invoice($invoice, $property_id, $flat_no, $month, $flat_details[0]['tenant_name'],$units);
+                    $this->InvoiceM->insert_invoice($invoice, $property_id, $flat_no, $month, $flat_details[0]['tenant_name'],$units,$invoice_date);
                 }
                 $previous_month =  date('Y-m', strtotime($month. ' -1 months')); 
 		        $previous_outstanding = $this->InvoiceM->get_previous_outstanding($property_id,$flat_no,$previous_month);
@@ -757,6 +781,10 @@ public function insert_payment(){
     public function delete_flat_invoice($property_id, $flat_no, $month){
         
         $this->InvoiceM->delete_invoice($property_id, $flat_no, $month);
+		$this->InvoiceM->delete_entry_form($property_id, $flat_no, $month);
+		$this->InvoiceM->delete_payment($property_id, $flat_no, $month);
+		$this->InvoiceM->delete_outstanding_amount($property_id, $flat_no, $month);
+
 
         redirect(base_url('Home/month_wise_report/'.$flat_no."/".$property_id));
     }
