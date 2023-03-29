@@ -142,9 +142,10 @@
                                             <a href="<?php echo base_url('Home/tenant_details/').$i.'/'.$flat[0]['property_id']; ?>" class="text-primary float-right" style="text-decoration : none; font-weight:bold;">View <span class="fa fa-angle-right"></span></a>
                                         </div>
                                         <div class="col-lg-5">
-                                            <a href="<?php echo base_url('Home/delete_flat_tenant/').$i.'/'.$flat[0]['property_id'];?>" class="text-primary float-right" style="text-decoration : none; font-weight:bold; "><span style="color:red;">Delete &nbsp;</span><span class="fa fa-trash" style="color:red;"> </a>
+                                            <a href="<?php echo base_url('Home/delete_flat_tenant/').$i.'/'.$flat[0]['property_id'];?>" class="text-primary float-right" style="text-decoration : none; font-weight:bold;" onclick="return confirm('Are you sure you want to delete this Tenant?');"><span style="color:red;">Delete &nbsp;</span><span class="fa fa-trash" style="color:red;"> </a>
                                         </div>
-                                    </div>
+
+                                </div>
                                 </div>
                             </div>
                         </div>

@@ -361,7 +361,14 @@ public function balance_report(){
 
 public function TR_Report()
     {	
-    	$data['property_id'] = $_GET['property_id'];
+    	$data['property'] = $this->ReportM->get_property_tr_report();
+    		
+    	$this->load->view('TR_Report/select_property_for_tr_report',$data);
+
+    }
+    public function TR_Report_FROM_TO($property_id)
+    {	
+    	$data['property_id'] = $property_id;
     	$no_of_flats= $this->ReportM->get_no_of_flats($data['property_id']);
 
     	$data['flats'] = $no_of_flats[0]['flats'];

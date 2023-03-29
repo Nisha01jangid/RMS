@@ -41,6 +41,61 @@
         margin:3%;    
     }
 
+  /* Style the button that opens the dropdown */
+.dropbtn {
+  background-color: #202121;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+    border: none;
+  cursor: pointer;
+}
+/* Add a dropdown icon to the .dropbtn element */
+.dropbtn::after {
+  content: "";
+  display: inline-block;
+  margin-left: 15px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 5px 5px 0 5px;
+  border-color: white transparent transparent transparent;
+}
+
+
+/* Style the dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  z-index: 1;
+}
+
+/* Style the links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+  background-color: #202121;
+}
+
+
     </style>
 
     
@@ -70,7 +125,7 @@
      <!--  <li>
         <a href="<?php echo base_url('Payments') ?>" class="nav-link text-white">Payments</a>
       </li> -->
-      <button class="dropdown-btn">Reports 
+      <!-- <button class="dropdown-btn">Reports 
         <i class="fa fa-caret-down"></i>
       </button>
       <div class="dropdown-container">
@@ -81,19 +136,33 @@
       <li>
         <a href="<?php echo base_url('Report/receiver_report') ?>" class="nav-link text-white">Receiver Report</a>
       </li>      
-       <!-- <li>
+       <li>
           <a href="<?php echo base_url('Report/User_Wise_Report') ?>" class="nav-link text-white">User-Wise Report</a>  
-        </li> -->
+        </li> 
        <li>
         <a href="<?php echo base_url('Report/outstanding_amount') ?>" class="nav-link text-white">Oustanding Report</a>
       </li>
-      <!-- <li>
+       <li>
           <a href="<?php echo base_url('Report/TR_Report?property_id=' . $property_id) ?>" class="nav-link text-white">TR Report</a>  
-        </li>  -->
+        </li>  
         <li>
         <a href="<?php echo base_url('Report/receiver_expenditure') ?>" class="nav-link text-white"> Receiver Expenditure</a>
       </li>  
+  </div> -->
+
+<div class="dropdown">
+  <button class="dropbtn">Report</button>
+  <div class="dropdown-content">
+
+    <a href="<?php echo base_url('Report/select_property_for_report_monthwise') ?>">Main Report</a>
+    <a href="<?php echo base_url('Report/receiver_report') ?>">Receiver Report</a>
+    <a href="<?php echo base_url('Report/outstanding_amount') ?>">Outstanding Report</a>
+    <!-- <a class="dropdown-item" href="<?php echo base_url('Report/TR_Report?property_id=' . $property_id) ?>">TR Report</a> -->
+    <a href="<?php echo base_url('Report/TR_Report') ?>">TR Report</a>
   </div>
+</div>
+
+
 
 			</ul>
     <hr>
@@ -157,7 +226,7 @@ for (i = 0; i < dropdown.length; i++) {
   <?php } ?>
 
   <div class="containe-fluid">
-	<div class="row mt-3 ml-3 mr-3">
+  <div class="row mt-3 ml-3 mr-3">
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
@@ -184,7 +253,7 @@ for (i = 0; i < dropdown.length; i++) {
                                             <a href="<?php echo base_url('Home/flats/').$p['property_id'];?>" class="text-primary float-right" style="text-decoration : none; font-weight:bold;">View List &nbsp; <span class="fa fa-angle-right"></span></a>
                                         </div>
                                         <div class="col-lg-6">
-                                            <a href="<?php echo base_url('Home/delete_property/').$p['property_id'];?>" class="text-primary float-right" style="text-decoration : none; font-weight:bold; "><span style="color:red;">Delete Property&nbsp;</span><span class="fa fa-trash" style="color:red;"> </a>
+                                            <a href="<?php echo base_url('Home/delete_property/').$p['property_id'];?>" class="text-primary float-right" style="text-decoration : none; font-weight:bold; " onclick="return confirm('Are you sure you want to delete this property?');"><span style="color:red;">Delete Property&nbsp;</span><span class="fa fa-trash" style="color:red;"> </a>
                                         </div>
                                     </div>
                                 </div>
@@ -195,10 +264,11 @@ for (i = 0; i < dropdown.length; i++) {
 
                     
                 </div>
-            </div>      			
+            </div>            
         </div>
     </div>
 </div>
+
   </div>
 </main>
 

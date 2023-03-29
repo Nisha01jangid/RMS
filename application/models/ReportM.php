@@ -84,6 +84,14 @@ class ReportM extends CI_Model {
 
   }  
 
+  public function get_property_tr_report(){
+
+    $sql="SELECT * from `property` where `active`= 1";    
+    $query = $this->db->query($sql);
+    return $query->result_array();
+
+  }  
+
        function getAllFlats($property_id){
 
     $sql="SELECT flats from `property` where `property_id`= $property_id";    
