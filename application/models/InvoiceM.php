@@ -51,14 +51,14 @@ class InvoiceM extends CI_Model {
         return $query->result_array();
       }
 
-      function insert_invoice($invoice, $property_id, $flat_no, $month, $tenant_name, $units){
-        $sql = " INSERT INTO `invoice` (`invoice`,`property_id`,`flat_no`,`month`,`tenant_name`,`electricity_units`) VALUES ('$invoice', $property_id, $flat_no, '$month','$tenant_name',$units) ";
+      function insert_invoice($invoice, $property_id, $flat_no, $month, $tenant_name, $units,$invoice_date){
+        $sql = " INSERT INTO `invoice` (`invoice`,`property_id`,`flat_no`,`month`,`tenant_name`,`electricity_units`,`timestamp`) VALUES ('$invoice', $property_id, $flat_no, '$month','$tenant_name',$units, '$invoice_date') ";
         $query = $this->db->query($sql);
         return ;
       }
 
-      function update_invoice($invoice, $property_id, $flat_no, $month, $tenant_name, $units){
-        $sql = " UPDATE `invoice` SET `tenant_name`='$tenant_name' and `electricity_units`=$units WHERE `invoice`='$invoice' and `property_id`=$property_id and `flat_no`=$flat_no and `month`='$month'";
+      function update_invoice($invoice, $property_id, $flat_no, $month, $tenant_name, $units,$invoice_date){
+        $sql = " UPDATE `invoice` SET `tenant_name`='$tenant_name', `electricity_units`=$units, `timestamp` = '$invoice_date'  WHERE `invoice`='$invoice' and `property_id`=$property_id and `flat_no`=$flat_no and `month`='$month'";
         $query = $this->db->query($sql);
         return ;
       }
@@ -82,6 +82,24 @@ class InvoiceM extends CI_Model {
 
       function delete_invoice($property_id,$flat_no,$month){
         $sql = " DELETE FROM invoice where `property_id`=$property_id and flat_no=$flat_no and `month`='$month'";
+        $query = $this->db->query($sql);
+        return;
+      }
+
+      function delete_entry_form($property_id,$flat_no,$month){
+        $sql = " DELETE FROM entry_form_details where `property_id`=$property_id and flat_no=$flat_no and `month`='$month' and status = 1";
+        $query = $this->db->query($sql);
+        return;
+      }
+
+      function delete_payment($property_id,$flat_no,$month){
+        $sql = " DELETE FROM payment where `property_id`='$property_id' and `flat_no` = '$flat_no' and `month`='$month' and status = 1";
+        $query = $this->db->query($sql);
+        return;
+      }
+
+      function delete_outstanding_amount($property_id,$flat_no,$month){
+        $sql = " DELETE FROM outstanding_amount where `property_id`=$property_id and flat_no=$flat_no and `month`='$month' and status = 1";
         $query = $this->db->query($sql);
         return;
       }
