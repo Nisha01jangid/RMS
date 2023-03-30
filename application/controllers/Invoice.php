@@ -136,33 +136,36 @@ class Invoice extends CI_Controller {
             if(!empty($check)){
                 $data['flats'][$i] = $check[0];
                 $entry_form_details = $this->InvoiceM->get_report_details_monthwise($property_id,$f['flat_no'],$month);
-
-                $data['flats'][$i]['water_rate'] = $entry_form_details[0]['water_rate'];
-                $data['flats'][$i]['no_of_members'] = $entry_form_details[0]['no_of_members'];
-                $data['flats'][$i]['electricity_rate'] = $entry_form_details[0]['electricity_rate'];
-                $data['flats'][$i]['waste'] = $entry_form_details[0]['waste'];
-                $data['flats'][$i]['miscellaneous'] = $entry_form_details[0]['miscellaneous'];
-                $data['flats'][$i]['rent'] = $entry_form_details[0]['rent'];
-                $data['flats'][$i]['duedate'] = $entry_form_details[0]['duedate'];
+                $data['flats'][$i]=$entry_form_details[0];
                 $outstanding_details = $this->InvoiceM->get_outstanding_details($property_id,$f['flat_no'],$month);
                 $data['flats'][$i]['outstanding_amount'] = $outstanding_details[0]['outstanding_amount'];
-                $paid_amount = $this->InvoiceM->get_tenant_amount($f['flat_no'], $property_id, $month);
-                if(!empty($paid_amount)){
-                    $data['flats'][$i]['paid_amount'] = $paid_amount;
-                    $data['flats'][$i]['payment_date'] = $paid_amount[0]['payment_date'];
-                }else{
-                    $data['flats'][$i]['paid_amount'] = "";
-                    $data['flats'][$i]['payment_date'] = "";
-                }
-                $previous_month =  date('Y-m', strtotime($month. ' -1 months')); 
-                $previous_invoice = $this->InvoiceM->check_invoice($property_id, $f['flat_no'], $previous_month);
-                if(!empty($previous_invoice)){
-                    $data['flats'][$i]['previous_invoice'] = $previous_invoice[0]['invoice'];
-                }else{
-                    $data['flats'][$i]['previous_invoice'] = "-";
-                }  
-                $data['flats'][$i]['previous_invoice'] = $previous_invoice[0]['invoice'];
-                $previous_outstanding = $this->InvoiceM->get_previous_outstanding($property_id,$f['flat_no'],$previous_month);
+                
+                $to_date = date('Y-m-d',strtotime($check[0]['timestamp']));
+		$previous_month =  date('Y-m', strtotime($month. ' -1 months')); 
+			$previous_flat_invoice = $this->InvoiceM->check_invoice($property_id, $f['flat_no'], $previous_month);
+			if(!empty($previous_flat_invoice)){
+				$from_date = date('Y-m-d',strtotime($previous_flat_invoice[0]['timestamp']));
+				$data['flats'][$i]['paid_amount'] = $this->InvoiceM->get_tenant_amount($f['flat_no'], $property_id, $to_date, $from_date);
+			}else{
+				$data['flats'][$i]['paid_amount'] = $this->InvoiceM->get_tenant_amount_todate($f['flat_no'], $property_id, $to_date);
+			}
+
+        $previous_month =  date('Y-m', strtotime($month. ' -1 months')); 
+        $data['previous_invoice'] = $this->InvoiceM->check_invoice($property_id, $f['flat_no'], $previous_month);
+        $previous_outstanding = $this->InvoiceM->get_previous_outstanding($property_id,$f['flat_no'],$previous_month);
+        if(!empty($data['previous_invoice'])){
+            $data['flats'][$i]['previous_invoice'] = $data['previous_invoice'][0]['invoice'];
+        }else{
+            $data['flats'][$i]['previous_invoice'] = "-";
+        }  
+
+        if(!empty($data['flats'][$i]['paid_amount'])){
+            $data['flats'][$i]['amount_paid']=$data['flats'][$i]['paid_amount'][0]['amount'];
+            $data['flats'][$i]['payment_date']=$data['flats'][$i]['paid_amount'][0]['payment_date'];
+        }else{
+            $data['flats'][$i]['amount_paid'] = 0;
+            $data['flats'][$i]['payment_date'] = "";
+        }
                 if(!empty($previous_outstanding)){
                     $data['flats'][$i]['prev_outstanding'] = $previous_outstanding[0]['outstanding_amount'];
                 }else{
