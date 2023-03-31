@@ -539,7 +539,7 @@ public function edit_tenant_details(){
 		$this->load->view('Home/Pay_bill', $data);
 
 	}
-
+ 
 	public function payment_mode(){
 
 		$data['mode'] = 0;
@@ -590,7 +590,7 @@ public function insert_payment(){
 			$receiver = "Mr. AG";
 	}
 
-	$month = $_POST['month'];
+	$month = date('Y-m', strtotime($date));
 	// $data = explode('-', $month1);
 	// $month = $data[1];
 	// echo $month;
@@ -606,7 +606,7 @@ public function insert_payment(){
 	$property_id = $_POST['property_id'];
 	$flat_no = $_POST['flat_no'];
 	$payment_mode = "offline";
-	$month = $_POST['month'];
+	$month = date('Y-m', strtotime($date));
 	// echo $month1;
 	// die();
 	// $data = explode('-', $month1);

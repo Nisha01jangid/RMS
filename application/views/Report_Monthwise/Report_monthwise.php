@@ -101,11 +101,11 @@
                             <th scope="col" style="text-align:center;">Waste </th>
                             <th scope="col" style="text-align:center;">Miscellaneous</th>
                             <th scope="col" style="text-align:center;">Total</th>
-                            <th scope="col" style="text-align:center;">Total + Previous Outstanding</th>
+                            <!-- <th scope="col" style="text-align:center;">Total + Previous Outstanding</th> -->
     
                             <!-- <th scope="col" style="text-align:center;">Payment</th> -->
                             <th style="text-align:center;">Amount Paid</th>
-                            <th scope="col" style="text-align:center;">Outstanding Amount</th>
+                            <!-- <th scope="col" style="text-align:center;">Outstanding Amount</th> -->
                             </tr>
                         </thead>
                         <tbody>
@@ -142,7 +142,7 @@
                             
                             <td><?php echo $value['waste'] ?></td>
                             <td><?php echo $value['miscellaneous'] ?></td>
-                            <td><?php echo  round($total);  ?></td>
+                            <!-- <td><?php echo  round($total);  ?></td> -->
                             <td><?php echo $value['total']; ?></td>
                             <!-- <td align="center">
                               <?php if($value['invoice_number']==$last_invoice){ ?>
@@ -153,7 +153,7 @@
                                 <?php }} ?>
                             </td>  -->
                             <td style="text-align:center;"><?php echo $value['amount_paid']; ?></td>                           
-                            <td style="text-align:center;"> <?php echo $value['outstanding_amount'];?></td>
+                            <!-- <td style="text-align:center;"> <?php echo $value['outstanding_amount'];?></td> -->
                             </tr>   
 
                             <?php   $i++; } ?>

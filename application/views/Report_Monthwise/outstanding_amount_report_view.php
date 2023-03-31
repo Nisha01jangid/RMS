@@ -126,7 +126,7 @@
                             <tr>
                               <td style="text-align: center;"><?php echo $i ?></td>
                               <td style="text-align: center;"><?php echo $value['flat_no'] ?></td>
-                              <td style="text-align: center;"><?php echo$value['tenant_name'] ?></td>
+                              <td style="text-align: center;"><?php echo $value['tenant_name']."(".$value['contact'].")"?></td>
                               <td style="text-align: center;"><?php echo$value['month'] ?></td>
                                <td style="text-align: center;"><?php echo $value['total'] ?></td>
                               <td style="text-align: center;"><?php echo $value['amount_received'] ?></td>

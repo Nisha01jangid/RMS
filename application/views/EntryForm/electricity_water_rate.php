@@ -81,7 +81,7 @@
       
       <!-- <li>
         <a href="<?php echo base_url('Report/outstanding_amount') ?>" class="nav-link text-white">Oustanding Report</a>
-      </li -->>
+      </li -->
      
     </ul>
     <hr>
