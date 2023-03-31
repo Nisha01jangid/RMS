@@ -166,7 +166,7 @@ class ReportM extends CI_Model {
 
   public function get_outstanding_report_details($property_id){
 
-    $query = "SELECT outstanding_amount.*, invoice.tenant_name FROM outstanding_amount,invoice WHERE invoice.property_id = $property_id and outstanding_amount.property_id = $property_id and invoice.flat_no = outstanding_amount.flat_no  and outstanding_amount.`status`=1 and outstanding_amount.outstanding_amount > 0 and outstanding_amount.month = invoice.month ORDER BY outstanding_amount.`month` desc limit 1";
+    $query = "SELECT outstanding_amount.*, invoice.tenant_name, tenants.contact FROM tenants, outstanding_amount,invoice WHERE invoice.property_id = $property_id and outstanding_amount.property_id = $property_id and invoice.flat_no = outstanding_amount.flat_no  and outstanding_amount.`status`=1 and outstanding_amount.outstanding_amount > 0 and outstanding_amount.month = invoice.month and invoice.tenant_name = tenants.tenant_name ORDER BY outstanding_amount.`month` desc limit 1";
     
     $result = $this->db->query($query);
     return $result->result_array();
