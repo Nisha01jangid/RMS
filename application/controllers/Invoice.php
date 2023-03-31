@@ -132,12 +132,17 @@ class Invoice extends CI_Controller {
         $i=0;
         foreach($data['flats_count'] as $f){
             $check = $this->InvoiceM->check_invoice($property_id, $f['flat_no'], $month);
-            
+            // echo "<pre>";
+            // print_r($check);
+            // die();
             if(!empty($check)){
-                $data['flats'][$i] = $check[0];
+               
                 $entry_form_details = $this->InvoiceM->get_report_details_monthwise($property_id,$f['flat_no'],$month);
                 $data['flats'][$i]=$entry_form_details[0];
                 $outstanding_details = $this->InvoiceM->get_outstanding_details($property_id,$f['flat_no'],$month);
+                $data['flats'][$i]['tenant_name'] = $check[0]['tenant_name'];
+                $data['flats'][$i]['invoice'] = $check[0]['invoice'];
+                $data['flats'][$i]['timestamp'] = $check[0]['timestamp'];
                 $data['flats'][$i]['outstanding_amount'] = $outstanding_details[0]['outstanding_amount'];
                 
                 $to_date = date('Y-m-d',strtotime($check[0]['timestamp']));
