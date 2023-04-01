@@ -161,6 +161,7 @@
     <a href="<?php echo base_url('Report/outstanding_amount') ?>">Outstanding Report</a>
     <!-- <a class="dropdown-item" href="<?php echo base_url('Report/TR_Report?property_id=' . $property_id) ?>">TR Report</a> -->
     <a href="<?php echo base_url('Report/TR_Report') ?>">TR Report</a>
+    <a href="<?php echo base_url('Report/receiver_expenditure') ?>">Receiver Expenditure</a>
   </div>
 </div>
 
