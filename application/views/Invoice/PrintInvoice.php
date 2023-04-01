@@ -21,10 +21,11 @@
   <body>
     <?php foreach($flats as $f){ ?>
         <div class="maindiv" style=" min-height:500px;
-        max-width:400px;
+        max-width:380px;
+        min-width:380px;
         border:2px solid black;
         padding:0px 5px;
-        margin:5px 5px 10px 5px;
+        margin:10px 0px 0px 10px;
         display:inline-block;
         font-family: 'Tiro Devanagari Hindi', serif;
         font-size: 14px;

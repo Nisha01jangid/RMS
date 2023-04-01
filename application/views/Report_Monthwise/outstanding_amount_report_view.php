@@ -46,6 +46,60 @@
         margin:3%;    
     }
 
+  /* Style the button that opens the dropdown */
+  .dropbtn {
+  background-color: #202121;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+    border: none;
+  cursor: pointer;
+}
+/* Add a dropdown icon to the .dropbtn element */
+.dropbtn::after {
+  content: "";
+  display: inline-block;
+  margin-left: 15px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 5px 5px 0 5px;
+  border-color: white transparent transparent transparent;
+}
+
+
+/* Style the dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  z-index: 1;
+}
+
+/* Style the links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+  background-color: #202121;
+}
+
     </style>
 
     
@@ -57,15 +111,15 @@
 
 <main>
 
-   <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 250px;height:100vh;">
+<div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 250px;height:100vh;">
     <h4><?php echo $_SESSION['user']; ?></h4>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
-      <li class="nav-item">
+      <li>
         <a href="<?php echo base_url('Home') ?>" class="nav-link text-white" aria-current="page">Home</a>
       </li>
 
-      <li class="nav-item">
+      <li>
         <a href="<?php echo base_url('EntryForm') ?>" class="nav-link text-white" aria-current="page">Entry Form</a>
       </li>
       <!-- <li>
@@ -75,29 +129,69 @@
      <!--  <li>
         <a href="<?php echo base_url('Payments') ?>" class="nav-link text-white">Payments</a>
       </li> -->
-      <li>
+
+      <!-- <button class="dropdown-btn">Reports 
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-container">
+
+        <li>
           <a href="<?php echo base_url('Report/select_property_for_report_monthwise') ?>" class="nav-link text-white">Main Report</a>  
         </li>
 
       <li>
         <a href="<?php echo base_url('Report/receiver_report') ?>" class="nav-link text-white">Receiver Report</a>
-      </li>
+      </li>      
        <li>
-        <a href="<?php echo base_url('Report/receiver_expenditure') ?>" class="nav-link text-white"> Receiver Expenditure</a>
-      </li>
-        
-       <!--  <li>
           <a href="<?php echo base_url('Report/User_Wise_Report') ?>" class="nav-link text-white">User-Wise Report</a>  
-        </li> -->
-        
-      
-      <li>
+        </li> 
+       <li>
         <a href="<?php echo base_url('Report/outstanding_amount') ?>" class="nav-link text-white">Oustanding Report</a>
       </li>
-     
-    </ul>
+       <li>
+          <a href="<?php echo base_url('Report/TR_Report?property_id=' . $property_id) ?>" class="nav-link text-white">TR Report</a>  
+        </li>  
+        <li>
+        <a href="<?php echo base_url('Report/receiver_expenditure') ?>" class="nav-link text-white"> Receiver Expenditure</a>
+      </li>  
+
+  </div> -->
+
+<div class="dropdown">
+  <button class="dropbtn">Report</button>
+  <div class="dropdown-content">
+
+    <a href="<?php echo base_url('Report/select_property_for_report_monthwise') ?>">Main Report</a>
+    <a href="<?php echo base_url('Report/receiver_report') ?>">Receiver Report</a>
+    <a href="<?php echo base_url('Report/outstanding_amount') ?>">Outstanding Report</a>
+    <!-- <a class="dropdown-item" href="<?php echo base_url('Report/TR_Report?property_id=' . $property_id) ?>">TR Report</a> -->
+    <a href="<?php echo base_url('Report/TR_Report') ?>">TR Report</a>
+    <a href="<?php echo base_url('Report/receiver_expenditure') ?>">Receiver Expenditure</a>
+  </div>
+</div>
+
+
+
+
+			</ul>
     <hr>
   </div>
+
+  <script>
+  var dropdown = document.getElementsByClassName("dropdown-btn");
+  var i;
+
+for (i = 0; i < dropdown.length; i++) {
+  dropdown[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var dropdownContent = this.nextElementSibling;
+    if (dropdownContent.style.display === "block") {
+      dropdownContent.style.display = "none";
+    } else {
+      dropdownContent.style.display = "block";
+    }
+  });
+}</script>
   <div class="homediv">
   <div class="containe-fluid">
 	<div class="row mt-3 ml-3 mr-3">
