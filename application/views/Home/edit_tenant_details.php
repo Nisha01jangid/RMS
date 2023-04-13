@@ -306,7 +306,8 @@
                                 <option value="mother">Mother</option>
                                 <option value="husband">Husband</option>
                                 <option value="wife">Wife</option>
-                                <option value="child">Child</option>
+                                <option value="child">Son</option>
+                                <option value="Daughter">Daughter</option>
                                 <option value="others">Others</option>
                             </select>
                         </div> 
