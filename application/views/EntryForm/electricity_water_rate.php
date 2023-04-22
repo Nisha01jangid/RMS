@@ -129,7 +129,17 @@
   </div>
 
   <br>
-    
+  <div class="row">
+    <div class="form-group col">
+    <label for="Entry_type">Entry Type (Property Wise / Flatwise)</label>
+    <select class="form-control" name="entry_type">
+        <option value="">Select Entry Type</option>
+        <option value="1">Property Wise</option>
+        <option value="2">Flat Wise</option>
+    </select>
+    </div>
+  </div>
+  
   <br>
  <!-- 
     <input type="hidden" name="flat_no" value="<?php echo $flat_no; ?>" >

@@ -32,16 +32,10 @@ class EntryForm extends CI_Controller{
 		$data['rate_per_unit'] = $_GET['rate_per_unit'];
 		$data['rate_per_person'] = $_GET['rate_per_person'];
 		$data['waste'] = $_GET['waste'];
+		$entry_type = $_GET['entry_type'];
 		
 		// echo "<pre>";
 		// print_r($data['property_id']);
-		// echo "<br>";
-		// print_r($data['month']);
-		// echo "<br>";
-		// print_r($data['rate_per_unit']);
-		// echo "<br>";
-		// print_r($data['rate_per_person']);
-		// echo "<br>";
 		// die();
 
 		$data['flat'] = $this->EntryFormM->get_flats($property_id);
@@ -57,12 +51,47 @@ class EntryForm extends CI_Controller{
 			}
 
 		}
+		$data['tenant_name'] = array();
+		for($i=1; $i<=$data['flat'][0]['flats']; $i++){
+
+			$flat_status = $this->EntryFormM->check_flat_occupied($property_id, $i);
+			if(!empty($flat_status)){
+				$data['tenant_name'][$i] = $flat_status[0]['tenant_name'];
+			} else {
+				$data['tenant_name'][$i] ="";
+			}
+
+		}
+		//***************************** Property wise Entry Form ********************************** */
+
+		// $data['flat_entry'] = $this->EntryFormM->check_flat_entry($flat_no, $property_id);
+
+		
+
+		// $month = $data['month'];
+		// // $previous_month =  date('Y-m', strtotime('-1 month'));
+		// $previous_month = date('Y-m', strtotime($month . '-01 -1 month'));
+		// $previous_rent = $this->EntryFormM->get_previous_rent($property_id,$flat_no,$previous_month);
+		// if(!empty($previous_rent)){
+		// 	$data['previous_rent']=$previous_rent[0]['rent'];
+		// }else{
+		// 	$data['previous_rent']="";
+		// }
+
+		// $data['previous_reading'] = $this->EntryFormM->previousReading($property_id,$flat_no,$previous_month);
+
+		//*************************************************************************************************** */
 
 		// echo "<pre>";
 		// print_r($data['flats']);
 		// die();
-
+		if($entry_type == 1){
+		$this->load->view('EntryForm/property_wise_entry', $data);	
+		}else{
 		$this->load->view('EntryForm/select_flat', $data);
+		}
+
+		
 	}
 
 	public function entry_form($flat_no,$property_id,$property_name,$no_of_flats,$active_status,$month,$rate_per_unit,$rate_per_person,$waste){
