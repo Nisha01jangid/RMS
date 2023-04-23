@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 class Home extends CI_Controller {
 
@@ -8,8 +8,11 @@ class Home extends CI_Controller {
 		$this->load->library('session');
         $this->load->model('HomeM');
         $this->load->model('InvoiceM');
+		if(!isset($_SESSION['user'])){
+			redirect(base_url());
+		}
     }	
-	
+
 	public function index()
 	{
 		$data['property'] = $this->HomeM->getAllHouses();
