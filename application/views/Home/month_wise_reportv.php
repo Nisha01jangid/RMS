@@ -1,7 +1,5 @@
 <?php
-// echo "<pre>";
-// print_r($tenant_entry_form_details);
-// die();  
+if (!defined('BASEPATH')) exit('No direct script access allowed');
 ?>
 <!DOCTYPE html>
 <html>
