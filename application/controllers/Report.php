@@ -7,6 +7,9 @@ function __construct(){
 	parent::__construct();
 	$this->load->library('session');
 	$this->load->model('ReportM');
+	if(!isset($_SESSION['user'])){
+		redirect(base_url());
+	}
 }
 
 public function reportv(){
