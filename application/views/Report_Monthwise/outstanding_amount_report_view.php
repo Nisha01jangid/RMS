@@ -201,6 +201,7 @@ for (i = 0; i < dropdown.length; i++) {
                     <div style="font-style:italic; font-size: 23px; color:red;"><b>Oustanding Amount Report</b> 
                     </div>
                     <hr>
+                    <div>&emsp;&emsp;&emsp;<b> Property Id: <?php echo $property_id ?></b></div>
                     <table class="table table-striped table-hover table-bordered" style="width:90%" align="center">
                         <thead class="thead-dark">
                             <tr>
