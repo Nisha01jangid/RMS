@@ -33,10 +33,6 @@ class EntryForm extends CI_Controller{
 		$data['rate_per_person'] = $_GET['rate_per_person'];
 		$data['waste'] = $_GET['waste'];
 		$entry_type = $_GET['entry_type'];
-		
-		// echo "<pre>";
-		// print_r($data['property_id']);
-		// die();
 
 		$data['flat'] = $this->EntryFormM->get_flats($property_id);
 		$data['flats'] = array();
@@ -64,26 +60,38 @@ class EntryForm extends CI_Controller{
 		}
 		//***************************** Property wise Entry Form ********************************** */
 
-		// $data['flat_entry'] = $this->EntryFormM->check_flat_entry($flat_no, $property_id);
+		// echo "<pre>";
+		// print_r($data['flats']);
+		// die();
+		$data['previous_rent']  = array();
+		$data['previous_reading'] = array();
+		for($i=1; $i<=sizeof($data['flats']); $i++){
+
+		if($data['flats'][$i] == 1){
+// echo "helloooooooo";
+		$data['flat_entry'] = $this->EntryFormM->check_flat_entry($i, $property_id);
 
 		
 
-		// $month = $data['month'];
-		// // $previous_month =  date('Y-m', strtotime('-1 month'));
-		// $previous_month = date('Y-m', strtotime($month . '-01 -1 month'));
-		// $previous_rent = $this->EntryFormM->get_previous_rent($property_id,$flat_no,$previous_month);
-		// if(!empty($previous_rent)){
-		// 	$data['previous_rent']=$previous_rent[0]['rent'];
-		// }else{
-		// 	$data['previous_rent']="";
-		// }
+		$month = $data['month'];
+		// $previous_month =  date('Y-m', strtotime('-1 month'));
+		$previous_month = date('Y-m', strtotime($month . '-01 -1 month'));
+		$previous_rent = $this->EntryFormM->get_previous_rent($property_id,$i,$previous_month);
+		if(!empty($previous_rent)){
+			$data['previous_rent'][$i]=$previous_rent[0]['rent'];
+		}else{
+			$data['previous_rent'][$i]="";
+		}
 
-		// $data['previous_reading'] = $this->EntryFormM->previousReading($property_id,$flat_no,$previous_month);
+		$data['previous_reading'][$i] = $this->EntryFormM->previousReading($property_id,$i,$previous_month);
+		}
+		
 
+	}
 		//*************************************************************************************************** */
 
 		// echo "<pre>";
-		// print_r($data['flats']);
+		// print_r($data['previous_rent']);
 		// die();
 		if($entry_type == 1){
 		$this->load->view('EntryForm/property_wise_entry', $data);	
@@ -159,18 +167,6 @@ class EntryForm extends CI_Controller{
 		$rate_per_person = $_POST['rate_per_person'];
 		$waste= $_POST['waste'];
 
-
-
-	
-		// echo "<br>";
-		// print_r($property_name);
-		// echo "<br>";
-		// print_r($month);
-		// echo "<br>";
-		// print_r($rate_per_unit);
-		// echo "<br>";
-		// print_r($no_of_flats);
-		// die();
 		$check = $this->EntryFormM->get_entry_form($property_id,$flat_no,$month);
 
 		if(!empty($check)){
@@ -189,6 +185,13 @@ class EntryForm extends CI_Controller{
 
 		redirect(base_url("EntryForm/flats?month=".$month."&rate_per_unit=".$rate_per_unit."&rate_per_person=".$rate_per_person."&property_id=".$property_id."&waste=".$waste));
 
+	}
+
+	public function insert_property_wise_entry(){
+
+		echo "<pre>";
+		print_r($_GET);
+		die();
 	}
 	
 }

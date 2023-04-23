@@ -1,8 +1,8 @@
 <?php
 //  echo "<pre>";
-// print_r($property_id);
+// print_r($previous_rent);
 // echo "<br>";
-// print_r($month);
+// print_r($previous_reading);
 // echo "<br>";
 // print_r($rate_per_unit);
 // echo "<br>";
@@ -218,6 +218,7 @@ for (i = 0; i < dropdown.length; i++) {
 							</div>
                             <hr>
 						<br>
+            <form action="<?php echo base_url('EntryForm/insert_property_wise_entry');?>" method="get">
 						<div class="row">
 							<table class="table table-striped table-hover table-bordered">
 								<thead>
@@ -243,27 +244,40 @@ for (i = 0; i < dropdown.length; i++) {
                                 if($flats[$i] == 1){?>
                                 <tr>
                                     <td style="text-align: center;"><?php echo $i; ?></td>
-                                    <td style="text-align: center;"><?php echo $i; ?></td>
+                                    <td style="text-align: center;"><?php echo "Flat ".$i; ?></td>
                                     <td><?php echo $tenant_name[$i]; ?></td>
-                                    <td style="text-align: center;">
-                                    <input type="number" class="form-control" id="tenant_rent" name="tenant_rent"   value="<?php echo $previous_rent; ?>">
+                                  <!-- *********************************************************************** -->
+
+                                  <!-- <input type="hidden" name="flat_no" value="<?php echo $i; ?>">
+                                    <input type="hidden" name="property_id" value="<?php echo $property_id; ?>">
+                                    <input type="hidden" name="month" value="<?php echo $month; ?>">
+                                    <input type="hidden" name="rate_per_unit" value="<?php echo $rate_per_unit; ?>">
+                                    <input type="hidden" name="rate_per_person" value="<?php echo $rate_per_person; ?>">
+                                   <input type="hidden" name="waste" value="<?php echo $waste; ?>"> -->
+                                  <!-- ************************************************************************** -->
+
+                                    <td>
+                                    <input style="text-align: center;" type="number" class="form-control" id="tenant_rent" name="tenant_rent[]"   value="<?php echo $previous_rent[$i]; ?>">
                                     </td>
-                                    <td style="text-align: center;">
-                                    <input type="number" class="form-control" id="previous_meter_reading" name="previous_meter_reading"  value="<?php echo $previous_reading; ?>">
+                                    <td>
+                                    <input style="text-align: center;" type="number" class="form-control" id="previous_meter_reading" name="previous_meter_reading[]"  value="<?php echo $previous_reading[$i]; ?>">
                                     </td>
-                                    <td style="text-align: center;">
-                                    <input type="number" class="form-control" id="current_meter_reading" name="current_meter_reading">
+                                    <td>
+                                    <input style="text-align: center;" type="number" class="form-control" id="current_meter_reading" name="current_meter_reading[]">
                                     </td>
-                                    <td style="text-align: center;">
-                                    <input type="number" class="form-control" id="miscellaneous" name="miscellaneous">
+                                    <td>
+                                    <input style="text-align: center;" type="number" class="form-control" id="miscellaneous" name="miscellaneous[]">
                                     </td>
-                                    <td style="text-align: center;"><input type="date" class="form-control" id="duedate" name="duedate">
+                                    <td style="text-align: center;"><input type="date" class="form-control" id="duedate" name="duedate[]">
                                 </td>
                                 </tr>
                                     <?php }} ?>	
 								</tbody>
 							</table>
 						</div>
+            
+            <button type="submit" class="btn btn-primary" value="Submit">Submit</button>
+            </form>
 					
 				</div>
 			</div>
