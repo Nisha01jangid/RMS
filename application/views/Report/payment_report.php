@@ -49,6 +49,8 @@
 									<tr>
 										<th style="text-align: center;">S.No.</th>
 										<th style="text-align: center;">Payment Date</th>
+										<th style="text-align: center;">Flat Name</th>
+										<th style="text-align: center;">Received From</th>
 										<th style="text-align: center;">Reference Id / Payment Mode</th>
 										<th style="text-align: center;">Amount </th>
 									</tr>
@@ -59,7 +61,10 @@
 										  foreach ($payments as $row) { ?>
 										<tr>
 										<td style="text-align: center;"><?php echo $i; ?></td>
-										<td style="text-align: center;"><?php echo date('M d,Y',strtotime($row['payment_date'])); ?></td>
+										<td style="text-align: center;"><?php echo date('d-M-Y',strtotime($row['payment_date'])); ?></td>
+										<td style="text-align: center;"><?php echo $row['flat_name']; ?></td>
+										<td style="text-align: center;"><?php echo $row['tenant_name']; ?></td>
+
 										<?php if(!empty($row['reference_id'])){ ?>
 											<td style="text-align: center;"><?php echo $row['reference_id']; ?></td>
 										<?php } else {?>
@@ -69,15 +74,15 @@
 										<td style="text-align: center;"><?php echo $row['amount'] ?></td>
 									 <?php $i++; }?>
 									<tr>
-									<td style="text-align: center; color:blue; font-weight:bold; font-size:20px;" colspan="3">Total </td>
+									<td style="text-align: center; color:blue; font-weight:bold; font-size:20px;" colspan="5">Total </td>
 									<td style="text-align: center; font-weight:bold;"><?php echo $total[0]['total']; ?></td>
 									</tr>
 									<tr>
-									<td style="text-align: center; color:blue; font-weight:bold; font-size:20px;" colspan="3">Receiver Expenditure </td>
+									<td style="text-align: center; color:blue; font-weight:bold; font-size:20px;" colspan="5">Receiver Expenditure </td>
 									<td style="text-align: center; font-weight:bold;"><?php echo $receiver_expenditure[0]['amount']; ?></td>
 									</tr>	
 									<tr>
-									<td style="text-align: center; color:red; font-weight:bold; font-size:20px;" colspan="3">Grand Total (Amount Received - Expenditure)</td>
+									<td style="text-align: center; color:red; font-weight:bold; font-size:20px;" colspan="5">Grand Total (Amount Received - Expenditure)</td>
 									<td style="text-align: center; font-weight:bold;"><?php echo $total[0]['total'] - $receiver_expenditure[0]['amount']; ?></td>
 									</tr>	
 								</tbody>

@@ -8,6 +8,9 @@
 // echo "<br>";
 // print_r($rate_per_person);
 // die();
+//  echo "<pre>";
+// print_r($flats);
+// die();
 ?>
 <!doctype html>
 <html lang="en">
@@ -218,18 +221,28 @@ for (i = 0; i < dropdown.length; i++) {
                     <hr>
                     <div class="row" style="height:65vh; overflow-x: hidden; overflow-y: auto;">
                         <?php for($i =1; $i<=sizeof($flats); $i++){
-                          if($flats[$i] == 1){
+                          if($flats[$i]['status'] == 1){
                         ?>
 
                           <div class="col-md-3 mb-3">
                             <div class="card border-danger">
-                                <div class="card-body bg-danger" style="padding:1px;">
+                                <!-- <div class="card-body bg-danger" style="padding:1px;">
                                     <div class="card-body text-white" style="background-color: red ;">
                                         <span class="float-right summary_icon"> <i class="fa fa-home" style="color:black;"></i></span>
                                         <h4 style="color:black;"><b><i><?php echo "Flat No : ".$i; ?></i></b></h4>
                                         <h6 style="color:black;"><b><i>Occupied </i></b></h6>
                                     </div>
-                                </div>
+                                </div> -->
+                                 <div class="card-body bg-danger" style="padding:1px;">
+                                <div class="card-body text-white" style="background-color: red ;">
+                                        <span class="float-right summary_icon"> <i class="fa fa-home" style="color:black;"></i></span>
+                                        <h5 style="color:black;"><b><i><?php echo "Flat No : ".$i."(".$flats[$i]['flat_name']. ")"; ?></i></b></h5>
+                                         <!-- <h6 style="color:black;"><b><i>Occupied </i></b></h6>  -->
+                                        <h6 style="color:black;"><b><i><?php echo "Name : ".$flats[$i]['tenant_name']; ?> </i></b></h6>
+                                        <h6 style="color:black;"><b><i><?php echo "No. of members : ".$flats[$i]['members']; ?> </i></b></h6>
+                                        <h6 style="color:black;"><b><i><?php echo "Joining: ".$flats[$i]['joining_date']; ?> </i></b></h6>
+                                    </div>
+                                  </div> 
                                 <div class="card-footer">
                                     <div class="row">
                                         <div class="col-lg-12">

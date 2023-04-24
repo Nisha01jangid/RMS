@@ -147,6 +147,17 @@ class InvoiceM extends CI_Model {
     $result = $this->db->query($query);
     return $result->result_array();
   }
+
+  public function get_flat_name($property_id, $flat_no)
+  {
+    $query = "SELECT flat_name FROM tenants where property_id = $property_id and flat_no = $flat_no AND status =1 ";
+
+    // print_r($query);
+    // die();
+
+    $result = $this->db->query($query);
+    return $result->result_array();
+  }
 }
 
 ?>
