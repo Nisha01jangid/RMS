@@ -124,7 +124,7 @@
   <div class="row">
     <div class="form-group col">
     <label for="waste">Waste</label>
-    <input type="text" class="form-control" id="waste" name="waste"  placeholder="Enter Waste Amount" value="<?php if(!empty($details[0]['waste'])){echo $details[0]['waste'];}else{echo "";} ?>">
+    <input type="text" class="form-control" id="waste" name="waste"  placeholder="Enter Waste Amount" value="<?php if(!empty($details[0]['waste'])){echo $details[0]['waste'];}else{echo "0";} ?>">
     </div>
   </div>
 
@@ -134,8 +134,8 @@
     <label for="Entry_type">Entry Type (Property Wise / Flatwise)</label>
     <select class="form-control" name="entry_type">
         <option value="">Select Entry Type</option>
-        <option value="1">Property Wise</option>
-        <option value="2">Flat Wise</option>
+        <option value="1">Combined (all flats)</option>
+        <option value="2">Individual</option>
     </select>
     </div>
   </div>

@@ -86,10 +86,10 @@
 
                     <br>
                     <div class="intro">
-                    <h1 style="text-align:center;"><b>Flatwise Report</b></h1>
+                    <h2 style="text-align:center;"><b><?php echo $property_name[0]['property_name']; ?></b></h2>
+                    <h1 style="text-align:center;">Flatwise Report</h1>
                     <?php 
                                 foreach ($report_flatwise_details as $key => $value) { ?>
-                    <h3 style="text-align:center;">Property Id : <?php echo $value['property_id']?></h3>
                         <?php break;}?>
                         <h4 style="text-align:center;">From: <?php echo $from_date?> To: <?php echo $to_date?></h4>
                     <table class="table table-striped table-hover table-bordered" style="width:90%" align="center">

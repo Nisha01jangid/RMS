@@ -266,7 +266,7 @@ for (i = 0; i < dropdown.length; i++) {
                                     <input style="text-align: center;" type="number" class="form-control" id="current_meter_reading" name="current_meter_reading[]">
                                     </td>
                                     <td>
-                                    <input style="text-align: center;" type="number" class="form-control" id="miscellaneous" name="miscellaneous[]">
+                                    <input style="text-align: center;" type="number" class="form-control" id="miscellaneous" name="miscellaneous[]" value='0'>
                                     </td>
                                     <td style="text-align: center;"><input type="date" class="form-control" id="duedate" name="duedate[]">
                                 </td>

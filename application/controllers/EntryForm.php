@@ -131,12 +131,16 @@ class EntryForm extends CI_Controller{
 
 		$data['flat_entry'] = $this->EntryFormM->check_flat_entry($flat_no, $property_id);
 
-		
+		// print_r($data['flat_entry']);
+		// die();
 
 		$month = $data['month'];
 		// $previous_month =  date('Y-m', strtotime('-1 month'));
 		$previous_month = date('Y-m', strtotime($month . '-01 -1 month'));
+		// echo $previous_month;
 		$previous_rent = $this->EntryFormM->get_previous_rent($property_id,$flat_no,$previous_month);
+		// print_r($previous_rent);
+		// die();
 		if(!empty($previous_rent)){
 			$data['previous_rent']=$previous_rent[0]['rent'];
 		}else{

@@ -86,10 +86,10 @@
 
                     <br>
                     <div class="intro">
-                      <h1 style="text-align:center;"><b>Monthwise Report</b></h1>
+                    <h2 style="text-align:center;"><b><?php echo $property_name[0]['property_name']; ?></b></h2>
+                      <h1 style="text-align:center;">Monthwise Report</h1>
                         <h2 style="text-align:center;">Month: <?php echo $month; ?></h2>
-                        <h2 style="text-align:center;">Property Id: <?php echo $property_id; ?></h2>
-                        <br>
+                        
                     <table class="table table-striped table-hover table-bordered" style="width:90%" align="center">
                         <thead class="thead-dark">
                             <tr>

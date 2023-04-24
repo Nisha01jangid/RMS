@@ -78,7 +78,7 @@ public function balance_report(){
     	$data['month'] = $_POST['month'];
     	$data['property_id'] =$_POST['property_id'];
     	$property_id = $data['property_id'];
-
+		$data['property_name'] = $this->ReportM->get_property_name($data['property_id']);
     	$data['report_monthwise_details'] = $this->ReportM->get_report_details_monthwise($data['month'],$data['property_id']);
     	
 		for($i=0; $i<sizeof($data['report_monthwise_details']); $i++){
@@ -181,6 +181,7 @@ public function balance_report(){
 		$data['from_date'] = $_POST['from_date'];
 		$data['to_date'] = $_POST['to_date'];
 		$data['property_id'] =$_POST['property_id'];
+		$data['property_name'] = $this->ReportM->get_property_name($data['property_id']);
 		// echo $data['flats'];
 		// die();
     	$data['report_flatwise_details'] = $this->ReportM->get_flatwise_payments($data['to_date'],$data['from_date'],$data['property_id'],$flats);

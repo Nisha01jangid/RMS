@@ -271,7 +271,7 @@ for (i = 0; i < dropdown.length; i++) {
     
     <div class="form-group col">
     <label for="miscellaneous">Miscellaneous</label>
-    <input type="number" class="form-control" id="miscellaneous" name="miscellaneous" placeholder="Enter Miscellaneous">
+    <input type="number" class="form-control" id="miscellaneous" name="miscellaneous" placeholder="Enter Miscellaneous" value='0'>
      </div>
 
     <div class="form-group col">
