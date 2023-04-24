@@ -248,12 +248,12 @@ for (i = 0; i < dropdown.length; i++) {
                                     <td><?php echo $tenant_name[$i]; ?></td>
                                   <!-- *********************************************************************** -->
 
-                                  <!-- <input type="hidden" name="flat_no" value="<?php echo $i; ?>">
-                                    <input type="hidden" name="property_id" value="<?php echo $property_id; ?>">
-                                    <input type="hidden" name="month" value="<?php echo $month; ?>">
-                                    <input type="hidden" name="rate_per_unit" value="<?php echo $rate_per_unit; ?>">
-                                    <input type="hidden" name="rate_per_person" value="<?php echo $rate_per_person; ?>">
-                                   <input type="hidden" name="waste" value="<?php echo $waste; ?>"> -->
+                                  <input type="hidden" name="flat_no[]" value="<?php echo $i; ?>">
+                                    <input type="hidden" name="property_id[]" value="<?php echo $property_id; ?>">
+                                    <input type="hidden" name="month[]" value="<?php echo $month; ?>">
+                                    <input type="hidden" name="rate_per_unit[]" value="<?php echo $rate_per_unit; ?>">
+                                    <input type="hidden" name="rate_per_person[]" value="<?php echo $rate_per_person; ?>">
+                                   <input type="hidden" name="waste[]" value="<?php echo $waste; ?>">
                                   <!-- ************************************************************************** -->
 
                                     <td>
@@ -295,4 +295,5 @@ for (i = 0; i < dropdown.length; i++) {
       <script src="<?php echo base_url('js/sidebars.js') ?>"></script>
   </body>
 </html>
+ 
  
