@@ -89,6 +89,26 @@ public function get_entry_form_for_property($property_id, $month){
     $result = $this->db->query($query);
     return $result->result_array();
   }
+	
+	 public function get_property_name($property_id){
+
+    $query = "SELECT property_name FROM property WHERE property_id =$property_id";
+    // print_r($query);
+    // die();
+    $result = $this->db->query($query);
+    return $result->result_array();
+
+  }
+
+  public function get_member($property_id, $flat_no){
+
+    $query = "SELECT members, status FROM tenants WHERE property_id =$property_id and flat_no = $flat_no";
+    // print_r($query);
+    // die();
+    $result = $this->db->query($query);
+    return $result->result_array(); 
+  }
+     
                        
      
 }
