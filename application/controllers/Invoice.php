@@ -142,6 +142,12 @@ class Invoice extends CI_Controller {
                
                 $entry_form_details = $this->InvoiceM->get_report_details_monthwise($property_id,$f['flat_no'],$month);
                 $data['flats'][$i]=$entry_form_details[0];
+                $flat_name = $this->InvoiceM->get_flat_name($property_id, $f['flat_no']);
+                if(!empty($flat_name)){
+                    $data['flats'][$i]['flat_name'] = $flat_name[0]['flat_name'];
+                }else{
+                    $data['flats'][$i]['flat_name'] = "";
+                }
                 $outstanding_details = $this->InvoiceM->get_outstanding_details($property_id,$f['flat_no'],$month);
                 $data['flats'][$i]['tenant_name'] = $check[0]['tenant_name'];
                 $data['flats'][$i]['invoice'] = $check[0]['invoice'];
@@ -185,6 +191,8 @@ class Invoice extends CI_Controller {
         
         $data['property_id']=$property_id;
         $data['month']=$month;
+
+        
         // echo "<pre>";
         // print_r($data);
         // die();

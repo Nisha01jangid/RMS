@@ -61,7 +61,7 @@
             <h5 style="text-align:center;margin-top:5px;"><u>हिसाब पर्ची</u></h5>
             <p style="margin-bottom:0px;"><span>क्र.: <b><?php if(isset($f['invoice'])){echo $f['invoice'];}else{ ?>...............<?php } ?></b></span><span style="margin-left:150px">दिनांक: <b><?php if(isset($f['timestamp'])) echo date('d-m-Y',strtotime($f['timestamp'])) ?></b></span></p>
             <p style="margin-bottom:0px;">नाम श्री/श्रीमती: <b><?php echo $f['tenant_name']." Ji"; ?></b> </p>
-            <p style="margin-bottom:0px;"><span>किराया माह: <b><?php echo date("F Y", strtotime($month)); ?></b></span><span style="margin-left:120px">कमरा नं: <b><?php echo $f['flat_no']; ?></b></span></p>
+            <p style="margin-bottom:0px;"><span>किराया माह: <b><?php echo date("F Y", strtotime($month)); ?></b></span><span style="margin-left:120px">कमरा नं: <b><?php echo $f['flat_no']." (".$f['flat_name'].")"; ?></b></span></p>
             <hr style="height: 5px; background: black;">
             <p style="margin-bottom:0px;">1. वर्तमान मी. रीडिंग - पिछला मी. रीडिंग:&nbsp;<b><?php echo $f ['current_meter_reading']?>-<?php echo $f ['previous_meter_reading']?>=</b>&nbsp;<b><?php echo $f['electricity_units']; ?>  यूनिट</b>
             <hr style="margin: 3px 0px;">

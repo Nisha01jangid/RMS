@@ -746,7 +746,6 @@ public function insert_payment(){
 
     public function view_flat_invoice($property_id, $flat_no, $month){
         
-        $flat_name = $this->InvoiceM->get_flat_name($property_id, $flat_no);
         
         
         $data = $this->InvoiceM->check_invoice($property_id, $flat_no, $month);
@@ -776,19 +775,24 @@ public function insert_payment(){
         // echo "<pre>";
         // print_r($flat_name);
         // die();
-
+		
         if(!empty($data['paid_amount'])){
             $data['data']['amount_paid']=$data['paid_amount'][0]['amount'];
             $data['data']['payment_date']=$data['paid_amount'][0]['payment_date'];
-            $data['data']['flat_name'] = $flat_name[0]['flat_name'];
+            
         }else{
             $data['data']['amount_paid'] = 0;
             $data['data']['payment_date'] = "";
-            $data['data']['flat_name'] = "";
         }
         
         $data['property_id']=$property_id;
         $data['month']=$month;
+		$flat_name = $this->InvoiceM->get_flat_name($property_id, $flat_no);
+        if(!empty($flat_name)){
+			$data['flat_name'] = $flat_name[0]['flat_name'];
+		}else{
+			$data['flat_name'] = "";
+		}
         // echo "<pre>";
         // print_r($data);
         // die();
