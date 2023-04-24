@@ -192,11 +192,46 @@ class EntryForm extends CI_Controller{
 
 	public function insert_property_wise_entry(){
 
-		echo "<pre>";
-		print_r($_GET);
-		die();
-	}
+		$property_name1 = $this->EntryFormM->get_property_name($_GET['property_id'][0]);
+		$property_name = $property_name1[0]['property_name'];
+		$property = $_GET['property_id'][0];
+		
+		for($i=0; $i<sizeof($_GET['property_id']); $i++){
+		$tenant_rent= $_GET['tenant_rent'][$i];
+		$current_meter_reading= $_GET['current_meter_reading'][$i];
+		$previous_meter_reading = $_GET['previous_meter_reading'][$i];
+		$miscellaneous= $_GET['miscellaneous'][$i];
+		$duedate= $_GET['duedate'][$i];
+		$flat_no = $_GET['flat_no'][$i];
+		$property_id = $_GET['property_id'][$i];
+		$month = $_GET['month'][$i];
+		$rate_per_unit = $_GET['rate_per_unit'][$i];
+		$rate_per_person = $_GET['rate_per_person'][$i];
+		$waste= $_GET['waste'][$i];
+
+		$member = $this->EntryFormM->get_member($_GET['property_id'][$i], $_GET['flat_no'][$i]);
+		$no_of_members = $member[0]['members'];
+		$active_status = $member[0]['status'];
+
+		$check = $this->EntryFormM->get_entry_form($property_id,$flat_no,$month);
+
+		if(!empty($check)){
+			$this->EntryFormM->update_entry_form($month,$property_id, $property_name, $flat_no, $no_of_members, $rate_per_unit,$rate_per_person, $tenant_rent, $previous_meter_reading, $current_meter_reading, $waste, $miscellaneous, $duedate, $active_status);
+		}else{
+			$this->EntryFormM->insert_entry_form($month,$property_id, $property_name, $flat_no, $no_of_members, $rate_per_unit,$rate_per_person, $tenant_rent, $previous_meter_reading, $current_meter_reading, $waste, $miscellaneous, $duedate, $active_status);
+		}
 	
+
+		}
+
+		$this->session->set_flashdata('entry_form_inserted', 'Entry Form Inserted Successfully :)');
+
+		redirect(base_url("EntryForm"));
+		// echo "<pre>";
+		// print_r($member);
+		// die();
+
+	}
 }
 
 ?>
