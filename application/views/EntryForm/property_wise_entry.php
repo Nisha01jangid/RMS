@@ -219,8 +219,8 @@ for (i = 0; i < dropdown.length; i++) {
                             <hr>
 						<br>
             <form action="<?php echo base_url('EntryForm/insert_property_wise_entry');?>" method="get">
-						<div class="row">
-							<table class="table table-striped table-hover table-bordered">
+						<div class="row" style="height:60vh;overflow-x: hidden; overflow-y: auto;">
+							<table class="table table-striped table-hover table-bordered" >
 								<thead>
 									<!-- <tr>
 										<th style="text-align: center;" colspan="3">Receiver Name</th>
@@ -228,7 +228,7 @@ for (i = 0; i < dropdown.length; i++) {
                                     </tr> -->
 									<tr>
 										<th style="text-align: center;">S.No.</th>
-										<th style="text-align: center;">Flat No.</th>
+										<th style="text-align: center;">Flat Name.</th>
 										<th style="text-align: center;">Tenant Name</th>
 										<th style="text-align: center;">Rent</th>
                                         <th style="text-align: center;">previous Meter Reading</th>
@@ -238,13 +238,13 @@ for (i = 0; i < dropdown.length; i++) {
 									</tr>
 								</thead>
 								<tbody>
-								<?php
+								<?php 
                                 $i = 1;
                                 for($i = 1; $i<=sizeof($flats); $i++){
-                                if($flats[$i] == 1){?>
+                                if($flats[$i]['status'] == 1){?>
                                 <tr>
                                     <td style="text-align: center;"><?php echo $i; ?></td>
-                                    <td style="text-align: center;"><?php echo "Flat ".$i; ?></td>
+                                    <td style="text-align: center;"><?php echo $flats[$i]['flat_name']; ?></td>
                                     <td><?php echo $tenant_name[$i]; ?></td>
                                   <!-- *********************************************************************** -->
 

@@ -98,13 +98,7 @@ class ReportM extends CI_Model {
     return $query->result_array();
 
   }    
-       function get_property_name($property_id){
-
-    $sql="SELECT property_name from `property` where `property_id`= $property_id";    
-    $query = $this->db->query($sql);
-    return $query->result_array();
-
-  }    
+     
   
     public function get_report_details_monthwise($month,$property_id){
 

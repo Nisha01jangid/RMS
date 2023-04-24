@@ -122,7 +122,7 @@ class EntryForm extends CI_Controller{
 		//*************************************************************************************************** */
 
 		// echo "<pre>";
-		// print_r($data['previous_rent']);
+		// print_r($data);
 		// die();
 		if($entry_type == 1){
 		$this->load->view('EntryForm/property_wise_entry', $data);	
