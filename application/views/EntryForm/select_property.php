@@ -193,7 +193,14 @@ for (i = 0; i < dropdown.length; i++) {
 }</script>
   <div class="homediv">
 
-     
+  <?php
+    if($msg = $this->session->flashdata('entry_form_inserted')) {?>
+    <div class="alert alert-success" style="font-style: italic; text-align:center;">
+    <strong><?php echo $msg; ?></strong>
+    </div>
+    <br>
+  <?php } ?>  
+       
     
   <div class="containe-fluid">
 	<div class="row mt-3 ml-3 mr-3">
