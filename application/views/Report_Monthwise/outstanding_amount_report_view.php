@@ -198,14 +198,14 @@ for (i = 0; i < dropdown.length; i++) {
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <div style="font-style:italic; font-size: 23px; color:red;"><b>Oustanding Amount Report</b> 
+                    <div style="font-style:italic; font-size: 23px; color:red;"><b>Oustanding Amount Report (<?php echo $property_name[0]['property_name']; ?>)</b> 
                     </div>
                     <hr>
                     <table class="table table-striped table-hover table-bordered" style="width:90%" align="center">
                         <thead class="thead-dark">
                             <tr>
                             <th scope="col" style="text-align:center;">S.No.</th>
-                            <th scope="col" style="text-align:center;">Flat</th>
+                            <th scope="col" style="text-align:center;">Flat No</th>
                             <th scope="col" style="text-align:center;">Tenant Name</th>
                             <th scope="col" style="text-align:center;">Month</th>
                             <th scope="col" style="text-align:center;">Total Amount</th>
@@ -219,8 +219,8 @@ for (i = 0; i < dropdown.length; i++) {
                                 foreach ($outstanding_report_details as $key => $value) { ?>
                             <tr>
                               <td style="text-align: center;"><?php echo $i ?></td>
-                              <td style="text-align: center;"><?php echo $value['flat_no'] ?></td>
-                              <td style="text-align: center;"><?php echo $value['tenant_name']."(".$value['contact'].")"?></td>
+                              <td style="text-align: center;"><?php echo $value['flat_no'] ." (".$value['flat_name'].")" ?></td>
+                              <td style="text-align: center;"><?php echo $value['tenant_name']." (".$value['contact'].")"?></td>
                               <td style="text-align: center;"><?php echo$value['month'] ?></td>
                                <td style="text-align: center;"><?php echo $value['total'] ?></td>
                               <td style="text-align: center;"><?php echo $value['amount_received'] ?></td>

@@ -225,9 +225,11 @@ for (i = 0; i < dropdown.length; i++) {
                                 <div class="card-body bg-danger" style="padding:1px;">
                                     <div class="card-body text-white" style="background-color: red ;">
                                         <span class="float-right summary_icon"> <i class="fa fa-home" style="color:black;"></i></span>
-                                        <h4 style="color:black;"><b><i><?php echo "Flat No : ".$i; ?></i></b></h4>
+                                        <h5 style="color:black;"><b><i><?php echo "Flat No : ".$i."(".$flats[$i]['flat_name']. ")"; ?></i></b></h5>
                                         <!-- <h6 style="color:black;"><b><i>Occupied </i></b></h6> -->
-                                        <h6 style="color:black;"><b><i><?php echo "Tenant Name : ".$flats[$i]['tenant_name']; ?> </i></b></h6>
+                                        <h6 style="color:black;"><b><i><?php echo "Name : ".$flats[$i]['tenant_name']; ?> </i></b></h6>
+                                        <h6 style="color:black;"><b><i><?php echo "No. of members : ".$flats[$i]['members']; ?> </i></b></h6>
+                                        <h6 style="color:black;"><b><i><?php echo "Joining: ".$flats[$i]['joining_date']; ?> </i></b></h6>
                                     </div>
                                 </div>
                                 <div class="card-footer">

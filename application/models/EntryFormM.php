@@ -24,7 +24,7 @@ class EntryFormM extends CI_Model {
   }
   public function check_flat_occupied($property_id, $flat_no){
 
-    $query = "SELECT property_id , flat_no, tenant_name FROM tenants where property_id = $property_id and flat_no = $flat_no and status = 1";
+    $query = "SELECT property_id , flat_no, tenant_name,flat_name, members, joining_date FROM tenants where property_id = $property_id and flat_no = $flat_no and status = 1";
 
     $result = $this->db->query($query);
     return $result->result_array();

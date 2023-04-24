@@ -218,11 +218,12 @@ for (i = 0; i < dropdown.length; i++) {
  
                 <br>
                 <div class="form-group col">
-                 <label for="exampleInputEmail1">Payment User:</label>
+                 <label for="exampleInputEmail1">Paid By:</label>
                  <select class="form-control" name="pay_user">
                  <option value="">Select user</option>
                 <option value="1">Mr. Ram Kripal Shah</option>
                 <option value="2">Mr. Manoj Kumar Shah</option>
+                <option value="6">Mr. Vivek Kumar Shah</option>
                 <option value="3">Dr. Indra Kumar Shah</option>
                 <option value="4">Mr. MG</option>
                 <option value="5">Mr. AG</option>
@@ -230,9 +231,10 @@ for (i = 0; i < dropdown.length; i++) {
                 </div>
                 <br>
                 <div class="form-group col">
-                 <label for="exampleInputEmail1">Expenditure Head:</label>
+                 <label for="exampleInputEmail1">Paid For:</label>
                  <select class="form-control" name="head">
                  <option value="">Select Payment Head</option>
+                 <option value="4">Electricity</option>
                 <option value="1">Waste</option>
                 <option value="2">Maintenance</option>
                 <option value="3">Other</option>

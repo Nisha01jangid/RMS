@@ -44,13 +44,41 @@ class EntryForm extends CI_Controller{
 		for($i=1; $i<=$data['flat'][0]['flats']; $i++){
 
 			$flat_status = $this->EntryFormM->check_flat_occupied($property_id, $i);
+			
 			if(!empty($flat_status)){
-				$data['flats'][$i] = 1;
+				$data['flats'][$i]['status'] = 1;
+				$data['flats'][$i]['tenant_name'] = $flat_status[0]['tenant_name'];
+				$data['flats'][$i]['flat_name'] = $flat_status[0]['flat_name'];
+				$data['flats'][$i]['members'] = $flat_status[0]['members'];
+				$data['flats'][$i]['joining_date'] = $flat_status[0]['joining_date'];
 			} else {
-				$data['flats'][$i] = 0;
+				$data['flats'][$i]['status'] = 0;
 			}
 
 		}
+
+		// for($i=1; $i<=$data['flat'][0]['flats']; $i++){
+
+		// 	$flat_status = $this->EntryFormM->check_flat_occupied($property_id, $i);
+
+			// echo "<pre>";
+			// print_r($flat_status);
+
+			
+
+		// 	if(!empty($flat_status)){
+		// 		$data['flats'][$i]['status'] = 1;
+		// 		$data['flats'][$i]['tenant_name'] = $flat_status[0]['tenant_name'];
+		// 		$data['flats'][$i]['flat_name'] = $flat_status[0]['flat_name'];
+		// 		$data['flats'][$i]['members'] = $flat_status[0]['members'];
+		// 		$data['flats'][$i]['joining_date'] = $flat_status[0]['joining_date'];
+		// 	} else {
+		// 		$data['flats'][$i]['status'] = 0;
+		// 	}
+
+		// }
+		// die();
+
 		$data['tenant_name'] = array();
 		for($i=1; $i<=$data['flat'][0]['flats']; $i++){
 

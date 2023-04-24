@@ -36,17 +36,33 @@ public function receiver_payment_report(){
 
 		$receiver = "Mr. MG";
 	}
+	else if($receiver == 6){
+
+		$receiver = "Mr. Vivek Kumar Shah";
+	}
 	else {
 
 			$receiver = "Mr. AG";
 	}
 	
 	$data['payments']= $this->ReportM->get_receiver_payments($data['from_date'], $data['to_date'], $receiver);
+
+	for ($i=0; $i < sizeof($data['payments']); $i++) { 
+		// code...
+	$property_id = $data['payments'][$i]['property_id'];
+	$flat_no = $data['payments'][$i]['flat_no'];
+
+	$data['tenant'] = $this->ReportM->get_tenant($property_id, $flat_no);
+	$data['payments'][$i]['tenant_name'] = 	$data['tenant'][0]['tenant_name'];
+	$data['payments'][$i]['flat_name'] = 	$data['tenant'][0]['flat_name'];
+	// echo "<pre>";
+	// print_r($data['tenant']);
+	}
+	// die();
 	$data['total'] = $this->ReportM->get_total_receiver_payments($data['from_date'], $data['to_date'], $receiver);
 	$data['receiver_expenditure'] = $this->ReportM->get_receiver_expenditure($data['from_date'], $data['to_date'], $receiver);
-	// echo "<pre>";
-	// print_r($data['receiver_expenditure']);
-	// die();
+	
+	
 	
 	$this->load->view('Report/payment_report',$data);
 }
@@ -296,7 +312,8 @@ public function balance_report(){
 	public function outstanding_report_view($property_id){
 
 		$data['property_id'] = $property_id;
-		
+		$data['property_name'] = $this->ReportM->get_property_name($data['property_id']);
+        
 		$data['outstanding_report_details'] = $this->ReportM->get_outstanding_report_details($data['property_id']);
 		// echo "<pre>";
 		// print_r($data['outstanding_report_details']);
@@ -307,6 +324,8 @@ public function balance_report(){
 			$property_id = $data['outstanding_report_details'][$i]['property_id'];
 			$flat_no = $data['outstanding_report_details'][$i]['flat_no'];
 			$month = $data['outstanding_report_details'][$i]['month'];
+			$data['flat_name'] = $this->ReportM->get_flat_name($property_id, $flat_no);
+			$data['outstanding_report_details'][$i]['flat_name'] = $data['flat_name'][0]['flat_name'];
 			// $tenant_name = $this->ReportM->get_tenant_name($property_id,$flat_no,$month);
 			// if(!empty($tenant_name)){
 			// 	$data['outstanding_report_details'][$i]['tenant_name'] = $tenant_name[0]['tenant_name'];
@@ -347,6 +366,10 @@ public function balance_report(){
 	
 			$receiver = "Mr. MG";
 		}
+		else if($receiver == 6){
+
+		$receiver = "Mr. Vivek Kumar Shah";
+	}
 		else {
 	
 				$receiver = "Mr. AG";
@@ -356,7 +379,13 @@ public function balance_report(){
 	    } else if($head == 2){
 
 		$head = "Maintenance";
-	    }else{
+	    }
+	    else if($head == 4){
+
+		$head = "Electricity";
+	    }
+
+	    else{
 		$head = "Other";
 	    }
 

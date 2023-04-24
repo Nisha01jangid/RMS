@@ -83,8 +83,12 @@
     <input type="text" class="form-control"  name="name"  placeholder="Enter your name" value="<?php echo $details[0]['tenant_name']; ?>">
      </div>
      <div class="form-group col">
-    <label>Father's Name:</label>
+    <label>Father's / Husband's Name :</label>
     <input type="text" class="form-control" name="father_name"  placeholder="Enter your father name" value="<?php echo $details[0]['father_name']; ?>">
+     </div>
+      <div class="form-group col">
+    <label>Flat Name:</label>
+    <input type="text" class="form-control" name="flat_name"  placeholder="Enter flat name" value="<?php echo $details[0]['flat_name']; ?>">
      </div>
   </div>
   <br>
@@ -278,7 +282,7 @@
                         <br>
                     </div>
                     <div class="form-group col">
-                        <label>Father's Name :</label>
+                        <label>Father's / Husband's Name :</label>
                         <input type="text" class="form-control" name="member_father_name[]" value="<?php echo $f['father_name']; ?>"/>
                         <br>
                     </div>  
