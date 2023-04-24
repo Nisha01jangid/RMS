@@ -83,9 +83,14 @@
     <input type="text" class="form-control"  name="name"  placeholder="Enter your name">
      </div>
      <div class="form-group col">
-    <label>Father's Name:</label>
+    <label>Father's / Husband's Name :</label>
     <input type="text" class="form-control" name="father_name"  placeholder="Enter your father name">
      </div>
+     <div class="form-group col">
+    <label>Flat Name:</label>
+    <input type="text" class="form-control" name="flat_name"  placeholder="Enter the flat name">
+     </div>
+     
   </div>
   <br>
   <div class="row">
@@ -276,7 +281,7 @@
                         <br>
                     </div>
                     <div class="form-group col">
-                        <label>Father's Name :</label>
+                        <label>Father's / Husband's Name :</label>
                         <input type="text" class="form-control" name="member_father_name[]"/>
                         <br>
                     </div>  

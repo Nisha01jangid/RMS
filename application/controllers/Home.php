@@ -56,6 +56,9 @@ class Home extends CI_Controller {
 			if(!empty($flat_status)){
 				$data['flats'][$i]['status'] = 1;
 				$data['flats'][$i]['tenant_name'] = $flat_status[0]['tenant_name'];
+				$data['flats'][$i]['flat_name'] = $flat_status[0]['flat_name'];
+				$data['flats'][$i]['members'] = $flat_status[0]['members'];
+				$data['flats'][$i]['joining_date'] = $flat_status[0]['joining_date'];
 			} else {
 				$data['flats'][$i]['status'] = 0;
 			}
@@ -126,6 +129,7 @@ public function insert_tenant_details(){
 
 	$name = $_POST['name'];
 	$father_name = $_POST['father_name'];
+	$flat_name = $_POST['flat_name'];
 	$dob = $_POST['dob'];
 	$gender = $_POST['gender'];
 	$age = $_POST['age'];
@@ -174,7 +178,7 @@ public function insert_tenant_details(){
 	// echo "<pre>";
 	// print_r($_POST);
 	// die();
-	$tenant_id = $this->HomeM->insert_tenant_details($name, $father_name, $dob,$age,$gender, $email, $rent, $mobile, $Aadhaar, $joining_date, $address, $district, $state, $polic_station, $no_of_members, $no_of_male, $no_of_female, $no_of_children_below_5, $two_wheeler, $four_wheeler, $occupation, $occupation_address, $occupation_contact, $identifier_name1, $identifier_mobile1, $identifier_address1, $identifier_district1, $identifier_state1, $identifier_policestation1, $identifier_email1, $identifier_name2, $identifier_mobile2,$identifier_address2, $identifier_district2, $identifier_state2, $identifier_policestation2, $identifier_email2,$property_id, $flat_no);
+	$tenant_id = $this->HomeM->insert_tenant_details($name, $father_name, $flat_name, $dob,$age,$gender, $email, $rent, $mobile, $Aadhaar, $joining_date, $address, $district, $state, $polic_station, $no_of_members, $no_of_male, $no_of_female, $no_of_children_below_5, $two_wheeler, $four_wheeler, $occupation, $occupation_address, $occupation_contact, $identifier_name1, $identifier_mobile1, $identifier_address1, $identifier_district1, $identifier_state1, $identifier_policestation1, $identifier_email1, $identifier_name2, $identifier_mobile2,$identifier_address2, $identifier_district2, $identifier_state2, $identifier_policestation2, $identifier_email2,$property_id, $flat_no);
 
     for($i=0; $i<count($member_name); $i++){
         $member_details[] = array(
@@ -218,6 +222,7 @@ public function edit_tenant_details(){
 
 	$name = $_POST['name'];
 	$father_name = $_POST['father_name'];
+	$flat_name = $_POST['flat_name'];
 	$dob = $_POST['dob'];
 	$gender = $_POST['gender'];
 	$age = $_POST['age'];
@@ -270,7 +275,7 @@ public function edit_tenant_details(){
 	// echo "<br>";
 	// print_r($_POST);
 	// die();
-	$this->HomeM->edit_tenant_details($tenant_id, $name, $father_name, $dob,$age,$gender, $email, $rent, $mobile, $Aadhaar, $joining_date, $address, $district, $state, $polic_station, $no_of_members, $no_of_male, $no_of_female, $no_of_children_below_5, $two_wheeler, $four_wheeler, $occupation, $occupation_address, $occupation_contact, $identifier_name1, $identifier_mobile1, $identifier_address1, $identifier_district1, $identifier_state1, $identifier_policestation1, $identifier_email1, $identifier_name2, $identifier_mobile2,$identifier_address2, $identifier_district2, $identifier_state2, $identifier_policestation2, $identifier_email2,$property_id, $flat_no);
+	$this->HomeM->edit_tenant_details($tenant_id, $name, $father_name, $flat_name, $dob,$age,$gender, $email, $rent, $mobile, $Aadhaar, $joining_date, $address, $district, $state, $polic_station, $no_of_members, $no_of_male, $no_of_female, $no_of_children_below_5, $two_wheeler, $four_wheeler, $occupation, $occupation_address, $occupation_contact, $identifier_name1, $identifier_mobile1, $identifier_address1, $identifier_district1, $identifier_state1, $identifier_policestation1, $identifier_email1, $identifier_name2, $identifier_mobile2,$identifier_address2, $identifier_district2, $identifier_state2, $identifier_policestation2, $identifier_email2,$property_id, $flat_no);
 
 	
 
@@ -741,13 +746,16 @@ public function insert_payment(){
 
     public function view_flat_invoice($property_id, $flat_no, $month){
         
+        $flat_name = $this->InvoiceM->get_flat_name($property_id, $flat_no);
+        
+        
         $data = $this->InvoiceM->check_invoice($property_id, $flat_no, $month);
+        
+
         $data['data'] = $data[0];
         $data['details'] = $this->InvoiceM->get_report_details_monthwise($property_id,$flat_no,$month);
         $data['outstanding_details'] = $this->InvoiceM->get_outstanding_details($property_id,$flat_no,$month);
-        // echo "<pre>";
-        // print_r($data);
-        // die();
+        
         // if(!empty($data)){
         //     $data['data'] = $data[0];
         // }
@@ -765,12 +773,18 @@ public function insert_payment(){
         $data['previous_invoice'] = $this->InvoiceM->check_invoice($property_id, $flat_no, $previous_month);
         $data['previous_outstanding'] = $this->InvoiceM->get_previous_outstanding($property_id,$flat_no,$previous_month);
 
+        // echo "<pre>";
+        // print_r($flat_name);
+        // die();
+
         if(!empty($data['paid_amount'])){
             $data['data']['amount_paid']=$data['paid_amount'][0]['amount'];
             $data['data']['payment_date']=$data['paid_amount'][0]['payment_date'];
+            $data['data']['flat_name'] = $flat_name[0]['flat_name'];
         }else{
             $data['data']['amount_paid'] = 0;
             $data['data']['payment_date'] = "";
+            $data['data']['flat_name'] = "";
         }
         
         $data['property_id']=$property_id;

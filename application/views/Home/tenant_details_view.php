@@ -200,8 +200,12 @@ for (i = 0; i < dropdown.length; i++) {
 <div class="card">
 <div class="card-body">
 <div class="row">
-    <div class="form-group col"></div>
+    <div class="form-group col">
     <label for="flat_no">Flat No:&nbsp;<span style="font-weight:normal;"><?php echo $flat_no; ?></span></label>
+    </div>
+    <div class="form-group col">
+    <label for="flat_no">Flat Name:&nbsp;<span style="font-weight:normal;"><?php echo $flat_entry[0]['flat_name']; ?></span></label>
+    </div>
 </div>
 
 <div class="row">
@@ -209,8 +213,9 @@ for (i = 0; i < dropdown.length; i++) {
     <label for="exampleInputEmail1">Full Name:&nbsp; <span style="font-weight:normal;"><?php echo $flat_entry[0]['tenant_name']; ?></span></label>
      </div>
      <div class="form-group col">
-    <label for="exampleInputEmail1">Father's Name:&nbsp; <span style="font-weight:normal;"><?php echo $flat_entry[0]['father_name']; ?></span></label>
+    <label for="exampleInputEmail1">Father's / Husband's Name :&nbsp; <span style="font-weight:normal;"><?php echo $flat_entry[0]['father_name']; ?></span></label>
      </div>
+     
 </div>
 <div class="row">
     <div class="form-group col">

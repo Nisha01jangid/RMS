@@ -46,7 +46,7 @@ class ReportM extends CI_Model {
           
       function get_receiver_payments($from_date, $to_date, $receiver){
 
-      $sql = "SELECT amount, reference_id, payment_date, payment_receiver FROM payment where payment_date BETWEEN '$from_date' AND '$to_date' and payment_receiver = '$receiver'";
+      $sql = "SELECT amount, reference_id, payment_date, payment_receiver, property_id, flat_no FROM payment where payment_date BETWEEN '$from_date' AND '$to_date' and payment_receiver = '$receiver'";
 
         $query = $this->db->query($sql);
         return $query->result_array();
@@ -274,6 +274,39 @@ class ReportM extends CI_Model {
     $result = $this->db->query($query);
     return $result->result_array();
 
+  }
+  public function get_flat_name($property_id, $flat_no)
+  {
+    $query = "SELECT flat_name FROM tenants where property_id = $property_id and flat_no = $flat_no AND status =1 ";
+
+    // print_r($query);
+    // die();
+
+    $result = $this->db->query($query);
+    return $result->result_array();
+  }
+
+  public function get_tenant($property_id, $flat_no)
+  {
+    
+    $query = "SELECT flat_name, tenant_name FROM tenants where property_id = $property_id and flat_no = $flat_no  ";
+
+    // print_r($query);
+    // die();
+
+    $result = $this->db->query($query);
+    return $result->result_array(); 
+  }
+
+  public function get_property_name($property_id)
+  {
+    $query = "SELECT property_name FROM property where property_id = $property_id and active = 1";
+
+    // print_r($query);
+    // die();
+
+    $result = $this->db->query($query);
+    return $result->result_array(); 
   }
 
 }

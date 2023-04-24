@@ -89,7 +89,7 @@
 
 <div class="homediv">
 
-<h2 style="color:red; font-style:italic; font-weight:bold;"> Entry Form </h2>
+<h2 style="color:red; font-style:italic; font-weight:bold;"> Common Entry Form </h2>
 <div class="containe-fluid">
 <div class="row mt-3 ml-3 mr-3">
 <div class="col-lg-12">
