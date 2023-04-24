@@ -89,13 +89,14 @@
                     <h1 style="text-align:center;"><b>Flatwise Report</b></h1>
                     <?php 
                                 foreach ($report_flatwise_details as $key => $value) { ?>
-                    <h3 style="text-align:center;"><b>Flat No. : <?php echo $value['flat_no']?></b></h3>
+                    <h3 style="text-align:center;">Property Id : <?php echo $value['property_id']?></h3>
                         <?php break;}?>
-                        <h4 style="text-align:center;"><b>From: <?php echo $from_date?> To: <?php echo $to_date?></b></h4>
+                        <h4 style="text-align:center;">From: <?php echo $from_date?> To: <?php echo $to_date?></h4>
                     <table class="table table-striped table-hover table-bordered" style="width:90%" align="center">
                         <thead class="thead-dark">
                             <tr>
                             <th scope="col" style="text-align:center;">S.No.</th>
+                            <th scope="col" style="text-align:center;">Flat No.</th>
                             <th scope="col" style="text-align:center;">Tenant Name</th>
                             <th style="text-align:center;">Invoice No.</th>
                             <th scope="col" style="text-align:center;">Rent</th>
@@ -118,6 +119,7 @@
                                     
                             <tr>
                             <td scope="row" style="text-align:center;"><?php echo $i ?></td>
+                            <td scope="row" style="text-align:center;"><?php echo $value['flat_no'] ?></td>
                             <td style="text-align:center;"><?php echo $value['tenant_name']." (".$value['contact'].")"; ?></td>
                             <?php if(!empty($value['invoice_number'])) {?>
                               <td style="color:green;"><?php echo $value['invoice_number'];?> </td>
