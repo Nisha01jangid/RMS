@@ -76,9 +76,9 @@ $query_builder = TRUE;
 $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'house_rental_db',
+	'username' => 'id20515101_rms1',
+	'password' => '|Y=F!8-e1\0]8ZJ6',
+	'database' => 'id20515101_rms',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

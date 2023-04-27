@@ -222,7 +222,7 @@ for (i = 0; i < dropdown.length; i++) {
 							</div>
                             <hr>
 						<br>
-            <form action="<?php echo base_url('EntryForm/insert_property_wise_entry');?>" method="get">
+            <form action="<?php echo base_url('EntryForm/insert_property_wise_entry');?>" method="post">
 						<div class="row" style="height:60vh;overflow-x: hidden; overflow-y: auto;">
 							<table class="table table-striped table-hover table-bordered" >
 								<thead>

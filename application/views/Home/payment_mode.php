@@ -238,6 +238,7 @@ for (i = 0; i < dropdown.length; i++) {
     <option>Select Payment Receiver</option>
     <option value="1">Mr. Ram Kripal Shah</option>
     <option value="2">Mr. Manoj Kumar Shah</option>
+    <option value="6">Mr. Vivek Kumar Shah</option>
     <option value="3">Dr. Indra Kumar Shah</option>
     <option value="4">Mr. MG</option>
     <option value="5">Mr. AG</option>
@@ -272,6 +273,7 @@ for (i = 0; i < dropdown.length; i++) {
     <option>Select Payment Receiver</option>
     <option value="1">Mr. Ram Kripal Shah</option>
     <option value="2">Mr. Manoj Kumar Shah</option>
+     <option value="6">Mr. Vivek Kumar Shah</option>
     <option value="3">Dr. Indra Kumar Shah</option>
     <option value="4">Mr. MG</option>
     <option value="5">Mr. AG</option>

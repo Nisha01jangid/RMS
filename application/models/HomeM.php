@@ -381,14 +381,18 @@ public function get_last_invoice($property_id, $flat_no){
     return ;
 
   }
-public function get_flat_name($property_id, $flat_no)
-  {
-    $query = "SELECT flat_name FROM tenants where property_id = $property_id and flat_no = $flat_no AND status =1 ";
+  
+  public function get_flat_name($property_id, $flat_no){
+      
+    $query = " SELECT flat_name FROM tenants WHERE property_id = $property_id AND flat_no = $flat_no AND status = 1";
 
     // print_r($query);
     // die();
 
     $result = $this->db->query($query);
-    return $result->result_array();
+    return $result->result_array();  
   }
+
+
+   
 }
