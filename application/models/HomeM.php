@@ -299,6 +299,15 @@ public function delete_tenant_relatives($property_id, $flat_no, $tenant_id){
     return ;
   }
 
+  public function insert_user_name($user_name){
+
+    $query = "INSERT INTO `user_name_entry` (`user_name`,`status`) VALUES ('$user_name', 1)";
+
+    $result = $this->db->query($query);
+    return ;
+
+  }
+
   public function check_outstanding_exist($property_id, $flat_no, $month){
 
     $query = " SELECT * FROM outstanding_amount WHERE property_id = $property_id AND month ='$month' and flat_no = $flat_no  and status = 1 order by `month`";
@@ -372,5 +381,14 @@ public function get_last_invoice($property_id, $flat_no){
     return ;
 
   }
+public function get_flat_name($property_id, $flat_no)
+  {
+    $query = "SELECT flat_name FROM tenants where property_id = $property_id and flat_no = $flat_no AND status =1 ";
 
+    // print_r($query);
+    // die();
+
+    $result = $this->db->query($query);
+    return $result->result_array();
+  }
 }

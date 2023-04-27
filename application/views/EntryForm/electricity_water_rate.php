@@ -36,6 +36,60 @@
         margin:1% 3% 0% 3%;    
     }
 
+      /* Style the button that opens the dropdown */
+.dropbtn {
+  background-color: #202121;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+    border: none;
+  cursor: pointer;
+}
+/* Add a dropdown icon to the .dropbtn element */
+.dropbtn::after {
+  content: "";
+  display: inline-block;
+  margin-left: 15px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 5px 5px 0 5px;
+  border-color: white transparent transparent transparent;
+}
+
+
+/* Style the dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  z-index: 1;
+}
+
+/* Style the links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+  background-color: #202121;
+}
+
     </style>
 
     <!-- Bootstrap core CSS -->
@@ -56,32 +110,22 @@
       <li class="nav-item">
         <a href="<?php echo base_url('EntryForm') ?>" class="nav-link text-white" aria-current="page">Entry Form</a>
       </li>
-     <!--  <li>
-        <a href="<?php echo base_url('Invoice') ?>" class="nav-link text-white">Invoice</a>
-      </li> -->
+     <div class="dropdown">
+  <button class="dropbtn">Report</button>
+  <div class="dropdown-content">
 
-     <!--  <li>
-        <a href="<?php echo base_url('Payments') ?>" class="nav-link text-white">Payments</a>
-      </li> -->
-     <!--  <li>
-          <a href="<?php echo base_url('Report/select_property_for_report_monthwise') ?>" class="nav-link text-white">Main Report</a>  
-        </li>
+    <a href="<?php echo base_url('Report/select_property_for_report_monthwise') ?>">Main Report</a>
+    <a href="<?php echo base_url('Report/outstanding_amount') ?>">Outstanding Report</a>
+    <a href="<?php echo base_url('Report/receiver_expenditure') ?>">Receiver Expenditure</a>
+    <a href="<?php echo base_url('Report/receiver_report') ?>">Receiver Report</a>
+    <a href="<?php echo base_url('Report/TR_Report') ?>">TR Report</a>
+    <!-- <a class="dropdown-item" href="<?php echo base_url('Report/TR_Report?property_id=' . $property_id) ?>">TR Report</a> -->
+  </div>
+</div>
 
-      <li>
-        <a href="<?php echo base_url('Report/receiver_report') ?>" class="nav-link text-white">Receiver Report</a>
+<li>
+        <a href="<?php echo base_url('Home/user_entry') ?>" class="nav-link text-white" aria-current="page">User Entry</a>
       </li>
-       <li>
-        <a href="<?php echo base_url('Report/receiver_expenditure') ?>" class="nav-link text-white"> Receiver Expenditure</a>
-      </li> -->
-        
-       <!--  <li>
-          <a href="<?php echo base_url('Report/User_Wise_Report') ?>" class="nav-link text-white">User-Wise Report</a>  
-        </li> -->
-        
-      
-      <!-- <li>
-        <a href="<?php echo base_url('Report/outstanding_amount') ?>" class="nav-link text-white">Oustanding Report</a>
-      </li -->
      
     </ul>
     <hr>

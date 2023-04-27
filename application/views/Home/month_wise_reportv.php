@@ -84,7 +84,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 
                     <br>
                     <div class="intro">
-                        <h2 style="text-align:center;"><?php echo "Flat No.".$flat_no; ?></h2>
+                        <h2 style="text-align:center;"><?php echo "Flat No.".$flat_no." (". $flat_name[0]['flat_name']. ")"; ?></h2>
                         <br>
                     <table class="table table-striped table-hover table-bordered" style="width:90%" align="center">
                         <thead class="thead-dark">

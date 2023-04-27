@@ -118,6 +118,25 @@
       <li>
         <a href="<?php echo base_url('EntryForm') ?>" class="nav-link text-white" aria-current="page">Entry Form</a>
       </li>
+
+      <div class="dropdown">
+  <button class="dropbtn">Report</button>
+  <div class="dropdown-content">
+
+    <a href="<?php echo base_url('Report/select_property_for_report_monthwise') ?>">Main Report</a>
+    <a href="<?php echo base_url('Report/outstanding_amount') ?>">Outstanding Report</a>
+    <a href="<?php echo base_url('Report/receiver_expenditure') ?>">Receiver Expenditure</a>
+    <a href="<?php echo base_url('Report/receiver_report') ?>">Receiver Report</a>
+    <a href="<?php echo base_url('Report/TR_Report') ?>">TR Report</a>
+    <!-- <a class="dropdown-item" href="<?php echo base_url('Report/TR_Report?property_id=' . $property_id) ?>">TR Report</a> -->
+  </div>
+</div>
+
+<li>
+        <a href="<?php echo base_url('Home/user_entry') ?>" class="nav-link text-white" aria-current="page">User Entry</a>
+      </li>
+
+</ul>
       <!-- <li>
         <a href="<?php echo base_url('Invoice') ?>" class="nav-link text-white">Invoice</a>
       </li> -->
@@ -153,23 +172,7 @@
 
   </div> -->
 
-<div class="dropdown">
-  <button class="dropbtn">Report</button>
-  <div class="dropdown-content">
 
-    <a href="<?php echo base_url('Report/select_property_for_report_monthwise') ?>">Main Report</a>
-    <a href="<?php echo base_url('Report/receiver_report') ?>">Receiver Report</a>
-    <a href="<?php echo base_url('Report/outstanding_amount') ?>">Outstanding Report</a>
-    <!-- <a class="dropdown-item" href="<?php echo base_url('Report/TR_Report?property_id=' . $property_id) ?>">TR Report</a> -->
-    <a href="<?php echo base_url('Report/TR_Report') ?>">TR Report</a>
-    <a href="<?php echo base_url('Report/receiver_expenditure') ?>">Receiver Expenditure</a>
-  </div>
-</div>
-
-
-
-
-			</ul>
     <hr>
   </div>
 
@@ -200,6 +203,14 @@ for (i = 0; i < dropdown.length; i++) {
 
   <?php
     if($msg = $this->session->flashdata('tenant_inserted')) {?>
+    <div class="alert alert-success" style="font-style: italic; text-align:center;">
+    <strong><?php echo $msg; ?></strong>
+    </div>
+    <br>
+  <?php } ?>
+
+  <?php
+    if($msg = $this->session->flashdata('user_inserted')) {?>
     <div class="alert alert-success" style="font-style: italic; text-align:center;">
     <strong><?php echo $msg; ?></strong>
     </div>
