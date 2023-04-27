@@ -223,25 +223,30 @@ class EntryForm extends CI_Controller{
 	}
 
 	public function insert_property_wise_entry(){
+	    
+// 	    echo "<pre>";
+// 		print_r(_GET);
+// 		die();
 
-		$property_name1 = $this->EntryFormM->get_property_name($_GET['property_id'][0]);
+// echo "hello";
+		$property_name1 = $this->EntryFormM->get_property_name($_POST['property_id'][0]);
 		$property_name = $property_name1[0]['property_name'];
-		$property = $_GET['property_id'][0];
+		$property = $_POST['property_id'][0];
 		
-		for($i=0; $i<sizeof($_GET['property_id']); $i++){
-		$tenant_rent= $_GET['tenant_rent'][$i];
-		$current_meter_reading= $_GET['current_meter_reading'][$i];
-		$previous_meter_reading = $_GET['previous_meter_reading'][$i];
-		$miscellaneous= $_GET['miscellaneous'][$i];
-		$duedate= $_GET['duedate'][$i];
-		$flat_no = $_GET['flat_no'][$i];
-		$property_id = $_GET['property_id'][$i];
-		$month = $_GET['month'][$i];
-		$rate_per_unit = $_GET['rate_per_unit'][$i];
-		$rate_per_person = $_GET['rate_per_person'][$i];
-		$waste= $_GET['waste'][$i];
+		for($i=0; $i<sizeof($_POST['property_id']); $i++){
+		$tenant_rent= $_POST['tenant_rent'][$i];
+		$current_meter_reading= $_POST['current_meter_reading'][$i];
+		$previous_meter_reading = $_POST['previous_meter_reading'][$i];
+		$miscellaneous= $_POST['miscellaneous'][$i];
+		$duedate= $_POST['duedate'][$i];
+		$flat_no = $_POST['flat_no'][$i];
+		$property_id = $_POST['property_id'][$i];
+		$month = $_POST['month'][$i];
+		$rate_per_unit = $_POST['rate_per_unit'][$i];
+		$rate_per_person = $_POST['rate_per_person'][$i];
+		$waste= $_POST['waste'][$i];
 
-		$member = $this->EntryFormM->get_member($_GET['property_id'][$i], $_GET['flat_no'][$i]);
+		$member = $this->EntryFormM->get_member($_POST['property_id'][$i], $_POST['flat_no'][$i]);
 		$no_of_members = $member[0]['members'];
 		$active_status = $member[0]['status'];
 
@@ -259,10 +264,7 @@ class EntryForm extends CI_Controller{
 		$this->session->set_flashdata('entry_form_inserted', 'Entry Form Inserted Successfully :)');
 
 		redirect(base_url("EntryForm"));
-		// echo "<pre>";
-		// print_r($member);
-		// die();
-
+	
 	}
 }
 

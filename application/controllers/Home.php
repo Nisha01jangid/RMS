@@ -354,6 +354,8 @@ public function edit_tenant_details(){
 		$data['flat_no'] = $flat_no;
 		$data['property_id'] = $property_id;
 		
+		$data['flat_name'] = $this->HomeM->get_flat_name($data['property_id'],$data['flat_no']);
+		
 		$data['tenant_entry_form_details'] = $this->HomeM->get_tenant_entry_form_details($data['flat_no'],$data['property_id']);
 	    
 		for($i = 0; $i < sizeof($data['tenant_entry_form_details']); $i++){
@@ -589,6 +591,9 @@ public function insert_payment(){
 	}else if($receiver == 3){
 		$receiver = "Dr. Indra Kumar Shah";
 	}
+	else if($receiver == 6){
+		$receiver = "Mr. Vivek Kumar Shah";
+	}
 	else if($receiver == 4){
 
 		$receiver = "Mr. MG";
@@ -633,6 +638,9 @@ public function insert_payment(){
 	else if($receiver == 4){
 
 		$receiver = "Mr. MG";
+	}
+	else if($receiver == 6){
+		$receiver = "Mr. Vivek Kumar Shah";
 	}
 	else {
 

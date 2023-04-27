@@ -1,3 +1,9 @@
+ <?php 
+// echo "<pre>";
+// print_r($details);
+// die();
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -133,9 +139,10 @@
     <div class="form-group col">
     <label for="Entry_type">Entry Type (Property Wise / Flatwise)</label>
     <select class="form-control" name="entry_type">
-        <option value="">Select Entry Type</option>
+        <!--<option value="">Select Entry Type</option>-->
+         <option value="2">Individual</option>
         <option value="1">Combined (all flats)</option>
-        <option value="2">Individual</option>
+       
     </select>
     </div>
   </div>
