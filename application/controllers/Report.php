@@ -347,7 +347,8 @@ public function balance_report(){
 	}
 
 	public function receiver_expenditure(){
-
+		
+		
 		$this->load->view('Report_Monthwise/receiver_expenditure');
 	}
 

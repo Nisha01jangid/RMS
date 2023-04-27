@@ -1,8 +1,3 @@
-<?php
-// echo "<pre>";
-// print_r($flat_entry);
-// die();
-?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -47,8 +42,8 @@
         font-size:20px;
     }
 
-  /* Style the button that opens the dropdown */
-  .dropbtn {
+      /* Style the button that opens the dropdown */
+.dropbtn {
   background-color: #202121;
   color: white;
   padding: 16px;
@@ -195,95 +190,31 @@ for (i = 0; i < dropdown.length; i++) {
     }
   });
 }</script>
-
 <div class="homediv">
-<h2 style="color:red; font-style:italic; font-weight:bold; font-size:25px;"> Tenant Details</h2>
+<h2 style="color:red; font-style:italic; font-weight:bold; font-size:25px;">User Entry</h2>
 <div class="containe-fluid">
 <div class="row mt-3 ml-3 mr-3">
 <div class="col-lg-12">
 <div class="card">
 <div class="card-body">
-<div class="row">
-    <div class="form-group col">
-    <label for="flat_no">Flat No:&nbsp;<span style="font-weight:normal;"><?php echo $flat_no; ?></span></label>
-    </div>
-    <div class="form-group col">
-    <label for="flat_no">Flat Name:&nbsp;<span style="font-weight:normal;"><?php echo $flat_entry[0]['flat_name']; ?></span></label>
-    </div>
+
+<form action="<?php echo base_url('Home/user_name_entry');?>" method="post">
+
+  <div class="form-group col">
+    <label>Enter User Name </label>
+    <br>
+    <br>
+    <input type="text" class="form-control" name="user_name" placeholder="Enter user name">
+  </div>
+  <br>
+
+<button type="submit" class="btn btn-primary" value="Submit">Submit</button>
+</form>
+
 </div>
-
-<div class="row">
-    <div class="form-group col">
-    <label for="exampleInputEmail1">Full Name:&nbsp; <span style="font-weight:normal;"><?php echo $flat_entry[0]['tenant_name']; ?></span></label>
-     </div>
-     <div class="form-group col">
-    <label for="exampleInputEmail1">Father's / Husband's Name :&nbsp; <span style="font-weight:normal;"><?php echo $flat_entry[0]['father_name']; ?></span></label>
-     </div>
-     
-</div>
-<div class="row">
-    <div class="form-group col">
-    <label for="exampleInputEmail1">Date of Birth:&nbsp;  <span style="font-weight:normal;"><?php echo $flat_entry[0]['dob']; ?></span></label>
-    </div>
-    <div class="form-group col">
-    <label for="exampleInputEmail1">Contact Number:&nbsp; <span style="font-weight:normal;"><?php echo $flat_entry[0]['contact']; ?></span></label>
-    </div>
-</div>
-<div class="row">
-    <div class="form-group col">
-    <label for="exampleInputEmail1">Aadhaar Number:&nbsp; <span style="font-weight:normal;"><?php echo $flat_entry[0]['aadhaar_no']; ?></span></label>
-    </div>
-    <div class="form-group col">
-    <label for="exampleInputPassword1">Joining Date:&nbsp; <span style="font-weight:normal;"><?php echo $flat_entry[0]['joining_date']; ?></span></label>
-    </div>
-</div>
-<div class="row">
-<div class="form-group col">
-    <label for="exampleInputEmail1">Contact:&nbsp; <span style="font-weight:normal;"><?php echo $flat_entry[0]['contact']; ?></span></label>
-    </div>
-    
-    <div class="form-group col">
-    <label for="exampleInputEmail1">Family Members:&nbsp; <span style="font-weight:normal;"><?php echo $flat_entry[0]['members']; ?></span></label>
-    </div>
-</div>
-    <div class="form-group">
-    <label for="exampleInputEmail1">Email address:&nbsp; <span style="font-weight:normal;"><?php echo $flat_entry[0]['email']; ?></span></label>
-    </div>
-    <!-- <div class="form-group col">
-        <label for="exampleInputPassword1">Rent of Flat:&nbsp; <span style="font-weight:normal;"><?php echo $flat_entry[0]['rent']; ?></span></label>
-      </div> -->
-</div>
-
-</div></div></div></div>
-
-<br>
-<div class="row">
-    <div class="form-group col"> <h2 style="color:red; font-style:italic; font-weight:bold; font-size:22px; display: inline-block; margin-right: 20px;">Report</h2> 
-<span>
-    <a style="display: inline-block;" class="btn btn-primary btn-block btn-sm col-sm-2 float-right" href="<?php echo base_url('Home/month_wise_report').'/'.$flat_no.'/'.$property_id; ?>" >View</a>
-</span></div>
-   
-<div class="form-group col">
-    <h2 style="color:red; font-style:italic; font-weight:bold; font-size:22px; display: inline-block; margin-right: 20px;">Police Verification Form</h2> 
-<span>
-    <a style="display: inline-block;" class="btn btn-primary btn-block btn-sm col-sm-2 float-right" href="<?php echo base_url('Home/police_verification_form').'/'.$flat_no.'/'.$property_id; ?>" >View </a>
-    <a style="display: inline-block;" class="btn btn-warning btn-block btn-sm col-sm-2 float-right" href="<?php echo base_url('Home/edit_police_verification_form').'/'.$flat_no.'/'.$property_id; ?>" >Edit </a>
-</span>
-</div>
-</div>
-
-
-<br>
-<br>
-
-
-
-
-
-
 
 </div></div></div></div></div>
-</div>
 </main>
 </body>
 </html>
+

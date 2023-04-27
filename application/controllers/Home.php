@@ -357,6 +357,7 @@ public function edit_tenant_details(){
 		$data['flat_name'] = $this->HomeM->get_flat_name($data['property_id'],$data['flat_no']);
 		
 		$data['tenant_entry_form_details'] = $this->HomeM->get_tenant_entry_form_details($data['flat_no'],$data['property_id']);
+		$data['flat_name'] = $this->HomeM->get_flat_name($data['property_id'], $data['flat_no']);
 	    
 		for($i = 0; $i < sizeof($data['tenant_entry_form_details']); $i++){
 
@@ -816,6 +817,26 @@ public function insert_payment(){
 
 
         redirect(base_url('Home/month_wise_report/'.$flat_no."/".$property_id));
+    }
+
+    public function user_entry()
+    {
+    	// code...
+    	$this->load->view('Home/user_entry');
+    }
+    public function user_name_entry()
+    {
+    	$user_name = $_POST['user_name'];
+
+    	// echo "<pre>";
+    	// print_r($user_name);
+    	// die();
+
+    	$user_name = $this->HomeM->insert_user_name($user_name);
+
+
+	    $this->session->set_flashdata('user_inserted', 'User Inserted Successfully :)');
+		redirect("Home/index");
     }
 
 }
