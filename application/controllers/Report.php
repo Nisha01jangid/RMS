@@ -354,7 +354,8 @@ if(!empty($data['invoice_number'][0]['invoice'])){
 	}
 
 	public function receiver_expenditure(){
-
+		
+		
 		$this->load->view('Report_Monthwise/receiver_expenditure');
 	}
 
