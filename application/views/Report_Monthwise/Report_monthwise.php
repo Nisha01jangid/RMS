@@ -86,15 +86,14 @@
 
                     <br>
                     <div class="intro">
-                    <h2 style="text-align:center;"><b><?php echo $property_name[0]['property_name']; ?></b></h2>
+                    <h2 style="text-align:center;"><b><?php echo $property_name; ?></b></h2>
                       <h1 style="text-align:center;">Monthwise Report</h1>
                         <h2 style="text-align:center;">Month: <?php echo $month; ?></h2>
                         
-                    <table class="table table-striped table-hover table-bordered" style="width:90%" align="center">
+                    <table class="table table-striped table-hover table-bordered" style="width:100%" align="center">
                         <thead class="thead-dark">
                             <tr>
                             <th scope="col" style="text-align:center;">S.No.</th>
-                            <!-- <th scope="col" style="text-align:center;">Property Id</th> -->
                             <th scope="col" style="text-align:center;">Flat No.</th>
                             <th scope="col" style="text-align:center;">Tenant Name</th>
                             <th style="text-align:center;">Invoice No.</th>
@@ -102,13 +101,11 @@
                             <th scope="col" style="text-align:center;">Meter Reading <br> (Current - Previous) * rate</th>
                             <th scope="col" style="text-align:center;">Water Pump Charges <br>( no. of members * units )* rate</th>
                             <th scope="col" style="text-align:center;">Waste </th>
-                            <th scope="col" style="text-align:center;">Miscellaneous</th>
+                            <th scope="col" style="text-align:center;">Misc.</th>
                             <th scope="col" style="text-align:center;">Total</th>
-                            <!-- <th scope="col" style="text-align:center;">Total + Previous Outstanding</th> -->
-    
-                            <!-- <th scope="col" style="text-align:center;">Payment</th> -->
-                            <th style="text-align:center;">Amount Paid</th>
-                            <!-- <th scope="col" style="text-align:center;">Outstanding Amount</th> -->
+                            <th scope="col" style="text-align:center; width:10%">Total + Previous Outstanding</th>
+                            <th scope="col" style="text-align:center;">Amount Paid</th>
+                            <th scope="col" style="text-align:center;">Outstanding Amount</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -117,52 +114,69 @@
                                 foreach ($report_monthwise_details as $key => $value) { ?>
                                     
                             <tr>
+                              <?php if(!empty($value['invoice_number'])){?>
+                              <!-- sno -->
                             <td scope="row" style="text-align:center;"><?php echo $i ?></td>
-                            <!-- <td scope="row" style="text-align:center;"><?php echo $value['property_id'] ?></td> -->
-                            <td scope="row" style="text-align:center;"><?php  echo $value['flat_no'] ?></td>
-                            <td style="text-align:center;"><?php echo $value['tenant_name']." (".$value['contact'].")"; ?></td>
-                            <?php if(!empty($value['invoice_number'])) {?>
-                              <td style="color:green;"><?php echo $value['invoice_number'];?> </td>
-                              
-                            <?php } else {?>
-                              <td style="color:red;"><a href="<?php echo base_url("Home/generate_invoice/").$property_id."/".$flat_no."/".$value['month']; ?>" class="btn btn-success">Generate</a></td>
-                              <?php }?>
+                            <!-- flat no -->
+                            <?php if(!empty($value['flat_name'])){?>
+                              <td style="text-align:center;"><?php echo $value['flat_no']; ?><br><span style="color:blue";><?php echo "(".$value['flat_name'].")"?></span></td>
+                            <?php }else {?>
+                            <td style="text-align:center;"><?php echo $value['tenant_name'];?></td>
+                            <?php } ?>
+                            <!-- tenant name with mobile -->
+                            <?php if(!empty($value['contact'])){?>
+                              <td style="text-align:center;"><?php echo $value['tenant_name']; ?><br><?php echo "(".$value['contact'].")"?></td>
+                            <?php }else {?>
+                            <td style="text-align:center;"><?php echo $value['tenant_name'];?></td>
+                            <?php } ?>
+                            <!-- invoice no.  -->
+                            <td style="color:green;"><?php echo $value['invoice_number'];?> </td>
+                            <!-- rent -->
                             <td style="text-align:center;"><?php echo $value['rent'] ?></td>
-
-
-                            <!-- <td style="text-align:center;"><?php if($i==1){$amount = ($value['current_meter_reading']-$previous_reading)*$value['electricity_rate'];
-                            echo "(".$value['current_meter_reading']." - ".$previous_reading.") * ".$value['electricity_rate']." = ".$amount;}else{
-                                $amount = ($value['current_meter_reading']-$report_monthwise_details[$i-2]['current_meter_reading'])*$value['electricity_rate'];
-                                echo "(".$value['current_meter_reading']." - ".$report_monthwise_details[$i-2]['current_meter_reading'].") * ".$value['electricity_rate']." = ".$amount;
-                            } ?></td> -->
-                           
-
+                            <!-- meter reading  -->
                            <td style="text-align:center;"><?php $amount = ($value['current_meter_reading']-$value['previous_meter_reading'])*$value['electricity_rate'];
                             echo "(".$value['current_meter_reading']." - ".$value['previous_meter_reading'].") * ".$value['electricity_rate']." = ".$amount; ?>
-
                             </td>
 
                             <?php $total = $value['rent']+( $value['no_of_members']*$value['water_rate']*$value['electricity_rate'])+ $value['waste']+$value['miscellaneous']+$amount; ?>
+                            <!-- water pump charges  -->
                             <td><?php echo '('.$value['no_of_members']."*".$value['water_rate'].")*".$value['electricity_rate']."=".$value['no_of_members']*$value['water_rate']*$value['electricity_rate']; ?></td> 
-                            
+                            <!-- waste  -->
                             <td><?php echo $value['waste'] ?></td>
+                            <!-- miscellaneous -->
                             <td><?php echo $value['miscellaneous'] ?></td>
-                            <!-- <td><?php echo  round($total);  ?></td> -->
-                            <td><?php echo $value['total']; ?></td>
-                            <!-- <td align="center">
-                              <?php if($value['invoice_number']==$last_invoice){ ?>
-                                <button style="padding: 9px; background-color: #fce205; border-radius: 5px; border-color:#fce205; ;"><a style="text-decoration: none; font-size: 15px; font-weight: bold; color: black;" href="<?php echo base_url('Home/pay_bill/').$property_id.'/'.$value['flat_no'].'/'.$value['month'];?>">Pay</a></button>
-                                <a href="<?php echo base_url("Home/view_flat_invoice/").$property_id."/".$value['flat_no']."/".$value['month']; ?>" class="btn btn-primary">Invoice</a>
-                                <?php }else{ if(!empty($value['invoice_number'])){ ?>
-                                    <a href="<?php echo base_url("Home/view_flat_invoice/").$property_id."/".$value['flat_no']."/".$value['month']; ?>" class="btn btn-primary">Invoice</a>
-                                <?php }} ?>
-                            </td>  -->
-                            <td style="text-align:center;"><?php echo $value['amount_paid']; ?></td>                           
-                            <!-- <td style="text-align:center;"> <?php echo $value['outstanding_amount'];?></td> -->
+                            <!-- total -->
+                            <td><?php echo round($total); ?></td>
+                            <!-- total + previous outstanding -->
+                            <td style="text-align:center;"><?php echo $value['total']; ?></td>
+                            <!-- amount paid  -->
+                            <?php if(!empty($value['payment_date'] && $value['amount_paid'])){?>
+                              <td style="text-align:center;"><?php echo $value['amount_paid'];?><br><span style="color:blue";><?php echo "(".$value['payment_date'].")"?></span></td>
+                            <?php }else {?>
+                            <td style="text-align:center;"><?php echo $value['amount_paid'];?></td>
+                            <?php } ?>
+                            <!-- <td style="text-align:center;"><?php echo $value['amount_paid']; ?></td> -->
+                            <td style="text-align:center;"> <?php echo $value['outstanding_amount'];?></td>
                             </tr>   
-
-                            <?php   $i++; } ?>
-                        </tbody>
+                            <?php $totalamount += $value['amount_paid'];
+                            $totaloutstanding +=$value['outstanding_amount'];
+                            ?>
+                            <?php   $i++; } }?>
+                              
+                            <tr>
+                  <td style="text-align: center; color:blue; font-weight:bold; font-size:20px;" colspan="11">Total </td>
+                  <?php if($totalamount>0){?> 
+                    <td style="text-align: center; font-weight:bold; color:green;"><?php echo $totalamount; ?></td>
+                  <?php }else{ ?> 
+                    <td style="text-align: center; font-weight:bold; color:red;"><?php echo $totalamount; ?></td>
+                  <?php } ?> 
+                  <?php if($totaloutstanding>0){?> 
+                    <td style="text-align: center; font-weight:bold; color:green;"><?php echo $totaloutstanding; ?></td>
+                  <?php }else{ ?> 
+                    <td style="text-align: center; font-weight:bold; color:red;"><?php echo $totaloutstanding; ?></td>
+                  <?php } ?> 
+                  </tr>
+                          </tbody>
                         </table>
                     </div>
 
