@@ -1,8 +1,3 @@
-<?php
-// echo "<pre>";
-// print_r($flats);
-// die();
-?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -25,7 +20,6 @@
             display:flex;
             width:100%;
             height:100%;
-
         }
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -33,24 +27,22 @@
         -webkit-user-select: none;
         -moz-user-select: none;
         user-select: none;
-
       }
 
       @media (min-width: 768px) {
         .bd-placeholder-img-lg {
           font-size: 3.5rem;
-
         }
       }
     
     .homediv{
         width:75%;
         height:100%;
-        margin:3%;  
+        margin:3%;    
     }
 
-  /* Style the button that opens the dropdown */
-  .dropbtn {
+      /* Style the button that opens the dropdown */
+.dropbtn {
   background-color: #202121;
   color: white;
   padding: 16px;
@@ -114,7 +106,7 @@
 
 <main>
 
-<div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 250px;height:100vh; ">
+<div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 250px;height:100vh;">
     <h4><?php echo $_SESSION['user']; ?></h4>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
@@ -179,7 +171,6 @@
 
 
 
-
 			</ul>
     <hr>
   </div>
@@ -199,94 +190,67 @@ for (i = 0; i < dropdown.length; i++) {
     }
   });
 }</script>
+
   <div class="homediv">
+
+  <?php
+    if($msg = $this->session->flashdata('Expenditure_inserted')) {?>
+    <div class="alert alert-success" style="font-style: italic; text-align:center;">
+    <strong><?php echo $msg; ?></strong>
+    </div>
+    <br>
+  <?php } ?>
 
   <div class="containe-fluid">
 	<div class="row mt-3 ml-3 mr-3">
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <div style="font-style:italic; font-size: 20px; color:red; font-size: 25px;"><b><i><?php echo $flat[0]['property_address'];?></i></b> &emsp;
-                    <form action="<?php echo base_url("Invoice/print_invoice"); ?>" method="POST">
-                    <input style="font-size: 19px;"
-                        id="month"
-                        type="month"
-                        name="month"
-                        min="2000-01"
-                        max="<?php echo date("Y-m"); ?>"
-                        value="<?php echo date("Y-m"); ?>"
-                        style="height:50%;margin:10px;"
-                        required
-                        />
-                        <input type="hidden" name="property_id" value="<?php echo $property_id; ?>">
-                    <input type="submit" value="Combined Invoice" class="btn btn-primary">
+                <form action="<?php echo base_url('Report/insert_receiver_expenditure');?>" method="post">
+                    <div style="font-style:italic; font-size: 23px; color:red;"><b>Receiver Expenditure</b>
+                    </b> &emsp;
+                    <span><a class="btn btn-primary btn-block btn-sm col-sm-2 float-right" href="<?php echo base_url('Report/view_expenditure'); ?>" style="font-weight:bold;">
+                    <i class="fa fa-plus"></i> View Expenditure
+                  </a></span> 
                     </div>
                     <hr>
-                    <div class="row" style="height:58vh; overflow-x: hidden; overflow-y: auto;">
-                        <?php for($i =1; $i<=sizeof($flats); $i++){
-                          if($flats[$i]['status'] == 1){
-                        ?>
-
-                          <div class="col-md-3 mb-3">
-                            <div class="card border-success" style=" border-radius: 10%;">
-                                <div class="card-body bg-success" style="padding:1px;  border-radius: 10%;  ">
-                                    
-                                        <div class="card-body text-white" style="background-color:#469236;  border-radius: 10%; ">
-                                        <span class="float-right summary_icon"> <i class="fa fa-home" style="color:black;"></i></span>
-                                        <h5 style="color:black;"><b><i><?php echo "Flat No : ".$i;?> <span style="color:white; text-size:20px;"> (<?php echo $flats[$i]['flat_name'];?>) </i></b></h5>
-                                        <!-- <h6 style="color:black;"><b><i>Occupied </i></b></h6> -->
-                                        <h6 style="color:black;"><b><i><?php echo "Name : ".$flats[$i]['tenant_name']; ?> </i></b></h6>
-                                        <h6 style="color:black;"><b><i><?php echo "No. of members : ".$flats[$i]['members']; ?> </i></b></h6>
-                                        <h6 style="color:black;"><b><i><?php echo "Joining: ".$flats[$i]['joining_date']; ?> </i></b></h6>
-                                    </div>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <a href="<?php echo base_url('Home/tenant_details/').$i.'/'.$flat[0]['property_id']; ?>" class="text-primary float-right" style="text-decoration : none; font-weight:bold;">View <span class="fa fa-angle-right"></span></a>
-                                        </div>
-                                        <div class="col-lg-6">
-
-                                            <a href="<?php echo base_url('Home/delete_flat_tenant/').$i.'/'.$flat[0]['property_id'];?>" class="text-primary float-right" style="text-decoration : none; font-weight:bold;" onclick="return confirm('Are you sure you want to delete this Tenant?');"><span style="color:red;">Delete &nbsp;</span><span class="fa fa-trash" style="color:red;"> </a>
-
-                                            <!-- <a href="<?php echo base_url('Home/delete_flat_tenant/').$i.'/'.$flat[0]['property_id'];?>" class="text-primary float-right" style="text-decoration : none; font-weight:bold; " onclick="alert('Are You Sure,You Want To Delete !!!!')"><span style="color:red;">Delete &nbsp;</span><span class="fa fa-trash" style="color:red;"> </a> -->
-
-                                        </div>
-
-                                </div>
-                                </div>
-                            </div>
-                        </div>
-                       <?php } else { ?>
-
-                        <div class="col-md-3 mb-3">
-                            <div class="card border-danger" style=" border-radius: 10%;">
-                                <div class="card-body bg-danger" style="padding:1px;  border-radius: 10%;  ">
-                                    <!-- <div class="card-body text-white" style="background-color:#32CD32;"> -->
-                                    <div class="card-body text-white" style="background-color: #cc1100 ;  border-radius: 10%;  ">
-                                        
-                                        <span class="float-right summary_icon"> <i class="fa fa-home" style="color:black;"></i></span>
-                                        <h4 style="color:black;"><b><i><?php echo "Flat No : ".$i; ?></i></b></h4>
-                                        <h6 style="color:black;"><b><i>Empty</i></b></h6>
-                                    </div>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <a href="<?php echo base_url('Home/tenant_details/').$i.'/'.$flat[0]['property_id']; ?>" class="text-primary float-right" style="text-decoration : none; font-weight:bold;">View <span class="fa fa-angle-right"></span></a>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                       <?php }?>
-                       <?php } ?>
-                    </div>
-
-                    
+                    <div class="form-group col">
+                    <label for="exampleInputEmail1">Expenditure date:</label>
+                    <input type="date" class="form-control"  name="date"  placeholder="Enter start date...">
+                     </div>
+ 
+                <br>
+                <div class="form-group col">
+                 <label for="exampleInputEmail1">Paid By:</label>
+                 <select class="form-control" name="pay_user">
+                 <option value="">Select user</option>
+                <option value="1">Mr. Ram Kripal Shah</option>
+                <option value="2">Mr. Manoj Kumar Shah</option>
+                <option value="6">Mr. Vivek Kumar Shah</option>
+                <option value="3">Dr. Indra Kumar Shah</option>
+                <option value="4">Mr. MG</option>
+                <option value="5">Mr. AG</option>
+                </select>
                 </div>
+                <br>
+                <div class="form-group col">
+                 <label for="exampleInputEmail1">Paid For:</label>
+                 <select class="form-control" name="head">
+                 <option value="">Select Payment Head</option>
+                 <option value="4">Electricity</option>
+                <option value="1">Waste</option>
+                <option value="2">Maintenance</option>
+                <option value="3">Other</option>
+                </select>
+                </div>
+                <br>
+                <div class="form-group col">
+                 <label for="exampleInputEmail1">Amount:</label>
+                 <input type="number" class="form-control" name="amount"  placeholder="Enter expenditure...">
+                </div>
+                <br>
+                <button type="submit" class="btn btn-primary" value="Submit">Submit</button>
+</form>
             </div>      			
         </div>
     </div>
