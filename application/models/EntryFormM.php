@@ -22,6 +22,7 @@ class EntryFormM extends CI_Model {
     $result = $this->db->query($query);
     return $result->result_array();
   }
+
   public function check_flat_occupied($property_id, $flat_no){
 
     $query = "SELECT property_id , flat_no, tenant_name,flat_name, members, joining_date FROM tenants where property_id = $property_id and flat_no = $flat_no and status = 1";
@@ -63,7 +64,7 @@ class EntryFormM extends CI_Model {
     // print_r($query);
     // die();
     $result = $this->db->query($query);
-    return $result->result_array()[0]['current_meter_reading'];
+    return $result->result_array();
   }
   public function get_entry_form($property_id,$flat_no,$month){
 
