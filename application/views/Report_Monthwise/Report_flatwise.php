@@ -168,7 +168,24 @@
                             <?php } ?>                        
                             <td style="text-align:center;"> <?php echo $value['outstanding_amount'];?></td>
                             </tr>   
-                            <?php   $i++;} } ?>
+                            <?php $totalamount += $value['amount_paid'];
+                            $totaloutstanding +=$value['outstanding_amount'];
+                            ?>
+                            <?php   $i++; } }?>
+                              
+                            <tr>
+                  <td style="text-align: center; color:blue; font-weight:bold; font-size:20px;" colspan="11">Total </td>
+                  <?php if($totalamount>0){?> 
+                    <td style="text-align: center; font-weight:bold; color:green;"><?php echo $totalamount; ?></td>
+                  <?php }else{ ?> 
+                    <td style="text-align: center; font-weight:bold; color:red;"><?php echo $totalamount; ?></td>
+                  <?php } ?> 
+                  <?php if($totaloutstanding>0){?> 
+                    <td style="text-align: center; font-weight:bold; color:green;"><?php echo $totaloutstanding; ?></td>
+                  <?php }else{ ?> 
+                    <td style="text-align: center; font-weight:bold; color:red;"><?php echo $totaloutstanding; ?></td>
+                  <?php } ?> 
+                  </tr>
                         </tbody>
                         </table>
                     </div>
