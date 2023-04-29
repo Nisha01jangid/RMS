@@ -162,18 +162,22 @@
 
   </div> -->
 
-<div class="dropdown">
+ <div class="dropdown">
   <button class="dropbtn">Report</button>
   <div class="dropdown-content">
 
     <a href="<?php echo base_url('Report/select_property_for_report_monthwise') ?>">Main Report</a>
-    <a href="<?php echo base_url('Report/receiver_report') ?>">Receiver Report</a>
     <a href="<?php echo base_url('Report/outstanding_amount') ?>">Outstanding Report</a>
-    <!-- <a class="dropdown-item" href="<?php echo base_url('Report/TR_Report?property_id=' . $property_id) ?>">TR Report</a> -->
-    <a href="<?php echo base_url('Report/TR_Report') ?>">TR Report</a>
     <a href="<?php echo base_url('Report/receiver_expenditure') ?>">Receiver Expenditure</a>
+    <a href="<?php echo base_url('Report/receiver_report') ?>">Receiver Report</a>
+    <a href="<?php echo base_url('Report/TR_Report') ?>">TR Report</a>
+    <!-- <a class="dropdown-item" href="<?php echo base_url('Report/TR_Report?property_id=' . $property_id) ?>">TR Report</a> -->
   </div>
 </div>
+
+<li>
+        <a href="<?php echo base_url('Home/user_entry') ?>" class="nav-link text-white" aria-current="page">User Entry</a>
+      </li>
 
 
 
@@ -218,7 +222,7 @@ for (i = 0; i < dropdown.length; i++) {
 							</div>
                             <hr>
 						<br>
-            <form action="<?php echo base_url('EntryForm/insert_property_wise_entry');?>" method="get">
+            <form action="<?php echo base_url('EntryForm/insert_property_wise_entry');?>" method="post">
 						<div class="row" style="height:60vh;overflow-x: hidden; overflow-y: auto;">
 							<table class="table table-striped table-hover table-bordered" >
 								<thead>

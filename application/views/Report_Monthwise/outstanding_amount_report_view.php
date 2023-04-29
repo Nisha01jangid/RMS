@@ -162,13 +162,17 @@
   <div class="dropdown-content">
 
     <a href="<?php echo base_url('Report/select_property_for_report_monthwise') ?>">Main Report</a>
-    <a href="<?php echo base_url('Report/receiver_report') ?>">Receiver Report</a>
     <a href="<?php echo base_url('Report/outstanding_amount') ?>">Outstanding Report</a>
-    <!-- <a class="dropdown-item" href="<?php echo base_url('Report/TR_Report?property_id=' . $property_id) ?>">TR Report</a> -->
-    <a href="<?php echo base_url('Report/TR_Report') ?>">TR Report</a>
     <a href="<?php echo base_url('Report/receiver_expenditure') ?>">Receiver Expenditure</a>
+    <a href="<?php echo base_url('Report/receiver_report') ?>">Receiver Report</a>
+    <a href="<?php echo base_url('Report/TR_Report') ?>">TR Report</a>
+    <!-- <a class="dropdown-item" href="<?php echo base_url('Report/TR_Report?property_id=' . $property_id) ?>">TR Report</a> -->
   </div>
 </div>
+
+<li>
+        <a href="<?php echo base_url('Home/user_entry') ?>" class="nav-link text-white" aria-current="page">User Entry</a>
+      </li>
 
 
 
@@ -198,10 +202,14 @@ for (i = 0; i < dropdown.length; i++) {
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
+                  <div class="row" style="height:78vh;overflow-x: hidden; overflow-y: auto;">
                     <div style="font-style:italic; font-size: 23px; color:red;"><b>Oustanding Amount Report (<?php echo $property_name[0]['property_name']; ?>)</b> 
                     </div>
+                   
                     <hr>
                     <div>&emsp;&emsp;&emsp;<b> Property Id: <?php echo $property_id ?></b></div>
+                    <br>
+                    <br>
                     <table class="table table-striped table-hover table-bordered" style="width:90%" align="center">
                         <thead class="thead-dark">
                             <tr>
@@ -234,7 +242,8 @@ for (i = 0; i < dropdown.length; i++) {
                         </table>
                     
                 </div>
-            </div>      			
+            </div>      		
+            </div>	
         </div>
     </div>
 </div>
