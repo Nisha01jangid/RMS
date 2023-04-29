@@ -174,10 +174,10 @@ class Invoice extends CI_Controller {
         }  
 
         if(!empty($data['flats'][$i]['paid_amount'])){
-            // $data['flats'][$i]['amount_paid']=$data['flats'][$i]['paid_amount'][0]['amount'];
+            $data['flats'][$i]['amount_paid']=$data['flats'][$i]['paid_amount'][0]['amount'];
             $data['flats'][$i]['payment_date']=$data['flats'][$i]['paid_amount'][0]['payment_date'];
         }else{
-            // $data['flats'][$i]['amount_paid'] = 0;
+            $data['flats'][$i]['amount_paid'] = 0;
             $data['flats'][$i]['payment_date'] = "";
         }
                 if(!empty($previous_outstanding)){
