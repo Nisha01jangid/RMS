@@ -18,7 +18,8 @@ public function reportv(){
 
 public function receiver_report(){
 
-	$this->load->view('Report/receiver_report');
+	$data['received_by'] = $this->ReportM->get_user_name_entry(); 
+	$this->load->view('Report/receiver_report',$data);
 }
 
 public function receiver_payment_report(){
@@ -27,24 +28,49 @@ public function receiver_payment_report(){
 	$data['to_date'] = $_POST['to_date'];
 	$receiver = $_POST['receiver'];
 
-	if($receiver == 1){
-		$receiver = "Mr. Ram Kripal Shah";
-	} else if($receiver == 2){
+	// echo "<pre>";
+	// print_r($receiver);
+	// die();
+	// if($receiver == 1){
+	// 	$receiver = "Mr. Ram Kripal Shah";
+	// } else if($receiver == 2){
 
-		$receiver = "Mr. Manoj Kumar Shah";
-	}else if($receiver == 3){
-		$receiver = "Dr. Indra Kumar Shah";
-	}
-	else if($receiver == 4){
+	// 	$receiver = "Mr. Manoj Kumar Shah";
+	// }else if($receiver == 3){
+	// 	$receiver = "Dr. Indra Kumar Shah";
+	// }
+	// else if($receiver == 6){
+	// 	$receiver = "Mr. Vivek Kumar Shah";
+	// }
+	// else if($receiver == 4){
 
-		$receiver = "Mr. MG";
-	}
-	else {
+	// 	$receiver = "Mr. MG";
+	// }
+	// else {
 
-			$receiver = "Mr. AG";
-	}
+	// 		$receiver = "Mr. AG";
+	// }
 	
 	$data['payments']= $this->ReportM->get_receiver_payments($data['from_date'], $data['to_date'], $receiver);
+
+	for ($i=0; $i < sizeof($data['payments']); $i++) { 
+
+		$flat_no = $data['payments'][$i]['flat_no'];
+		$property_id = $data['payments'][$i]['property_id'];
+		$flat_name = $this->ReportM->fetch_flat_name($property_id,$flat_no);
+	
+		$data['payments'][$i]['flat_name'] = $flat_name[0]['flat_name'];
+		$data['payments'][$i]['tenant_name'] = $flat_name[0]['tenant_name'];
+		$data['payments'][$i]['contact'] = $flat_name[0]['contact'];
+	}
+
+	// echo "<pre>";
+	// print_r($flat_name);
+	// die();
+	
+
+	
+
 	$data['total'] = $this->ReportM->get_total_receiver_payments($data['from_date'], $data['to_date'], $receiver);
 	$data['receiver_expenditure'] = $this->ReportM->get_receiver_expenditure($data['from_date'], $data['to_date'], $receiver);
 	// echo "<pre>";
@@ -355,8 +381,8 @@ if(!empty($data['invoice_number'][0]['invoice'])){
 
 	public function receiver_expenditure(){
 		
-		
-		$this->load->view('Report_Monthwise/receiver_expenditure');
+		$data['received_by'] = $this->ReportM->get_user_name_entry(); 
+		$this->load->view('Report_Monthwise/receiver_expenditure',$data);
 	}
 
 	public function insert_receiver_expenditure(){
@@ -366,22 +392,26 @@ if(!empty($data['invoice_number'][0]['invoice'])){
 		$head = $_POST['head'];
 		$amount = $_POST['amount'];
 
-		if($receiver == 1){
-			$receiver = "Mr. Ram Kripal Shah";
-		} else if($receiver == 2){
+		// if($receiver == 1){
+		// 	$receiver = "Mr. Ram Kripal Shah";
+		// } else if($receiver == 2){
 	
-			$receiver = "Mr. Manoj Kumar Shah";
-		}else if($receiver == 3){
-			$receiver = "Dr. Indra Kumar Shah";
-		}
-		else if($receiver == 4){
+		// 	$receiver = "Mr. Manoj Kumar Shah";
+		// }else if($receiver == 3){
+		// 	$receiver = "Dr. Indra Kumar Shah";
+		// }
+		// else if($receiver == 4){
 	
-			$receiver = "Mr. MG";
-		}
-		else {
+		// 	$receiver = "Mr. MG";
+		// }
+		// else {
 	
-				$receiver = "Mr. AG";
-		}
+		// 		$receiver = "Mr. AG";
+		// }
+	// 		echo "<pre>";
+	// print_r($receiver);
+	// die();
+
 	    if($head == 1){
 		$head = "Waste";
 	    } else if($head == 2){

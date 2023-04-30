@@ -1,4 +1,10 @@
-<!DOCTYPE html>
+<?php
+// echo "<pre>";
+// print_r($from_date);
+// echo "<br>";
+// print_r($to_date);	
+// die();
+?><!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -34,6 +40,13 @@
 						<div class="intro">
 							 <h4 style="font-style:italic;"><center>Receiver Name: <span style="font-weight:normal; font-style:italic;"><?php echo $payments[0]['payment_receiver'];?></span></center></h4>
 							</div>
+						<div class="intro">
+							<h5 style="font-style:italic;"><center><span>From: <span style="font-weight:normal; font-style:italic;"><?php echo $from_date;?> </span></span> 
+
+								<span> &#x00A0; &#x00A0; &#x00A0;&#x00A0;&#x00A0;To: <span style="font-weight:normal; font-style:italic;"><?php echo $to_date;?> </span></span></center>
+
+							</h5>
+						</div>
 						
 						
 						<br>
@@ -48,9 +61,9 @@
                                     </tr> -->
 									<tr>
 										<th style="text-align: center;">S.No.</th>
-										<th style="text-align: center;">Payment Date</th>
 										<th style="text-align: center;">Flat Name</th>
 										<th style="text-align: center;">Received From</th>
+										<th style="text-align: center;">Payment Date</th>
 										<th style="text-align: center;">Reference Id / Payment Mode</th>
 										<th style="text-align: center;">Amount </th>
 									</tr>
@@ -61,9 +74,9 @@
 										  foreach ($payments as $row) { ?>
 										<tr>
 										<td style="text-align: center;"><?php echo $i; ?></td>
-										<td style="text-align: center;"><?php echo date('d-M-Y',strtotime($row['payment_date'])); ?></td>
-										<td style="text-align: center;"><?php echo $row['flat_name']; ?></td>
-										<td style="text-align: center;"><?php echo $row['tenant_name']; ?></td>
+										<td style="text-align: center;"><?php echo $row['flat_no']." ( ". $row['flat_name']." )"; ?></td>
+										<td style="text-align: center;"><?php echo $row['tenant_name']." ( ". $row['contact']." )"; ?></td>
+										<td style="text-align: center;"><?php echo date('d-M-Y',strtotime($row['payment_date'])); ?></td>											
 
 										<?php if(!empty($row['reference_id'])){ ?>
 											<td style="text-align: center;"><?php echo $row['reference_id']; ?></td>

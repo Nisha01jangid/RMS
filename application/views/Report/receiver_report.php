@@ -85,12 +85,15 @@
 							<label class="control-label col-md-2 offset-md-2 text-right" id="user"><span style="font-weight:bold;">Receiver:</span> </label>
 							<select class="from-control col-md-4" name="receiver">
                             <option value="">Select user</option>
-                            <option value="1">Mr. Ram Kripal Shah</option>
+                            <!-- <option value="1">Mr. Ram Kripal Shah</option>
 												    <option value="2">Mr. Manoj Kumar Shah</option>
 												    <option value="6">Mr. Vivek Kumar Shah</option>
 												    <option value="3">Dr. Indra Kumar Shah</option>
 												    <option value="4">Mr. MG</option>
-                						<option value="5">Mr. AG</option>
+                						<option value="5">Mr. AG</option> -->
+                						 <?php foreach ($received_by as $receiver) { ?>
+            <option value="<?php echo $receiver['user_name']; ?>"><?php echo $receiver['user_name']; ?></option>
+        <?php } ?>
                             </select>
 							</div><br>
 							<div class="row form-group">

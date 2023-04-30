@@ -393,6 +393,13 @@ public function get_last_invoice($property_id, $flat_no){
     return $result->result_array();  
   }
 
+  public function get_user_name_entry()
+  {
+    $query = " SELECT user_name FROM user_name_entry WHERE status = 1";
+    $result = $this->db->query($query);
+    return $result->result_array();  
+  }
+
 
    
 }

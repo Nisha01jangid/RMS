@@ -557,6 +557,9 @@ public function edit_tenant_details(){
 		$data['property_id'] = $_POST['property_id'];
 	    $data['flat_no'] = $_POST['flat_no'];
 		$data['month'] = $_POST['month'];
+
+		$data['received_by'] = $this->HomeM->get_user_name_entry(); 
+
 		if($_POST['payment_mode'] == 'online'){
 		 $data['mode'] = 1;
 		$this->load->view('Home/payment_mode', $data);
@@ -568,9 +571,7 @@ public function edit_tenant_details(){
 
 public function insert_payment(){
 
-	// echo "<pre>";
-	// print_r($_POST);
-	// die();
+	
 
 	if($_POST['mode'] == 1){
 
@@ -584,25 +585,27 @@ public function insert_payment(){
 	$description = $_POST['description'];
 	$receiver = $_POST['receiver'];
 
-	if($receiver == 1){
-		$receiver = "Mr. Ram Kripal Shah";
-	} else if($receiver == 2){
 
-		$receiver = "Mr. Manoj Kumar Shah";
-	}else if($receiver == 3){
-		$receiver = "Dr. Indra Kumar Shah";
-	}
-	else if($receiver == 6){
-		$receiver = "Mr. Vivek Kumar Shah";
-	}
-	else if($receiver == 4){
 
-		$receiver = "Mr. MG";
-	}
-	else {
+	// if($receiver == 1){
+	// 	$receiver = "Mr. Ram Kripal Shah";
+	// } else if($receiver == 2){
 
-			$receiver = "Mr. AG";
-	}
+	// 	$receiver = "Mr. Manoj Kumar Shah";
+	// }else if($receiver == 3){
+	// 	$receiver = "Dr. Indra Kumar Shah";
+	// }
+	// else if($receiver == 6){
+	// 	$receiver = "Mr. Vivek Kumar Shah";
+	// }
+	// else if($receiver == 4){
+
+	// 	$receiver = "Mr. MG";
+	// }
+	// else {
+
+	// 		$receiver = "Mr. AG";
+	// }
 
 	$month = date('Y-m', strtotime($date));
 	// $data = explode('-', $month1);
@@ -628,25 +631,25 @@ public function insert_payment(){
 
 	$receiver = $_POST['receiver'];
 
-	if($receiver == 1){
-		$receiver = "Mr. Ram Kripal Shah";
-	} else if($receiver == 2){
+	// if($receiver == 1){
+	// 	$receiver = "Mr. Ram Kripal Shah";
+	// } else if($receiver == 2){
 
-		$receiver = "Mr. Manoj Kumar Shah";
-	}else if($receiver == 3){
-		$receiver = "Dr. Indra Kumar Shah";
-	}
-	else if($receiver == 4){
+	// 	$receiver = "Mr. Manoj Kumar Shah";
+	// }else if($receiver == 3){
+	// 	$receiver = "Dr. Indra Kumar Shah";
+	// }
+	// else if($receiver == 4){
 
-		$receiver = "Mr. MG";
-	}
-	else if($receiver == 6){
-		$receiver = "Mr. Vivek Kumar Shah";
-	}
-	else {
+	// 	$receiver = "Mr. MG";
+	// }
+	// else if($receiver == 6){
+	// 	$receiver = "Mr. Vivek Kumar Shah";
+	// }
+	// else {
 
-			$receiver = "Mr. AG";
-	}
+	// 		$receiver = "Mr. AG";
+	// }
 	
 	
 	 $this->HomeM->insert_payment_offline($mode, $date, $amount, $description, $property_id, $flat_no, $payment_mode, $month, $receiver);
