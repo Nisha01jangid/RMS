@@ -98,23 +98,25 @@ class EntryForm extends CI_Controller{
 		$data['previous_reading'] = array();
 		for($i=1; $i<=sizeof($data['flats']); $i++){
 
-		if($data['flats'][$i] == 1){
-// echo "helloooooooo";
-		$data['flat_entry'] = $this->EntryFormM->check_flat_entry($i, $property_id);
+		if($data['flats'][$i]['status'] == 1){
 
-		
+		$data['flat_entry'] = $this->EntryFormM->check_flat_entry($i, $property_id);
 
 		$month = $data['month'];
 		// $previous_month =  date('Y-m', strtotime('-1 month'));
 		$previous_month = date('Y-m', strtotime($month . '-01 -1 month'));
+		
 		$previous_rent = $this->EntryFormM->get_previous_rent($property_id,$i,$previous_month);
 		if(!empty($previous_rent)){
 			$data['previous_rent'][$i]=$previous_rent[0]['rent'];
 		}else{
 			$data['previous_rent'][$i]="";
 		}
-
-		$data['previous_reading'][$i] = $this->EntryFormM->previousReading($property_id,$i,$previous_month);
+		$previous_reading = $this->EntryFormM->previousReading($property_id,$i,$previous_month);
+		$data['previous_reading'][$i] = $previous_reading[0]['current_meter_reading'];
+		// echo "<pre>";
+		// print_r($data['previous_reading'][$i]);
+		// die();
 		}
 		
 
@@ -224,9 +226,9 @@ class EntryForm extends CI_Controller{
 
 	public function insert_property_wise_entry(){
 	    
-// 	    echo "<pre>";
-// 		print_r(_GET);
-// 		die();
+	    // echo "<pre>";
+		// print_r($_POST);
+		// die();
 
 // echo "hello";
 		$property_name1 = $this->EntryFormM->get_property_name($_POST['property_id'][0]);
