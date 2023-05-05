@@ -68,8 +68,21 @@ public function balance_report(){
 
 	public function select_month_for_report_monthwise($property_id, $flats)
 	{
+		// $data['property_id'] = $property_id;
+		// $data['flats'] = $flats;
 		$data['property_id'] = $property_id;
-		$data['flats'] = $flats;
+		$data['flat'] = $this->ReportM->get_flats_name($property_id);
+		$flats_name = $data['flat'];
+		$i=1;
+		foreach($flats_name as $f){
+			if(!empty($data['flat'][$i]['flat_no'])){
+				$flat_no = $data['flat'][$i]['flat_no'];
+				$data['flat_no'] = $flat_no;
+				$flat_name = $data['flat'][$i]['flat_name'];
+				$data['flat_name'] = $flat_name;
+			}
+			$i++;
+		}
 		$this->load->view('Report_Monthwise/select_month_for_report_monthwise',$data);
 	}
     
@@ -189,17 +202,20 @@ $property_name = $this->ReportM->get_property_name($property_id);
 	public function Report_flatwise()
     {
 		$data['flats'] =$_POST['flats'];
-    	$flats = $data['flats'];
+		$data['flats_split'] = explode('=>',$data['flats']);
+		$flat_no = $data['flats_split'][0];
+		$flat_name = $data['flats_split'][1];
+		// print_r($flat_name);die();
+    	// $data['flats']['flat_no'] = $_POST['flats']['flat_no'];
+		// print_r($data['flat_no']);die();
 		$data['from_date'] = $_POST['from_date'];
 		$data['to_date'] = $_POST['to_date'];
 		$data['property_id'] =$_POST['property_id'];
-		// echo $data['flats'];
-		// die();
-    	$data['report_flatwise_details'] = $this->ReportM->get_flatwise_payments($data['to_date'],$data['from_date'],$data['property_id'],$flats);
-
+    	$data['report_flatwise_details'] = $this->ReportM->get_flatwise_payments($data['to_date'],$data['from_date'],$data['property_id'],$flat_no);
+	// echo"<pre>";print_r($flat_no);
+	// die();
 		for($i=0; $i<sizeof($data['report_flatwise_details']); $i++){
 			$property_id = $data['report_flatwise_details'][$i]['property_id'];
-			$flat_no = $data['report_flatwise_details'][$i]['flat_no'];
 		$data['tenant_name'] = $this->ReportM->get_tenant_name($flat_no, $property_id,$data['report_flatwise_details'][0]['month']);
 		if(!empty($data['tenant_name'][0]['tenant_name'])){
 			$data['report_flatwise_details'][$i]['tenant_name'] = 	$data['tenant_name'][0]['tenant_name'];
@@ -213,7 +229,7 @@ $property_name = $this->ReportM->get_property_name($property_id);
 			$data['report_flatwise_details'][$i]['contact'] = 	"";
 		}
 	}
-// echo"<pre>";	print_r($data);die();
+// echo"<pre>";print_r($data);die();
 
 
 		$month = $data['report_flatwise_details'][0]['month'];
@@ -229,7 +245,7 @@ $property_name = $this->ReportM->get_property_name($property_id);
 			$flat_no = $data['report_flatwise_details'][$i]['flat_no'];
 
 
-			// print_r($data);die();
+			// print_r($flat_no);die();
 			$data['invoice_number'] = $this->ReportM->get_invoive_number($data['property_id'],$month, $flat_no);
 if(!empty($data['invoice_number'][0]['invoice'])){
 
