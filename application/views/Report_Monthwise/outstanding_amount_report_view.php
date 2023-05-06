@@ -205,10 +205,9 @@ for (i = 0; i < dropdown.length; i++) {
                   <div class="row" style="height:78vh;overflow-x: hidden; overflow-y: auto;">
                     <div style="font-style:italic; font-size: 23px; color:red;"><b>Oustanding Amount Report (<?php echo $property_name[0]['property_name']; ?>)</b> 
                     </div>
-                   
-                    <hr>
-                    <div>&emsp;&emsp;&emsp;<b> Property Id: <?php echo $property_id ?></b></div>
                     <br>
+                    <hr>
+                    
                     <br>
                     <table class="table table-striped table-hover table-bordered" style="width:90%" align="center">
                         <thead class="thead-dark">
