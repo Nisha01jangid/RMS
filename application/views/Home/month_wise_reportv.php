@@ -166,7 +166,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
                                 <?php }else{ if(!empty($value['invoice_number'])){ ?>
                                     <a href="<?php echo base_url("Home/view_flat_invoice/").$property_id."/".$flat_no."/".$value['month']; ?>" class="btn btn-primary">Invoice</a>
 
-                                    <a href="<?php echo base_url("Home/delete_flat_invoice/").$property_id."/".$flat_no."/".$value['month']; ?>" class="btn btn-danger" style="text-decoration : none;" onclick="return confirm('Are you sure you want to delete ?');">Delete</a>
+                                    <!-- <a href="<?php echo base_url("Home/delete_flat_invoice/").$property_id."/".$flat_no."/".$value['month']; ?>" class="btn btn-danger" style="text-decoration : none;" onclick="return confirm('Are you sure you want to delete ?');">Delete</a> -->
 
                                 <?php }} ?>
                             </td> 
