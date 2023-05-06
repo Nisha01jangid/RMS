@@ -178,9 +178,9 @@
   </div>
 </div>
 
-<li>
+<!-- <li>
         <a href="<?php echo base_url('Home/user_entry') ?>" class="nav-link text-white" aria-current="page">User Entry</a>
-      </li>
+      </li> -->
 
 
 
@@ -219,6 +219,9 @@ for (i = 0; i < dropdown.length; i++) {
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
+                <div style="font-style:italic; font-size: 20px; font-size: 25px;"><b><i>You are at Individual Entry Page</i></b> &emsp;
+                    
+                    </div>
                     <div style="font-style:italic; font-size: 20px; color:red; font-size: 25px;"><b><i><?php echo $flat[0]['property_address'];?></i></b> &emsp;
                     
                     </div>

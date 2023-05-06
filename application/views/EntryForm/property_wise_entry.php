@@ -175,9 +175,9 @@
   </div>
 </div>
 
-<li>
+<!-- <li>
         <a href="<?php echo base_url('Home/user_entry') ?>" class="nav-link text-white" aria-current="page">User Entry</a>
-      </li>
+      </li> -->
 
 
 
