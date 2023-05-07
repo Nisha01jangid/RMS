@@ -787,8 +787,9 @@ public function insert_payment(){
 		
         if(!empty($data['paid_amount'])){
             $data['data']['amount_paid']=$data['paid_amount'][0]['amount'];
+            // $data['data']['payment_date']=$data['paid_amount'][0]['payment_date'];
             $data['data']['payment_date']=$data['paid_amount'][0]['payment_date'];
-            
+			$data['paid_amount'][0]['payment_date'] = date('d-m-Y',strtotime($data['data']['payment_date']));
         }else{
             $data['data']['amount_paid'] = 0;
             $data['data']['payment_date'] = "";
