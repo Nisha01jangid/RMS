@@ -153,7 +153,7 @@ public function balance_report(){
 			}
 			$data['payment_date'] = $this->ReportM->get_payment_date($flat_no, $data['property_id'], $month);
 			if(!empty($data['paid_amount']&&($data['payment_date']))){
-				$data['report_monthwise_details'][$i]['payment_date'] = $data['payment_date'][0]['payment_date'];
+				$data['report_monthwise_details'][$i]['payment_date'] = date('d-m-Y',strtotime($data['payment_date'][0]['payment_date']));
 			}else{
 				$data['report_monthwise_details'][$i]['payment_date'] = "";
 			}
@@ -275,7 +275,7 @@ if(!empty($data['invoice_number'][0]['invoice'])){
 			$data['payment_date'] = $this->ReportM->get_payment_date($flat_no, $data['property_id'], $month);
 			// echo"<pre>";print_r($data);die();
 			if(!empty($data['paid_amount'])&&($data['payment_date'])){
-				$data['report_flatwise_details'][$i]['payment_date'] = $data['payment_date'][0]['payment_date'];
+				$data['report_flatwise_details'][$i]['payment_date'] = date('d-m-Y',strtotime($data['payment_date'][0]['payment_date']));
 			}else{
 				$data['report_flatwise_details'][$i]['payment_date'] = "";
 			}

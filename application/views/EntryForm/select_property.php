@@ -119,7 +119,7 @@
       </li>
 
       <li>
-        <a href="<?php echo base_url('EntryForm') ?>" class="nav-link text-white" aria-current="page">Entry Form</a>
+        <a href="<?php echo base_url('EntryForm') ?>" class="nav-link text-white active" aria-current="page">Entry Form</a>
       </li>
       <!-- <li>
         <a href="<?php echo base_url('Invoice') ?>" class="nav-link text-white">Invoice</a>

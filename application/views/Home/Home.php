@@ -112,7 +112,7 @@
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
       <li>
-        <a href="<?php echo base_url('Home') ?>" class="nav-link text-white" aria-current="page">Home</a>
+        <a href="<?php echo base_url('Home') ?>" class="nav-link text-white active" aria-current="page">Home</a>
       </li>
 
       <li>
