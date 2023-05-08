@@ -131,9 +131,15 @@
                               <?php } ?>
                               <td style="text-align: center;"><?php echo $value['outstanding_amount'] ?></td>
                            </tr> 
-
+                           <?php $total += $value['total'];
+                            $amount_received +=$value['amount_received'];
+                            $outstanding_amount +=$value['outstanding_amount'];
+                            ?>
                             <?php $i++; } ?>
-
+                            <td style="text-align: center; color:blue; font-weight:bold; font-size:20px;" colspan="4">Total </td>
+                            <td style="text-align: center; font-weight:bold; color:green;"><?php echo $total; ?></td>
+                            <td style="text-align: center; font-weight:bold; color:green;"><?php echo $amount_received; ?></td>
+                            <td style="text-align: center; font-weight:bold; color:green;"><?php echo $outstanding_amount; ?></td>
                         </tbody>
                         </table>
                     
