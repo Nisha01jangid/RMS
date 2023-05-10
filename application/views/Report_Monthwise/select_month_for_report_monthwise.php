@@ -1,5 +1,5 @@
 <?php
-// print_r($flats);
+// echo "<pre>";print_r($flat);
 // die(); 
 ?>
 
@@ -87,7 +87,6 @@
 							<button class="btn btn-sm btn-block btn-primary col-md-2 ml-1 offset-md-2"> Filter</button>
 						</div>
 						<input type="hidden" name="property_id" value="<?php echo $property_id; ?>" >
-							<input type="hidden" name="flats" value="<?php echo $flats; ?>" >
 					</form>
 <br><br>
 
@@ -121,8 +120,9 @@
 							<label class="control-label col-md-2 offset-md-2 text-right" id="flat_no" style = "padding-right:0px">Flat Number: </label>
   							<select class='from-control col-md-4' id="flats" name="flats">
 								<option> Select Flat </option>
-							  <?php for($i=1; $i<=$flats; $i++){?>
-								<option><?php echo $i; ?></option>
+								<?php 
+                                foreach ($flat as $key => $value) { ?>
+								<option><?php echo $value['flat_no']."=>".$value['flat_name'];?></option>
 							  <?php } ?>
 							</select>
 							</div><br>

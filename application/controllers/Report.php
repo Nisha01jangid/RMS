@@ -94,8 +94,21 @@ public function balance_report(){
 
 	public function select_month_for_report_monthwise($property_id, $flats)
 	{
+		// $data['property_id'] = $property_id;
+		// $data['flats'] = $flats;
 		$data['property_id'] = $property_id;
-		$data['flats'] = $flats;
+		$data['flat'] = $this->ReportM->get_flats_name($property_id);
+		$flats_name = $data['flat'];
+		$i=1;
+		foreach($flats_name as $f){
+			if(!empty($data['flat'][$i]['flat_no'])){
+				$flat_no = $data['flat'][$i]['flat_no'];
+				$data['flat_no'] = $flat_no;
+				$flat_name = $data['flat'][$i]['flat_name'];
+				$data['flat_name'] = $flat_name;
+			}
+			$i++;
+		}
 		$this->load->view('Report_Monthwise/select_month_for_report_monthwise',$data);
 	}
     
@@ -166,7 +179,7 @@ public function balance_report(){
 			}
 			$data['payment_date'] = $this->ReportM->get_payment_date($flat_no, $data['property_id'], $month);
 			if(!empty($data['paid_amount']&&($data['payment_date']))){
-				$data['report_monthwise_details'][$i]['payment_date'] = $data['payment_date'][0]['payment_date'];
+				$data['report_monthwise_details'][$i]['payment_date'] = date('d-m-Y',strtotime($data['payment_date'][0]['payment_date']));
 			}else{
 				$data['report_monthwise_details'][$i]['payment_date'] = "";
 			}
@@ -215,17 +228,20 @@ $property_name = $this->ReportM->get_property_name($property_id);
 	public function Report_flatwise()
     {
 		$data['flats'] =$_POST['flats'];
-    	$flats = $data['flats'];
+		$data['flats_split'] = explode('=>',$data['flats']);
+		$flat_no = $data['flats_split'][0];
+		$flat_name = $data['flats_split'][1];
+		// print_r($flat_name);die();
+    	// $data['flats']['flat_no'] = $_POST['flats']['flat_no'];
+		// print_r($data['flat_no']);die();
 		$data['from_date'] = $_POST['from_date'];
 		$data['to_date'] = $_POST['to_date'];
 		$data['property_id'] =$_POST['property_id'];
-		// echo $data['flats'];
-		// die();
-    	$data['report_flatwise_details'] = $this->ReportM->get_flatwise_payments($data['to_date'],$data['from_date'],$data['property_id'],$flats);
-
+    	$data['report_flatwise_details'] = $this->ReportM->get_flatwise_payments($data['to_date'],$data['from_date'],$data['property_id'],$flat_no);
+	// echo"<pre>";print_r($flat_no);
+	// die();
 		for($i=0; $i<sizeof($data['report_flatwise_details']); $i++){
 			$property_id = $data['report_flatwise_details'][$i]['property_id'];
-			$flat_no = $data['report_flatwise_details'][$i]['flat_no'];
 		$data['tenant_name'] = $this->ReportM->get_tenant_name($flat_no, $property_id,$data['report_flatwise_details'][0]['month']);
 		if(!empty($data['tenant_name'][0]['tenant_name'])){
 			$data['report_flatwise_details'][$i]['tenant_name'] = 	$data['tenant_name'][0]['tenant_name'];
@@ -239,7 +255,7 @@ $property_name = $this->ReportM->get_property_name($property_id);
 			$data['report_flatwise_details'][$i]['contact'] = 	"";
 		}
 	}
-// echo"<pre>";	print_r($data);die();
+// echo"<pre>";print_r($data);die();
 
 
 		$month = $data['report_flatwise_details'][0]['month'];
@@ -255,7 +271,7 @@ $property_name = $this->ReportM->get_property_name($property_id);
 			$flat_no = $data['report_flatwise_details'][$i]['flat_no'];
 
 
-			// print_r($data);die();
+			// print_r($flat_no);die();
 			$data['invoice_number'] = $this->ReportM->get_invoive_number($data['property_id'],$month, $flat_no);
 if(!empty($data['invoice_number'][0]['invoice'])){
 
@@ -285,7 +301,7 @@ if(!empty($data['invoice_number'][0]['invoice'])){
 			$data['payment_date'] = $this->ReportM->get_payment_date($flat_no, $data['property_id'], $month);
 			// echo"<pre>";print_r($data);die();
 			if(!empty($data['paid_amount'])&&($data['payment_date'])){
-				$data['report_flatwise_details'][$i]['payment_date'] = $data['payment_date'][0]['payment_date'];
+				$data['report_flatwise_details'][$i]['payment_date'] = date('d-m-Y',strtotime($data['payment_date'][0]['payment_date']));
 			}else{
 				$data['report_flatwise_details'][$i]['payment_date'] = "";
 			}
@@ -352,28 +368,42 @@ if(!empty($data['invoice_number'][0]['invoice'])){
 	public function outstanding_report_view($property_id){
 
 		$data['property_id'] = $property_id;
-		
-		$data['outstanding_report_details'] = $this->ReportM->get_outstanding_report_details($data['property_id']);
-		// echo "<pre>";
-		// print_r($data['outstanding_report_details']);
-		// die();
-		
-		for($i = 0; $i < sizeof($data['outstanding_report_details']); $i++){
 
-			$property_id = $data['outstanding_report_details'][$i]['property_id'];
-			$flat_no = $data['outstanding_report_details'][$i]['flat_no'];
-			$month = $data['outstanding_report_details'][$i]['month'];
-			// $tenant_name = $this->ReportM->get_tenant_name($property_id,$flat_no,$month);
-			// if(!empty($tenant_name)){
-			// 	$data['outstanding_report_details'][$i]['tenant_name'] = $tenant_name[0]['tenant_name'];
-			// }else{
-			// 	$data['outstanding_report_details'][$i]['tenant_name'] = "";
-			// }
+		$data['flats'] = $this->ReportM->get_flats($data['property_id']);
+		
+		$data['property_name'] = $this->ReportM->get_property_name($data['property_id']);
+
+		// echo "<pre>";
+		// print_r($data['property_name']);
+		// die();
+		$data['outstanding_report_details'] = array();
+		
+		for($i = 0; $i < $data['flats'][0]['flats']; $i++){
+
+			$outstanding_amount = $this->ReportM->get_outstanding_report_details($data['property_id'], $i);
+
+			if(!empty($outstanding_amount)){
+
+
+				$data['outstanding_report_details'][$i]['flat_no'] = $outstanding_amount[0]['flat_no'];
+
+				$flat = $this->ReportM->get_flat_name($data['property_id'], $data['outstanding_report_details'][$i]['flat_no']);
+				$data['outstanding_report_details'][$i]['flat_name'] = $flat[0]['flat_name'];
+				$data['outstanding_report_details'][$i]['outstanding_amount'] = $outstanding_amount[0]['outstanding_amount'];
+				$data['outstanding_report_details'][$i]['contact'] = $outstanding_amount[0]['contact'];
+				$data['outstanding_report_details'][$i]['tenant_name'] = $outstanding_amount[0]['tenant_name'];
+				$data['outstanding_report_details'][$i]['month'] = $outstanding_amount[0]['month'];
+				$data['outstanding_report_details'][$i]['amount_received'] = $outstanding_amount[0]['amount_received'];
+				$data['outstanding_report_details'][$i]['total'] = $outstanding_amount[0]['total'];
+				
+			}
+			
 		// 	echo "<pre>";
-		// print_r($tenant_name);
+		// print_r($data['outstanding_report_details']);
 		}
 		
-		
+		// 	echo "<pre>";
+		// print_r($data['outstanding_report_details']);
 		// die();
 
 		$this->load->view('Report_Monthwise/outstanding_amount_report_view', $data);

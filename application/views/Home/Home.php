@@ -112,7 +112,7 @@
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
       <li>
-        <a href="<?php echo base_url('Home') ?>" class="nav-link text-white" aria-current="page">Home</a>
+        <a href="<?php echo base_url('Home') ?>" class="nav-link text-white active" aria-current="page">Home</a>
       </li>
 
       <li>
@@ -285,7 +285,7 @@ for (i = 0; i < dropdown.length; i++) {
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <div style="font-style:italic; font-size: 20px;"><b>Welcome back !</b> &emsp;
+                    <div style="font-style:italic; font-size: 20px;"><b>You are at <span style="color:red;">Home Page !</span></b> &emsp;
                     <span><a class="btn btn-primary btn-block btn-sm col-sm-2 float-right" href="<?php echo base_url('Home/add_property'); ?>">
                     <i class="fa fa-plus"></i> New Property
                   </a></span>

@@ -105,7 +105,7 @@
                             <th scope="col" style="text-align:center;">Total</th>
                             <th scope="col" style="text-align:center; width:10%">Total + Previous Outstanding</th>
                             <th scope="col" style="text-align:center;">Amount Paid</th>
-                            <th scope="col" style="text-align:center;">Outstanding Amount</th>
+                            <th scope="col" style="text-align:center;width:8%">Outstanding Amount</th>
                             </tr>
                         </thead>
                         <tbody>

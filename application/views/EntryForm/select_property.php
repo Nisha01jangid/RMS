@@ -119,7 +119,7 @@
       </li>
 
       <li>
-        <a href="<?php echo base_url('EntryForm') ?>" class="nav-link text-white" aria-current="page">Entry Form</a>
+        <a href="<?php echo base_url('EntryForm') ?>" class="nav-link text-white active" aria-current="page">Entry Form</a>
       </li>
       <!-- <li>
         <a href="<?php echo base_url('Invoice') ?>" class="nav-link text-white">Invoice</a>
@@ -169,9 +169,9 @@
   </div>
 </div>
 
-<li>
+<!-- <li>
         <a href="<?php echo base_url('Home/user_entry') ?>" class="nav-link text-white" aria-current="page">User Entry</a>
-      </li>
+      </li> -->
 
 
 
@@ -211,7 +211,7 @@ for (i = 0; i < dropdown.length; i++) {
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                <div style="font-style:italic; font-size: 23px; color:red;"><b>Properties</b> &emsp;
+                <div style="font-style:italic; font-size: 23px; color:red;"><b>You are at <span style="color:red;">Entry Page !</span></b> &emsp;
                   </a></span>
                     </div> 
                     <hr>

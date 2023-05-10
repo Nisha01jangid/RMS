@@ -175,9 +175,9 @@
   </div>
 </div>
 
-<li>
+<!-- <li>
         <a href="<?php echo base_url('Home/user_entry') ?>" class="nav-link text-white" aria-current="page">User Entry</a>
-      </li>
+      </li> -->
 
 
 
@@ -235,10 +235,10 @@ for (i = 0; i < dropdown.length; i++) {
 										<th style="text-align: center;">Flat Name.</th>
 										<th style="text-align: center;">Tenant Name</th>
 										<th style="text-align: center;">Rent</th>
-                                        <th style="text-align: center;">previous Meter Reading</th>
-                                        <th style="text-align: center;">Current Meter Reading </th>
-                                        <th style="text-align: center;">Miscellaneous </th>
-                                        <th style="text-align: center;">Due Date</th>
+                    <th style="text-align: center;">previous Meter Reading</th>
+                    <th style="text-align: center;">Current Meter Reading </th>
+                    <th style="text-align: center;">Miscellaneous </th>
+                    <th style="text-align: center;">Due Date</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -299,5 +299,9 @@ for (i = 0; i < dropdown.length; i++) {
       <script src="<?php echo base_url('js/sidebars.js') ?>"></script>
   </body>
 </html>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$('#duedate').val(new Date().toJSON().slice(0,10));
+</script> -->
  
  

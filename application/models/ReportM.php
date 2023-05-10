@@ -191,9 +191,21 @@ $query = "SELECT SUM(amount) as amount FROM payment where property_id = $propert
     
   }
 
-  public function get_outstanding_report_details($property_id){
+  // public function get_outstanding_report_details($property_id){
 
-    $query = "SELECT outstanding_amount.*, invoice.tenant_name, tenants.contact FROM tenants, outstanding_amount,invoice WHERE invoice.property_id = $property_id and outstanding_amount.property_id = $property_id and invoice.flat_no = outstanding_amount.flat_no  and outstanding_amount.`status`=1 and outstanding_amount.outstanding_amount > 0 and outstanding_amount.month = invoice.month and invoice.tenant_name = tenants.tenant_name ORDER BY outstanding_amount.`month` asc"; 
+  //   $query = "SELECT outstanding_amount.*, invoice.tenant_name, tenants.contact FROM tenants, outstanding_amount,invoice WHERE invoice.property_id = $property_id and outstanding_amount.property_id = $property_id and invoice.flat_no = outstanding_amount.flat_no  and outstanding_amount.`status`=1 and outstanding_amount.outstanding_amount > 0 and outstanding_amount.month = invoice.month and invoice.tenant_name = tenants.tenant_name ORDER BY outstanding_amount.`month` asc"; 
+
+  //   // print_r($query);
+  //   // die();
+    
+  //   $result = $this->db->query($query);
+  //   return $result->result_array();
+    
+  // }
+
+  public function get_outstanding_report_details($property_id, $flat_no){
+
+    $query = "SELECT outstanding_amount.*, invoice.tenant_name, tenants.contact FROM tenants, outstanding_amount,invoice WHERE invoice.property_id = $property_id and outstanding_amount.property_id = $property_id and invoice.flat_no = outstanding_amount.flat_no and outstanding_amount.flat_no = $flat_no and outstanding_amount.`status`=1 and outstanding_amount.outstanding_amount > 0 and outstanding_amount.month = invoice.month and invoice.tenant_name = tenants.tenant_name ORDER BY outstanding_amount.`month` desc"; 
 
     // print_r($query);
     // die();
@@ -316,6 +328,10 @@ $query = "SELECT SUM(amount) as amount FROM payment where property_id = $propert
     // print_r($query);
     // die();
 
+  }
+  public function get_flats_name($property_id)
+  {
+    $query = "SELECT property_id,flat_no,flat_name,tenant_name FROM tenants where property_id = $property_id AND status =1 ";
     $result = $this->db->query($query);
     return $result->result_array();
   }
@@ -350,6 +366,14 @@ $query = "SELECT SUM(amount) as amount FROM payment where property_id = $propert
     return $result->result_array();  
   }
 
+
+  public function get_flats($property_id){
+
+    $query = "SELECT flats FROM property where property_id = $property_id and active = 1";
+
+    $result = $this->db->query($query);
+    return $result->result_array(); 
+  }
 
 }
 

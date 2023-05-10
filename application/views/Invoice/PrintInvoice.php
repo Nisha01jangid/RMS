@@ -85,7 +85,7 @@
             <hr style="margin: 3px 0px;">
             <p style="margin-bottom:0px;">8. प्राप्त राशि (दिनांक सहित): <b>₹ <?php foreach ($f['paid_amount'] as $key) {
               echo $key['amount']."+";
-            }?> = <?php echo $amount_paid; ?>/- (<?php if(!empty($f['payment_date'])){echo $f['payment_date'];}else{echo "Nil";}?>)</b></p>
+            }?> = <?php echo $amount_paid; ?>/- <span style="color:blue;">(<?php if(!empty($f['payment_date'])){echo $f['payment_date'];}else{echo "Nil";}?>)</span></b></p>
             <hr style="margin: 3px 0px;">
             <p style="margin-bottom:0px;">9. शेष राशि: &emsp;<b>₹ <?php echo round($total_amount_to_pay)." - "; ?><?php if(!empty($amount_paid)){echo $amount_paid; }else{echo "0";} ?><?php echo " = ".$f['outstanding_amount']; ?></b> /-</p>
             <hr style="margin: 3px 0px;">
