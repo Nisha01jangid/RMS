@@ -119,7 +119,7 @@
         <a href="<?php echo base_url('EntryForm') ?>" class="nav-link text-white" aria-current="page">Entry Form</a>
       </li>
 
-      <div class="dropdown">
+     <div class="dropdown">
   <button class="dropbtn">Report</button>
   <div class="dropdown-content">
 
@@ -127,10 +127,49 @@
     <a href="<?php echo base_url('Report/outstanding_amount') ?>">Outstanding Report</a>
     <a href="<?php echo base_url('Report/receiver_expenditure') ?>">Receiver Expenditure</a>
     <a href="<?php echo base_url('Report/receiver_report') ?>">Receiver Report</a>
-    <a href="<?php echo base_url('Report/TR_Report') ?>">TR Report</a>
+    <a href="<?php echo base_url('Report/TR_Report') ?>">TR Report</a> 
     <!-- <a class="dropdown-item" href="<?php echo base_url('Report/TR_Report?property_id=' . $property_id) ?>">TR Report</a> -->
   </div>
 </div>
+
+<!-- <div class="dropdown">
+  <button class="dropbtn">Report</button>
+  <div class="dropdown-content">
+    <a href="<?php echo base_url('Report/select_property_for_report_monthwise') ?>">Main Report</a>
+    <a href="<?php echo base_url('Report/outstanding_amount') ?>">Outstanding Report</a>
+    <div class="dropdown-subcontent">
+      <button class="sub-dropbtn">Expenditure</button>
+      <div class="dropdown-subcontent-content">
+        <a href="<?php echo base_url('Report/receiver_expenditure') ?>">Receiver Expenditure</a>
+        <a href="<?php echo base_url('Report/receiver_report') ?>">Receiver Report</a>
+      </div>
+    </div>
+    <a href="<?php echo base_url('Report/TR_Report') ?>">TR Report</a>
+  </div>
+</div> -->
+
+<!-- <style>
+.dropdown-subcontent {
+  position: relative;
+  display: inline-block;
+}
+.dropdown-subcontent-content {
+  display: none;
+  position: absolute;
+  z-index: 1;
+}
+.dropdown-subcontent-content a {
+  color: black;
+  text-decoration: none;
+  display: block;
+  background-color: #f2f2f2;
+  padding: 5px 10px;
+}
+.sub-dropbtn:hover + .dropdown-subcontent-content {
+  display: block;
+}
+</style> -->
+
 
 <li>
         <a href="<?php echo base_url('Home/user_entry') ?>" class="nav-link text-white" aria-current="page">User Entry</a>

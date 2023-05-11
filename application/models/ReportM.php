@@ -321,7 +321,14 @@ $query = "SELECT SUM(amount) as amount FROM payment where property_id = $propert
     return $result->result_array();
   }
 
+  public function fetch_flat_name($property_id, $flat_no)
+  {
+    $query = "SELECT flat_name,tenant_name, contact FROM tenants where property_id = $property_id and flat_no = $flat_no AND status =1 ";
 
+    // print_r($query);
+    // die();
+
+  }
   public function get_flats_name($property_id)
   {
     $query = "SELECT property_id,flat_no,flat_name,tenant_name FROM tenants where property_id = $property_id AND status =1 ";
@@ -351,6 +358,14 @@ $query = "SELECT SUM(amount) as amount FROM payment where property_id = $propert
     $result = $this->db->query($query);
     return $result->result_array(); 
   }
+
+  public function get_user_name_entry()
+  {
+    $query = " SELECT user_name FROM user_name_entry WHERE status = 1";
+    $result = $this->db->query($query);
+    return $result->result_array();  
+  }
+
 
   public function get_flats($property_id){
 

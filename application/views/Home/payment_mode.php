@@ -1,4 +1,8 @@
-<!doctype html>
+<?php
+// echo "<pre>";
+// print_r($received_by);
+// die();
+?><!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -236,12 +240,15 @@ for (i = 0; i < dropdown.length; i++) {
     <label for="exampleInputEmail1">Received By:</label>
     <select class="form-control" id="exampleInputPassword1" name="receiver">
     <option>Select Payment Receiver</option>
-    <option value="1">Mr. Ram Kripal Shah</option>
+    <!-- <option value="1">Mr. Ram Kripal Shah</option>
     <option value="2">Mr. Manoj Kumar Shah</option>
     <option value="6">Mr. Vivek Kumar Shah</option>
     <option value="3">Dr. Indra Kumar Shah</option>
     <option value="4">Mr. MG</option>
-    <option value="5">Mr. AG</option>
+    <option value="5">Mr. AG</option> -->
+     <?php foreach ($received_by as $receiver) { ?>
+            <option value="<?php echo $receiver['user_name']; ?>"><?php echo $receiver['user_name']; ?></option>
+        <?php } ?>
    </select>
 </div>
 <br>
@@ -271,12 +278,16 @@ for (i = 0; i < dropdown.length; i++) {
     <label for="exampleInputEmail1">Received By:</label>
     <select class="form-control" id="exampleInputPassword1" name="receiver">
     <option>Select Payment Receiver</option>
-    <option value="1">Mr. Ram Kripal Shah</option>
+    <!-- <option value="1">Mr. Ram Kripal Shah</option>
     <option value="2">Mr. Manoj Kumar Shah</option>
      <option value="6">Mr. Vivek Kumar Shah</option>
     <option value="3">Dr. Indra Kumar Shah</option>
     <option value="4">Mr. MG</option>
-    <option value="5">Mr. AG</option>
+    <option value="5">Mr. AG</option> -->
+
+    <?php foreach ($received_by as $receiver) { ?>
+            <option value="<?php echo $receiver['user_name']; ?>"><?php echo $receiver['user_name']; ?></option>
+        <?php } ?>
    </select>
 </div>
 <br>

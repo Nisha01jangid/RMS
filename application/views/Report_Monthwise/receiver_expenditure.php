@@ -206,6 +206,7 @@ for (i = 0; i < dropdown.length; i++) {
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
+                  <div class="row" style="height:78vh;overflow-x: hidden; overflow-y: auto;">
                 <form action="<?php echo base_url('Report/insert_receiver_expenditure');?>" method="post">
                     <div style="font-style:italic; font-size: 23px; color:red;"><b>Receiver Expenditure</b>
                     </b> &emsp;
@@ -224,12 +225,15 @@ for (i = 0; i < dropdown.length; i++) {
                  <label for="exampleInputEmail1">Paid By:</label>
                  <select class="form-control" name="pay_user">
                  <option value="">Select user</option>
-                <option value="1">Mr. Ram Kripal Shah</option>
+               <!--  <option value="1">Mr. Ram Kripal Shah</option>
                 <option value="2">Mr. Manoj Kumar Shah</option>
                 <option value="6">Mr. Vivek Kumar Shah</option>
                 <option value="3">Dr. Indra Kumar Shah</option>
                 <option value="4">Mr. MG</option>
-                <option value="5">Mr. AG</option>
+                <option value="5">Mr. AG</option> -->
+                <?php foreach ($received_by as $pay_user) { ?>
+            <option value="<?php echo $pay_user['user_name']; ?>"><?php echo $pay_user['user_name']; ?></option>
+        <?php } ?>
                 </select>
                 </div>
                 <br>
@@ -253,6 +257,7 @@ for (i = 0; i < dropdown.length; i++) {
 </form>
             </div>      			
         </div>
+      </div>
     </div>
 </div>
   </div>
