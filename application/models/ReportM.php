@@ -205,7 +205,7 @@ $query = "SELECT SUM(amount) as amount FROM payment where property_id = $propert
 
   public function get_outstanding_report_details($property_id, $flat_no){
 
-    $query = "SELECT outstanding_amount.*, invoice.tenant_name, tenants.contact FROM tenants, outstanding_amount,invoice WHERE invoice.property_id = $property_id and outstanding_amount.property_id = $property_id and invoice.flat_no = outstanding_amount.flat_no and outstanding_amount.flat_no = $flat_no and outstanding_amount.`status`=1 and outstanding_amount.outstanding_amount > 0 and outstanding_amount.month = invoice.month and invoice.tenant_name = tenants.tenant_name ORDER BY outstanding_amount.`month` desc"; 
+    $query = "SELECT outstanding_amount.*, invoice.tenant_name, tenants.contact,payment.payment_date FROM tenants, outstanding_amount,invoice,payment WHERE invoice.property_id = $property_id and outstanding_amount.property_id = $property_id and payment.property_id = $property_id and payment.flat_no = $flat_no and payment.month = invoice.month and invoice.flat_no = outstanding_amount.flat_no and outstanding_amount.flat_no = $flat_no and outstanding_amount.`status`=1 and outstanding_amount.outstanding_amount > 0 and outstanding_amount.month = invoice.month and invoice.tenant_name = tenants.tenant_name ORDER BY outstanding_amount.`month` desc"; 
 
     // print_r($query);
     // die();

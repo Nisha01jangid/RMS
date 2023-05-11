@@ -378,15 +378,14 @@ if(!empty($data['invoice_number'][0]['invoice'])){
 		// die();
 		$data['outstanding_report_details'] = array();
 		
-		for($i = 0; $i < $data['flats'][0]['flats']; $i++){
+		for($i = 0; $i <= $data['flats'][0]['flats']; $i++){
 
 			$outstanding_amount = $this->ReportM->get_outstanding_report_details($data['property_id'], $i);
-
 			if(!empty($outstanding_amount)){
-
-
+				
+				
 				$data['outstanding_report_details'][$i]['flat_no'] = $outstanding_amount[0]['flat_no'];
-
+				
 				$flat = $this->ReportM->get_flat_name($data['property_id'], $data['outstanding_report_details'][$i]['flat_no']);
 				$data['outstanding_report_details'][$i]['flat_name'] = $flat[0]['flat_name'];
 				$data['outstanding_report_details'][$i]['outstanding_amount'] = $outstanding_amount[0]['outstanding_amount'];
@@ -395,12 +394,14 @@ if(!empty($data['invoice_number'][0]['invoice'])){
 				$data['outstanding_report_details'][$i]['month'] = $outstanding_amount[0]['month'];
 				$data['outstanding_report_details'][$i]['amount_received'] = $outstanding_amount[0]['amount_received'];
 				$data['outstanding_report_details'][$i]['total'] = $outstanding_amount[0]['total'];
+				$data['outstanding_report_details'][$i]['payment_date'] = date('d-m-Y',strtotime($outstanding_amount[0]['payment_date']));
 				
 			}
 			
-		// 	echo "<pre>";
-		// print_r($data['outstanding_report_details']);
+			// 	echo "<pre>";
+			// print_r($data['outstanding_report_details']);
 		}
+		// echo "<pre>";print_r($outstanding_amount);die();
 		
 		// 	echo "<pre>";
 		// print_r($data['outstanding_report_details']);
