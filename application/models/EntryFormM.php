@@ -50,7 +50,7 @@ class EntryFormM extends CI_Model {
 
   public function update_entry_form($month,$property_id, $property_name, $flat_no, $no_of_members, $rate_per_unit,$rate_per_person, $rent, $previous_meter_reading, $current_meter_reading, $waste, $miscellaneous, $duedate, $active_status){
     // $_SESSION['user']=$user;
-    $query = "UPDATE `entry_form_details` SET `electricity_rate`='$rate_per_unit',`water_rate`='$rate_per_person', `rent`='$rent', `waste`='$waste', `previous_meter_reading`='$previous_meter_reading',`current_meter_reading`='$current_meter_reading', `miscellaneous`='$miscellaneous', `duedate`='$duedate'  WHERE `month`='$month'and`property_id`='$property_id'and `flat_no`='$flat_no'";
+    $query = "UPDATE `entry_form_details` SET `electricity_rate`='$rate_per_unit',`water_rate`='$rate_per_person', `rent`='$rent', `waste`='$waste', `previous_meter_reading`='$previous_meter_reading',`current_meter_reading`='$current_meter_reading', `miscellaneous`='$miscellaneous', `duedate`='$duedate', `no_of_members` = '$no_of_members' WHERE `month`='$month'and`property_id`='$property_id'and `flat_no`='$flat_no'";
 // print_r($query);
 // die();
     $result = $this->db->query($query);

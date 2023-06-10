@@ -1,4 +1,8 @@
-<!doctype html>
+<?php
+// echo "<pre>";
+// print_r($user_entry_name);
+// die();
+?><!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -96,6 +100,7 @@
   background-color: #202121;
 }
 
+
     </style>
 
     <!-- Bootstrap core CSS -->
@@ -191,19 +196,48 @@ for (i = 0; i < dropdown.length; i++) {
   });
 }</script>
 <div class="homediv">
-<h2 style="color:red; font-style:italic; font-weight:bold; font-size:25px;">User Entry</h2>
+
+<style>
+    .alert {
+        position: fixed;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%, calc(50% - <?php echo $this->session->flashdata('nav_height'); ?>px));
+        z-index: 9999;
+    }
+</style>
+
+
+
+<?php if ($msg = $this->session->flashdata('user_inserted')) { ?>
+    <div class="alert alert-success" style="font-style: italic; text-align:center;">
+        <strong><?php echo $msg; ?></strong>
+    </div>
+<?php } ?>
+
+<?php if ($msg = $this->session->flashdata('Property_deleted')) { ?>
+    <div class="alert alert-success" style="font-style: italic; text-align:center;">
+        <strong><?php echo $msg; ?></strong>
+    </div>
+<?php } ?>
+
+
+  
+
 <div class="containe-fluid">
 <div class="row mt-3 ml-3 mr-3">
 <div class="col-lg-12">
+  <h2 style="color:red; font-style:italic; font-weight:bold; font-size:25px; text-align: center;">User Entry</h2> <br>
 <div class="card">
 <div class="card-body">
 
 <form action="<?php echo base_url('Home/user_name_entry');?>" method="post">
 
   <div class="form-group col">
-    <label>Enter User Name </label>
-    <br>
-    <br>
+    <!-- <label>Enter User Name </label> -->
+
+    <h2 style="font-style:italic; font-weight:bold; font-size:20px;">Enter User Name</h2>
+    
     <input type="text" class="form-control" name="user_name" placeholder="Enter user name">
   </div>
   <br>
@@ -212,8 +246,49 @@ for (i = 0; i < dropdown.length; i++) {
 </form>
 
 </div>
+</div>
+<br>
+<div class="card">
+<div class="card-body">
+<h2 style="font-style:italic; font-weight:bold; font-size:20px;">List of User Entry</h2>
 
-</div></div></div></div></div>
+                   
+                        <div class="row" style="height:29vh;overflow-x: hidden; overflow-y: auto;">
+                        <table class="table table-striped table-hover table-bordered" style="width:90%" align="center">
+                        <thead class="thead-dark">
+                            <tr>
+                            <th scope="col" style="text-align:center;">S.No.</th>
+                            <th scope="col" style="text-align:center;">User Name</th>
+                            <th scope="col" style="text-align:center;">Action</th>
+                            
+                            </tr>
+                        </thead>
+                        <tbody>
+                           <?php 
+                                $i=1;
+                                foreach ($user_entry_name as $key => $value) { ?>
+                                    
+                            <tr>
+                            <td scope="row" style="text-align:center;"><?php echo $i ?></td>
+                            <td scope="row" style="text-align:center;"><?php echo $value['user_name'] ?></td>
+                            <!-- <td scope="row" style="text-align:center;"><?php 1 ?></td> -->
+
+                            <td align="center"> <a href="<?php echo base_url("Home/delete_user_name/").$value['id']; ?>" class="btn btn-danger" style="text-decoration : none; " onclick="return confirm('Are you sure you want to delete ?');">Delete</a></td>
+
+                          <?php   $i++; } ?>
+                        
+
+                           </tr>
+                        </tbody>
+                      </table>
+
+                   </div></div>
+                  </div>
+</div></div>
+</div>
+</div>
+
+
 </main>
 </body>
 </html>

@@ -825,22 +825,39 @@ public function insert_payment(){
 
     public function user_entry()
     {
-    	// code...
-    	$this->load->view('Home/user_entry');
+    	$data['user_entry_name'] = $this->HomeM->fetch_user_name();
+
+    	$this->load->view('Home/user_entry',$data);
     }
     public function user_name_entry()
     {
     	$user_name = $_POST['user_name'];
 
-    	// echo "<pre>";
-    	// print_r($user_name);
-    	// die();
+    	
 
     	$user_name = $this->HomeM->insert_user_name($user_name);
 
 
 	    $this->session->set_flashdata('user_inserted', 'User Inserted Successfully :)');
-		redirect("Home/index");
+		redirect("Home/user_entry");
+    }
+
+    public function delete_user_name($id){
+
+    	$user_id = $id;
+
+    	// echo "<pre>";
+    	// print_r($user_id);
+    	// die();
+
+    	 $this->HomeM->delete_user_name($user_id);
+
+    	 $this->session->set_flashdata('Property_deleted', 'User Deleted Successfully :)');
+		redirect("Home/user_entry");
+
+
+
+
     }
 
 }

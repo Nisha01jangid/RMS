@@ -399,7 +399,20 @@ public function get_last_invoice($property_id, $flat_no){
     $result = $this->db->query($query);
     return $result->result_array();  
   }
+public function fetch_user_name()
+{
+  $query = " SELECT user_name, id, status FROM user_name_entry WHERE status = 1";
+    $result = $this->db->query($query);
+    return $result->result_array();  
+}
 
+public function delete_user_name($id)
+{
+  $query = "UPDATE user_name_entry SET `status` = 0 where id = $id";
+
+    $result = $this->db->query($query);
+    return ;
+}
 
    
 }

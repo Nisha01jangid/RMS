@@ -234,6 +234,7 @@ for (i = 0; i < dropdown.length; i++) {
 										<th style="text-align: center;">S.No.</th>
 										<th style="text-align: center;">Flat Name.</th>
 										<th style="text-align: center;">Tenant Name</th>
+                    <th style="text-align: center;">Members</th>
 										<th style="text-align: center;">Rent</th>
                     <th style="text-align: center;">previous Meter Reading</th>
                     <th style="text-align: center;">Current Meter Reading </th>
@@ -250,6 +251,7 @@ for (i = 0; i < dropdown.length; i++) {
                                     <td style="text-align: center;"><?php echo $i; ?></td>
                                     <td style="text-align: center;"><?php echo $flats[$i]['flat_name']; ?></td>
                                     <td><?php echo $tenant_name[$i]; ?></td>
+                                    
                                   <!-- *********************************************************************** -->
 
                                   <input type="hidden" name="flat_no[]" value="<?php echo $i; ?>">
@@ -259,6 +261,9 @@ for (i = 0; i < dropdown.length; i++) {
                                     <input type="hidden" name="rate_per_person[]" value="<?php echo $rate_per_person; ?>">
                                    <input type="hidden" name="waste[]" value="<?php echo $waste; ?>">
                                   <!-- ************************************************************************** -->
+                                  <td>
+                                  <input style="text-align: center;" type="number" class="form-control" id="members" name="members[]"   value="<?php echo $no_of_members[$i]; ?>">
+                                  </td>
 
                                     <td>
                                     <input style="text-align: center;" type="number" class="form-control" id="tenant_rent" name="tenant_rent[]"   value="<?php echo $previous_rent[$i]; ?>">
