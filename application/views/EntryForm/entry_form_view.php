@@ -253,7 +253,7 @@ for (i = 0; i < dropdown.length; i++) {
     </div>
     <div class="form-group col">
     <label for="previous_meter_reading">Previous Meter Reading (Unit)</label>
-    <input type="number" class="form-control" id="previous_meter_reading" name="previous_meter_reading"  placeholder="Enter the Previous Meter Reading" value="<?php echo $previous_reading; ?>">
+    <input type="number" class="form-control" id="previous_meter_reading" name="previous_meter_reading"  placeholder="Enter the Previous Meter Reading" value="<?php echo $previous_reading[0]['current_meter_reading']; ?>">
      </div>
     <div class="form-group col">
     <label for="current_meter_reading">Current Meter Reading (Unit)</label>
@@ -279,7 +279,7 @@ for (i = 0; i < dropdown.length; i++) {
 
     <div class="form-group col">
     <label for="duedate">Due Date:</label>
-    <input type="date" class="form-control" id="duedate" name="duedate"  placeholder="Enter the Due Date">
+    <input type="date" class="form-control" id="datePicker" name="duedate"  placeholder="Enter the Due Date">
      </div>
   
     </div>
@@ -306,3 +306,17 @@ for (i = 0; i < dropdown.length; i++) {
 </main>
 </body>
 </html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+  $(document).ready( function() {
+    var now = new Date();
+ 
+    var day = ("0" + now.getDate()).slice(-2);
+    var month = ("0" + (now.getMonth() + 1)).slice(-2);
+
+    var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
+
+
+   $('#datePicker').val(today);
+});
+  </script>
