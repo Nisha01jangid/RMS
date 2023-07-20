@@ -87,8 +87,10 @@
                     <br>
                     <div class="intro">
                     <h2 style="text-align:center;"><b><?php echo $property_name; ?></b></h2>
-                      <h1 style="text-align:center;">Monthwise Report</h1>
+                      <h3 style="text-align:center;">Monthwise Report</h3>
                         <h2 style="text-align:center;">Month: <?php echo $month; ?></h2>
+
+                         <h6><b>Printed On: </b><span id='date-time' style="font-style: italic;"></span></h6>
                         
                     <table class="table table-striped table-hover table-bordered" style="width:100%" align="center">
                         <thead class="thead-dark">
@@ -104,8 +106,8 @@
                             <th scope="col" style="text-align:center;">Misc.</th>
                             <th scope="col" style="text-align:center;">Total</th>
                             <th scope="col" style="text-align:center; width:10%">Total + Previous Outstanding</th>
-                            <th scope="col" style="text-align:center;">Amount Paid</th>
-                            <th scope="col" style="text-align:center;width:8%">Outstanding Amount</th>
+                            <th scope="col" style="text-align:center; width: 10%;">Amount Paid</th>
+                            <th scope="col" style="text-align:center;">Outstanding Amount</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -189,5 +191,10 @@
 
 </body>
 </html>
+
+<script>
+var dt = new Date();
+document.getElementById('date-time').innerHTML=dt;
+</script>
 
 

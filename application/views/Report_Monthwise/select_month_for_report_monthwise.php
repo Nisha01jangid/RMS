@@ -71,7 +71,9 @@
 		<div class="card">
 			<div class="card-body">
 				<div class="col-md-12">
-
+<div class="card-body">
+                  <div style="font-style:italic; font-size: 23px; color:red;"><b>You are at- Main Report Page !</b> 
+                    </div>
 					<div class="intro">
 							 <h3><center>Month Wise Report </center></h3>
 							 

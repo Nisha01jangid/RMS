@@ -32,11 +32,10 @@
 			<div class="card-body">
 				<div class="col-md-12">
 				<div class="intro">
-							 <h3><center>Receiver Payments Report</center></h3>
+					 <h2><center><?php echo $payments[0]['property_name'];?></center></h2>
+							 <h4><center>Receiver Payments Report</center></h4>
 							</div>
-						
-						
-						<br>
+					
 						<div class="intro">
 							 <h4 style="font-style:italic;"><center>Receiver Name: <span style="font-weight:normal; font-style:italic;"><?php echo $payments[0]['payment_receiver'];?></span></center></h4>
 							</div>
@@ -50,6 +49,7 @@
 						
 						
 						<br>
+						 <h6><b>Printed On: </b><span id='date-time' style="font-style: italic;"></span></h6>
 					 <!-- <div id="report">  -->
 						 <!-- <div class="on-print">  -->
 						<div class="row">
@@ -75,7 +75,7 @@
 										<tr>
 										<td style="text-align: center;"><?php echo $i; ?></td>
 										<td style="text-align: center;"><?php echo $row['flat_no']." ( ". $row['flat_name']." )"; ?></td>
-										<td style="text-align: center;"><?php echo $row['tenant_name']." ( ". $row['contact']." )"; ?></td>
+										<td><?php echo $row['tenant_name']." ( ". $row['contact']." )"; ?></td>
 										<td style="text-align: center;"><?php echo date('d-M-Y',strtotime($row['payment_date'])); ?></td>											
 
 										<?php if(!empty($row['reference_id'])){ ?>
@@ -111,5 +111,10 @@
 </div>
 </body>
 </html>
+
+<script>
+var dt = new Date();
+document.getElementById('date-time').innerHTML=dt;
+</script>
 
 

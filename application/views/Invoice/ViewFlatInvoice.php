@@ -27,6 +27,7 @@
         padding:0px 5px;
         margin:2% auto;
         font-family: 'Tiro Devanagari Hindi', serif;
+        font-family: 'Times New roman';
         font-size: 14px;
         ">
         <div class="upperdiv">
@@ -59,10 +60,10 @@
           $total_amount_to_pay = $total_unit+$details[0]['rent']+$prev_oustanding+$others;
           $outstanding_amount = $total_amount_to_pay-$amount_paid;
           ?>
-            <h5 style="text-align:center;margin-top:5px;"><u>हिसाब पर्ची</u></h5>
+            <h6 style="text-align:center;margin-top:5px;"><u>हिसाब पर्ची</u></h5>
             <p style="margin-bottom:0px;"><span>क्र.: <b><?php if(isset($data['invoice'])){echo $data['invoice'];}else{ ?>...............<?php } ?></b></span><span style="margin-left:150px">दिनांक: <b><?php if(isset($data['timestamp'])) echo date('d-m-Y',strtotime($data['timestamp'])) ?></b></span></p>
             <p style="margin-bottom:0px;">नाम श्री/श्रीमती: <b><?php echo $tenant_name." Ji"; ?></b> </p>
-            <p style="margin-bottom:0px;"><span>किराया माह: <b><?php echo date("F Y", strtotime($month)); ?></b></span><span style="margin-left:80px">कमरा नं: <b><?php echo $details[0]['flat_no'];?><span style="color:blue; font-size:19px;"> (<?php echo $flat_name; ?>) </span>
+            <p style="margin-bottom:0px;"><span>किराया माह: <b><?php echo date("F Y", strtotime($month)); ?></b></span><span style="margin-left:100px">कमरा नं: <b><?php echo $details[0]['flat_no'];?><span style="color:blue; font-size:15px;"> (<?php echo $flat_name; ?>) </span>
       </b></span></p>
             <hr style="height: 5px; background: black;">
             <p style="margin-bottom:0px;">1. वर्तमान मी. रीडिंग - पिछला मी. रीडिंग:&nbsp;<b><?php echo $details[0] ['current_meter_reading']?>-<?php echo $details[0] ['previous_meter_reading']?>=</b>&nbsp;<b><?php echo $data['electricity_units']; ?>  यूनिट</b>
@@ -88,8 +89,8 @@
             <hr style="margin: 3px 0px;">
             <p style="margin-bottom:0px;">9. शेष राशि: &emsp;<b>₹ <?php echo round($total_amount_to_pay)." - "; ?><?php if(!empty($amount_paid)){echo $amount_paid; }else{echo "0";} ?><?php echo " = ".$outstanding_details[0]['outstanding_amount']; ?></b> /-</p>
             <hr style="margin: 3px 0px;">
-            <p style="margin-bottom:0px;">भुगतान दिनांक: <b><?php echo date("d-m-Y",strtotime($details[0]['duedate'])); ?></b> तक आवश्यक |</p>
-            <h4 style="margin:15px 0px 0px 30px;"><?php if($outstanding_details[0]['outstanding_amount']>=0){ ?>बाकी : <b>₹ <?php echo $outstanding_details[0]['outstanding_amount']; ?></b><?php }else{ ?>जमा: <b>₹ <?php echo (0-$outstanding_details[0]['outstanding_amount']); ?></b><?php } ?></h4>
+            <p style="margin-bottom:0px;color:blue;">भुगतान दिनांक: <b><?php echo date("d-m-Y",strtotime($details[0]['duedate'])); ?></b> तक आवश्यक |</p>
+            <h5 style="margin:15px 0px 0px 0px;color:blue"><?php if($outstanding_details[0]['outstanding_amount']>=0){ ?>बाकी : </span><span style="font:size 8px;color:black"><b>₹ <?php echo $outstanding_details[0]['outstanding_amount']; ?></b><?php }else{ ?>जमा: <b>₹ <?php echo (0-$outstanding_details[0]['outstanding_amount']); ?></b><?php } ?></h5>
             <!-- <p style="margin-bottom:0px; float:right; margin-right:50px;">ह०</p> -->
 
         </div>

@@ -216,10 +216,10 @@ for (i = 0; i < dropdown.length; i++) {
  <div class="form-group col">
     <label for="exampleInputEmail1">Payment Mode:</label>
     <select class="form-control" id="exampleInputPassword1" name="payment_mode">
-    <option>Select Payment Mode</option>
+    <!--<option>Select Payment Mode</option>-->
+     <option value="phonepe"> Online (PhonePe)</option>
     <option value="gpay">Google Pay</option>
     <option value="paytm">Paytm</option>
-    <option value="phonepe">PhonePe</option>
     <option value="others">Others</option>
    </select>
 </div>
@@ -228,7 +228,7 @@ for (i = 0; i < dropdown.length; i++) {
 <div class="row">
     <div class="form-group col">
     <label for="exampleInputEmail1">Reference Id:</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" name="ref_id"  placeholder="Enter Reference Id..">
+    <input type="text" class="form-control" id="exampleInputEmail1" name="ref_id"  placeholder="Enter Reference Id.." value="Vivek">
 </div>
 <div class="form-group col">
     <label for="exampleInputEmail1">Amount:</label>

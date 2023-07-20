@@ -197,7 +197,8 @@ for (i = 0; i < dropdown.length; i++) {
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                   
+                   <div style="font-style:italic; font-size: 23px; color:red;"><b>You are at- TR Report Page !</b> 
+                    </div>
                     <div class="row">
                         <?php foreach($property as $p){ ?>
                           <div class="col-md-4 mb-3">

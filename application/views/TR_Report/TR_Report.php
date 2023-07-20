@@ -1,6 +1,6 @@
 <?php
 // echo "<pre>";
-// print_r($payment_details);
+// print_r($flat_no);
 // die();  
 ?>
 <!DOCTYPE html>
@@ -27,12 +27,14 @@
         }
 
         .intro{
-            font-family: Comic Sans MS;
+/*            font-family: Comic Sans MS;*/
+             font-family: Times New Roman;
         }
 
         table {
           background-color: #fcfbf8;
-          font-family: Comic Sans MS;
+/*          font-family: Comic Sans MS;*/
+           font-family: Times New Roman;
           border-collapse: collapse;
           width: 100%;
         }
@@ -86,14 +88,26 @@
 
                     <br>
                     <div class="intro">
+                    <h3><center><?php echo $property_name[0]['property_name'];?></center></h3>
                         <h2 style="text-align:center;"><?php echo "Flat No.".$flat_no; ?></h2>
-                        <br>
+        <div style="font-style:italic; font-size: 23px; color:red;"><b>You are at- Receiver Report Page !</b> 
+                    </div>
+                           <div class="intro">
+                            <h5 style="font-style:italic;"><center><span><b>From:</b><span style="font-weight:normal; font-style:italic;"><?php echo $from_date;?> </span></span> 
+
+                                <span> &#x00A0; &#x00A0; &#x00A0;&#x00A0;&#x00A0;<b>To:</b> <span style="font-weight:normal; font-style:italic;"><?php echo $to_date;?> </span></span></center>
+
+                            </h5>
+                        </div>
+
+                         <h6 style="text-align:center;"><b>Printed On: </b><span id='date-time' style="font-style: italic;"></span></h6>
+                         <br>
                     <table class="table table-striped table-hover table-bordered" style="width:90%" align="center">
                         <thead class="thead-dark">
                             <tr>
                             <th scope="col" style="text-align:center;">S.No.</th>
                             <th scope="col" style="text-align:center;">Month</th>
-                            <th scope="col" style="text-align:center;">Amount Received</th>
+                            <th scope="col" style="text-align:center;">Amount Received (Date)</th>
                             <th scope="col" style="text-align:center;">Mode of Payment</th>
                             <th scope="col" style="text-align:center;">Reference ID</th>
                             <th scope="col" style="text-align:center;">Receiver</th>
@@ -106,19 +120,19 @@
                                 foreach ($payment_details as $key => $value) { ?>
                                     
                             <tr>
-                            <td rowspan="<?php echo sizeof($value['payments'])+1; ?>" style="text-align: center;"><?php echo $i ?></td>
-                            <td rowspan="<?php echo sizeof($value['payments'])+1; ?>" style="text-align: center;"><?php echo $value['month']; ?></td>
+                            <td rowspan="<?php echo sizeof($value['payments'])+1; ?>" style="text-align: center; vertical-align: middle;"><?php echo $i ?></td>
+                            <td rowspan="<?php echo sizeof($value['payments'])+1; ?>" style="text-align: center; vertical-align: middle;"><?php echo $value['month']." (".$value['flat_name'][0]['flat_name'].")"; ?></td>
                             <?php foreach($value['payments'] as $v){ ?>
                             <tr>
-                            <td style="text-align: center;"><?php echo $v['amount']; ?></td>
+                            <td style="text-align: center;"><?php echo "Rs" ." ".$v['amount'] ." (".$v['payment_date'].")" ; ?></td>
                             <td style="text-align: center;"><?php echo $v['pay_mode']; ?></td>
                             <td style="text-align: center;"><?php echo $v['reference_id']; ?></td>
                             <td style="text-align: center;"><?php echo $v['payment_receiver']; ?></td>
                             </tr>
-                            <?php } ?>
+                            <?php }$i++ ?>
                             </tr>
 
-                            <?php } ?>
+                            <?php }  ?>
                         </tbody>
                         </table>
                     </div>
@@ -132,5 +146,11 @@
 
 </body>
 </html>
+
+<script>
+var dt = new Date();
+document.getElementById('date-time').innerHTML=dt;
+</script>
+
 
 

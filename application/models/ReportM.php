@@ -15,12 +15,19 @@ class ReportM extends CI_Model {
         return $query->result_array();
       }
 
-      function get_no_of_flats($property_id){
+      // function get_no_of_flats($property_id){
     
-        $sql="SELECT flats from `property` where `property_id`= $property_id";    
+      //   $sql="SELECT flats from `property` where `property_id`= $property_id";    
+      //   $query = $this->db->query($sql);
+      //   return $query->result_array();
+      // }    
+
+      public function get_flat_no_and_flat_name($property_id)
+      {
+        $sql="SELECT flat_no,flat_name from `tenants` where `property_id`= $property_id AND status=1 ORDER BY flat_no ASC";    
         $query = $this->db->query($sql);
         return $query->result_array();
-      }    
+      }
 
       function get_payment_details($from_date, $to_date, $flat_no, $property_id){
 
@@ -43,10 +50,21 @@ class ReportM extends CI_Model {
             $query = $this->db->query($sql);
             return $query->result_array();
           }
+
+          function get_flat_name_month_wise($month, $flat_no, $property_id){
+
+            $sql = "SELECT flat_name FROM entry_form_details where month = '$month' and property_id ='$property_id' AND flat_no = '$flat_no'";
+      
+            // print_r($sql);
+            // die();
+      
+              $query = $this->db->query($sql);
+              return $query->result_array();
+            }
           
       function get_receiver_payments($from_date, $to_date, $receiver){
 
-      $sql = "SELECT amount, reference_id, payment_date, payment_receiver, property_id, flat_no FROM payment where payment_date BETWEEN '$from_date' AND '$to_date' and payment_receiver = '$receiver'";
+      $sql = "SELECT amount, reference_id, payment_date, payment_receiver, property_id, flat_no FROM payment where payment_date BETWEEN '$from_date' AND '$to_date' and payment_receiver = '$receiver' order by payment_date";
 
         $query = $this->db->query($sql);
         return $query->result_array();
@@ -153,7 +171,7 @@ class ReportM extends CI_Model {
 
   public function get_payment_date($flat_no, $property_id, $month){
 
-    $query = "SELECT payment_date FROM payment where property_id = $property_id and flat_no = $flat_no and month = '$month'";
+    $query = "SELECT payment_date FROM payment where property_id = $property_id and flat_no = $flat_no and month <= '$month' order by month desc, payment_date desc";
 
     $result = $this->db->query($query);
     return $result->result_array();
@@ -168,7 +186,7 @@ $query = "SELECT SUM(amount) as amount FROM payment where property_id = $propert
 
    public function get_tenant_name($flat_no, $property_id,$month){
 
-    $query = "SELECT tenants.tenant_name,contact,tenants.flat_name FROM invoice, tenants where invoice.property_id = $property_id and tenants.property_id = $property_id and invoice.flat_no = $flat_no and tenants.flat_no = $flat_no and tenants.tenant_name = invoice.tenant_name and `month`='$month' ";
+    $query = "SELECT tenants.tenant_name,contact,entry_form_details.flat_name FROM invoice, tenants, entry_form_details where invoice.property_id = $property_id and tenants.property_id = $property_id and entry_form_details.property_id = $property_id and invoice.flat_no = $flat_no and entry_form_details.flat_no = $flat_no and tenants.flat_no = $flat_no and invoice.month='$month' and entry_form_details.month = '$month' ";
     // print_r($query);
     // die();
     $result = $this->db->query($query);
@@ -205,8 +223,9 @@ $query = "SELECT SUM(amount) as amount FROM payment where property_id = $propert
 
   public function get_outstanding_report_details($property_id, $flat_no){
 
-    $query = "SELECT outstanding_amount.*, invoice.tenant_name, tenants.contact FROM tenants, outstanding_amount,invoice WHERE invoice.property_id = $property_id and outstanding_amount.property_id = $property_id and invoice.flat_no = outstanding_amount.flat_no and outstanding_amount.flat_no = $flat_no and outstanding_amount.`status`=1 and outstanding_amount.outstanding_amount > 0 and outstanding_amount.month = invoice.month and invoice.tenant_name = tenants.tenant_name ORDER BY outstanding_amount.`month` desc"; 
+    // $query = "SELECT outstanding_amount.*, invoice.tenant_name, tenants.contact FROM tenants, outstanding_amount,invoice WHERE invoice.property_id = $property_id and outstanding_amount.property_id = $property_id and invoice.flat_no = outstanding_amount.flat_no and outstanding_amount.flat_no = $flat_no and invoice.flat_no = tenants.flat_no and invoice.property_id = tenants.property_id and outstanding_amount.`status`=1 and outstanding_amount.outstanding_amount > 0 and outstanding_amount.month = invoice.month ORDER BY outstanding_amount.`month` desc"; 
 
+    $query = "SELECT outstanding_amount.*, tenants.tenant_name, tenants.contact FROM tenants, outstanding_amount WHERE outstanding_amount.property_id = $property_id and outstanding_amount.flat_no = $flat_no and tenants.flat_no = $flat_no and outstanding_amount.flat_no = tenants.flat_no and outstanding_amount.property_id = tenants.property_id and outstanding_amount.`status`=1 and outstanding_amount.outstanding_amount > 0 ORDER BY outstanding_amount.`month` desc";
     // print_r($query);
     // die();
     
@@ -376,6 +395,42 @@ $query = "SELECT SUM(amount) as amount FROM payment where property_id = $propert
     $result = $this->db->query($query);
     return $result->result_array(); 
   }
+
+   public function get_flat_no_combined($property_id)
+      {
+        $sql="SELECT flat_no,flat_name from `tenants` where `property_id`= $property_id AND status=1 ORDER BY flat_no ASC";    
+        $query = $this->db->query($sql);
+        return $query->result_array();
+      }
+
+   function get_payment_details_combined($from_date, $to_date, $flat_no, $property_id){
+
+       $sql = "SELECT DISTINCT  month  FROM payment where payment_date BETWEEN '$from_date' AND '$to_date' and property_id ='$property_id' AND flat_no = '$flat_no' ";
+  
+        // print_r($sql);
+        // die();
+  
+          $query = $this->db->query($sql);
+          return $query->result_array();
+        }
+
+     function get_payment_combined($month, $flat_no, $property_id){
+
+          $sql = "SELECT * FROM payment where month = '$month' and property_id ='$property_id' AND flat_no = '$flat_no'";
+    
+          // print_r($sql);
+          // die();
+    
+            $query = $this->db->query($sql);
+            return $query->result_array();
+          }    
+
+      public function fetch_property_name($property_id)
+          {
+            $query = "SELECT property_name FROM property where property_id = $property_id and active = 1";
+            $result = $this->db->query($query);
+            return $result->result_array();
+          }    
 
 }
 

@@ -5,7 +5,7 @@
     // print_r($month);
     // echo "<br>";
     // print_r($rate_per_unit);
-    // echo "<br>";
+    // echo "<pre>";
     // print_r($previous_reading);
     // die();
 ?>
@@ -275,6 +275,11 @@ for (i = 0; i < dropdown.length; i++) {
     <div class="form-group col">
     <label for="miscellaneous">Miscellaneous</label>
     <input type="number" class="form-control" id="miscellaneous" name="miscellaneous" placeholder="Enter Miscellaneous" value='0'>
+     </div>
+
+     <div class="form-group col">
+    <label for="flat_name">Flat Name</label>
+    <input type="text" class="form-control" id="flat_name" name="flat_name" value="<?php echo $previous_reading[0]['flat_name']; ?>">
      </div>
 
     <div class="form-group col">

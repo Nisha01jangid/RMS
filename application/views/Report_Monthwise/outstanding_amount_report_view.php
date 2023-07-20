@@ -97,9 +97,12 @@
             <div class="card">
                 <div class="card-body">
                   <div class="row" style="overflow-x: hidden; overflow-y: auto;">
-                    <div style="font-family:Times New Roman;"><h2 style="text-align:center;"><b>Oustanding Amount Report (<?php echo $property_name[0]['property_name']; ?>)</b></h2>
+                    <div style="font-family:Times New Roman;"><h2 style="text-align:center;"><b><?php echo $property_name[0]['property_name']; ?></b></h2>
+                    </div>
+                     <div style="font-family:Times New Roman;"><h3 style="text-align:center;"><b>Oustanding Amount Report</b></h3>
                     </div>
                     <br>
+                     <h6><b>Printed On: </b><span id='date-time' style="font-style: italic;"></span></h6>
                     <hr>
                     <br>
                     <table class="table table-striped table-hover table-bordered" style="width:90%" align="center">
@@ -121,7 +124,7 @@
                             <tr>
                               <td style="text-align: center;"><?php echo $i ?></td>
                               <td style="text-align: center;"><?php echo $value['flat_no'] ." (".$value['flat_name'].")" ?></td>
-                              <td style="text-align: center;"><?php echo $value['tenant_name']." (".$value['contact'].")"?></td>
+                              <td style="text-align: left;"><?php echo $value['tenant_name']." (".$value['contact'].")"?></td>
                               <td style="text-align: center;"><?php echo$value['month'] ?></td>
                                <td style="text-align: center;"><?php echo $value['total'] ?></td>
                               <?php if(!empty($value['amount_received'])){ ?>
@@ -158,4 +161,10 @@
       <script src="<?php echo base_url('js/sidebars.js') ?>"></script>
   </body>
 </html>
+
+
+<script>
+var dt = new Date();
+document.getElementById('date-time').innerHTML=dt;
+</script>
  

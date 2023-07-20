@@ -72,7 +72,8 @@
 		<div class="card">
 			<div class="card-body">
 				<div class="col-md-12">
-
+<div style="font-style:italic; font-size: 23px; color:red;"><b>You are at- TR Report Page !</b> 
+                    </div>
 					<div class="intro">
 							 <h3><center>TR Report</center></h3>
 							</div>
@@ -113,12 +114,21 @@
 							</div><br> -->
 
 							<div class="row form-group">
-							<label class="control-label col-md-2 offset-md-2 text-right" id="flat_no" style = "padding-right:0px">Flat Number: </label>
+							<label class="control-label col-md-2 offset-md-2 text-right" id="flat_no" style = "padding-right:0px; font-weight:bold;">Flat Number: </label>
   							<select class='from-control col-md-4' id="flats" name="flats">
 								<option> Select Flat </option>
-							  <?php for($i=1; $i<=$flats; $i++){?>
-								<option><?php echo $i; ?></option>
+
+							 <!--  <?php //for($i=1; $i<=$flats; $i++){?>
+								<option><?php //echo $i; ?></option>
+							  <?php //} ?> -->
+
+							  <option value="999">Combined (All Flats)</option>
+
+							  <?php foreach ($flats as $key => $value) { ?>
+							
+								<option><?php echo $value['flat_no']."  (".$value['flat_name'].")"; ?></option>
 							  <?php } ?>
+
 							</select>
 							</div><br>
 

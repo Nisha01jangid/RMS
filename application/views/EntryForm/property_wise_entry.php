@@ -5,8 +5,8 @@
 // print_r($previous_reading);
 // echo "<br>";
 // print_r($rate_per_unit);
-// echo "<br>";
-// print_r($flats);
+// echo "<pre>";
+// print_r($report_flatwise_details);
 // die();
 ?>
 <!doctype html>
@@ -249,7 +249,11 @@ for (i = 0; i < dropdown.length; i++) {
                                 if($flats[$i]['status'] == 1){?>
                                 <tr>
                                     <td style="text-align: center;"><?php echo $i; ?></td>
-                                    <td style="text-align: center;"><?php echo $flats[$i]['flat_name']; ?></td>
+                                    <!-- <td style="text-align: center;"><?php// echo $flats[$i]['flat_name']; ?></td> -->
+                                    <td>
+                                  <input style="text-align: center;" type="text" class="form-control" id="flat_name" name="flat_name[]"   value="<?php echo $previous_flat_name[$i]; ?>">
+                                  </td>
+
                                     <td><?php echo $tenant_name[$i]; ?></td>
                                     
                                   <!-- *********************************************************************** -->

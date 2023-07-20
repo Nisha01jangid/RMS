@@ -39,22 +39,32 @@ class EntryFormM extends CI_Model {
     return $result->result_array();
   }
 
-  public function insert_entry_form($month,$property_id, $property_name, $flat_no, $no_of_members, $rate_per_unit,$rate_per_person, $rent, $previous_meter_reading, $current_meter_reading, $waste, $miscellaneous, $duedate, $active_status){
+  public function insert_entry_form($month,$property_id, $property_name, $flat_no, $no_of_members, $rate_per_unit,$rate_per_person, $rent, $previous_meter_reading, $current_meter_reading, $waste, $miscellaneous, $duedate, $active_status, $flat_name){
     // $_SESSION['user']=$user;
-    $query = "INSERT INTO `entry_form_details` (`month`, `property_id`, `property_name`, `flat_no`, `no_of_members`,`electricity_rate`,`water_rate`, `rent`, `previous_meter_reading`, `current_meter_reading`, `waste`, `miscellaneous`, `duedate`, `status`) VALUES ('$month','$property_id', '$property_name', '$flat_no','$no_of_members','$rate_per_unit','$rate_per_person', '$rent', '$previous_meter_reading', '$current_meter_reading', '$waste', '$miscellaneous', '$duedate', '$active_status')";
+    $query = "INSERT INTO `entry_form_details` (`month`, `property_id`, `property_name`, `flat_no`, `no_of_members`,`electricity_rate`,`water_rate`, `rent`, `previous_meter_reading`, `current_meter_reading`, `waste`, `miscellaneous`, `duedate`, `status`, `flat_name`) VALUES ('$month','$property_id', '$property_name', '$flat_no','$no_of_members','$rate_per_unit','$rate_per_person', '$rent', '$previous_meter_reading', '$current_meter_reading', '$waste', '$miscellaneous', '$duedate', '$active_status', '$flat_name')";
 
     $result = $this->db->query($query);
     return ;
 
   }
 
-  public function update_entry_form($month,$property_id, $property_name, $flat_no, $no_of_members, $rate_per_unit,$rate_per_person, $rent, $previous_meter_reading, $current_meter_reading, $waste, $miscellaneous, $duedate, $active_status){
+  public function update_entry_form($month,$property_id, $property_name, $flat_no, $no_of_members, $rate_per_unit,$rate_per_person, $rent, $previous_meter_reading, $current_meter_reading, $waste, $miscellaneous, $duedate, $active_status, $flat_name){
     // $_SESSION['user']=$user;
-    $query = "UPDATE `entry_form_details` SET `electricity_rate`='$rate_per_unit',`water_rate`='$rate_per_person', `rent`='$rent', `waste`='$waste', `previous_meter_reading`='$previous_meter_reading',`current_meter_reading`='$current_meter_reading', `miscellaneous`='$miscellaneous', `duedate`='$duedate', `no_of_members` = '$no_of_members' WHERE `month`='$month'and`property_id`='$property_id'and `flat_no`='$flat_no'";
+    $query = "UPDATE `entry_form_details` SET `electricity_rate`='$rate_per_unit',`water_rate`='$rate_per_person', `rent`='$rent', `waste`='$waste', `previous_meter_reading`='$previous_meter_reading',`current_meter_reading`='$current_meter_reading', `miscellaneous`='$miscellaneous', `duedate`='$duedate', `no_of_members` = '$no_of_members', `flat_name` = '$flat_name' WHERE `month`='$month'and`property_id`='$property_id'and `flat_no`='$flat_no'";
 // print_r($query);
 // die();
     $result = $this->db->query($query);
     return ;
+
+  }
+
+  public function update_tenant_flat_name($property_id, $flat_no, $flat_name){
+
+    $query = "UPDATE `tenants` SET `flat_name`='$flat_name' WHERE `property_id`='$property_id'and `flat_no`='$flat_no' and status = 1";
+    // print_r($query);
+    // die();
+        $result = $this->db->query($query);
+        return ;
 
   }
 
@@ -82,6 +92,7 @@ public function get_entry_form_for_property($property_id, $month){
     $result = $this->db->query($query);
     return $result->result_array();
   }
+
   public function get_previous_rent($property_id,$flat_no,$month){
 
     $query = "SELECT * FROM entry_form_details WHERE property_id =$property_id AND flat_no = $flat_no AND month = '$month'";

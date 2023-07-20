@@ -206,7 +206,7 @@ for (i = 0; i < dropdown.length; i++) {
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <div style="font-style:italic; font-size: 20px; color:red; font-size: 25px;"><b><i><?php echo $flat[0]['property_address'];?></i></b> &emsp;
+                    <div style="font-style:italic; font-size: 20px; color:red; font-size: 25px;"><b><i><?php echo $flat[0]['property_name'];?></i></b> &emsp;
                     <form action="<?php echo base_url("Invoice/print_invoice"); ?>" method="POST">
                     <input style="font-size: 19px;"
                         id="month"

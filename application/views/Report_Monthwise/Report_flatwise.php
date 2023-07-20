@@ -78,6 +78,7 @@
     </style>
 </head>
 <body>
+
     <!-- <div class="containe-fluid"> -->
 <div class="row mt-3 ml-3 mr-3">
 <div class="col-lg-12">
@@ -87,17 +88,20 @@
                     <br>
                     <div class="intro">
                     <h2 style="text-align:center;"><b><?php echo $property_name; ?></b></h2>
-                    <h1 style="text-align:center;">Flatwise Report</h1>
+                    <h3 style="text-align:center;">Flatwise Report</h3>
+
+
                     <?php 
                                 foreach ($report_flatwise_details as $key => $value) { ?>
                         <?php break;}?>
                         <h4 style="text-align:center;">From: <?php echo $from_date?> To: <?php echo $to_date?></h4>
+                          <h6><b>Printed On: </b><span id='date-time' style="font-style: italic;"></span></h6>
                     <table class="table table-striped table-hover table-bordered" style="width:100%" align="center">
                         <thead class="thead-dark">
                             <tr>
                             <th scope="col" style="text-align:center;">S.No.</th>
                             <th scope="col" style="text-align:center;">Flat No.</th>
-                            <th scope="col" style="text-align:center;">Tenant Name</th>
+                            <th scope="col" style="text-align:center;width: 15%;">Tenant Name</th>
                             <th style="text-align:center;">Invoice No.</th>
                             <th scope="col" style="text-align:center;">Rent</th>
                             <th scope="col" style="text-align:center;">Meter Reading <br> (Current - Previous) * rate</th>
@@ -106,7 +110,7 @@
                             <th scope="col" style="text-align:center;">Misc.</th>
                             <th scope="col" style="text-align:center;">Total</th>
                             <th scope="col" style="text-align:center; width:10%">Total + Previous Outstanding</th>
-                            <th scope="col" style="text-align:center;">Amount Paid</th>
+                            <th scope="col" style="text-align:center; width:%;">Amount Paid</th>
                             <th scope="col" style="text-align:center;">Outstanding Amount</th>
                             </tr>
                         </thead>
@@ -180,3 +184,8 @@
 </div></div></div></div></div>
 </body>
 </html>
+
+<script>
+var dt = new Date();
+document.getElementById('date-time').innerHTML=dt;
+</script>

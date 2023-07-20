@@ -1,6 +1,6 @@
 <?php
-
-// print_r($flat_name);
+// echo"<pre>";
+// print_r($tenant_entry_form_details);
 // die();
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 ?>
@@ -41,12 +41,17 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
         th {
           
           color: black;
-          font-size: 16px;
+          font-size: 12px;
           font-weight: bold;
           text-align: center;
-          padding: 10px;
+          padding:40px;
           border: 1px solid #ddd;
+        
         }
+.header{
+    display: flex;
+    justify-content: space-between;
+}
 
         td {
           text-align: center;
@@ -70,6 +75,11 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
           font-weight: bold;
           color: #0077b6;
         }
+         .align{
+            font-size: 10px;
+            display: flex;
+            justify-content:space-between;
+        }
 
         body {
 /*            background-color: #fcfbf8;*/
@@ -90,25 +100,62 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 
                         <h2 style="text-align:center;"><?php echo "Flat No.".$flat_no." (". $flat_name[0]['flat_name']. ")"; ?></h2>
 
+                          <div class="align">
+                            <h5 >Name : <?php echo $flat_name[0]['tenant_name'];?></h4>
+                            <h5 >Aadhar Number: <?php echo $flat_name[0]['aadhaar_no'];?></h4>
+                        </div>
+                        <div class="align">
+                            <h5 >Mobile No. : <?php echo $flat_name[0]['contact']; ?></h4>
+                            <h4>Joining Date: <?php echo $flat_name[0]['joining_date'];?></h4>
+                        </div>
+                        <h4>Address : <?php echo $flat_name[0]['address']; ?> </h4>
+
+
+                        
+
                         <br>
-                    <table class="table table-striped table-hover table-bordered" style="width:90%" align="center">
+                    <table class="table table-striped table-hover table-bordered" style="width:100%" align="center">
                         <thead class="thead-dark">
-                            <tr>
+                          <!--   <tr>
                             <th scope="col" style="text-align:center;">S.No.</th>
-                            <th scope="col" style="text-align:center;">Month</th>
-                            <th style="text-align:center;">Invoice No.</th>
-                            <th scope="col" style="text-align:center;">Rent</th>
+                            <th scope="col" style="text-align:center; padding: 18px;">Month</th>
+                            <th style="text-align:center; padding: 25px;">Invoice No.</th>
+                            <!-- <th style="text-align:center;">Date</th> -->
+                           <!--  <th scope="col" style="text-align:center;">Rent</th>
                             <th scope="col" style="text-align:center;">Meter Reading <br> (Current - Previous) * rate</th>
-                            <th scope="col" style="text-align:center;">Water Pump Charges <br>( no. of members * units )* rate</th>
+                            <th scope="col" style="text-align:center; padding: 18px;">Water Pump Charges <br>( no. of members * units )* rate</th>
                             <th scope="col" style="text-align:center;">Waste </th>
-                            <th scope="col" style="text-align:center;">Miscellaneous</th>
+                            <th scope="col" style="text-align:center;">Mis</th>
                             <th scope="col" style="text-align:center;">Total</th>
-                            <th scope="col" style="text-align:center;">Total + Previous Outstanding</th>
+                            <!-- <th scope="col" style="text-align:center;">Outstanding Amount</th> -->
+                            <!-- <th scope="col" style="text-align:center; ">Total + Previous Outstanding</th>
+    
+                            <th scope="col" style="text-align:center; ">Payment</th>
+                            <th style="text-align:center;padding: 25px;">Amount Paid</th>
+                            <th scope="col" style="text-align:center;">Outstanding Amount</th>
+                            </tr>  -->
+
+                             <tr>
+                                <div class="header">
+                            <th scope="col" style="text-align:center;">क्र. </th>
+                            <th scope="col" style="text-align:center;padding: 18px;">किराया माह </th>
+                            <th style="text-align:center;padding: 25px">बिल क्रमांक/ दिनांक </th>
+                            <!-- <th style="text-align:center;">Date</th> -->
+                            <th scope="col" style="text-align:center;">रूम किराया </th>
+                            <th scope="col" style="text-align:center;">रूम बिजली (वर्त्तमान री. - पिछला री. )*दर </th>
+                            <th scope="col" style="text-align:center;padding: 18px;">पम्प बिजली (सद सं *यू)* दर </th>
+                            <th scope="col" style="text-align:center;">कचरा  </th>
+                            <th scope="col" style="text-align:center;">अन्य</th>
+                            <th scope="col" style="text-align:center;">कुल (वर्तमान)</th>
+                 <!-- <th scope="col" style="text-align:center;">Outstanding Amount</th> -->
+                            <th scope="col" style="text-align:center;">कुल (वर्तमान +पिछला)</th>
     
                             <th scope="col" style="text-align:center;">Payment</th>
-                            <th style="text-align:center;">Amount Paid</th>
-                            <th scope="col" style="text-align:center;">Outstanding Amount</th>
+                            <th style="text-align:center;padding: 25px;">प्राप्त राशि </th>
+                            <th scope="col" style="text-align:center;">बाकी  </th>
+                            </div>
                             </tr>
+
                         </thead>
                         <tbody>
                             <?php 
@@ -119,7 +166,8 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
                             <td scope="row" style="text-align:center;"><?php echo $i ?></td>
                             <td style="text-align:center;"><?php echo $value['month'] ?></td>
                             <?php if(!empty($value['invoice_number'])) {?>
-                              <td style="color:green;"><?php echo $value['invoice_number'];?> </td>
+                              <td style="color:green;"><?php echo $value['invoice_number'];?><br><span style="color:blue"><?php echo date('d-m-Y',strtotime($value['timestamp']));?></span> </td>
+                              <!-- <td style="color:green;"><?php echo date('d-m-Y',strtotime($value['timestamp']))?> </td> -->
                               
                             <?php } else {?>
 <td>
@@ -155,6 +203,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
                             <td><?php echo $value['waste'] ?></td>
                             <td><?php echo $value['miscellaneous'] ?></td>
                             <td><?php echo  round($total);  ?></td>
+                            <!-- <td style="text-align:center;"> <?php echo $value['outstanding_amount'];?></td> -->
                             <td><?php echo $value['total']; ?></td>
                             <td align="center">
                               <?php if($value['invoice_number']==$last_invoice){ ?>
@@ -170,7 +219,11 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 
                                 <?php }} ?>
                             </td> 
-                            <td style="text-align:center;"><?php echo $value['amount_paid']; ?></td>                           
+                            <?php if(!empty($value['amount_paid'])){ ?>
+                            <td color: red;"text-align:center;color: red;"><?php echo $value['amount_paid']; ?><br> <?php echo $value['pay_mode']; ?><br> <span style="color:blue"><?php echo date('d-m-Y',strtotime($value['payment_date'])); ?></span></td>    
+                            <?php }else{ ?>
+                            <td style="text-align:center;"><?php echo $value['amount_paid']; ?>Nil</td>    
+                            <?php } ?>
                             <td style="text-align:center;"> <?php echo $value['outstanding_amount'];?></td>
                             </tr>   
 
