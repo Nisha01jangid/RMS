@@ -172,8 +172,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
                             <?php } else {?>
 <td>
                               <form action="<?php echo base_url("Home/generate_invoice"); ?>" method="POST">
-                    <input name="invoice_date" type="date"
-                  
+                    <input name="invoice_date" type="date" id="invoiceDate"
                         />
                         <input type="hidden" name="property_id" value="<?php echo $property_id; ?>">
                         <input type="hidden" name="flat_no" value="<?php echo $flat_no; ?>">
@@ -220,7 +219,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
                                 <?php }} ?>
                             </td> 
                             <?php if(!empty($value['amount_paid'])){ ?>
-                            <td color: red;"text-align:center;color: red;"><?php echo $value['amount_paid']; ?><br> <?php echo $value['pay_mode']; ?><br> <span style="color:blue"><?php echo date('d-m-Y',strtotime($value['payment_date'])); ?></span></td>    
+                            <td color: red;text-align:center;><?php echo $value['amount_paid']; ?><br> <?php echo $value['pay_mode']; ?><br> <span style="color:blue"><?php echo date('d-m-Y',strtotime($value['payment_date'])); ?></span></td>    
                             <?php }else{ ?>
                             <td style="text-align:center;"><?php echo $value['amount_paid']; ?>Nil</td>    
                             <?php } ?>
@@ -243,5 +242,8 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 </body>
 </html>
+<script>
+    document.getElementById('invoiceDate').valueAsDate = new Date();
+</script>
 
 

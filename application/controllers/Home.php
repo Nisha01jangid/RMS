@@ -89,6 +89,7 @@ class Home extends CI_Controller {
 		$this->HomeM->delete_tenant_payments($property_id, $flat_no);
 		$this->HomeM->delete_tenant_outstanding($property_id, $flat_no);
 		$this->HomeM->delete_tenant_entry_form_details($property_id, $flat_no);
+		$this->HomeM->delete_invoice($property_id,$flat_no);
 
 		
 		$this->session->set_flashdata('tenant_deleted', 'Tenant Deleted Successfully :)');
@@ -718,15 +719,17 @@ public function insert_payment(){
 		$month = $_POST['month'];
 
 		$flat_details = $this->InvoiceM->getFlatDetails($property_id,$flat_no,$month);
-            // echo "<pre>";
-            // print_r($flat_details);
-            // die();
-            if(!empty($flat_details)){
-                $invoice = $month."/".$flat_no;
-                $current_reading = $flat_details[0]['current_meter_reading'];
-
-                $previous_reading = $flat_details[0]['previous_meter_reading'];
-                $units = $current_reading - $previous_reading; 
+		if(!empty($flat_details)){
+			$invoice = $month."/".$flat_no;
+			$current_reading = $flat_details[0]['current_meter_reading'];
+			
+			$previous_reading = $flat_details[0]['previous_meter_reading'];
+			$units = $current_reading - $previous_reading; 
+			// echo "<pre>";
+			// print_r($units);
+			// print_r($current_reading);
+			// print_r($previous_reading);
+			// die();
 
                 $check = $this->InvoiceM->check_invoice($property_id, $flat_no, $month);
 
@@ -796,7 +799,7 @@ public function insert_payment(){
         $data['previous_outstanding'] = $this->InvoiceM->get_previous_outstanding($property_id,$flat_no,$previous_month);
 
         // echo "<pre>";
-        // print_r($flat_name);
+        // print_r($data['paid_amount']);
         // die();
 		
         if(!empty($data['paid_amount'])){

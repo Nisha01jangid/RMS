@@ -5,8 +5,8 @@
 // print_r($previous_reading);
 // echo "<br>";
 // print_r($rate_per_unit);
-// echo "<pre>";
-// print_r($report_flatwise_details);
+// echo "<br>";
+// print_r($flats);
 // die();
 ?>
 <!doctype html>
@@ -224,6 +224,12 @@ for (i = 0; i < dropdown.length; i++) {
 						<br>
             <form action="<?php echo base_url('EntryForm/insert_property_wise_entry');?>" method="post">
 						<div class="row" style="height:60vh;overflow-x: hidden; overflow-y: auto;">
+						    <div style=
+						    "display:flex; flex-direction:row; margin-bottom:1em; align-items:center;">
+						        <label style="color:blue;font-weight:bold;">Select common Due Date: &nbsp; </label>
+						      <input type="date" class="form-control" id="universalDueDate" name="universalDueDate" style="width:10em;">
+						     
+						     </div>
 							<table class="table table-striped table-hover table-bordered" >
 								<thead>
 									<!-- <tr>
@@ -234,11 +240,11 @@ for (i = 0; i < dropdown.length; i++) {
 										<th style="text-align: center;">S.No.</th>
 										<th style="text-align: center;">Flat Name.</th>
 										<th style="text-align: center;">Tenant Name</th>
-                    <th style="text-align: center;">Members</th>
+                    <th style="text-align: center;width:8%">Mem</th>
 										<th style="text-align: center;">Rent</th>
                     <th style="text-align: center;">previous Meter Reading</th>
                     <th style="text-align: center;">Current Meter Reading </th>
-                    <th style="text-align: center;">Miscellaneous </th>
+                    <th style="text-align: center;width:8%">Misc </th>
                     <th style="text-align: center;">Due Date</th>
 									</tr>
 								</thead>
@@ -249,11 +255,7 @@ for (i = 0; i < dropdown.length; i++) {
                                 if($flats[$i]['status'] == 1){?>
                                 <tr>
                                     <td style="text-align: center;"><?php echo $i; ?></td>
-                                    <!-- <td style="text-align: center;"><?php// echo $flats[$i]['flat_name']; ?></td> -->
-                                    <td>
-                                  <input style="text-align: center;" type="text" class="form-control" id="flat_name" name="flat_name[]"   value="<?php echo $previous_flat_name[$i]; ?>">
-                                  </td>
-
+                                    <td style="text-align: center;"><?php echo $flats[$i]['flat_name']; ?></td>
                                     <td><?php echo $tenant_name[$i]; ?></td>
                                     
                                   <!-- *********************************************************************** -->
@@ -281,7 +283,7 @@ for (i = 0; i < dropdown.length; i++) {
                                     <td>
                                     <input style="text-align: center;" type="number" class="form-control" id="miscellaneous" name="miscellaneous[]" value='0'>
                                     </td>
-                                    <td style="text-align: center;"><input type="date" class="form-control" id="duedate" name="duedate[]">
+                                    <td style="text-align: center;"><input type="date" class="form-control" id="duedate" name="duedate[]" disabled>
                                 </td>
                                 </tr>
                                     <?php }} ?>	

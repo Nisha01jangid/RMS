@@ -89,10 +89,12 @@
             <hr style="margin: 3px 0px;">
             <p style="margin-bottom:0px;">9. शेष राशि: &emsp;<b>₹ <?php echo round($total_amount_to_pay)." - "; ?><?php if(!empty($amount_paid)){echo $amount_paid; }else{echo "0";} ?><?php echo " = ".$outstanding_details[0]['outstanding_amount']; ?></b> /-</p>
             <hr style="margin: 3px 0px;">
-            <p style="margin-bottom:0px;color:blue;">भुगतान दिनांक: <b><?php echo date("d-m-Y",strtotime($details[0]['duedate'])); ?></b> तक आवश्यक |</p>
-            <h5 style="margin:15px 0px 0px 0px;color:blue"><?php if($outstanding_details[0]['outstanding_amount']>=0){ ?>बाकी : </span><span style="font:size 8px;color:black"><b>₹ <?php echo $outstanding_details[0]['outstanding_amount']; ?></b><?php }else{ ?>जमा: <b>₹ <?php echo (0-$outstanding_details[0]['outstanding_amount']); ?></b><?php } ?></h5>
+    <b><p style="margin-bottom:10px;color:red;">भुगतान दिनांक: <u style="font-size:20px;"><?php echo date("d-m-Y",strtotime($details[0]['duedate'])); ?></u> तक  अवश्य रूप से करें</p></b>
+            <h4 style="margin:15px 0px 0px 0px;color:blue"><?php if($outstanding_details[0]['outstanding_amount']>=0){ ?>बाकी : </span><span style="font:size 8px;color:black"><b>₹ <?php echo $outstanding_details[0]['outstanding_amount']; ?></b><?php }else{ ?>जमा: <b>₹ <?php echo (0-$outstanding_details[0]['outstanding_amount']); ?></b><?php } ?></h4>
             <!-- <p style="margin-bottom:0px; float:right; margin-right:50px;">ह०</p> -->
-
+</p>
+            <hr style="margin: 3px 0px;">
+            <p style="margin-bottom:0px;color:red;"><b> Phone Pe/Google Pay के लिए केवल मो. नं .-<b><u> 6264675532 (Ram Rati Shah) </u></b>का उपयोग करें एवं नाम वेरीफाई कर ही भुगतान करें </b></p>
         </div>
     </div>
 

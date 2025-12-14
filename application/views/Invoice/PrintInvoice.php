@@ -66,7 +66,7 @@
             <p style="margin-bottom:0px;">नाम श्री/श्रीमती: <b><?php echo $tenant_name." Ji"; ?></b> </p>
             <p style="margin-bottom:0px;"><span>किराया माह: <b><?php echo date("F Y", strtotime($month)); ?></b></span><span style="margin-left:100px">क. नं: <b><?php echo $f['flat_no']; ?><span style="color:blue; font-size:15px;"> (<?php echo $f['flat_name']; ?>)</span></b></span></p>
             <hr style="height: 5px; background: black;">
-            <p style="margin-bottom:0px;">1. वर्तमान मी. रीडिंग - पिछला मी. रीडिंग:&nbsp;<b><?php echo $f['current_meter_reading']?>-<?php echo $f['previous_meter_reading']?>=</b>&nbsp;<b><?php echo $units; ?>  यूनिट</b>
+            <p style="margin-bottom:0px;">1. वर्तमान मी. रीडिंग - पिछला मी. रीडिंग:&nbsp;<b><?php echo $f['current_meter_reading']?>-<?php echo $f['previous_meter_reading']?>=</b>&nbsp;<b><?php echo $units; ?>  यू</b>
             <hr style="margin: 3px 0px;">
             <p style="margin-bottom:0px;">2. प्रति सदस्य/माह पम्प यूनिट: &emsp;<b><?php echo $f['no_of_members']."×". $f['water_rate']." = ".$water_units; ?>&nbsp;यूनिट</p></b>
             <p style="margin-bottom:0px;">&emsp;(यूनिट × सदस्य संख्या)</p>
@@ -89,13 +89,19 @@
             <hr style="margin: 3px 0px;">
             <p style="margin-bottom:0px;">9. शेष राशि: &emsp;<b>₹ <?php echo round($total_amount_to_pay)." - "; ?><?php if(!empty($amount_paid)){echo $amount_paid; }else{echo "0";} ?><?php echo " = ".$f['outstanding_amount']; ?></b> /-</p>
             <hr style="margin: 3px 0px;">
-            <p style="margin-bottom:0px;color:blue;">भुगतान दिनांक: <b><?php echo date("d-m-Y",strtotime($f['duedate'])); ?></b> तक आवश्यक |</p>
-            <!-- <h4 style="margin:15px 0px 0px 30px;">बाकी : <b>₹ <?php echo $f['outstanding_amount']; ?></b></h4> -->
+            <p style="margin-bottom:0px;color:red;"><b> भुगतान दिनांक: <b><u style="font-size:20px;"><?php echo date("d-m-Y",strtotime($f['duedate'])); ?></u></b> से पहले अवश्य रूप से करें  </p>
+
+
+       
             <span style="font: size 6px;px;color:blue;">
               <h4 style="margin:15px 0px 0px 0px;"><?php if($f['outstanding_amount']>=0){ ?>बाकी : </span><span style="font: size 8px;color:black;"><b>₹ <?php echo $f['outstanding_amount']; ?></b><?php }else{ ?>जमा: <b>₹ <?php echo (0-$f['outstanding_amount']); ?></b><?php } ?></h4>
               </span>
-            <!-- <p style="margin-bottom:0px; float:right; margin-right:50px;">ह०</p> -->
 
+</p>
+            <hr style="margin: 3px 0px;">
+            <p style="margin-bottom:0px;color:red;"><b> Phone Pe/Google Pay के लिए केवल मो. नं .-<b><u> 6264675532 (Ram Rati Shah) </u></b>का उपयोग करें एवं नाम वेरीफाई कर ही भुगतान करें </b></p>
+            <!-- <p style="margin-bottom:0px; float:right; margin-right:50px;">ह०</p> -->
+<!-- <h6 style="text-align:center;margin-top:5px;color:blue;"><u>HAPPY NEW YEAR - 2024 </u></h6> -->
         </div>
     </div>
     <?php }?>

@@ -96,7 +96,6 @@ class EntryForm extends CI_Controller{
 		// die();
 		$data['previous_rent']  = array();
 		$data['previous_reading'] = array();
-		$data['previous_flat_name'] = array();
 		for($i=1; $i<=sizeof($data['flats']); $i++){
 
 		if($data['flats'][$i]['status'] == 1){
@@ -114,17 +113,11 @@ class EntryForm extends CI_Controller{
 		}else{
 			$data['previous_rent'][$i]="";
 		}
-
-		if(!empty($previous_rent)){
-			$data['previous_flat_name'][$i]=$previous_rent[0]['flat_name'];
-		}else{
-			$data['previous_flat_name'][$i]="";
-		}
 		$previous_reading = $this->EntryFormM->previousReading($property_id,$i,$previous_month);
 		$data['previous_reading'][$i] = $previous_reading[0]['current_meter_reading'];
 		$data['no_of_members'][$i] = $previous_reading[0]['no_of_members'];
 		// echo "<pre>";
-		// print_r($previous_rent);
+		// print_r($previous_reading);
 		
 		}
 		
@@ -135,7 +128,6 @@ class EntryForm extends CI_Controller{
 		// echo "<pre>";
 		// print_r($data);
 		// die();
-
 		if($entry_type == 1){
 		$this->load->view('EntryForm/property_wise_entry', $data);	
 		}else{
@@ -189,7 +181,7 @@ class EntryForm extends CI_Controller{
 
 		$data['previous_reading'] = $this->EntryFormM->previousReading($property_id,$flat_no,$previous_month);
 		// echo "<pre>";
-		// print_r($previous_rent);
+		// print_r($data);
 		// die();
 		$this->load->view('EntryForm/entry_form_view', $data);
 
@@ -213,18 +205,13 @@ class EntryForm extends CI_Controller{
 		$rate_per_unit = $_POST['rate_per_unit'];
 		$rate_per_person = $_POST['rate_per_person'];
 		$waste= $_POST['waste'];
-		$flat_name = $_POST['flat_name'];
 
-		$check = $this->EntryFormM->get_entry_form($property_id,$flat_no,$month);
-
+		$check = $this->EntryFormM->get_entry_form($property_id,$flat_no,$month,$active_status);
+// print_r($check);die();
 		if(!empty($check)){
-			$this->EntryFormM->update_entry_form($month,$property_id, $property_name, $flat_no, $no_of_members, $rate_per_unit,$rate_per_person, $tenant_rent, $previous_meter_reading, $current_meter_reading, $waste, $miscellaneous, $duedate, $active_status, $flat_name);
-
-			$this->EntryFormM->update_tenant_flat_name($property_id, $flat_no, $flat_name);
+			$this->EntryFormM->update_entry_form($month,$property_id, $property_name, $flat_no, $no_of_members, $rate_per_unit,$rate_per_person, $tenant_rent, $previous_meter_reading, $current_meter_reading, $waste, $miscellaneous, $duedate, $active_status);
 		}else{
-			$this->EntryFormM->insert_entry_form($month,$property_id, $property_name, $flat_no, $no_of_members, $rate_per_unit,$rate_per_person, $tenant_rent, $previous_meter_reading, $current_meter_reading, $waste, $miscellaneous, $duedate, $active_status,$flat_name);
-
-			$this->EntryFormM->update_tenant_flat_name($property_id, $flat_no, $flat_name);
+			$this->EntryFormM->insert_entry_form($month,$property_id, $property_name, $flat_no, $no_of_members, $rate_per_unit,$rate_per_person, $tenant_rent, $previous_meter_reading, $current_meter_reading, $waste, $miscellaneous, $duedate, $active_status);
 		}
 
 	
@@ -249,13 +236,15 @@ class EntryForm extends CI_Controller{
 		$property_name1 = $this->EntryFormM->get_property_name($_POST['property_id'][0]);
 		$property_name = $property_name1[0]['property_name'];
 		$property = $_POST['property_id'][0];
+		$universalDueDate = $_POST['universalDueDate'];
 		
 		for($i=0; $i<sizeof($_POST['property_id']); $i++){
 		$tenant_rent= $_POST['tenant_rent'][$i];
 		$current_meter_reading= $_POST['current_meter_reading'][$i];
 		$previous_meter_reading = $_POST['previous_meter_reading'][$i];
 		$miscellaneous= $_POST['miscellaneous'][$i];
-		$duedate= $_POST['duedate'][$i];
+	//	$duedate= $_POST['duedate'][$i];
+		$duedate= $universalDueDate;
 		$flat_no = $_POST['flat_no'][$i];
 		$property_id = $_POST['property_id'][$i];
 		$month = $_POST['month'][$i];
@@ -263,27 +252,22 @@ class EntryForm extends CI_Controller{
 		$rate_per_person = $_POST['rate_per_person'][$i];
 		$waste= $_POST['waste'][$i];
 		$no_of_members = $_POST['members'][$i];
-		$flat_name = $_POST['flat_name'][$i];
 		// echo $no_of_members;
 
 		$member = $this->EntryFormM->get_member($_POST['property_id'][$i], $_POST['flat_no'][$i]);
 		// $no_of_members = $member[0]['members'];
 		$active_status = $member[0]['status'];
 
-		$check = $this->EntryFormM->get_entry_form($property_id,$flat_no,$month);
+		$check = $this->EntryFormM->get_entry_form($property_id,$flat_no,$month,$active_status);
 
 		if(!empty($check)){
 			// echo "Nisha";
 			// die();
-			$this->EntryFormM->update_entry_form($month,$property_id, $property_name, $flat_no, $no_of_members, $rate_per_unit,$rate_per_person, $tenant_rent, $previous_meter_reading, $current_meter_reading, $waste, $miscellaneous, $duedate, $active_status, $flat_name);
-
-			$this->EntryFormM->update_tenant_flat_name($property_id, $flat_no, $flat_name);
+			$this->EntryFormM->update_entry_form($month,$property_id, $property_name, $flat_no, $no_of_members, $rate_per_unit,$rate_per_person, $tenant_rent, $previous_meter_reading, $current_meter_reading, $waste, $miscellaneous, $duedate, $active_status);
 		}else{
 			// echo "Hello";
 			// die();
-			$this->EntryFormM->insert_entry_form($month,$property_id, $property_name, $flat_no, $no_of_members, $rate_per_unit,$rate_per_person, $tenant_rent, $previous_meter_reading, $current_meter_reading, $waste, $miscellaneous, $duedate, $active_status, $flat_name);
-
-			$this->EntryFormM->update_tenant_flat_name($property_id, $flat_no, $flat_name);
+			$this->EntryFormM->insert_entry_form($month,$property_id, $property_name, $flat_no, $no_of_members, $rate_per_unit,$rate_per_person, $tenant_rent, $previous_meter_reading, $current_meter_reading, $waste, $miscellaneous, $duedate, $active_status);
 		}
 	
 

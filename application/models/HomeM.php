@@ -145,6 +145,15 @@ public function delete_tenant_relatives($property_id, $flat_no, $tenant_id){
     $result = $this->db->query($query);
     return ;
   }
+
+  function delete_invoice($property_id,$flat_no){
+    $sql = "UPDATE invoice set `status` = 0
+    where `property_id` = $property_id and `flat_no` = $flat_no
+";
+    $query = $this->db->query($sql);
+    return;
+  }
+
   public function delete_tenant_entry_form_details($property_id, $flat_no){
 
     $query = "UPDATE entry_form_details set `status` = 0
@@ -200,7 +209,7 @@ public function delete_tenant_relatives($property_id, $flat_no, $tenant_id){
 
   public function get_tenant_amount($flat_no, $property_id, $to_date, $from_date){
 
-    $query = "SELECT SUM(amount) as amount FROM payment where property_id = $property_id and flat_no = $flat_no and payment_date between '$from_date' and '$to_date' order by payment_date";
+    $query = "SELECT SUM(amount) as amount FROM payment where property_id = $property_id and flat_no = $flat_no and payment_date between '$from_date' and '$to_date' and status = 1 order by payment_date";
 
     // print_r($query);
     // die();
@@ -236,7 +245,7 @@ public function delete_tenant_relatives($property_id, $flat_no, $tenant_id){
 
   public function get_tenant_amount_todate($flat_no, $property_id, $to_date){
 
-    $query = "SELECT sum(amount) as amount FROM payment where property_id = $property_id and flat_no = $flat_no and payment_date <= '$to_date' order by payment_date";
+    $query = "SELECT sum(amount) as amount FROM payment where property_id = $property_id and flat_no = $flat_no and payment_date <= '$to_date' and status = 1 order by payment_date";
 
     // print_r($query);
     // die();
@@ -258,7 +267,7 @@ public function delete_tenant_relatives($property_id, $flat_no, $tenant_id){
 
   public function get_previous_outstanding($property_id, $flat_no, $month){
 
-    $query = "SELECT * FROM outstanding_amount where property_id = $property_id and flat_no = $flat_no and month = '$month'";
+    $query = "SELECT * FROM outstanding_amount where property_id = $property_id and flat_no = $flat_no and month = '$month' and status = 1";
 
     // print_r($query);
     // die();
@@ -311,7 +320,7 @@ public function delete_tenant_relatives($property_id, $flat_no, $tenant_id){
 
   public function get_invoive_number($property_id,$month, $flat_no)
   {
-    $query = " SELECT invoice,`timestamp` FROM invoice WHERE property_id = $property_id AND month ='$month' and flat_no = $flat_no order by `month`";
+    $query = " SELECT invoice,`timestamp` FROM invoice WHERE property_id = $property_id AND month ='$month' and flat_no = $flat_no and status = 1 order by `month`";
 
     $result = $this->db->query($query);
     return $result->result_array();

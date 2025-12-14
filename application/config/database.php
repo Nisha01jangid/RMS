@@ -74,11 +74,14 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
-	'dsn'	=> '',
+		'dsn'	=> '',
 	'hostname' => 'localhost',
 	'username' => 'root',
 	'password' => '',
-	'database' => 'house_rental_db',
+	'database' => 'id20515101_rms',
+	//'username' => 'root',
+	//'password' => '',
+	//'database' => 'house_rental_db',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

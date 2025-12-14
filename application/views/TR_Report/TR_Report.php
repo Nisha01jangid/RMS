@@ -121,7 +121,7 @@
                                     
                             <tr>
                             <td rowspan="<?php echo sizeof($value['payments'])+1; ?>" style="text-align: center; vertical-align: middle;"><?php echo $i ?></td>
-                            <td rowspan="<?php echo sizeof($value['payments'])+1; ?>" style="text-align: center; vertical-align: middle;"><?php echo $value['month']." (".$value['flat_name'][0]['flat_name'].")"; ?></td>
+                            <td rowspan="<?php echo sizeof($value['payments'])+1; ?>" style="text-align: center; vertical-align: middle;"><?php echo $value['month']; ?></td>
                             <?php foreach($value['payments'] as $v){ ?>
                             <tr>
                             <td style="text-align: center;"><?php echo "Rs" ." ".$v['amount'] ." (".$v['payment_date'].")" ; ?></td>
